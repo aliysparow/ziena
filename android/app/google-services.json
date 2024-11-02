@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "96738949246",
+    "project_id": "zena-1ad72",
+    "storage_bucket": "zena-1ad72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96738949246:android:efe1aabb5af4b42138802f",
+        "android_client_info": {
+          "package_name": "com.efada.ziena"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnSvmB18aKlugLiCJrs9K_JepztelunQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

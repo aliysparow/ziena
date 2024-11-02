@@ -1,0 +1,36 @@
+
+
+    fluttergen -c pubspec.yaml;fvm flutter pub run easy_localization:generate -S assets/localization -f keys -O lib/gen -o locale_keys.g.dart
+
+    flutter build apk --release --target-platform android-arm --analyze-size
+
+    ./gradlew signingReport
+
+    
+    git config --global user.email aliysparow@gmail.com ; git config --global user.name Aly Sparow; 
+    git add .;
+    git commit -m "
+    - change url
+    ";
+    git push;
+
+    git checkout stg;git merge dev;git push;flutter clean; fvm flutter pub get; fvm flutter build apk --release;git checkout dev
+
+    git checkout -b <branch> ; git push -u origin <branch>
+
+
+    git reset --hard commit_hash_you_want_to_return_to
+
+    git remote set-url origin git@github.com-sparow:aliysparow/ziena.git
+
+    git remote add origin git@github.com-rahul-personal:github-sparow
+
+
+    git@github.com:alzoldik/alrowad.git
+
+    git@github.com:aliysparow/sparraw_client.git
+
+     github.com-sparow
+
+
+     

@@ -1,0 +1,35 @@
+[Server Gate Logger
+] {
+    "$id": "1",
+    "IsSuccess": true,
+    "data": {
+        "$id": "2",
+        "UserName": "0561628311",
+        "IdNumber": null,
+        "Nationality": null,
+        "City": "00000000-0000-0000-0000-000000000000",
+        "FirstName": "Ali",
+        "LastName": "ziena",
+        "Email": "aliZeina@demo.com",
+        "Password": null,
+        "ConfirmPassword": null,
+        "RememberMe": false,
+        "DefaultLanguage": null,
+        "UserId": "981bda21-9294-ef11-8bcd-20040ff72aa5",
+        "ContactId": "f94e85a7-8f94-ef11-8bcd-20040ff72aa5",
+        "DriverId": null,
+        "SupervisorId": null,
+        "MsgMobileExist": null,
+        "FullName": "Ali ziena",
+        "Token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjA1NjE2MjgzMTEiLCJuYmYiOjE3MzA1NjYzNDUsImV4cCI6MTczMDU2OTk0NCwiaWF0IjoxNzMwNTY2MzQ0fQ.vmz4FY-C2CJpvO0_tby3aPZK7jSGfLjZLIQLbJvgYK0",
+        "TokenExpiry": "30/04/1446 17:52:24",
+        "UserType": 0,
+        "Source": null,
+        "UserImage": null,
+        "EmailConfirmed": false,
+        "Identity": ""
+    },
+    "ErrorMessage": null,
+    "SucecssMessage": null,
+    "TotalItems": 0
+}

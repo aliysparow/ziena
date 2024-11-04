@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,6 +35,16 @@ class _HomeViewState extends State<HomeView> {
         backgroundColor: context.scaffoldBackgroundColor,
         leadingWidth: 80.w,
         title: Text(LocaleKeys.welcome_to_the_ziena.tr()),
+        actions: [
+          IconButton(
+            onPressed: () => push(NamedRoutes.account),
+            icon: CustomImage(
+              Assets.icons.drawer,
+              height: 32.h,
+              width: 32.h,
+            ),
+          ).withPadding(horizontal: 12.w)
+        ],
       ),
       body: ListView(
         children: [
@@ -140,7 +151,8 @@ class _HomeViewState extends State<HomeView> {
                                   base46: true,
                                   height: 187.h,
                                   width: 142.w,
-                                  fit: BoxFit.cover,
+                                  fit: BoxFit.contain,
+                                  backgroundColor: context.primaryColorLight,
                                   borderRadius: BorderRadius.circular(12.r),
                                 ),
                                 SizedBox(height: 14.h),
@@ -183,7 +195,8 @@ class _HomeViewState extends State<HomeView> {
                                 base46: true,
                                 height: 187.h,
                                 width: 142.w,
-                                fit: BoxFit.cover,
+                                fit: BoxFit.contain,
+                                backgroundColor: context.primaryColorLight,
                                 borderRadius: BorderRadius.circular(12.r),
                               ),
                               SizedBox(height: 14.h),

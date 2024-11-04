@@ -69,5 +69,12 @@ abstract class  LocaleKeys {
   static const apartment_number = 'apartment_number';
   static const floor_number = 'floor_number';
   static const next = 'next';
+  static const profile_settings = 'profile_settings';
+  static const my_addresses = 'my_addresses';
+  static const change_password = 'change_password';
+  static const app_language = 'app_language';
+  static const contact_support = 'contact_support';
+  static const share_app = 'share_app';
+  static const logout = 'logout';
 
 }

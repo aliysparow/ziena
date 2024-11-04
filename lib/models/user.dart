@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ziena/core/services/local_notifications_service.dart';
 
 import '../main.dart';
 import 'base.dart';
@@ -56,6 +57,7 @@ class UserModel extends Model {
   }
 
   clear() {
+    GlobalNotification.clearDeviceToken();
     Prefs.remove('user');
     fromJson();
   }

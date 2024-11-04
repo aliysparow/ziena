@@ -12,11 +12,17 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/addresses.svg
+  String get addresses => 'assets/icons/addresses.svg';
+
   /// File path: assets/icons/camera.svg
   String get camera => 'assets/icons/camera.svg';
 
   /// File path: assets/icons/delete.svg
   String get delete => 'assets/icons/delete.svg';
+
+  /// File path: assets/icons/drawer.svg
+  String get drawer => 'assets/icons/drawer.svg';
 
   /// File path: assets/icons/duration.svg
   String get duration => 'assets/icons/duration.svg';
@@ -33,6 +39,15 @@ class $AssetsIconsGen {
   /// File path: assets/icons/home_active.svg
   String get homeActive => 'assets/icons/home_active.svg';
 
+  /// File path: assets/icons/lang.svg
+  String get lang => 'assets/icons/lang.svg';
+
+  /// File path: assets/icons/lock.svg
+  String get lock => 'assets/icons/lock.svg';
+
+  /// File path: assets/icons/logout.svg
+  String get logout => 'assets/icons/logout.svg';
+
   /// File path: assets/icons/nationality.svg
   String get nationality => 'assets/icons/nationality.svg';
 
@@ -42,21 +57,38 @@ class $AssetsIconsGen {
   /// File path: assets/icons/price.svg
   String get price => 'assets/icons/price.svg';
 
+  /// File path: assets/icons/profile.svg
+  String get profile => 'assets/icons/profile.svg';
+
+  /// File path: assets/icons/share.svg
+  String get share => 'assets/icons/share.svg';
+
+  /// File path: assets/icons/support.svg
+  String get support => 'assets/icons/support.svg';
+
   /// File path: assets/icons/time.svg
   String get time => 'assets/icons/time.svg';
 
   /// List of all assets
   List<String> get values => [
+        addresses,
         camera,
         delete,
+        drawer,
         duration,
         edit,
         gallery,
         home,
         homeActive,
+        lang,
+        lock,
+        logout,
         nationality,
         orders,
         price,
+        profile,
+        share,
+        support,
         time
       ];
 }

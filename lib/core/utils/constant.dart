@@ -1,5 +1,7 @@
 class AppConstants {
   static const String baseUrl = "http://93.112.2.209:8003/api/v3";
+  static const String paymentUrl = "http://93.112.2.209:8004/payment/payment?ContractType=2";
+
   static const String imagesUrl = "$baseUrl/getImage/";
 
   static const String login = 'account/LogIn';
@@ -19,4 +21,6 @@ class AppConstants {
   static const String hourlyPackages = 'Package/GetHourlyPackages';
 
   static const String getAddresses = 'Address/GetAddressesByContactId';
+
+  static const String createHourlyContract = 'Contract/CreateHourlyContract';
 }

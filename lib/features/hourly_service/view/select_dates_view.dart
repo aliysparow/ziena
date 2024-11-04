@@ -2,17 +2,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:ziena/core/routes/app_routes_fun.dart';
-import 'package:ziena/core/routes/routes.dart';
-import 'package:ziena/core/widgets/app_btn.dart';
-import 'package:ziena/core/widgets/custom_circle_icon.dart';
 import 'package:ziena/core/widgets/flash_helper.dart';
-import 'package:ziena/gen/locale_keys.g.dart';
 
+import '../../../core/routes/app_routes_fun.dart';
+import '../../../core/routes/routes.dart';
 import '../../../core/services/service_locator.dart';
 import '../../../core/utils/extensions.dart';
+import '../../../core/widgets/app_btn.dart';
+import '../../../core/widgets/custom_circle_icon.dart';
 import '../../../core/widgets/custom_image.dart';
 import '../../../gen/assets.gen.dart';
+import '../../../gen/locale_keys.g.dart';
 import '../bloc/hourly_service_bloc.dart';
 
 class SelectDatesView extends StatefulWidget {
@@ -53,7 +53,7 @@ class _SelectDatesViewState extends State<SelectDatesView> {
             ),
             SizedBox(width: 12.w),
             Text(
-              bloc.inputData.packageModel?.title ?? '',
+              bloc.inputData.package?.title ?? '',
               style: context.semiboldText.copyWith(fontSize: 15),
             ),
           ],
@@ -71,10 +71,53 @@ class _SelectDatesViewState extends State<SelectDatesView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'اختر ${bloc.inputData.packageModel?.totalVisits} أيام مناسبة لك',
+              'اختر ${bloc.inputData.package?.totalVisits} أيام مناسبة لك',
               style: context.mediumText.copyWith(fontSize: 16),
             ),
-            SizedBox(height: 12.h),
+            Wrap(
+              spacing: 8.w,
+              runSpacing: 8.w,
+              children: List.generate(
+                7,
+                (i) {
+                  final day = DateTime.now().add((i + 1).days);
+                  final item = DateFormat('EEEE', context.locale.languageCode).format(day);
+                  final bool selected = bloc.inputData.week.any((e) => e == day.weekday);
+                  return GestureDetector(
+                    onTap: () {
+                      if (selected) {
+                        bloc.inputData.week.remove(day.weekday);
+                        bloc.inputData.dates.clear();
+                      } else if (bloc.inputData.week.length == bloc.inputData.package?.totalVisits) {
+                        FlashHelper.showToast("لم يعد ايام متاحة لاختيارها", type: MessageType.warning);
+                      } else {
+                        bloc.inputData.week.add(day.weekday);
+                        bloc.inputData.dates.clear();
+                      }
+
+                      setState(() {});
+                    },
+                    child: Container(
+                      height: 40.h,
+                      alignment: Alignment.center,
+                      width: (context.w - 3 * 8.w - 40.w) / 4,
+                      padding: EdgeInsets.symmetric(horizontal: 14.w),
+                      decoration: BoxDecoration(
+                        color: selected ? context.indicatorColor : context.primaryContainer,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: Text(
+                        item,
+                        style: context.mediumText.copyWith(
+                          fontSize: 12,
+                          color: selected ? context.primaryColorLight : context.primaryColorDark,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ).withPadding(vertical: 20.h),
             Container(
               padding: EdgeInsets.all(12.w),
               decoration: BoxDecoration(
@@ -82,7 +125,7 @@ class _SelectDatesViewState extends State<SelectDatesView> {
                 borderRadius: BorderRadius.circular(12.r),
               ),
               child: TableCalendar(
-                firstDay: DateTime.now(),
+                firstDay: DateTime.now().add(1.days),
                 onHeaderTapped: (focusedDay) {},
                 headerVisible: true,
                 shouldFillViewport: false,
@@ -101,17 +144,37 @@ class _SelectDatesViewState extends State<SelectDatesView> {
                   cellMargin: EdgeInsets.zero,
                 ),
                 availableCalendarFormats: const {CalendarFormat.month: 'Month'},
-                focusedDay: DateTime.now(),
+                focusedDay: DateTime.now().add(1.days),
                 lastDay: DateTime.now().add(const Duration(days: 91)),
                 selectedDayPredicate: (day) => bloc.inputData.dates.contains(day),
+                enabledDayPredicate: (day) {
+                  if (bloc.inputData.dates.isNotEmpty) {
+                    return bloc.inputData.dates.first == day;
+                  } else if (bloc.inputData.week.contains(day.weekday)) {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                },
                 onDaySelected: (selectedDay, focusedDay) {
                   if (bloc.inputData.dates.contains(selectedDay)) {
-                    bloc.inputData.dates.remove(selectedDay);
-                  } else if (bloc.inputData.packageModel!.totalVisits <= bloc.inputData.dates.length) {
-                    FlashHelper.showToast("لقد تعديت الحد الاقصي من الزيارات", type: MessageType.warning);
+                    bloc.inputData.dates.clear();
                   } else {
-                    bloc.inputData.dates.add(selectedDay);
+                    // bloc.inputData.dates.add(selectedDay);
+                    for (int i = 0; i < 7; i++) {
+                      if (bloc.inputData.week.contains(selectedDay.add(i.days).weekday)) {
+                        print('add ${selectedDay.add(i.days).weekday}');
+                        bloc.inputData.dates.add(selectedDay.add(i.days));
+                      }
+                    }
                   }
+                  // if (bloc.inputData.dates.contains(selectedDay)) {
+                  //   bloc.inputData.dates.remove(selectedDay);
+                  // } else if (bloc.inputData.package!.totalVisits <= bloc.inputData.dates.length) {
+                  //   FlashHelper.showToast("لقد تعديت الحد الاقصي من الزيارات", type: MessageType.warning);
+                  // } else {
+                  //   bloc.inputData.dates.add(selectedDay);
+                  // }
                   setState(() {});
                 },
               ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ziena/core/utils/extensions.dart';
+import 'package:ziena/features/account/view/account_view.dart';
 import 'package:ziena/features/auth/forget_password/view/forget_password_view.dart';
 import 'package:ziena/features/auth/verify_phone/view/verify_phone_view.dart';
 import 'package:ziena/features/hourly_service/view/select_dates_view.dart';
 import 'package:ziena/features/intro/onboarding_view.dart';
+import 'package:ziena/features/payment_ifream/payment_ifream.dart';
 
 import '../../features/auth/login/view/login_view.dart';
 import '../../features/auth/register/view/register_view.dart';
@@ -36,8 +38,8 @@ class AppRoutes {
     NamedRoutes.summaryHourlyService: (c) => const SummaryHourlyServiceView(),
     NamedRoutes.successfullyPage: (c) => SuccessfullyPage(image: c.arg['image'], title: c.arg['title'], subtitle: c.arg['subtitle']),
     NamedRoutes.onboarding: (c) => const OnboardingView(),
-    // NamedRoutes.complaints: (c) => ComplaintsScreen(type: c.arg['type']),
-    // NamedRoutes.settings: (c) => const SettingsScreen(),
+    NamedRoutes.account: (c) => const AccountView(),
+    NamedRoutes.paymentIfream: (c) => PaymentIfream(id: c.arg['id']),
     // NamedRoutes.staticPages: (c) => StaticPagesScreen(title: c.arg["title"], url: c.arg['url']),
     // NamedRoutes.myOrders: (c) => const OrdersScreen(),
     // NamedRoutes.offers: (c) => const OffersScreen(),

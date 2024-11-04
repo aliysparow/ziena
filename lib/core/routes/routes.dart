@@ -12,5 +12,7 @@ class NamedRoutes {
   static const selectDates = "/select_dates";
   static const summaryHourlyService = "/summary_hourly_service";
   static const successfullyPage = "/successfully_page";
-  static const onboarding = "onboarding_view";
+  static const onboarding = "/onboarding_view";
+  static const account = "/account";
+  static const paymentIfream = "payment_ifream";
 }

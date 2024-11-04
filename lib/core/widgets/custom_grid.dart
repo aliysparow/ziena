@@ -34,11 +34,24 @@ class CustomGrid extends StatelessWidget {
   final Widget Function(BuildContext context, int index) itemBuilder;
   final int itemCount, crossCount;
   final EdgeInsetsGeometry? itemPadding, padding;
-  const CustomGrid({super.key, required this.itemBuilder, required this.itemCount, required this.crossCount, this.itemPadding, this.padding});
+  final bool shrinkWrap;
+  final ScrollPhysics? physics;
+  const CustomGrid({
+    super.key,
+    required this.itemBuilder,
+    required this.itemCount,
+    required this.crossCount,
+    this.itemPadding,
+    this.padding,
+    this.shrinkWrap = false,
+    this.physics,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      shrinkWrap: shrinkWrap,
+      physics: physics,
       itemCount: (itemCount / 2).ceilToDouble().toInt(),
       padding: padding ?? EdgeInsets.zero,
       itemBuilder: (context, index) => Row(

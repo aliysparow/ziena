@@ -53,7 +53,7 @@ class _SelectAddressViewState extends State<SelectAddressView> {
             ),
             SizedBox(width: 12.w),
             Text(
-              bloc.inputData.packageModel?.title ?? '',
+              bloc.inputData.package?.title ?? '',
               style: context.semiboldText.copyWith(fontSize: 15),
             ),
           ],
@@ -83,9 +83,9 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                     style: context.boldText.copyWith(fontSize: 16),
                   ).withPadding(bottom: 10.h),
                   ...List.generate(
-                    8,
+                    7,
                     (i) {
-                      final item = bloc.inputData.packageModel!;
+                      final item = bloc.inputData.package!;
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -95,10 +95,9 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                               "عدد الأيام",
                               "عدد ساعات العمل",
                               "الفترة الزمنية",
-                              "مدة العقد",
                               "السعر قبل الخصم",
                               "السعر بعد الخصم",
-                              "الضربية المضافة",
+                              "ضريبة القيمة المصافة",
                             ][i],
                             style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
                           ),
@@ -108,10 +107,9 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                               "${item.visitNumberPerWeek} اسبوع",
                               "${item.totalHours} ساعات",
                               item.shiftName,
-                              "${item.calendarDays} أيام",
-                              "${item.hourPrice} ${LocaleKeys.sar.tr()}",
+                              "${item.initialPrice} ${LocaleKeys.sar.tr()}",
                               "${item.priceAfterDiscountWithoutVat} ${LocaleKeys.sar.tr()}",
-                              "${item.vat}%",
+                              "${item.vat} ${LocaleKeys.sar.tr()}",
                             ][i],
                             style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
                           ),

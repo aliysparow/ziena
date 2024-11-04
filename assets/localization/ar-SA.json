@@ -66,5 +66,12 @@
     "the_type_of_place": "نوع المكان",
     "apartment_number": "رقم الشقة",
     "floor_number": "رقم الطابق",
-    "next": "التالي"
+    "next": "التالي",
+    "profile_settings": "إعدادات الملف الشخصي",
+    "my_addresses": "العناوين الخاصة بك",
+    "change_password": "تغيير كلمة السر",
+    "app_language": "لغة التطبيق",
+    "contact_support": "خدمة العملاء",
+    "share_app": "شارك التطبيق",
+    "logout": "تسجيل الخروج"
 }

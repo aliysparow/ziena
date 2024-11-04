@@ -25,6 +25,11 @@ class GlobalNotification {
     }
   }
 
+  static clearDeviceToken() async {
+    _deviceToken = "";
+    await FirebaseMessaging.instance.deleteToken();
+  }
+
   late FirebaseMessaging _firebaseMessaging;
 
   updateFcm() async {

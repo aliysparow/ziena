@@ -23,6 +23,7 @@ class _LayoutViewState extends State<LayoutView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       body: BlocBuilder<LayoutBloc, LayoutState>(
         bloc: bloc,
         builder: (context, state) => bloc.currentPage,

@@ -50,7 +50,7 @@ class HourlyPackageDetailsSheet extends StatelessWidget {
         ),
         SizedBox(height: 12.h),
         ...List.generate(
-          8,
+          7,
           (i) => Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -60,10 +60,9 @@ class HourlyPackageDetailsSheet extends StatelessWidget {
                   "عدد الأيام",
                   "عدد ساعات العمل",
                   "الفترة الزمنية",
-                  "مدة العقد",
                   "السعر قبل الخصم",
                   "السعر بعد الخصم",
-                  "الضربية المضافة",
+                  "ضريبة القيمة المضافة",
                 ][i],
                 style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
               ),
@@ -73,10 +72,9 @@ class HourlyPackageDetailsSheet extends StatelessWidget {
                   "${item.visitNumberPerWeek} اسبوع",
                   "${item.totalHours} ساعات",
                   item.shiftName,
-                  "${item.calendarDays} أيام",
-                  "${item.hourPrice} ${LocaleKeys.sar.tr()}",
+                  "${item.initialPrice} ${LocaleKeys.sar.tr()}",
                   "${item.priceAfterDiscountWithoutVat} ${LocaleKeys.sar.tr()}",
-                  "${item.vat}%",
+                  "${item.vat} ${LocaleKeys.sar.tr()}",
                 ][i],
                 style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
               ),
@@ -98,7 +96,7 @@ class HourlyPackageDetailsSheet extends StatelessWidget {
         ).withPadding(vertical: 22.h, horizontal: 32.w),
         AppBtn(
           onPressed: () {
-            sl<HourlyServiceBloc>().inputData.packageModel = item;
+            sl<HourlyServiceBloc>().inputData.package = item;
             if (sl<HourlyServiceBloc>().inputData.validate(context)) {
               push(NamedRoutes.selectAddress);
             }

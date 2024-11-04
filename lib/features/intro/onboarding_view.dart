@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ziena/core/routes/app_routes_fun.dart';
 import 'package:ziena/core/routes/routes.dart';
+import 'package:ziena/main.dart';
 
 import '../../core/utils/extensions.dart';
 import '../../core/widgets/app_btn.dart';
@@ -83,6 +84,7 @@ class _OnboardingViewState extends State<OnboardingView> {
             AppBtn(
               onPressed: () {
                 if (currentIndex == 2) {
+                  Prefs.setBool('second', true);
                   pushAndRemoveUntil(NamedRoutes.login);
                 } else {
                   controller.animateToPage(
@@ -101,6 +103,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               child: TextButton(
                 onPressed: () {
                   if (currentIndex != 2) {
+                    Prefs.setBool('second', true);
                     pushAndRemoveUntil(NamedRoutes.login);
                   }
                 },

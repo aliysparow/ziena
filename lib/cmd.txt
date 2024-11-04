@@ -10,7 +10,7 @@
     git config --global user.email aliysparow@gmail.com ; git config --global user.name Aly Sparow; 
     git add .;
     git commit -m "
-    chnage design on service details,service filter,link payment ifream,changes on select date design and logic,upload test-flight , dive
+    change payment url
     ";
     git push;
 

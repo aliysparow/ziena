@@ -15,11 +15,10 @@ class PaymentIfream extends StatefulWidget {
 }
 
 class _PaymentIfreamState extends State<PaymentIfream> {
-  //static const String paymentUrl = "http://93.112.2.209:8004/payment/payment?id=${widget.contractId}&ContractType=2";
   late final WebViewController controller;
   @override
   void initState() {
-    final uri = Uri.parse(AppConstants.paymentUrl)..queryParameters.addAll({'id': widget.id});
+    final uri = Uri.parse(AppConstants.paymentUrl + widget.id);
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(

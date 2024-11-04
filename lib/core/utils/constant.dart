@@ -1,6 +1,6 @@
 class AppConstants {
   static const String baseUrl = "http://93.112.2.209:8003/api/v3";
-  static const String paymentUrl = "http://93.112.2.209:8004/payment/payment?ContractType=2";
+  static const String paymentUrl = "https://efadah.azurewebsites.net/Payment/Payment/";
 
   static const String imagesUrl = "$baseUrl/getImage/";
 

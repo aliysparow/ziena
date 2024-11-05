@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../gen/assets.gen.dart';
 import '../../gen/locale_keys.g.dart';
 import '../utils/extensions.dart';
@@ -12,7 +11,12 @@ import 'custom_image.dart';
 
 class PickImage extends StatefulWidget {
   final String title;
-  const PickImage({super.key, required this.title});
+  final Function(XFile)? onImagePicked;
+  const PickImage({
+    super.key,
+    required this.title,
+    this.onImagePicked,
+  });
 
   @override
   State<PickImage> createState() => _PickImageState();
@@ -33,7 +37,7 @@ class _PickImageState extends State<PickImage> {
                   onTap: () {
                     pick(ImageSource.camera).then((value) {
                       if (value != null) {
-                        Navigator.pop(context, value);
+                        widget.onImagePicked?.call(value);
                       }
                     });
                   },
@@ -54,7 +58,10 @@ class _PickImageState extends State<PickImage> {
                 SizedBox(height: 6.h),
                 Text(
                   LocaleKeys.camera.tr(),
-                  style: context.regularText.copyWith(fontSize: 14, color: context.hintColor),
+                  style: context.regularText.copyWith(
+                    fontSize: 14,
+                    color: context.hintColor,
+                  ),
                   textAlign: TextAlign.center,
                 )
               ],
@@ -65,7 +72,7 @@ class _PickImageState extends State<PickImage> {
                   onTap: () {
                     pick(ImageSource.gallery).then((value) {
                       if (value != null) {
-                        Navigator.pop(context, value);
+                        widget.onImagePicked?.call(value);
                       }
                     });
                   },
@@ -86,7 +93,8 @@ class _PickImageState extends State<PickImage> {
                 SizedBox(height: 6.h),
                 Text(
                   LocaleKeys.gallery.tr(),
-                  style: context.regularText.copyWith(fontSize: 14, color: context.hintColor),
+                  style: context.regularText
+                      .copyWith(fontSize: 14, color: context.hintColor),
                   textAlign: TextAlign.center,
                 )
               ],
@@ -107,7 +115,13 @@ class _PickImageState extends State<PickImage> {
 
 class PickVideo extends StatefulWidget {
   final String title;
-  const PickVideo({super.key, required this.title});
+  final Function(XFile)? onVideoPicked;
+
+  const PickVideo({
+    super.key,
+    required this.title,
+    this.onVideoPicked,
+  });
 
   @override
   State<PickVideo> createState() => _PickVideoState();
@@ -128,7 +142,7 @@ class _PickVideoState extends State<PickVideo> {
                   onTap: () {
                     pick(ImageSource.camera).then((value) {
                       if (value != null) {
-                        Navigator.pop(context, value);
+                        widget.onVideoPicked?.call(value);
                       }
                     });
                   },
@@ -149,7 +163,8 @@ class _PickVideoState extends State<PickVideo> {
                 SizedBox(height: 6.h),
                 Text(
                   LocaleKeys.camera.tr(),
-                  style: context.regularText.copyWith(fontSize: 14, color: context.hintColor),
+                  style: context.regularText
+                      .copyWith(fontSize: 14, color: context.hintColor),
                   textAlign: TextAlign.center,
                 )
               ],
@@ -160,7 +175,7 @@ class _PickVideoState extends State<PickVideo> {
                   onTap: () {
                     pick(ImageSource.gallery).then((value) {
                       if (value != null) {
-                        Navigator.pop(context, value);
+                        widget.onVideoPicked?.call(value);
                       }
                     });
                   },
@@ -181,7 +196,8 @@ class _PickVideoState extends State<PickVideo> {
                 SizedBox(height: 6.h),
                 Text(
                   LocaleKeys.gallery.tr(),
-                  style: context.regularText.copyWith(fontSize: 14, color: context.hintColor),
+                  style: context.regularText
+                      .copyWith(fontSize: 14, color: context.hintColor),
                   textAlign: TextAlign.center,
                 )
               ],

@@ -46,24 +46,25 @@ class UserModel extends Model {
     lastName = stringFromJson(json, "LastName");
     email = stringFromJson(json, "Email");
     contactId = stringFromJson(json, "ContactId");
-    tokenExpiry = dateFromJson(json, "TokenExpiry", parseingFormat: 'dd/MM/yyyy HH:mm:ss');
+    tokenExpiry = dateFromJson(json, "TokenExpiry",
+        parseingFormat: 'dd/MM/yyyy HH:mm:ss');
     userType = intFromJson(json, "UserType");
     emailConfirmed = boolFromJson(json, "EmailConfirmed");
     identity = stringFromJson(json, "Identity");
   }
 
   save() {
-    Prefs.setString('user', jsonEncode(toJson()));
+    prefs.setString('user', jsonEncode(toJson()));
   }
 
   clear() {
     GlobalNotification.clearDeviceToken();
-    Prefs.remove('user');
+    prefs.remove('user');
     fromJson();
   }
 
   get() {
-    String user = Prefs.getString('user') ?? '{}';
+    String user = prefs.getString('user') ?? '{}';
     fromJson(jsonDecode(user));
   }
 
@@ -77,7 +78,8 @@ class UserModel extends Model {
         "LastName": lastName,
         "Email": email,
         "ContactId": contactId,
-        "TokenExpiry": DateFormat('dd/MM/yyyy HH:mm:ss', 'en').format(tokenExpiry),
+        "TokenExpiry":
+            DateFormat('dd/MM/yyyy HH:mm:ss', 'en').format(tokenExpiry),
         "UserType": userType,
         "EmailConfirmed": emailConfirmed,
         "Identity": identity,

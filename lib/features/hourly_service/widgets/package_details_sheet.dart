@@ -1,21 +1,22 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ziena/core/routes/app_routes_fun.dart';
-import 'package:ziena/core/routes/routes.dart';
-import 'package:ziena/core/services/service_locator.dart';
 import 'package:ziena/core/utils/extensions.dart';
 import 'package:ziena/core/widgets/app_btn.dart';
 import 'package:ziena/core/widgets/app_sheet.dart';
 import 'package:ziena/core/widgets/custom_image.dart';
-import 'package:ziena/features/hourly_service/bloc/hourly_service_bloc.dart';
 import 'package:ziena/gen/assets.gen.dart';
 import 'package:ziena/gen/locale_keys.g.dart';
 import 'package:ziena/models/hourly_package_model.dart';
 
 class HourlyPackageDetailsSheet extends StatelessWidget {
   final HourlyPackageModel item;
-  const HourlyPackageDetailsSheet({super.key, required this.item});
+  final Function()? onTap;
+  const HourlyPackageDetailsSheet({
+    super.key,
+    required this.item,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +65,8 @@ class HourlyPackageDetailsSheet extends StatelessWidget {
                   "السعر بعد الخصم",
                   "ضريبة القيمة المضافة",
                 ][i],
-                style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
+                style: context.boldText
+                    .copyWith(fontSize: 15, color: '#8E8E8E'.color),
               ),
               Text(
                 [
@@ -76,7 +78,8 @@ class HourlyPackageDetailsSheet extends StatelessWidget {
                   "${item.priceAfterDiscountWithoutVat} ${LocaleKeys.sar.tr()}",
                   "${item.vat} ${LocaleKeys.sar.tr()}",
                 ][i],
-                style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
+                style: context.boldText
+                    .copyWith(fontSize: 15, color: '#8E8E8E'.color),
               ),
             ],
           ).withPadding(vertical: 12.h, horizontal: 32.w),
@@ -95,12 +98,7 @@ class HourlyPackageDetailsSheet extends StatelessWidget {
           ],
         ).withPadding(vertical: 22.h, horizontal: 32.w),
         AppBtn(
-          onPressed: () {
-            sl<HourlyServiceBloc>().inputData.package = item;
-            if (sl<HourlyServiceBloc>().inputData.validate(context)) {
-              push(NamedRoutes.selectAddress);
-            }
-          },
+          onPressed: onTap,
           title: LocaleKeys.subscribe.tr(),
           backgroundColor: context.indicatorColor,
         ).withPadding(vertical: 20.h, horizontal: 20.w),

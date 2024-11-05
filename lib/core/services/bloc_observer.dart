@@ -3,7 +3,8 @@ import 'package:bloc/bloc.dart';
 import '../utils/loger.dart';
 
 class AppBlocObserver extends BlocObserver {
-  LoggerDebug log = LoggerDebug(headColor: LogColors.white, constTitle: 'App Bloc Observer');
+  LoggerDebug log =
+      LoggerDebug(headColor: LogColors.white, constTitle: 'App Bloc Observer');
   @override
   void onCreate(BlocBase bloc) {
     super.onCreate(bloc);
@@ -14,9 +15,11 @@ class AppBlocObserver extends BlocObserver {
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
     if (change.nextState.runtimeType.toString().contains("Failed")) {
-      log.red('${bloc.runtimeType}  ( onChange ), ${change.currentState.runtimeType}==> ${change.nextState.runtimeType}');
+      log.red(
+          '${bloc.runtimeType}  ( onChange ), ${change.currentState.runtimeType}==> ${change.nextState.runtimeType}');
     } else {
-      log.green('${bloc.runtimeType}  ( onChange ), ${change.currentState.runtimeType}==> ${change.nextState.runtimeType}');
+      log.green(
+          '${bloc.runtimeType}  ( onChange ), ${change.currentState.runtimeType}==> ${change.nextState.runtimeType}');
     }
   }
 

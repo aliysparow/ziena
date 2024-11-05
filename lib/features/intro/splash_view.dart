@@ -25,7 +25,7 @@ class _SplashViewState extends State<SplashView> {
     Timer(3.seconds, () {
       if (UserModel.i.isAuth) {
         pushAndRemoveUntil(NamedRoutes.layout);
-      } else if (Prefs.getBool('second') ?? false) {
+      } else if (prefs.getBool('second') ?? false) {
         pushAndRemoveUntil(NamedRoutes.login);
       } else {
         pushAndRemoveUntil(NamedRoutes.onboarding);

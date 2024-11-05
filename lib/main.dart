@@ -25,7 +25,7 @@ void main() async {
   await lang.EasyLocalization.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
   Bloc.observer = AppBlocObserver();
-  Prefs = await SharedPreferences.getInstance();
+  prefs = await SharedPreferences.getInstance();
   UserModel.i.get();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   GlobalNotification().setUpFirebase();
@@ -66,11 +66,14 @@ class _MyAppState extends State<MyApp> {
             theme: AppThemes.lightTheme,
             builder: (context, child) {
               ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
-                return Scaffold(appBar: AppBar(elevation: 0, backgroundColor: Colors.white));
+                return Scaffold(
+                    appBar:
+                        AppBar(elevation: 0, backgroundColor: Colors.white));
               };
               return Phoenix(
                 child: MediaQuery(
-                  data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.sp)),
+                  data: MediaQuery.of(context)
+                      .copyWith(textScaler: TextScaler.linear(1.sp)),
                   child: Unfocus(child: child ?? const SizedBox.shrink()),
                 ),
               );
@@ -82,13 +85,14 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-late SharedPreferences Prefs;
+late SharedPreferences prefs;
 
 // ignore: non_constant_identifier_names
 
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)..badCertificateCallback = (cert, host, port) => true;
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (cert, host, port) => true;
   }
 }

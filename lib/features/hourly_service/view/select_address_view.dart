@@ -99,7 +99,8 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                               "السعر بعد الخصم",
                               "ضريبة القيمة المصافة",
                             ][i],
-                            style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
+                            style: context.boldText
+                                .copyWith(fontSize: 15, color: '#8E8E8E'.color),
                           ),
                           Text(
                             [
@@ -111,7 +112,8 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                               "${item.priceAfterDiscountWithoutVat} ${LocaleKeys.sar.tr()}",
                               "${item.vat} ${LocaleKeys.sar.tr()}",
                             ][i],
-                            style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
+                            style: context.boldText
+                                .copyWith(fontSize: 15, color: '#8E8E8E'.color),
                           ),
                         ],
                       ).withPadding(vertical: 10.h);
@@ -129,23 +131,29 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                   style: context.mediumText.copyWith(fontSize: 16),
                 ),
                 if (bloc.inputData.address == null)
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 10.h),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      border: Border.all(color: context.primaryColorDark),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.add,
-                          size: 14.sp,
-                        ).withPadding(end: 4.w),
-                        Text(
-                          LocaleKeys.add_address.tr(),
-                          style: context.regularText.copyWith(fontSize: 14),
-                        ),
-                      ],
+                  GestureDetector(
+                    onTap: () {
+                      // push(NamedRoutes.addAddress);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 18.w, vertical: 10.h),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        border: Border.all(color: context.primaryColorDark),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.add,
+                            size: 14.sp,
+                          ).withPadding(end: 4.w),
+                          Text(
+                            LocaleKeys.add_address.tr(),
+                            style: context.regularText.copyWith(fontSize: 14),
+                          ),
+                        ],
+                      ),
                     ),
                   )
               ],
@@ -174,7 +182,8 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                             Expanded(
                               child: Text(
                                 item.districtName,
-                                style: context.mediumText.copyWith(fontSize: 16),
+                                style:
+                                    context.mediumText.copyWith(fontSize: 16),
                               ),
                             ),
                             GestureDetector(
@@ -193,22 +202,26 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                         SizedBox(height: 8.h),
                         Text(
                           item.name,
-                          style: context.regularText.copyWith(fontSize: 14, color: '#A4A4A4'.color),
+                          style: context.regularText
+                              .copyWith(fontSize: 14, color: '#A4A4A4'.color),
                         ),
                         SizedBox(height: 4.h),
                         Text(
                           "${LocaleKeys.the_type_of_place.tr()} : ${item.apartmentTypeName}",
-                          style: context.regularText.copyWith(fontSize: 14, color: '#A4A4A4'.color),
+                          style: context.regularText
+                              .copyWith(fontSize: 14, color: '#A4A4A4'.color),
                         ),
                         SizedBox(height: 4.h),
                         Text(
                           "${LocaleKeys.apartment_number.tr()} : ${item.apartmentNumber}",
-                          style: context.regularText.copyWith(fontSize: 14, color: '#A4A4A4'.color),
+                          style: context.regularText
+                              .copyWith(fontSize: 14, color: '#A4A4A4'.color),
                         ),
                         SizedBox(height: 4.h),
                         Text(
                           "${LocaleKeys.floor_number.tr()} : ${item.floorNumber}",
-                          style: context.regularText.copyWith(fontSize: 14, color: '#A4A4A4'.color),
+                          style: context.regularText
+                              .copyWith(fontSize: 14, color: '#A4A4A4'.color),
                         ),
                       ],
                     ),
@@ -220,7 +233,8 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                   backgroundColor: context.primaryColorLight,
                   collapsedBackgroundColor: context.primaryColorLight,
                   shape: OutlineInputBorder(
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(14.r)),
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(14.r)),
                     borderSide: BorderSide.none,
                   ),
                   collapsedShape: OutlineInputBorder(
@@ -269,7 +283,9 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                                     Expanded(
                                       child: Text(
                                         bloc.addresses[i].districtName,
-                                        style: context.mediumText.copyWith(fontSize: 16, color: '#A4A4A4'.color),
+                                        style: context.mediumText.copyWith(
+                                            fontSize: 16,
+                                            color: '#A4A4A4'.color),
                                       ),
                                     ),
                                   ],
@@ -277,7 +293,8 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                                 SizedBox(height: 12.h),
                                 Text(
                                   bloc.addresses[i].name,
-                                  style: context.regularText.copyWith(fontSize: 14, color: '#A4A4A4'.color),
+                                  style: context.regularText.copyWith(
+                                      fontSize: 14, color: '#A4A4A4'.color),
                                 ),
                               ],
                             ),

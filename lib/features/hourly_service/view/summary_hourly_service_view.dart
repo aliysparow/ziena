@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ziena/core/routes/app_routes_fun.dart';
+import 'package:ziena/core/widgets/app_field.dart';
 import 'package:ziena/features/hourly_service/bloc/hourly_service_state.dart';
 
 import '../../../core/routes/routes.dart';
@@ -25,6 +26,7 @@ class SummaryHourlyServiceView extends StatefulWidget {
 
 class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
   final bloc = sl<HourlyServiceBloc>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,6 +146,30 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                     style: context.regularText.copyWith(fontSize: 16),
                   ),
                 ]),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
+              padding: EdgeInsets.all(14.w),
+              decoration: BoxDecoration(
+                color: context.primaryColorLight,
+                borderRadius: BorderRadius.circular(12.r),
+              ),
+              child: Column(
+                children: [
+                  AppField(
+                    keyboardType: TextInputType.phone,
+                    controller: bloc.inputData.phone1,
+                    hintText: 'رقم اضافي',
+                  ),
+                  SizedBox(height: 12.h),
+                  AppField(
+                    keyboardType: TextInputType.phone,
+                    controller: bloc.inputData.phone2,
+                    hintText: 'رقم اخر (اختياري)',
+                    validator: (v) => null,
+                  ),
+                ],
               ),
             ),
             Container(
@@ -300,7 +326,9 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                   return AppBtn(
                     loading: state.bookingState.isLoading,
                     onPressed: () {
-                      bloc.createBooking();
+                      if (bloc.inputData.validate(context)) {
+                        bloc.createBooking();
+                      }
                     },
                     title: 'ادفع الأن',
                     backgroundColor: context.indicatorColor,

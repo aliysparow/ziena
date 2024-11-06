@@ -4,7 +4,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:ziena/core/widgets/flash_helper.dart';
 
 import '../../../core/routes/app_routes_fun.dart';
 import '../../../core/routes/routes.dart';
@@ -83,24 +82,22 @@ class _SelectDatesViewState extends State<SelectDatesView> {
                 7,
                 (i) {
                   final day = DateTime.now().add((i + 1).days);
-                  final item = DateFormat('EEEE', context.locale.languageCode)
-                      .format(day);
-                  final bool selected =
-                      bloc.inputData.week.any((e) => e == day.weekday);
+                  final item = DateFormat('EEEE', context.locale.languageCode).format(day);
+                  final bool selected = bloc.inputData.week.any((e) => e == day.weekday);
                   return GestureDetector(
                     onTap: () {
                       if (selected) {
                         bloc.inputData.week.remove(day.weekday);
                         bloc.inputData.dates.clear();
-                      } else if (bloc.inputData.week.length ==
-                          bloc.inputData.package?.totalVisits) {
-                        FlashHelper.showToast("لم يعد ايام متاحة لاختيارها",
-                            type: MessageType.warning);
+                      } else if (bloc.inputData.week.length == bloc.inputData.package?.totalVisits) {
+                        // FlashHelper.showToast("لم يعد ايام متاحة لاختيارها", type: MessageType.warning);
+                        bloc.inputData.week.removeAt(0);
+                        bloc.inputData.week.add(day.weekday);
+                        bloc.inputData.dates.clear();
                       } else {
                         bloc.inputData.week.add(day.weekday);
                         bloc.inputData.dates.clear();
                       }
-
                       setState(() {});
                     },
                     child: Container(
@@ -109,18 +106,14 @@ class _SelectDatesViewState extends State<SelectDatesView> {
                       width: (context.w - 3 * 8.w - 40.w) / 4,
                       padding: EdgeInsets.symmetric(horizontal: 14.w),
                       decoration: BoxDecoration(
-                        color: selected
-                            ? context.indicatorColor
-                            : context.primaryContainer,
+                        color: selected ? context.indicatorColor : context.primaryContainer,
                         borderRadius: BorderRadius.circular(100),
                       ),
                       child: Text(
                         item,
                         style: context.mediumText.copyWith(
                           fontSize: 12,
-                          color: selected
-                              ? context.primaryColorLight
-                              : context.primaryColorDark,
+                          color: selected ? context.primaryColorLight : context.primaryColorDark,
                         ),
                       ),
                     ),
@@ -142,51 +135,44 @@ class _SelectDatesViewState extends State<SelectDatesView> {
                 daysOfWeekHeight: 30.h,
                 calendarStyle: CalendarStyle(
                   todayDecoration: const BoxDecoration(shape: BoxShape.circle),
-                  todayTextStyle:
-                      TextStyle(color: context.primaryColorDark, fontSize: 16),
-                  selectedDecoration:
-                      BoxDecoration(color: context.indicatorColor),
-                  defaultDecoration: BoxDecoration(
-                      border: Border.all(color: context.hintColor, width: 0.5)),
-                  holidayDecoration: BoxDecoration(
-                      border: Border.all(color: context.hintColor, width: 0.5)),
-                  weekendDecoration: BoxDecoration(
-                      border: Border.all(color: context.hintColor, width: 0.5)),
-                  disabledDecoration: BoxDecoration(
-                      border: Border.all(color: context.hintColor, width: 0.5)),
-                  rowDecoration: BoxDecoration(
-                      border: Border.all(color: context.hintColor, width: 0.5)),
+                  todayTextStyle: TextStyle(color: context.primaryColorDark, fontSize: 16),
+                  selectedDecoration: BoxDecoration(color: context.indicatorColor),
+                  defaultDecoration: BoxDecoration(border: Border.all(color: context.hintColor, width: 0.5)),
+                  holidayDecoration: BoxDecoration(border: Border.all(color: context.hintColor, width: 0.5)),
+                  weekendDecoration: BoxDecoration(border: Border.all(color: context.hintColor, width: 0.5)),
+                  disabledDecoration: BoxDecoration(border: Border.all(color: context.hintColor, width: 0.5)),
+                  rowDecoration: BoxDecoration(border: Border.all(color: context.hintColor, width: 0.5)),
                   cellPadding: EdgeInsets.zero,
                   tablePadding: EdgeInsets.zero,
                   cellMargin: EdgeInsets.zero,
                 ),
                 availableCalendarFormats: const {CalendarFormat.month: 'Month'},
-                focusedDay: DateTime.now().add(1.days),
+                focusedDay: bloc.inputData.dates.firstOrNull ?? DateTime.now().add(1.days),
                 lastDay: DateTime.now().add(const Duration(days: 91)),
-                selectedDayPredicate: (day) =>
-                    bloc.inputData.dates.contains(day),
+                selectedDayPredicate: (day) => bloc.inputData.dates.firstOrNull == day,
                 enabledDayPredicate: (day) {
-                  if (bloc.inputData.dates.isNotEmpty) {
-                    return bloc.inputData.dates.first == day;
-                  } else if (bloc.inputData.week.contains(day.weekday)) {
+                  // if (bloc.inputData.dates.isNotEmpty) {
+                  //   return bloc.inputData.dates.first == day;
+                  // } else
+                  if (bloc.inputData.week.contains(day.weekday)) {
                     return true;
                   } else {
                     return false;
                   }
                 },
                 onDaySelected: (selectedDay, focusedDay) {
-                  if (bloc.inputData.dates.contains(selectedDay)) {
-                    bloc.inputData.dates.clear();
-                  } else {
-                    // bloc.inputData.dates.add(selectedDay);
-                    for (int i = 0; i < 7; i++) {
-                      if (bloc.inputData.week
-                          .contains(selectedDay.add(i.days).weekday)) {
-                        log('add ${selectedDay.add(i.days).weekday}');
-                        bloc.inputData.dates.add(selectedDay.add(i.days));
-                      }
+                  // if (bloc.inputData.dates.contains(selectedDay)) {
+                  //   bloc.inputData.dates.clear();
+                  // } else {
+                  //   // bloc.inputData.dates.add(selectedDay);
+                  bloc.inputData.dates.clear();
+                  for (int i = 0; i < 7; i++) {
+                    if (bloc.inputData.week.contains(selectedDay.add(i.days).weekday)) {
+                      log('add ${selectedDay.add(i.days).weekday}');
+                      bloc.inputData.dates.add(selectedDay.add(i.days));
                     }
                   }
+                  // }
                   // if (bloc.inputData.dates.contains(selectedDay)) {
                   //   bloc.inputData.dates.remove(selectedDay);
                   // } else if (bloc.inputData.package!.totalVisits <= bloc.inputData.dates.length) {

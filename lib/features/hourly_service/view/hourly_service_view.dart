@@ -71,14 +71,12 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                           (index) {
                             return BaseShimmer(
                               child: Container(
-                                margin:
-                                    const EdgeInsetsDirectional.only(end: 10),
+                                margin: const EdgeInsetsDirectional.only(end: 10),
                                 height: 40.h,
                                 width: 100,
                                 decoration: const BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(100)),
+                                  borderRadius: BorderRadius.all(Radius.circular(100)),
                                 ),
                               ),
                             );
@@ -100,9 +98,7 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                           return GestureDetector(
                             onTap: () {
                               bloc.inputData.nationality = item;
-                              if (bloc.inputData.package != null &&
-                                  bloc.inputData.package!.nationality !=
-                                      bloc.inputData.nationality) {
+                              if (bloc.inputData.package != null && bloc.inputData.package!.nationality != bloc.inputData.nationality) {
                                 bloc.inputData.package = null;
                               }
                               setState(() {});
@@ -112,18 +108,14 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                               alignment: Alignment.center,
                               padding: EdgeInsets.symmetric(horizontal: 14.w),
                               decoration: BoxDecoration(
-                                color: selected
-                                    ? context.indicatorColor
-                                    : context.primaryContainer,
+                                color: selected ? context.indicatorColor : context.primaryContainer,
                                 borderRadius: BorderRadius.circular(100),
                               ),
                               child: Text(
                                 item.name,
                                 style: context.mediumText.copyWith(
                                   fontSize: 12,
-                                  color: selected
-                                      ? context.primaryColorLight
-                                      : context.primaryColorDark,
+                                  color: selected ? context.primaryColorLight : context.primaryColorDark,
                                 ),
                               ),
                             ),
@@ -181,8 +173,7 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
               // ),
               SizedBox(height: 34.h),
               Text(
-                LocaleKeys.choose_the_time_period_you_want_for_your_service
-                    .tr(),
+                LocaleKeys.choose_the_time_period_you_want_for_your_service.tr(),
                 style: context.semiboldText.copyWith(
                   fontSize: 14,
                 ),
@@ -200,14 +191,12 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                           (index) {
                             return BaseShimmer(
                               child: Container(
-                                margin:
-                                    const EdgeInsetsDirectional.only(end: 10),
+                                margin: const EdgeInsetsDirectional.only(end: 10),
                                 height: 40.h,
                                 width: 100,
                                 decoration: const BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(100)),
+                                  borderRadius: BorderRadius.all(Radius.circular(100)),
                                 ),
                               ),
                             );
@@ -229,9 +218,7 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                           return GestureDetector(
                             onTap: () {
                               bloc.inputData.period = item;
-                              if (bloc.inputData.package != null &&
-                                  bloc.inputData.package!.shift !=
-                                      bloc.inputData.period?.id) {
+                              if (bloc.inputData.package != null && bloc.inputData.package!.shift != bloc.inputData.period?.id) {
                                 bloc.inputData.package = null;
                               }
                               setState(() {});
@@ -241,18 +228,14 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                               alignment: Alignment.center,
                               padding: EdgeInsets.symmetric(horizontal: 14.w),
                               decoration: BoxDecoration(
-                                color: selected
-                                    ? context.indicatorColor
-                                    : context.primaryContainer,
+                                color: selected ? context.indicatorColor : context.primaryContainer,
                                 borderRadius: BorderRadius.circular(100),
                               ),
                               child: Text(
                                 item.name,
                                 style: context.mediumText.copyWith(
                                   fontSize: 12,
-                                  color: selected
-                                      ? context.primaryColorLight
-                                      : context.primaryColorDark,
+                                  color: selected ? context.primaryColorLight : context.primaryColorDark,
                                 ),
                               ),
                             ),
@@ -368,8 +351,7 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                           (index) {
                             return BaseShimmer(
                               child: Container(
-                                margin:
-                                    const EdgeInsetsDirectional.only(end: 10),
+                                margin: const EdgeInsetsDirectional.only(end: 10),
                                 height: 200.h,
                                 width: (context.w - 60.w) / 2,
                                 decoration: BoxDecoration(
@@ -384,8 +366,7 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                     );
                   }
                   return CustomGrid(
-                    itemPadding:
-                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+                    itemPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
                     padding: EdgeInsets.symmetric(horizontal: 10.w),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -395,8 +376,7 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                       final item = bloc.filteredPacages[i];
                       return Container(
                         width: (context.w - 60.w) / 2,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 18.w, vertical: 12.h),
+                        padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 12.h),
                         decoration: BoxDecoration(
                           color: context.primaryColorLight,
                           borderRadius: BorderRadius.circular(12.r),
@@ -417,8 +397,7 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                                       ),
                                       Text(
                                         LocaleKeys.hourly_service.tr(),
-                                        style: context.boldText
-                                            .copyWith(fontSize: 8),
+                                        style: context.boldText.copyWith(fontSize: 8),
                                         textAlign: TextAlign.center,
                                       )
                                     ],
@@ -429,8 +408,7 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                                   child: Text(
                                     item.title,
                                     maxLines: 2,
-                                    style: context.semiboldText
-                                        .copyWith(fontSize: 14),
+                                    style: context.semiboldText.copyWith(fontSize: 14),
                                   ),
                                 ),
                               ],
@@ -445,8 +423,7 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                                 ).withPadding(end: 8.w),
                                 Text(
                                   item.nationality.name,
-                                  style: context.regularText
-                                      .copyWith(fontSize: 12),
+                                  style: context.regularText.copyWith(fontSize: 12),
                                 ),
                               ],
                             ).withPadding(vertical: 4.h),
@@ -459,8 +436,7 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                                 ).withPadding(end: 8.w),
                                 Text(
                                   "${item.shiftHours} ${LocaleKeys.hours.tr()}",
-                                  style: context.regularText
-                                      .copyWith(fontSize: 12),
+                                  style: context.regularText.copyWith(fontSize: 12),
                                 ),
                               ],
                             ).withPadding(vertical: 4.h),
@@ -473,8 +449,7 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                                 ).withPadding(end: 8.w),
                                 Text(
                                   item.shiftName,
-                                  style: context.regularText
-                                      .copyWith(fontSize: 12),
+                                  style: context.regularText.copyWith(fontSize: 12),
                                 ),
                               ],
                             ).withPadding(vertical: 4.h),
@@ -487,8 +462,7 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                                 ).withPadding(end: 8.w),
                                 Text(
                                   "${item.initialPrice} ${LocaleKeys.sar.tr()}",
-                                  style: context.semiboldText
-                                      .copyWith(fontSize: 12),
+                                  style: context.semiboldText.copyWith(fontSize: 12),
                                 ),
                               ],
                             ).withPadding(vertical: 4.h),
@@ -502,9 +476,7 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                                         bloc.inputData.dates.clear();
                                         bloc.inputData.package = item;
                                       }
-                                      if (sl<HourlyServiceBloc>()
-                                          .inputData
-                                          .validate(context)) {
+                                      if (sl<HourlyServiceBloc>().inputData.validate(context)) {
                                         push(NamedRoutes.selectAddress);
                                       }
                                     },
@@ -512,15 +484,12 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                                       height: 24.h,
                                       decoration: BoxDecoration(
                                         color: context.indicatorColor,
-                                        borderRadius:
-                                            BorderRadius.circular(100),
+                                        borderRadius: BorderRadius.circular(100),
                                       ),
                                       alignment: Alignment.center,
                                       child: Text(
                                         LocaleKeys.subscribe.tr(),
-                                        style: context.semiboldText.copyWith(
-                                            fontSize: 12,
-                                            color: context.primaryColorLight),
+                                        style: context.semiboldText.copyWith(fontSize: 12, color: context.primaryColorLight),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -533,18 +502,14 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                                       showModalBottomSheet(
                                         context: context,
                                         isScrollControlled: true,
-                                        builder: (c) =>
-                                            HourlyPackageDetailsSheet(
+                                        builder: (c) => HourlyPackageDetailsSheet(
                                           item: item,
                                           onTap: () {
-                                            if (bloc.inputData.package !=
-                                                item) {
+                                            if (bloc.inputData.package != item) {
                                               bloc.inputData.dates.clear();
                                               bloc.inputData.package = item;
                                             }
-                                            if (sl<HourlyServiceBloc>()
-                                                .inputData
-                                                .validate(context)) {
+                                            if (sl<HourlyServiceBloc>().inputData.validate(context)) {
                                               push(NamedRoutes.selectAddress);
                                             }
                                           },
@@ -555,15 +520,12 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                                       height: 24.h,
                                       decoration: BoxDecoration(
                                         color: context.primaryContainer,
-                                        borderRadius:
-                                            BorderRadius.circular(100),
+                                        borderRadius: BorderRadius.circular(100),
                                       ),
                                       alignment: Alignment.center,
                                       child: Text(
                                         LocaleKeys.details.tr(),
-                                        style: context.semiboldText.copyWith(
-                                            fontSize: 12,
-                                            color: context.primaryColorLight),
+                                        style: context.semiboldText.copyWith(fontSize: 12, color: context.primaryColorLight),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),

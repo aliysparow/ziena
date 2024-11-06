@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:ziena/core/routes/routes.dart';
 import 'package:ziena/core/utils/extensions.dart';
+import 'package:ziena/core/utils/methods_helpers.dart';
 import 'package:ziena/core/widgets/flash_helper.dart';
 import 'package:ziena/models/address_model.dart';
 import 'package:ziena/models/hourly_package_model.dart';
@@ -20,6 +21,8 @@ class BookHourlyInputModel {
   HourlyPackageModel? package;
   List<DateTime> dates = [];
   List<int> week = [];
+  final phone1 = TextEditingController();
+  final phone2 = TextEditingController();
 
   bool showPackage(HourlyPackageModel package) {
     if (nationality != null && period != null) {
@@ -78,6 +81,13 @@ class BookHourlyInputModel {
       } else {
         return true;
       }
+    } else if (NamedRoutes.summaryHourlyService == context.currentRoute) {
+      if (phone1.text.isEmpty) {
+        FlashHelper.showToast('الرجاء ادخال رقم هاتف اضافي', type: MessageType.warning);
+        return false;
+      } else {
+        return true;
+      }
     } else {
       throw 'Not implemented yet';
     }
@@ -93,7 +103,7 @@ class BookHourlyInputModel {
         "AddressId": address?.id,
         "Source": Platform.isIOS ? '2' : '1',
         "Mobile01": UserModel.i.phone,
-        "Mobile02": '0328989239',
-        "Mobile03": '0328989238',
+        "Mobile02": MethodsHelpers.formatPhoneNumber(phone1.text),
+        "Mobile03": MethodsHelpers.formatPhoneNumber(phone2.text),
       };
 }

@@ -92,7 +92,7 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                           Text(
                             [
                               'عدد الزيارات',
-                              "عدد الأيام",
+                              "عدد الأسابيع",
                               "عدد ساعات العمل",
                               "الفترة الزمنية",
                               "السعر قبل الخصم",

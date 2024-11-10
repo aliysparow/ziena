@@ -20,6 +20,7 @@ class AppField extends StatefulWidget {
   final Color? fillColor;
   final String? initialValue;
   final bool withBorder;
+  final InputBorder? border;
 
   const AppField({
     super.key,
@@ -38,6 +39,7 @@ class AppField extends StatefulWidget {
     this.title,
     this.initialValue,
     this.withBorder = true,
+    this.border,
   });
 
   @override
@@ -61,19 +63,16 @@ class _AppFieldState extends State<AppField> {
       maxLines: widget.maxLines,
       readOnly: widget.onTap != null,
       onTap: widget.onTap,
-      obscureText:
-          widget.keyboardType == TextInputType.visiblePassword && !showPass,
+      obscureText: widget.keyboardType == TextInputType.visiblePassword && !showPass,
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       validator: (v) {
+        final RegExp regex = RegExp(r'^(00966|966|\+966|0)?5\d{8}$');
         if (widget.isRequired && v?.isEmpty == true) {
           return LocaleKeys.this_field_is_required.tr();
-        } else
-        //  if (widget.keyboardType == TextInputType.phone && v!.length != country.phoneNumberLimit) {
-        //   return LocaleKeys.the_phone_number_must_consist_of_val_numbers.tr(args: [country.phoneNumberLimit.toString()]);
-        // } else
-        if (widget.keyboardType == TextInputType.visiblePassword &&
-            v!.length < 8) {
+        } else if (widget.keyboardType == TextInputType.phone && v!.isNotEmpty && !regex.hasMatch(v)) {
+          return 'رقم الجوال غير صحيح';
+        } else if (widget.keyboardType == TextInputType.visiblePassword && v!.length < 8) {
           return LocaleKeys.the_password_must_not_be_less_than_8_numbers.tr();
         } else if (widget.validator != null) {
           return widget.validator?.call(v);
@@ -83,17 +82,16 @@ class _AppFieldState extends State<AppField> {
       inputFormatters: const [],
       style: context.regularText.copyWith(fontSize: 15),
       decoration: InputDecoration(
-        hintText: widget.hintText ??
-            LocaleKeys.write_val.tr(args: [widget.title ?? '']),
+        hintText: widget.hintText ?? LocaleKeys.write_val.tr(args: [widget.title ?? '']),
         fillColor: widget.fillColor,
         prefixIcon: buildPrefixIcon(context),
         suffixIcon: buildSuffixIcon(context),
-        border: widget.withBorder ? null : InputBorder.none,
-        errorBorder: widget.withBorder ? null : InputBorder.none,
-        enabledBorder: widget.withBorder ? null : InputBorder.none,
-        focusedBorder: widget.withBorder ? null : InputBorder.none,
-        disabledBorder: widget.withBorder ? null : InputBorder.none,
-        focusedErrorBorder: widget.withBorder ? null : InputBorder.none,
+        border: widget.border ?? (widget.withBorder ? null : InputBorder.none),
+        errorBorder: widget.border ?? (widget.withBorder ? null : InputBorder.none),
+        enabledBorder: widget.border ?? (widget.withBorder ? null : InputBorder.none),
+        focusedBorder: widget.border ?? (widget.withBorder ? null : InputBorder.none),
+        disabledBorder: widget.border ?? (widget.withBorder ? null : InputBorder.none),
+        focusedErrorBorder: widget.border ?? (widget.withBorder ? null : InputBorder.none),
       ),
     );
   }

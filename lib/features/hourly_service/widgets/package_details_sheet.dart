@@ -58,15 +58,14 @@ class HourlyPackageDetailsSheet extends StatelessWidget {
               Text(
                 [
                   'عدد الزيارات',
-                  "عدد الأيام",
+                  "عدد الأسابيع",
                   "عدد ساعات العمل",
                   "الفترة الزمنية",
                   "السعر قبل الخصم",
                   "السعر بعد الخصم",
                   "ضريبة القيمة المضافة",
                 ][i],
-                style: context.boldText
-                    .copyWith(fontSize: 15, color: '#8E8E8E'.color),
+                style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
               ),
               Text(
                 [
@@ -78,8 +77,7 @@ class HourlyPackageDetailsSheet extends StatelessWidget {
                   "${item.priceAfterDiscountWithoutVat} ${LocaleKeys.sar.tr()}",
                   "${item.vat} ${LocaleKeys.sar.tr()}",
                 ][i],
-                style: context.boldText
-                    .copyWith(fontSize: 15, color: '#8E8E8E'.color),
+                style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
               ),
             ],
           ).withPadding(vertical: 12.h, horizontal: 32.w),

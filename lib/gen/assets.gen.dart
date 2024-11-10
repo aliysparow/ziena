@@ -96,8 +96,14 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/banner.png
+  AssetGenImage get banner => const AssetGenImage('assets/images/banner.png');
+
   /// File path: assets/images/bussniess_service.svg
   String get bussniessService => 'assets/images/bussniess_service.svg';
+
+  /// File path: assets/images/empty_address.svg
+  String get emptyAddress => 'assets/images/empty_address.svg';
 
   /// File path: assets/images/hour_service.svg
   String get hourService => 'assets/images/hour_service.svg';
@@ -144,7 +150,9 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<dynamic> get values => [
+        banner,
         bussniessService,
+        emptyAddress,
         hourService,
         logo,
         logoAuth,

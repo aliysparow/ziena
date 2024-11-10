@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:ziena/features/addresses/bloc/addresses_bloc.dart';
 import 'package:ziena/features/hourly_service/bloc/hourly_service_bloc.dart';
 
 import '../../blocs/cities/cities_bloc.dart';
@@ -26,7 +27,7 @@ class ServicesLocator {
     sl.registerLazySingleton(() => LayoutBloc());
     sl.registerLazySingleton(() => HomeBloc());
     sl.registerLazySingleton(() => HourlyServiceBloc());
-    // sl.registerFactory(() => SettingsBloc());
+    sl.registerFactory(() => AddressesBloc());
     // sl.registerFactory(() => CategoriesBloc());
     // sl.registerFactory(() => SizesBloc());
     // sl.registerFactory(() => ColorsBloc());

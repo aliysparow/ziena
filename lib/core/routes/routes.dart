@@ -15,5 +15,6 @@ class NamedRoutes {
   static const onboarding = "/onboarding_view";
   static const account = "/account";
   static const paymentIfream = "payment_ifream";
-  static const addAddress = "addAddress";
+  static const addAddress = "add_address";
+  static const addresses = "addresses";
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ziena/core/utils/extensions.dart';
 import 'package:ziena/features/account/view/account_view.dart';
+import 'package:ziena/features/addresses/view/add_address_view.dart';
+import 'package:ziena/features/addresses/view/addresses_view.dart';
 import 'package:ziena/features/auth/forget_password/view/forget_password_view.dart';
 import 'package:ziena/features/auth/verify_phone/view/verify_phone_view.dart';
 import 'package:ziena/features/hourly_service/view/select_dates_view.dart';
@@ -30,26 +32,19 @@ class AppRoutes {
     NamedRoutes.forgetPassword: (c) => const ForgetPaswwordView(),
     NamedRoutes.resetPassword: (c) => ResetPasswordView(phone: c.arg['phone']),
     NamedRoutes.register: (c) => const RegisterView(),
-    NamedRoutes.verifyPhone: (c) =>
-        VerifyPhoneView(type: c.arg['type'], data: c.arg['data']),
+    NamedRoutes.verifyPhone: (c) => VerifyPhoneView(type: c.arg['type'], data: c.arg['data']),
     NamedRoutes.layout: (c) => const LayoutView(),
-    NamedRoutes.hourlyService: (c) =>
-        HourlyServiceView(id: c.arg['id'], title: c.arg['title']),
+    NamedRoutes.hourlyService: (c) => HourlyServiceView(id: c.arg['id'], title: c.arg['title']),
     NamedRoutes.selectAddress: (c) => const SelectAddressView(),
     NamedRoutes.selectDates: (c) => const SelectDatesView(),
     NamedRoutes.summaryHourlyService: (c) => const SummaryHourlyServiceView(),
-    NamedRoutes.successfullyPage: (c) => SuccessfullyPage(
-          image: c.arg['image'],
-          title: c.arg['title'],
-          subtitle: c.arg['subtitle'],
-          btnTitle: c.arg['btnTitle'],
-          onTap: c.arg['onTap'],
-        ),
+    NamedRoutes.successfullyPage: (c) =>
+        SuccessfullyPage(image: c.arg['image'], title: c.arg['title'], subtitle: c.arg['subtitle'], btnTitle: c.arg['btnTitle'], onTap: c.arg['onTap']),
     NamedRoutes.onboarding: (c) => const OnboardingView(),
     NamedRoutes.account: (c) => const AccountView(),
     NamedRoutes.paymentIfream: (c) => PaymentIfream(id: c.arg['id'] as String),
-    // NamedRoutes.staticPages: (c) => StaticPagesScreen(title: c.arg["title"], url: c.arg['url']),
-    // NamedRoutes.myOrders: (c) => const OrdersScreen(),
+    NamedRoutes.addresses: (c) => const AddressesView(),
+    NamedRoutes.addAddress: (c) => const AddAddressView(),
     // NamedRoutes.offers: (c) => const OffersScreen(),
     // NamedRoutes.orderDetails: (c) => OrderDetailsView(id: c.arg["id"]),
     // NamedRoutes.productDetails: (c) => ProductDetailsView(id: c.arg['id']),

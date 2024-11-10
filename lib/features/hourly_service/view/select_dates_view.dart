@@ -26,6 +26,14 @@ class SelectDatesView extends StatefulWidget {
 class _SelectDatesViewState extends State<SelectDatesView> {
   final bloc = sl<HourlyServiceBloc>();
   @override
+  void initState() {
+    bloc.inputData
+      ..dates.clear()
+      ..week.clear();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

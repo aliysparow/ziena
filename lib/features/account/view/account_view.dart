@@ -55,6 +55,7 @@ class _AccountViewState extends State<AccountView> {
             ),
           ),
           ListTile(
+            onTap: () => push(NamedRoutes.addresses),
             leading: CustomImage(Assets.icons.addresses, height: 24.h, width: 24.h),
             title: Text(
               LocaleKeys.my_addresses.tr(),

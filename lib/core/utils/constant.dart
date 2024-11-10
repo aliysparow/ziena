@@ -20,7 +20,9 @@ class AppConstants {
 
   static const String hourlyPackages = 'Package/GetHourlyPackages';
 
-  static const String getAddresses = 'Address/GetAddressesByContactId';
 
   static const String createHourlyContract = 'Contract/CreateHourlyContract';
+
+  static const String getAddresses = 'Address/GetAddressesByContactId';
+  static const String createAddress = 'Address/CreateAddress';
 }

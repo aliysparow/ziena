@@ -20,8 +20,7 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
   HourlyServiceBloc() : super(HourlyServiceState());
 
   List<HourlyPackageModel> pacages = [];
-  List<HourlyPackageModel> get filteredPacages =>
-      pacages.where((e) => inputData.showPackage(e)).toList();
+  List<HourlyPackageModel> get filteredPacages => pacages.where((e) => inputData.showPackage(e)).toList();
   List<AddressModel> addresses = [];
   List<NationalityModel> avilableNationalities = [];
   List<SelectModel> avilableShifts = [];
@@ -33,28 +32,20 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
       return;
     }
     emit(state.copyWith(getPacagesState: RequestState.loading));
-    final result = await ServerGate.i
-        .sendToServer(url: AppConstants.hourlyPackages, body: {
+    final result = await ServerGate.i.sendToServer(url: AppConstants.hourlyPackages, body: {
       "Service": id,
     });
     if (result.success) {
-      pacages = result.data['data']
-          .map<HourlyPackageModel>((e) => HourlyPackageModel.fromJson(e))
-          .toList();
-      avilableNationalities =
-          pacages.map((e) => e.nationality).toSet().toList();
+      pacages = result.data['data'].map<HourlyPackageModel>((e) => HourlyPackageModel.fromJson(e)).toList();
+      avilableNationalities = pacages.map((e) => e.nationality).toSet().toList();
       if (avilableNationalities.length == 1) {
         inputData.nationality = avilableNationalities.first;
       }
-      avilableShifts = pacages
-          .map((e) => SelectModel(id: e.shift, name: e.shiftName))
-          .toSet()
-          .toList();
+      avilableShifts = pacages.map((e) => SelectModel(id: e.shift, name: e.shiftName)).toSet().toList();
       if (avilableShifts.length == 1) inputData.period = avilableShifts.first;
       emit(state.copyWith(getPacagesState: RequestState.done, msg: result.msg));
     } else {
-      emit(
-          state.copyWith(getPacagesState: RequestState.error, msg: result.msg));
+      emit(state.copyWith(getPacagesState: RequestState.error, msg: result.msg));
     }
   }
 
@@ -65,9 +56,7 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
       params: {"contactId": UserModel.i.contactId},
     );
     if (result.success) {
-      addresses = result.data['data']
-          .map<AddressModel>((e) => AddressModel.fromJson(e))
-          .toList();
+      addresses = result.data['data'].map<AddressModel>((e) => AddressModel.fromJson(e)).toList();
       emit(state.copyWith(addressesState: RequestState.done, msg: result.msg));
     } else {
       emit(state.copyWith(addressesState: RequestState.error, msg: result.msg));
@@ -86,8 +75,7 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
         arg: {
           'image': Assets.images.successfully,
           'title': 'تمت العملية بنجاح',
-          'subtitle':
-              "تم حجز عقدك بنجاح \n رقم العقد: ${result.data['data']['ContractNumber']}",
+          'subtitle': "تم حجز عقدك بنجاح \n رقم العقد: ${result.data['data']['ContractNumber']}",
           "btnTitle": "ادفع الأن",
           "onTap": () {
             push(

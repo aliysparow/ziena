@@ -10,6 +10,7 @@ class SuccessfullyPage extends StatelessWidget {
   final String title;
   final String subtitle;
   final String? btnTitle;
+  final Function()? onTap;
 
   const SuccessfullyPage({
     super.key,
@@ -17,6 +18,7 @@ class SuccessfullyPage extends StatelessWidget {
     required this.title,
     required this.subtitle,
     this.btnTitle,
+    this.onTap,
   });
 
   @override
@@ -47,11 +49,15 @@ class SuccessfullyPage extends StatelessWidget {
           ],
         ).withPadding(horizontal: 35.w),
         bottomNavigationBar: AppBtn(
-          onPressed: () => Navigator.pop(context, true),
+          onPressed: onTap ?? () => Navigator.pop(context, true),
           title: btnTitle ?? 'اغلاق',
-          backgroundColor: Colors.transparent,
-          textColor: '#A4A4A4'.color,
-        ).withPadding(horizontal: 20.w, vertical: 12.h),
+          backgroundColor:
+              btnTitle != null ? context.indicatorColor : Colors.transparent,
+          textColor: btnTitle != null ? Colors.white : '#A4A4A4'.color,
+        ).withPadding(
+          horizontal: 20.w,
+          vertical: 12.h,
+        ),
       ),
     );
   }

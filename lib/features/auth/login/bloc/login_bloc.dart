@@ -13,17 +13,19 @@ import 'login_state.dart';
 class LoginBloc extends Cubit<LoginState> {
   LoginBloc() : super(LoginState());
 
-  final phone = TextEditingController(text: kDebugMode ? '561628311' : '');
-  final password = TextEditingController(text: kDebugMode ? '123456123' : '');
+  final phone = TextEditingController(text: kDebugMode ? '542318760' : '');
+  final password = TextEditingController(text: kDebugMode ? '10203040' : '');
 
   Future<void> login() async {
     emit(state.copyWith(requestState: RequestState.loading));
-    final result = await ServerGate.i.sendToServer(url: AppConstants.login, body: {
+    final result =
+        await ServerGate.i.sendToServer(url: AppConstants.login, body: {
       "UserName": MethodsHelpers.formatPhoneNumber(phone.text),
       "Password": password.text,
     });
     if (result.success) {
-      result.data['data']['phone'] = MethodsHelpers.formatPhoneNumber(phone.text);
+      result.data['data']['phone'] =
+          MethodsHelpers.formatPhoneNumber(phone.text);
       UserModel.i
         ..fromJson(result.data['data'])
         ..save();

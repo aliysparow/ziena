@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../core/services/service_locator.dart';
 import '../../../core/utils/extensions.dart';
 import '../../../core/widgets/custom_image.dart';
@@ -24,6 +23,19 @@ class _LayoutViewState extends State<LayoutView> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     push(NamedRoutes.paymentIfream, arg: {
+      //       'id': 'bbbceb9d-bd65-4e92-8872-9146d8d53932',
+      //     });
+      //   },
+      //   child: CustomImage(
+      //     Assets.icons.homeActive,
+      //     height: 24.h,
+      //     width: 24.h,
+      //     color: context.primaryColor,
+      //   ),
+      // ),
       body: BlocBuilder<LayoutBloc, LayoutState>(
         bloc: bloc,
         builder: (context, state) => bloc.currentPage,
@@ -36,7 +48,8 @@ class _LayoutViewState extends State<LayoutView> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 8.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 18.w, vertical: 8.h),
                   decoration: BoxDecoration(
                     color: context.primaryColorLight,
                     borderRadius: BorderRadius.circular(100.r),
@@ -54,18 +67,28 @@ class _LayoutViewState extends State<LayoutView> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               CustomImage(
-                                [Assets.icons.homeActive, Assets.icons.orders][i],
+                                [
+                                  Assets.icons.homeActive,
+                                  Assets.icons.orders
+                                ][i],
                                 height: 24.h,
                                 width: 24.h,
-                                color: bloc.currentIndex == i ? context.primaryColor : context.hintColor,
+                                color: bloc.currentIndex == i
+                                    ? context.primaryColor
+                                    : context.hintColor,
                               ),
                               if (bloc.currentIndex == i) ...[
                                 SizedBox(height: 4.h),
                                 Text(
-                                  [LocaleKeys.home.tr(), LocaleKeys.orders.tr()][i],
+                                  [
+                                    LocaleKeys.home.tr(),
+                                    LocaleKeys.orders.tr()
+                                  ][i],
                                   style: context.semiboldText.copyWith(
                                     fontSize: 10,
-                                    color: bloc.currentIndex == i ? context.primaryColor : context.hintColor,
+                                    color: bloc.currentIndex == i
+                                        ? context.primaryColor
+                                        : context.hintColor,
                                   ),
                                 )
                               ]

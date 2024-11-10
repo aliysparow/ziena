@@ -19,6 +19,7 @@ class AppField extends StatefulWidget {
   final Widget? suffixIcon, prefixIcon;
   final Color? fillColor;
   final String? initialValue;
+  final bool withBorder;
 
   const AppField({
     super.key,
@@ -36,6 +37,7 @@ class AppField extends StatefulWidget {
     this.prefixIcon,
     this.title,
     this.initialValue,
+    this.withBorder = true,
   });
 
   @override
@@ -52,40 +54,46 @@ class _AppFieldState extends State<AppField> {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: widget.keyboardType == TextInputType.phone || context.locale.languageCode == 'en' ? TextDirection.ltr : TextDirection.rtl,
-      child: TextFormField(
-        focusNode: _focusNode,
-        initialValue: widget.initialValue,
-        onChanged: widget.onChanged,
-        maxLines: widget.maxLines,
-        readOnly: widget.onTap != null,
-        onTap: widget.onTap,
-        obscureText: widget.keyboardType == TextInputType.visiblePassword && !showPass,
-        controller: widget.controller,
-        keyboardType: widget.keyboardType,
-        validator: (v) {
-          if (widget.isRequired && v?.isEmpty == true) {
-            return LocaleKeys.this_field_is_required.tr();
-          } else
-          //  if (widget.keyboardType == TextInputType.phone && v!.length != country.phoneNumberLimit) {
-          //   return LocaleKeys.the_phone_number_must_consist_of_val_numbers.tr(args: [country.phoneNumberLimit.toString()]);
-          // } else
-          if (widget.keyboardType == TextInputType.visiblePassword && v!.length < 8) {
-            return LocaleKeys.the_password_must_not_be_less_than_8_numbers.tr();
-          } else if (widget.validator != null) {
-            return widget.validator?.call(v);
-          }
-          return null;
-        },
-        inputFormatters: const [],
-        style: context.regularText.copyWith(fontSize: 15),
-        decoration: InputDecoration(
-          hintText: widget.hintText ?? LocaleKeys.write_val.tr(args: [widget.title ?? '']),
-          fillColor: widget.fillColor,
-          prefixIcon: buildPrefixIcon(context),
-          suffixIcon: buildSuffixIcon(context),
-        ),
+    return TextFormField(
+      focusNode: _focusNode,
+      initialValue: widget.initialValue,
+      onChanged: widget.onChanged,
+      maxLines: widget.maxLines,
+      readOnly: widget.onTap != null,
+      onTap: widget.onTap,
+      obscureText:
+          widget.keyboardType == TextInputType.visiblePassword && !showPass,
+      controller: widget.controller,
+      keyboardType: widget.keyboardType,
+      validator: (v) {
+        if (widget.isRequired && v?.isEmpty == true) {
+          return LocaleKeys.this_field_is_required.tr();
+        } else
+        //  if (widget.keyboardType == TextInputType.phone && v!.length != country.phoneNumberLimit) {
+        //   return LocaleKeys.the_phone_number_must_consist_of_val_numbers.tr(args: [country.phoneNumberLimit.toString()]);
+        // } else
+        if (widget.keyboardType == TextInputType.visiblePassword &&
+            v!.length < 8) {
+          return LocaleKeys.the_password_must_not_be_less_than_8_numbers.tr();
+        } else if (widget.validator != null) {
+          return widget.validator?.call(v);
+        }
+        return null;
+      },
+      inputFormatters: const [],
+      style: context.regularText.copyWith(fontSize: 15),
+      decoration: InputDecoration(
+        hintText: widget.hintText ??
+            LocaleKeys.write_val.tr(args: [widget.title ?? '']),
+        fillColor: widget.fillColor,
+        prefixIcon: buildPrefixIcon(context),
+        suffixIcon: buildSuffixIcon(context),
+        border: widget.withBorder ? null : InputBorder.none,
+        errorBorder: widget.withBorder ? null : InputBorder.none,
+        enabledBorder: widget.withBorder ? null : InputBorder.none,
+        focusedBorder: widget.withBorder ? null : InputBorder.none,
+        disabledBorder: widget.withBorder ? null : InputBorder.none,
+        focusedErrorBorder: widget.withBorder ? null : InputBorder.none,
       ),
     );
   }

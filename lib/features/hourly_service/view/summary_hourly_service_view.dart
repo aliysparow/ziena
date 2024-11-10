@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ziena/core/routes/app_routes_fun.dart';
 import 'package:ziena/core/widgets/app_field.dart';
 import 'package:ziena/features/hourly_service/bloc/hourly_service_state.dart';
 
@@ -21,7 +20,8 @@ class SummaryHourlyServiceView extends StatefulWidget {
   const SummaryHourlyServiceView({super.key});
 
   @override
-  State<SummaryHourlyServiceView> createState() => _SummaryHourlyServiceViewState();
+  State<SummaryHourlyServiceView> createState() =>
+      _SummaryHourlyServiceViewState();
 }
 
 class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
@@ -103,7 +103,8 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                               "السعر بعد الخصم",
                               "ضريبة القيمة المصافة",
                             ][i],
-                            style: context.mediumText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
+                            style: context.mediumText
+                                .copyWith(fontSize: 15, color: '#8E8E8E'.color),
                           ),
                           Text(
                             [
@@ -115,7 +116,8 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                               "${item.priceAfterDiscountWithoutVat} ${LocaleKeys.sar.tr()}",
                               "${item.vat} ${LocaleKeys.sar.tr()}",
                             ][i],
-                            style: context.mediumText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
+                            style: context.mediumText
+                                .copyWith(fontSize: 15, color: '#8E8E8E'.color),
                           ),
                         ],
                       ).withPadding(vertical: 12.h);
@@ -132,46 +134,116 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                 borderRadius: BorderRadius.circular(12.r),
               ),
               child: Text.rich(
-                TextSpan(children: [
-                  TextSpan(
-                    text: 'رقم الجوال',
-                    style: context.semiboldText.copyWith(fontSize: 16),
-                  ),
-                  TextSpan(
-                    text: ' | ',
-                    style: context.semiboldText.copyWith(fontSize: 16),
-                  ),
-                  TextSpan(
-                    text: UserModel.i.phone,
-                    style: context.regularText.copyWith(fontSize: 16),
-                  ),
-                ]),
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'رقم الجوال',
+                      style: context.semiboldText.copyWith(fontSize: 16),
+                    ),
+                    TextSpan(
+                      text: ' | ',
+                      style: context.semiboldText.copyWith(fontSize: 16),
+                    ),
+                    TextSpan(
+                      text: UserModel.i.phone,
+                      style: context.regularText.copyWith(fontSize: 16),
+                    ),
+                  ],
+                ),
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
-              padding: EdgeInsets.all(14.w),
+              margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 9.h),
+              padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 4.h),
               decoration: BoxDecoration(
                 color: context.primaryColorLight,
                 borderRadius: BorderRadius.circular(12.r),
               ),
               child: Column(
                 children: [
-                  AppField(
-                    keyboardType: TextInputType.phone,
-                    controller: bloc.inputData.phone1,
-                    hintText: 'رقم اضافي',
+                  Row(
+                    children: [
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'رقم اضافي',
+                              style:
+                                  context.semiboldText.copyWith(fontSize: 16),
+                            ),
+                            TextSpan(
+                              text: ' | ',
+                              style:
+                                  context.semiboldText.copyWith(fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: AppField(
+                          keyboardType: TextInputType.phone,
+                          controller: bloc.inputData.phone1,
+                          hintText: 'رقم اضافي',
+                          withBorder: false,
+                        ),
+                      )
+                    ],
                   ),
-                  SizedBox(height: 12.h),
-                  AppField(
-                    keyboardType: TextInputType.phone,
-                    controller: bloc.inputData.phone2,
-                    hintText: 'رقم اخر (اختياري)',
-                    validator: (v) => null,
+                  Row(
+                    children: [
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'رقم اضافي',
+                              style:
+                                  context.semiboldText.copyWith(fontSize: 16),
+                            ),
+                            TextSpan(
+                              text: ' | ',
+                              style:
+                                  context.semiboldText.copyWith(fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: AppField(
+                          keyboardType: TextInputType.phone,
+                          controller: bloc.inputData.phone2,
+                          hintText: 'رقم اخر (اختياري)',
+                          withBorder: false,
+                        ),
+                      )
+                    ],
                   ),
                 ],
               ),
             ),
+            // Container(
+            //   margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
+            //   padding: EdgeInsets.all(14.w),
+            //   decoration: BoxDecoration(
+            //     color: context.primaryColorLight,
+            //     borderRadius: BorderRadius.circular(12.r),
+            //   ),
+            //   child: Column(
+            //     children: [
+            //       AppField(
+            //         keyboardType: TextInputType.phone,
+            //         controller: bloc.inputData.phone1,
+            //         hintText: 'رقم اضافي',
+            //       ),
+            //       SizedBox(height: 12.h),
+            //       AppField(
+            //         keyboardType: TextInputType.phone,
+            //         controller: bloc.inputData.phone2,
+            //         hintText: 'رقم اخر (اختياري)',
+            //         validator: (v) => null,
+            //       ),
+            //     ],
+            //   ),
+            // ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
               padding: EdgeInsets.all(14.w),
@@ -217,22 +289,26 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                   SizedBox(height: 8.h),
                   Text(
                     bloc.inputData.address!.name,
-                    style: context.regularText.copyWith(fontSize: 14, color: '#A4A4A4'.color),
+                    style: context.regularText
+                        .copyWith(fontSize: 14, color: '#A4A4A4'.color),
                   ),
                   SizedBox(height: 4.h),
                   Text(
                     "${LocaleKeys.the_type_of_place.tr()} : ${bloc.inputData.address!.apartmentTypeName}",
-                    style: context.regularText.copyWith(fontSize: 14, color: '#A4A4A4'.color),
+                    style: context.regularText
+                        .copyWith(fontSize: 14, color: '#A4A4A4'.color),
                   ),
                   SizedBox(height: 4.h),
                   Text(
                     "${LocaleKeys.apartment_number.tr()} : ${bloc.inputData.address!.apartmentNumber}",
-                    style: context.regularText.copyWith(fontSize: 14, color: '#A4A4A4'.color),
+                    style: context.regularText
+                        .copyWith(fontSize: 14, color: '#A4A4A4'.color),
                   ),
                   SizedBox(height: 4.h),
                   Text(
                     "${LocaleKeys.floor_number.tr()} : ${bloc.inputData.address!.floorNumber}",
-                    style: context.regularText.copyWith(fontSize: 14, color: '#A4A4A4'.color),
+                    style: context.regularText
+                        .copyWith(fontSize: 14, color: '#A4A4A4'.color),
                   ),
                 ],
               ),
@@ -309,18 +385,12 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
             Expanded(
               child: BlocConsumer<HourlyServiceBloc, HourlyServiceState>(
                 bloc: bloc,
-                buildWhen: (previous, current) => previous.bookingState != current.bookingState,
-                listenWhen: (previous, current) => previous.bookingState != current.bookingState,
+                buildWhen: (previous, current) =>
+                    previous.bookingState != current.bookingState,
+                listenWhen: (previous, current) =>
+                    previous.bookingState != current.bookingState,
                 listener: (context, state) {
-                  if (state.bookingState.isDone) {
-                    push(NamedRoutes.successfullyPage, arg: {
-                      'image': Assets.images.successfully,
-                      'title': 'تمت العملية بنجاح',
-                      'subtitle': "سنقوم بمراجعة طلبك والتواصل معك على رقم الجوال الخاص بك.",
-                    }).then(
-                      (value) => Navigator.popUntil(navigator.currentContext!, (r) => r.isFirst),
-                    );
-                  }
+                  if (state.bookingState.isDone) {}
                 },
                 builder: (context, state) {
                   return AppBtn(
@@ -330,7 +400,7 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                         bloc.createBooking();
                       }
                     },
-                    title: 'ادفع الأن',
+                    title: 'إنشاء عقد',
                     backgroundColor: context.indicatorColor,
                   );
                 },

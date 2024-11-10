@@ -72,6 +72,7 @@ class UserModel extends Model {
   Map<String, dynamic> toJson() => {
         "UserId": id,
         "UserName": userName,
+        "phone": phone,
         "Token": token,
         "City": city,
         "FirstName": firstName,

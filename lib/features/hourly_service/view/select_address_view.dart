@@ -83,7 +83,7 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                     style: context.boldText.copyWith(fontSize: 16),
                   ).withPadding(bottom: 10.h),
                   ...List.generate(
-                    7,
+                    6,
                     (i) {
                       final item = bloc.inputData.package!;
                       return Row(
@@ -95,8 +95,9 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                               "عدد الأسابيع",
                               "عدد ساعات العمل",
                               "الفترة الزمنية",
-                              "السعر قبل الخصم",
-                              "السعر بعد الخصم",
+                              // "السعر قبل الخصم",
+                              // "السعر بعد الخصم",
+                              "سعر الباقة",
                               "ضريبة القيمة المصافة",
                             ][i],
                             style: context.boldText
@@ -108,7 +109,7 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                               "${item.visitNumberPerWeek} اسبوع",
                               "${item.totalHours} ساعات",
                               item.shiftName,
-                              "${item.initialPrice} ${LocaleKeys.sar.tr()}",
+                              // "${item.initialPrice} ${LocaleKeys.sar.tr()}",
                               "${item.priceAfterDiscountWithoutVat} ${LocaleKeys.sar.tr()}",
                               "${item.vat} ${LocaleKeys.sar.tr()}",
                             ][i],
@@ -118,6 +119,20 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                         ],
                       ).withPadding(vertical: 10.h);
                     },
+                  ),
+                  SizedBox(height: 8.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'السعر الإجمالي',
+                        style: context.boldText.copyWith(fontSize: 16),
+                      ),
+                      Text(
+                        "${bloc.inputData.package?.finalPrice} ${LocaleKeys.sar.tr()}",
+                        style: context.boldText.copyWith(fontSize: 16),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -133,7 +148,12 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                 if (bloc.inputData.address == null)
                   GestureDetector(
                     onTap: () {
-                      // push(NamedRoutes.addAddress);
+                      Navigator.pushNamed(context, NamedRoutes.addAddress)
+                          .then((value) {
+                        if (value == true) {
+                          bloc.getAddresses();
+                        }
+                      });
                     },
                     child: Container(
                       padding: EdgeInsets.symmetric(

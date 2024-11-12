@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ziena/core/routes/app_routes_fun.dart';
@@ -45,7 +46,11 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
         avilableNationalities.indexOf(NationalityModel(name: LocaleKeys.all.tr(), id: ''));
       }
       avilableShifts = pacages.map((e) => SelectModel(id: e.shift, name: e.shiftName)).toSet().toList();
-      if (avilableShifts.length == 1) inputData.period = avilableShifts.first;
+      if (avilableShifts.length == 1) {
+        inputData.period = avilableShifts.first;
+      } else {
+        avilableShifts.add(SelectModel(id: '', name: LocaleKeys.all.tr()));
+      }
       emit(state.copyWith(getPacagesState: RequestState.done, msg: result.msg));
     } else {
       emit(state.copyWith(getPacagesState: RequestState.error, msg: result.msg));

@@ -185,18 +185,28 @@ class _AddressesViewState extends State<AddressesView> {
                           SizedBox(height: 4.h),
                           Text(
                             "${LocaleKeys.the_type_of_place.tr()} : ${address.apartmentTypeName}",
-                            style: context.regularText.copyWith(fontSize: 14, color: '#A4A4A4'.color),
+                            style: context.regularText.copyWith(
+                              fontSize: 14,
+                              color: '#A4A4A4'.color,
+                            ),
                           ),
                           SizedBox(height: 4.h),
                           Text(
                             "${LocaleKeys.apartment_number.tr()} : ${address.apartmentNumber}",
-                            style: context.regularText.copyWith(fontSize: 14, color: '#A4A4A4'.color),
+                            style: context.regularText.copyWith(
+                              fontSize: 14,
+                              color: '#A4A4A4'.color,
+                            ),
                           ),
                           SizedBox(height: 4.h),
                           Text(
                             "${LocaleKeys.floor_number.tr()} : ${address.floorNumber}",
-                            style: context.regularText.copyWith(fontSize: 14, color: '#A4A4A4'.color),
+                            style: context.regularText.copyWith(
+                              fontSize: 14,
+                              color: '#A4A4A4'.color,
+                            ),
                           ),
+                          SizedBox(height: 32.h),
                         ],
                       ),
                     );

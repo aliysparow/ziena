@@ -80,5 +80,6 @@ abstract class  LocaleKeys {
   static const select_district = 'select_district';
   static const apartment_type = 'apartment_type';
   static const pick_location = 'pick_location';
+  static const all = 'all';
 
 }

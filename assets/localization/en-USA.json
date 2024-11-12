@@ -77,5 +77,6 @@
     "session_expired": "Session Expired",
     "select_district": "Select District",
     "apartment_type": "Apartment type",
-    "pick_location": "Pick Location"
+    "pick_location": "Pick Location",
+    "all": "All"
 }

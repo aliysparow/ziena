@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ziena/core/routes/app_routes_fun.dart';
 import 'package:ziena/core/routes/routes.dart';
 import 'package:ziena/gen/assets.gen.dart';
+import 'package:ziena/gen/locale_keys.g.dart';
 
 import '../../../core/services/server_gate.dart';
 import '../../../core/utils/constant.dart';
@@ -40,6 +41,8 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
       avilableNationalities = pacages.map((e) => e.nationality).toSet().toList();
       if (avilableNationalities.length == 1) {
         inputData.nationality = avilableNationalities.first;
+      } else {
+        avilableNationalities.indexOf(NationalityModel(name: LocaleKeys.all.tr(), id: ''));
       }
       avilableShifts = pacages.map((e) => SelectModel(id: e.shift, name: e.shiftName)).toSet().toList();
       if (avilableShifts.length == 1) inputData.period = avilableShifts.first;

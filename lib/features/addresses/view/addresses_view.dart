@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ziena/core/routes/app_routes_fun.dart';
 import 'package:ziena/core/widgets/confirmation_sheet.dart';
 
 import '../../../core/routes/routes.dart';
@@ -46,7 +47,7 @@ class _AddressesViewState extends State<AddressesView> {
             builder: (context, state) {
               if (bloc.addresses.isNotEmpty) {
                 return GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, NamedRoutes.addAddress).then((value) {
+                  onTap: () => push(NamedRoutes.addAddress).then((value) {
                     if (value == true) {
                       bloc.getAddresses();
                     }
@@ -214,7 +215,7 @@ class _AddressesViewState extends State<AddressesView> {
               children: [
                 CustomImage(Assets.images.emptyAddress),
                 AppBtn(
-                  onPressed: () => Navigator.pushNamed(context, NamedRoutes.addAddress).then((value) {
+                  onPressed: () => push(NamedRoutes.addAddress).then((value) {
                     if (value == true) {
                       bloc.getAddresses();
                     }

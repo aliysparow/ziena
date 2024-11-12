@@ -1,11 +1,11 @@
-import 'package:ziena/models/nationality_model.dart';
-
 import 'base.dart';
+import 'nationality_model.dart';
 
 class HourlyPackageModel extends Model {
   late final String title;
   late final String description;
   late final String durationStr;
+  late final DateTime lastDate;
   late final String durationDetailsStr;
   late final String shiftDuratioLabel;
   late final NationalityModel nationality;
@@ -33,11 +33,13 @@ class HourlyPackageModel extends Model {
   late final double vat;
   late final bool vatIncluded;
   late final int calendarDays;
+  late final List<int> days;
 
   HourlyPackageModel.fromJson([Map<String, dynamic>? json]) {
     id = stringFromJson(json, 'Id');
     title = stringFromJson(json, "Title");
     description = stringFromJson(json, "Description");
+
     durationStr = stringFromJson(json, "DurationStr");
     durationDetailsStr = stringFromJson(json, "DurationDetailsStr");
     shiftDuratioLabel = stringFromJson(json, "ShiftDuratioLabel");
@@ -66,6 +68,8 @@ class HourlyPackageModel extends Model {
     vat = doubleFromJson(json, "Vat");
     vatIncluded = boolFromJson(json, "VatIncluded");
     calendarDays = intFromJson(json, "CalendarDays");
+    lastDate = dateFromJson(json, "lastDate");
+    days = List<int>.from((json?["days"] ?? []).map((x) => x));
   }
 
   @override
@@ -101,5 +105,6 @@ class HourlyPackageModel extends Model {
         "Vat": vat,
         "VatIncluded": vatIncluded,
         "CalendarDays": calendarDays,
+        "LastDate": lastDate.toString(),
       };
 }

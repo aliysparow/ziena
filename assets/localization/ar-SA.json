@@ -77,5 +77,6 @@
     "session_expired": "انتهت جلسة تسجيل الدخول",
     "select_district": "حدد الحي",
     "apartment_type": "نوع الشقة",
-    "pick_location": "اختيار الموقع"
+    "pick_location": "اختيار الموقع",
+    "all": "الكل"
 }

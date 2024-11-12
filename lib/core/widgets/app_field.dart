@@ -111,7 +111,7 @@ class _AppFieldState extends State<AppField> {
       return Icon(
         Icons.keyboard_arrow_down_sharp,
         size: 18.h,
-        color: context.primaryColor,
+        color: "#113342".color,
       );
     } else if (widget.keyboardType == TextInputType.visiblePassword) {
       return GestureDetector(

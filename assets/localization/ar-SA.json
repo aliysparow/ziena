@@ -73,5 +73,9 @@
     "app_language": "لغة التطبيق",
     "contact_support": "خدمة العملاء",
     "share_app": "شارك التطبيق",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "session_expired": "انتهت جلسة تسجيل الدخول",
+    "select_district": "حدد الحي",
+    "apartment_type": "نوع الشقة",
+    "pick_location": "اختيار الموقع"
 }

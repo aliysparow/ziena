@@ -10,7 +10,7 @@
     git config --global user.email aliysparow@gmail.com ; git config --global user.name Aly Sparow; 
     git add .;
     git commit -m "
-    select days,
+    addresses,contracts,
     ";
     git push;
 

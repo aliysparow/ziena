@@ -3,6 +3,7 @@ import 'package:ziena/core/utils/extensions.dart';
 import 'package:ziena/features/account/view/account_view.dart';
 import 'package:ziena/features/addresses/view/add_address_view.dart';
 import 'package:ziena/features/addresses/view/addresses_view.dart';
+import 'package:ziena/features/addresses/view/pick_location_view.dart';
 import 'package:ziena/features/auth/forget_password/view/forget_password_view.dart';
 import 'package:ziena/features/auth/verify_phone/view/verify_phone_view.dart';
 import 'package:ziena/features/hourly_service/view/select_dates_view.dart';
@@ -45,7 +46,7 @@ class AppRoutes {
     NamedRoutes.paymentIfream: (c) => PaymentIfream(id: c.arg['id'] as String),
     NamedRoutes.addresses: (c) => const AddressesView(),
     NamedRoutes.addAddress: (c) => const AddAddressView(),
-    // NamedRoutes.offers: (c) => const OffersScreen(),
+    NamedRoutes.pickLocation: (c) => PickLocationView(position: c.arg['position'], address: c.arg['address']),
     // NamedRoutes.orderDetails: (c) => OrderDetailsView(id: c.arg["id"]),
     // NamedRoutes.productDetails: (c) => ProductDetailsView(id: c.arg['id']),
     // NamedRoutes.formProduct: (c) => FormProductView(id: c.arg['id']),

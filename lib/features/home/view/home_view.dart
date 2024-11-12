@@ -62,7 +62,7 @@ class _HomeViewState extends State<HomeView> {
                 () {
                   switch (index) {
                     case 0:
-                      return "assets/images/banner.png";
+                      return Assets.images.banner.path;
                     case 1:
                       return Assets.images.monthService;
                     case 2:
@@ -90,8 +90,7 @@ class _HomeViewState extends State<HomeView> {
                   margin: const EdgeInsets.all(4),
                   duration: const Duration(milliseconds: 300),
                   decoration: BoxDecoration(
-                    color:
-                        selectedBanner == index ? Colors.orange : Colors.grey,
+                    color: selectedBanner == index ? Colors.orange : Colors.grey,
                     borderRadius: BorderRadius.circular(100),
                   ),
                 );
@@ -138,11 +137,7 @@ class _HomeViewState extends State<HomeView> {
                       child: Column(
                         children: [
                           CustomImage(
-                            [
-                              Assets.images.hourService,
-                              Assets.images.monthService,
-                              Assets.images.bussniessService
-                            ][i],
+                            [Assets.images.hourService, Assets.images.monthService, Assets.images.bussniessService][i],
                             height: 40.h,
                             width: 40.w,
                             fit: BoxFit.cover,
@@ -172,13 +167,11 @@ class _HomeViewState extends State<HomeView> {
               if (selected == 0) {
                 if (bloc.hourlyServiceList.isNotEmpty) {
                   return SingleChildScrollView(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+                    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
                     scrollDirection: Axis.horizontal,
                     child: Wrap(
                       spacing: 18.w,
-                      children:
-                          List.generate(bloc.hourlyServiceList.length, (i) {
+                      children: List.generate(bloc.hourlyServiceList.length, (i) {
                         return GestureDetector(
                           onTap: () => push(NamedRoutes.hourlyService, arg: {
                             'id': bloc.hourlyServiceList[i].id,
@@ -200,8 +193,7 @@ class _HomeViewState extends State<HomeView> {
                                 SizedBox(height: 14.h),
                                 Text(
                                   bloc.hourlyServiceList[i].name,
-                                  style:
-                                      context.mediumText.copyWith(fontSize: 14),
+                                  style: context.mediumText.copyWith(fontSize: 14),
                                   textAlign: TextAlign.center,
                                 ),
                               ],
@@ -243,13 +235,11 @@ class _HomeViewState extends State<HomeView> {
               } else {
                 if (bloc.individualServicesList.isNotEmpty) {
                   return SingleChildScrollView(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+                    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
                     scrollDirection: Axis.horizontal,
                     child: Wrap(
                       spacing: 18.w,
-                      children: List.generate(
-                          bloc.individualServicesList.length, (i) {
+                      children: List.generate(bloc.individualServicesList.length, (i) {
                         return SizedBox(
                           width: 142.w,
                           child: Column(
@@ -266,8 +256,7 @@ class _HomeViewState extends State<HomeView> {
                               SizedBox(height: 14.h),
                               Text(
                                 bloc.individualServicesList[i].name,
-                                style:
-                                    context.mediumText.copyWith(fontSize: 14),
+                                style: context.mediumText.copyWith(fontSize: 14),
                                 textAlign: TextAlign.center,
                               ),
                             ],
@@ -317,14 +306,12 @@ class _HomeViewState extends State<HomeView> {
                           children: [
                             TextSpan(
                               text: 'خصم 20%',
-                              style: context.semiboldText.copyWith(
-                                  fontSize: 14, color: context.primaryColor),
+                              style: context.semiboldText.copyWith(fontSize: 14, color: context.primaryColor),
                             ),
                             const TextSpan(text: ' '),
                             TextSpan(
                               text: 'على العقود الشهرية لنظافة المنزل',
-                              style:
-                                  context.semiboldText.copyWith(fontSize: 14),
+                              style: context.semiboldText.copyWith(fontSize: 14),
                             ),
                           ],
                         ),

@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
+import 'package:ziena/core/widgets/flash_helper.dart';
 import 'package:ziena/gen/locale_keys.g.dart';
 
 import '../../models/user.dart';
@@ -270,22 +271,26 @@ class ServerGate {
 
   CustomResponse<T> handleServerError<T>(DioException err) {
     if (err.type == DioExceptionType.badResponse) {
-      if (err.response!.data.toString().contains("DOCTYPE") || err.response!.data.toString().contains("<script>") || err.response!.data["exception"] != null) {
-        return CustomResponse(
-          success: false,
-          errType: ErrorType.server,
-          statusCode: err.response!.statusCode ?? 500,
-          msg: kDebugMode ? "${err.response!.data}" : LocaleKeys.something_went_wrong_please_try_again.tr(),
-        );
-      } else if (err.response?.statusCode == 401) {
+      if (err.response?.data.toString().isEmpty ?? false) err.response?.data = {};
+      if (err.response?.statusCode == 401) {
         UserModel.i.clear();
         pushAndRemoveUntil(NamedRoutes.login);
+        FlashHelper.showToast(LocaleKeys.session_expired.tr());
         return CustomResponse(
           success: false,
           statusCode: err.response?.statusCode ?? 401,
           errType: ErrorType.unAuth,
           msg: err.response?.data["message"] ?? err.response?.data["ErrorMessage"] ?? "",
           data: err.response?.data,
+        );
+      } else if ((err.response!.data.toString().contains("DOCTYPE") ||
+          err.response!.data.toString().contains("<script>") ||
+          err.response!.data["exception"] != null)) {
+        return CustomResponse(
+          success: false,
+          errType: ErrorType.server,
+          statusCode: err.response!.statusCode ?? 500,
+          msg: kDebugMode ? "${err.response!.data}" : LocaleKeys.something_went_wrong_please_try_again.tr(),
         );
       } else {
         return CustomResponse(

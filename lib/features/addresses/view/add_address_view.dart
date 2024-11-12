@@ -1,15 +1,22 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:ziena/core/widgets/app_btn.dart';
+import 'package:ziena/core/routes/app_routes_fun.dart';
+import 'package:ziena/core/routes/routes.dart';
+
 import '../../../core/services/location_service.dart';
 import '../../../core/services/service_locator.dart';
-import '../../../core/widgets/app_field.dart';
-import '../bloc/addresses_bloc.dart';
-
 import '../../../core/utils/extensions.dart';
+import '../../../core/widgets/app_btn.dart';
+import '../../../core/widgets/app_field.dart';
+import '../../../core/widgets/select_item_sheet.dart';
+import '../../../gen/locale_keys.g.dart';
+import '../bloc/addresses_bloc.dart';
+import '../bloc/addresses_state.dart';
 
 class AddAddressView extends StatefulWidget {
   const AddAddressView({super.key});
@@ -19,7 +26,7 @@ class AddAddressView extends StatefulWidget {
 }
 
 class _AddAddressViewState extends State<AddAddressView> {
-  final bloc = sl<AddressesBloc>();
+  final bloc = sl<AddressesBloc>()..getCities();
   final location = sl<LocationService>();
   final _controller = Completer<GoogleMapController>();
 
@@ -72,8 +79,20 @@ class _AddAddressViewState extends State<AddAddressView> {
                 child: GoogleMap(
                   mapType: MapType.normal,
                   myLocationButtonEnabled: false,
-                  initialCameraPosition: const CameraPosition(target: LatLng(30.0444, 31.2357)),
                   zoomControlsEnabled: false,
+                  initialCameraPosition: CameraPosition(target: bloc.latLng!),
+                  onTap: (v) {
+                    push(NamedRoutes.pickLocation, arg: {'position': bloc.latLng, 'address': bloc.fullAddress.text}).then((v) {
+                      if (v != null) {
+                        Timer(300.milliseconds, () {
+                          bloc.fullAddress.text = v['address'];
+                          bloc.latLng = v['position'];
+                          _goToTheLake(bloc.latLng!);
+                          setState(() {});
+                        });
+                      }
+                    });
+                  },
                   markers: {
                     if (bloc.latLng != null)
                       Marker(
@@ -96,7 +115,7 @@ class _AddAddressViewState extends State<AddAddressView> {
               ),
             ),
             AppField(
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.r), borderSide: BorderSide.none),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
               hintText: 'اسم العنوان',
               controller: bloc.name,
             ).withPadding(vertical: 8.h, horizontal: 20.w),
@@ -104,17 +123,41 @@ class _AddAddressViewState extends State<AddAddressView> {
               children: [
                 Expanded(
                   child: AppField(
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.r), borderSide: BorderSide.none),
+                    keyboardType: TextInputType.name,
+                    onTap: () async {
+                      if (bloc.cities.isEmpty) {
+                        await bloc.getAddresses();
+                        return;
+                      }
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (context) => SelectItemSheet(
+                          title: LocaleKeys.select_city.tr(),
+                          items: bloc.cities,
+                          initItem: bloc.city,
+                        ),
+                      ).then((v) {
+                        if (v != null && bloc.city != v) {
+                          bloc.city = v;
+                          bloc.districts = [];
+                          bloc.district = null;
+                          bloc.getDistricts();
+                          setState(() {});
+                        }
+                      });
+                    },
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
                     hintText: 'إسم المدينة',
-                    controller: bloc.name,
+                    controller: TextEditingController(text: bloc.city?.name ?? ''),
                   ),
                 ),
                 SizedBox(width: 10.w),
                 Expanded(
                   child: AppField(
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.r), borderSide: BorderSide.none),
+                    keyboardType: TextInputType.name,
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
                     hintText: 'رقم المبني',
-                    controller: bloc.name,
+                    controller: bloc.buildingNumber,
                   ),
                 ),
               ],
@@ -122,18 +165,45 @@ class _AddAddressViewState extends State<AddAddressView> {
             Row(
               children: [
                 Expanded(
-                  child: AppField(
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.r), borderSide: BorderSide.none),
-                    hintText: 'اسم الولاية',
-                    controller: bloc.name,
+                  child: BlocBuilder<AddressesBloc, AddressesState>(
+                    bloc: bloc,
+                    buildWhen: (previous, current) => previous.getDistricts != current.getDistricts,
+                    builder: (context, state) {
+                      return AppField(
+                        keyboardType: TextInputType.name,
+                        onTap: () async {
+                          if (!state.getDistricts.isDone) {
+                            await bloc.getDistricts();
+                          }
+                          showModalBottomSheet(
+                            context: navigator.currentContext!,
+                            builder: (context) => SelectItemSheet(
+                              title: LocaleKeys.select_district.tr(),
+                              items: bloc.districts,
+                              initItem: bloc.district,
+                            ),
+                          ).then((v) {
+                            if (v != null && bloc.city != v) {
+                              bloc.district = v;
+                              setState(() {});
+                            }
+                          });
+                        },
+                        loading: state.getDistricts.isLoading,
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
+                        hintText: 'اسم الولاية',
+                        controller: TextEditingController(text: bloc.district?.name ?? ''),
+                      );
+                    },
                   ),
                 ),
                 SizedBox(width: 10.w),
                 Expanded(
                   child: AppField(
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.r), borderSide: BorderSide.none),
+                    keyboardType: TextInputType.number,
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
                     hintText: 'رقم الشقة',
-                    controller: bloc.name,
+                    controller: bloc.apartmentNumber,
                   ),
                 ),
               ],
@@ -142,32 +212,64 @@ class _AddAddressViewState extends State<AddAddressView> {
               children: [
                 Expanded(
                   child: AppField(
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.r), borderSide: BorderSide.none),
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: navigator.currentContext!,
+                        builder: (context) => SelectItemSheet(
+                          title: LocaleKeys.apartment_type.tr(),
+                          items: [
+                            SelectModel(id: 1, name: LocaleKeys.apartment.tr()),
+                            SelectModel(id: 2, name: LocaleKeys.villa.tr()),
+                          ],
+                          initItem: bloc.apartmentType,
+                        ),
+                      ).then((v) {
+                        if (v != null && bloc.city != v) {
+                          bloc.apartmentType = v;
+                          setState(() {});
+                        }
+                      });
+                    },
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
                     hintText: 'نوع السكن',
-                    controller: bloc.name,
+                    controller: TextEditingController(text: bloc.apartmentType?.name ?? ''),
                   ),
                 ),
                 SizedBox(width: 10.w),
                 Expanded(
                   child: AppField(
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.r), borderSide: BorderSide.none),
+                    keyboardType: TextInputType.number,
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
                     hintText: 'رقم الطابق',
-                    controller: bloc.name,
+                    controller: bloc.floorNumber,
                   ),
                 ),
               ],
             ).withPadding(vertical: 8.h, horizontal: 20.w),
             AppField(
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.r), borderSide: BorderSide.none),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
               hintText: 'أقرب معلم لك أو قريب منك',
-              controller: bloc.name,
+              controller: bloc.fullAddress,
               maxLines: 3,
             ).withPadding(vertical: 8.h, horizontal: 20.w)
           ],
         ),
       ),
-      bottomNavigationBar: AppBtn(
-        title: 'أضف عنوان',
+      bottomNavigationBar: BlocConsumer<AddressesBloc, AddressesState>(
+        bloc: bloc,
+        listenWhen: (previous, current) => previous.createAddress != current.createAddress,
+        listener: (context, state) {
+          if (state.createAddress.isDone) {
+            Navigator.pop(context, true);
+          }
+        },
+        builder: (context, state) {
+          return AppBtn(
+            loading: state.createAddress.isLoading,
+            onPressed: () => bloc.createAddress(),
+            title: 'أضف عنوان',
+          );
+        },
       ).withPadding(horizontal: 56.w),
     );
   }

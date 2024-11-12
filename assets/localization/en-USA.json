@@ -73,5 +73,9 @@
     "app_language": "لغة التطبيق",
     "contact_support": "خدمة العملاء",
     "share_app": "شارك التطبيق",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "session_expired": "Session Expired",
+    "select_district": "Select District",
+    "apartment_type": "Apartment type",
+    "pick_location": "Pick Location"
 }

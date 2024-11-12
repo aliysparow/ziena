@@ -76,5 +76,9 @@ abstract class  LocaleKeys {
   static const contact_support = 'contact_support';
   static const share_app = 'share_app';
   static const logout = 'logout';
+  static const session_expired = 'session_expired';
+  static const select_district = 'select_district';
+  static const apartment_type = 'apartment_type';
+  static const pick_location = 'pick_location';
 
 }

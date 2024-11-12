@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ziena/features/contract/view/contracts_view.dart';
 
 import '../../home/view/home_view.dart';
 import 'layout_state.dart';
@@ -18,6 +19,6 @@ class LayoutBloc extends Cubit<LayoutState> {
 
   List<Widget> pages = [
     const HomeView(),
-    const SizedBox.shrink(),
+    const ContractsView(),
   ];
 }

@@ -8,9 +8,9 @@ class NationalityModel extends Model {
     required super.id,
   });
 
-  NationalityModel.fromJson(Map<String, dynamic> json) {
+  NationalityModel.fromJson([Map<String, dynamic>? json]) {
     name = stringFromJson(json, 'Name');
-    id = json["Id"];
+    id = stringFromJson(json, 'Id');
   }
 
   @override

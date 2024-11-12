@@ -21,4 +21,6 @@ class CitiesBloc extends Cubit<CitiesState> {
       emit(state.copyWith(requestState: RequestState.error, msg: result.msg));
     }
   }
+
+
 }

@@ -2,9 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ziena/core/routes/app_routes_fun.dart';
-import 'package:ziena/core/routes/routes.dart';
+import 'package:ziena/core/widgets/confirmation_sheet.dart';
 
+import '../../../core/routes/routes.dart';
 import '../../../core/services/service_locator.dart';
 import '../../../core/utils/extensions.dart';
 import '../../../core/widgets/app_btn.dart';
@@ -46,7 +46,11 @@ class _AddressesViewState extends State<AddressesView> {
             builder: (context, state) {
               if (bloc.addresses.isNotEmpty) {
                 return GestureDetector(
-                  onTap: () => push(NamedRoutes.addAddress),
+                  onTap: () => Navigator.pushNamed(context, NamedRoutes.addAddress).then((value) {
+                    if (value == true) {
+                      bloc.getAddresses();
+                    }
+                  }),
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 20.w),
                     padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 8.h),
@@ -129,26 +133,35 @@ class _AddressesViewState extends State<AddressesView> {
                                   style: context.semiboldText.copyWith(fontSize: 16),
                                 ).withPadding(horizontal: 4.w),
                               ),
+                              // GestureDetector(
+                              //   onTap: () {
+                              //     // Navigator.popUntil(
+                              //     //   context,
+                              //     //   (r) => r.settings.name == NamedRoutes.selectAddress,
+                              //     // );
+                              //   },
+                              //   child: CustomImage(
+                              //     Assets.icons.edit,
+                              //     height: 24.h,
+                              //     width: 24.h,
+                              //   ),
+                              // ),
+                              // SizedBox(width: 4.w),
                               GestureDetector(
                                 onTap: () {
-                                  // Navigator.popUntil(
-                                  //   context,
-                                  //   (r) => r.settings.name == NamedRoutes.selectAddress,
-                                  // );
-                                },
-                                child: CustomImage(
-                                  Assets.icons.edit,
-                                  height: 24.h,
-                                  width: 24.h,
-                                ),
-                              ),
-                              SizedBox(width: 4.w),
-                              GestureDetector(
-                                onTap: () {
-                                  // Navigator.popUntil(
-                                  //   context,
-                                  //   (r) => r.settings.name == NamedRoutes.selectAddress,
-                                  // );
+                                  showDialog(
+                                    context: context,
+                                    builder: (v) {
+                                      return const ConfirmDialog(
+                                        title: 'خذف العنوان',
+                                        subTitle: 'هل انت متاكد من خذف العنوان؟',
+                                      );
+                                    },
+                                  ).then((v) {
+                                    if (v == true) {
+                                      bloc.deleteAddress(address);
+                                    }
+                                  });
                                 },
                                 child: CustomImage(
                                   Assets.icons.delete,
@@ -201,6 +214,11 @@ class _AddressesViewState extends State<AddressesView> {
               children: [
                 CustomImage(Assets.images.emptyAddress),
                 AppBtn(
+                  onPressed: () => Navigator.pushNamed(context, NamedRoutes.addAddress).then((value) {
+                    if (value == true) {
+                      bloc.getAddresses();
+                    }
+                  }),
                   icon: Icon(
                     Icons.add,
                     color: context.primaryColorLight,

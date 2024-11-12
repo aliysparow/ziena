@@ -17,4 +17,5 @@ class NamedRoutes {
   static const paymentIfream = "payment_ifream";
   static const addAddress = "add_address";
   static const addresses = "addresses";
+  static const pickLocation = "pick_location";
 }

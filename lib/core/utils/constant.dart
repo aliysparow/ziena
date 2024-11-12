@@ -6,6 +6,7 @@ class AppConstants {
 
   static const String login = 'account/LogIn';
   static const String cities = 'Lookup/GetAllCities';
+  static const String districts = 'Lookup/GetDistrictsByCityId';
   static const String profile = 'account/GetProfile';
 
   static const String sendOtp = "account/SendOtp";
@@ -20,9 +21,9 @@ class AppConstants {
 
   static const String hourlyPackages = 'Package/GetHourlyPackages';
 
-
   static const String createHourlyContract = 'Contract/CreateHourlyContract';
 
   static const String getAddresses = 'Address/GetAddressesByContactId';
   static const String createAddress = 'Address/CreateAddress';
+  static const String deleteAddress = 'Address/DeleteAddress';
 }

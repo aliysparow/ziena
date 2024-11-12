@@ -51,7 +51,7 @@ class HourlyPackageDetailsSheet extends StatelessWidget {
         ),
         SizedBox(height: 12.h),
         ...List.generate(
-          7,
+          6,
           (i) => Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -61,11 +61,13 @@ class HourlyPackageDetailsSheet extends StatelessWidget {
                   "عدد الأسابيع",
                   "عدد ساعات العمل",
                   "الفترة الزمنية",
-                  "السعر قبل الخصم",
-                  "السعر بعد الخصم",
+                  // "السعر قبل الخصم",
+                  // "السعر بعد الخصم",
+                  "سعر الباقة",
                   "ضريبة القيمة المضافة",
                 ][i],
-                style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
+                style: context.boldText
+                    .copyWith(fontSize: 15, color: '#8E8E8E'.color),
               ),
               Text(
                 [
@@ -73,11 +75,12 @@ class HourlyPackageDetailsSheet extends StatelessWidget {
                   "${item.visitNumberPerWeek} اسبوع",
                   "${item.totalHours} ساعات",
                   item.shiftName,
-                  "${item.initialPrice} ${LocaleKeys.sar.tr()}",
+                  // "${item.initialPrice} ${LocaleKeys.sar.tr()}",
                   "${item.priceAfterDiscountWithoutVat} ${LocaleKeys.sar.tr()}",
                   "${item.vat} ${LocaleKeys.sar.tr()}",
                 ][i],
-                style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
+                style: context.boldText
+                    .copyWith(fontSize: 15, color: '#8E8E8E'.color),
               ),
             ],
           ).withPadding(vertical: 12.h, horizontal: 32.w),

@@ -32,7 +32,8 @@ class _AddressesViewState extends State<AddressesView> {
         backgroundColor: context.scaffoldBackgroundColor,
         title: Text(
           'العناوين الخاصة بك',
-          style: context.regularText.copyWith(fontSize: 16, color: '#9F9C9C'.color),
+          style: context.regularText
+              .copyWith(fontSize: 16, color: '#9F9C9C'.color),
         ),
         titleSpacing: 0,
         leading: IconButton(
@@ -46,14 +47,17 @@ class _AddressesViewState extends State<AddressesView> {
             builder: (context, state) {
               if (bloc.addresses.isNotEmpty) {
                 return GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, NamedRoutes.addAddress).then((value) {
+                  onTap: () =>
+                      Navigator.pushNamed(context, NamedRoutes.addAddress)
+                          .then((value) {
                     if (value == true) {
                       bloc.getAddresses();
                     }
                   }),
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 20.w),
-                    padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 8.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 18.w, vertical: 8.h),
                     decoration: BoxDecoration(
                       color: context.primaryColor,
                       borderRadius: BorderRadius.circular(32.r),
@@ -112,7 +116,8 @@ class _AddressesViewState extends State<AddressesView> {
                   itemBuilder: (context, index) {
                     final address = bloc.addresses[index];
                     return Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
                       padding: EdgeInsets.all(14.w),
                       decoration: BoxDecoration(
                         color: context.primaryColorLight,
@@ -130,7 +135,8 @@ class _AddressesViewState extends State<AddressesView> {
                               Expanded(
                                 child: Text(
                                   address.name,
-                                  style: context.semiboldText.copyWith(fontSize: 16),
+                                  style: context.semiboldText
+                                      .copyWith(fontSize: 16),
                                 ).withPadding(horizontal: 4.w),
                               ),
                               // GestureDetector(
@@ -154,7 +160,8 @@ class _AddressesViewState extends State<AddressesView> {
                                     builder: (v) {
                                       return const ConfirmDialog(
                                         title: 'خذف العنوان',
-                                        subTitle: 'هل انت متاكد من خذف العنوان؟',
+                                        subTitle:
+                                            'هل انت متاكد من خذف العنوان؟',
                                       );
                                     },
                                   ).then((v) {
@@ -179,23 +186,34 @@ class _AddressesViewState extends State<AddressesView> {
                           SizedBox(height: 8.h),
                           Text(
                             address.fullAddress,
-                            style: context.regularText.copyWith(fontSize: 14, color: '#A4A4A4'.color),
+                            style: context.regularText
+                                .copyWith(fontSize: 14, color: '#A4A4A4'.color),
                           ),
                           SizedBox(height: 4.h),
                           Text(
                             "${LocaleKeys.the_type_of_place.tr()} : ${address.apartmentTypeName}",
-                            style: context.regularText.copyWith(fontSize: 14, color: '#A4A4A4'.color),
+                            style: context.regularText.copyWith(
+                              fontSize: 14,
+                              color: '#A4A4A4'.color,
+                            ),
                           ),
                           SizedBox(height: 4.h),
                           Text(
                             "${LocaleKeys.apartment_number.tr()} : ${address.apartmentNumber}",
-                            style: context.regularText.copyWith(fontSize: 14, color: '#A4A4A4'.color),
+                            style: context.regularText.copyWith(
+                              fontSize: 14,
+                              color: '#A4A4A4'.color,
+                            ),
                           ),
                           SizedBox(height: 4.h),
                           Text(
                             "${LocaleKeys.floor_number.tr()} : ${address.floorNumber}",
-                            style: context.regularText.copyWith(fontSize: 14, color: '#A4A4A4'.color),
+                            style: context.regularText.copyWith(
+                              fontSize: 14,
+                              color: '#A4A4A4'.color,
+                            ),
                           ),
+                          SizedBox(height: 32.h),
                         ],
                       ),
                     );
@@ -214,7 +232,9 @@ class _AddressesViewState extends State<AddressesView> {
               children: [
                 CustomImage(Assets.images.emptyAddress),
                 AppBtn(
-                  onPressed: () => Navigator.pushNamed(context, NamedRoutes.addAddress).then((value) {
+                  onPressed: () =>
+                      Navigator.pushNamed(context, NamedRoutes.addAddress)
+                          .then((value) {
                     if (value == true) {
                       bloc.getAddresses();
                     }

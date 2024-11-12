@@ -26,7 +26,7 @@ class BookHourlyInputModel {
 
   bool showPackage(HourlyPackageModel package) {
     if (nationality != null && period != null) {
-      if (nationality == package.nationality && period?.id == package.shift) {
+      if ((nationality?.id == '' || nationality == package.nationality) && (period?.id == '' || period?.id == package.shift)) {
         return true;
       } else {
         return false;

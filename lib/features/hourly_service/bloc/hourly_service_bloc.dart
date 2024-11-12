@@ -43,13 +43,15 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
       if (avilableNationalities.length == 1) {
         inputData.nationality = avilableNationalities.first;
       } else {
-        avilableNationalities.indexOf(NationalityModel(name: LocaleKeys.all.tr(), id: ''));
+        avilableNationalities.insert(0, NationalityModel(name: LocaleKeys.all.tr(), id: ''));
+        inputData.nationality = avilableNationalities.first;
       }
       avilableShifts = pacages.map((e) => SelectModel(id: e.shift, name: e.shiftName)).toSet().toList();
       if (avilableShifts.length == 1) {
         inputData.period = avilableShifts.first;
       } else {
-        avilableShifts.add(SelectModel(id: '', name: LocaleKeys.all.tr()));
+        avilableShifts.insert(0, SelectModel(id: '', name: LocaleKeys.all.tr()));
+        inputData.period = avilableShifts.first;
       }
       emit(state.copyWith(getPacagesState: RequestState.done, msg: result.msg));
     } else {
@@ -57,7 +59,7 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
     }
   }
 
-  getAddresses() async {
+  getAddresses([bool selectLast = true]) async {
     emit(state.copyWith(addressesState: RequestState.loading));
     final result = await ServerGate.i.getFromServer(
       url: AppConstants.getAddresses,
@@ -65,6 +67,7 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
     );
     if (result.success) {
       addresses = result.data['data'].map<AddressModel>((e) => AddressModel.fromJson(e)).toList();
+      if (selectLast) inputData.address = addresses.last;
       emit(state.copyWith(addressesState: RequestState.done, msg: result.msg));
     } else {
       emit(state.copyWith(addressesState: RequestState.error, msg: result.msg));

@@ -78,5 +78,6 @@
     "select_district": "حدد الحي",
     "apartment_type": "نوع الشقة",
     "pick_location": "اختيار الموقع",
-    "all": "الكل"
+    "all": "الكل",
+    "please_select_city": "الرجاء اختيار المدينة"
 }

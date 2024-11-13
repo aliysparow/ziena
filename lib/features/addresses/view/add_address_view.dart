@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ziena/core/routes/app_routes_fun.dart';
 import 'package:ziena/core/routes/routes.dart';
+import 'package:ziena/core/widgets/flash_helper.dart';
 
 import '../../../core/services/location_service.dart';
 import '../../../core/services/service_locator.dart';
@@ -122,6 +123,7 @@ class _AddAddressViewState extends State<AddAddressView> {
                 controller: bloc.name,
               ).withPadding(vertical: 8.h, horizontal: 20.w),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     child: AppField(
@@ -133,6 +135,7 @@ class _AddAddressViewState extends State<AddAddressView> {
                         }
                         showModalBottomSheet(
                           context: context,
+                          isScrollControlled: true,
                           builder: (context) => SelectItemSheet(
                             title: LocaleKeys.select_city.tr(),
                             items: bloc.cities,
@@ -155,18 +158,6 @@ class _AddAddressViewState extends State<AddAddressView> {
                   ),
                   SizedBox(width: 10.w),
                   Expanded(
-                    child: AppField(
-                      keyboardType: TextInputType.name,
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
-                      hintText: 'رقم المبني',
-                      controller: bloc.buildingNumber,
-                    ),
-                  ),
-                ],
-              ).withPadding(vertical: 8.h, horizontal: 20.w),
-              Row(
-                children: [
-                  Expanded(
                     child: BlocBuilder<AddressesBloc, AddressesState>(
                       bloc: bloc,
                       buildWhen: (previous, current) => previous.getDistricts != current.getDistricts,
@@ -174,6 +165,12 @@ class _AddAddressViewState extends State<AddAddressView> {
                         return AppField(
                           keyboardType: TextInputType.name,
                           onTap: () async {
+                            if (bloc.city == null) {
+                              return FlashHelper.showToast(
+                                LocaleKeys.please_select_city.tr(),
+                                type: MessageType.warning,
+                              );
+                            }
                             if (!state.getDistricts.isDone) {
                               await bloc.getDistricts();
                             }
@@ -199,19 +196,20 @@ class _AddAddressViewState extends State<AddAddressView> {
                       },
                     ),
                   ),
-                  SizedBox(width: 10.w),
-                  Expanded(
-                    child: AppField(
-                      keyboardType: TextInputType.number,
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
-                      hintText: 'رقم الشقة',
-                      controller: bloc.apartmentNumber,
-                    ),
-                  ),
                 ],
               ).withPadding(vertical: 8.h, horizontal: 20.w),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Expanded(
+                    child: AppField(
+                      keyboardType: TextInputType.name,
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
+                      hintText: 'رقم المبني',
+                      controller: bloc.buildingNumber,
+                    ),
+                  ),
+                  SizedBox(width: 10.w),
                   Expanded(
                     child: AppField(
                       onTap: () {
@@ -237,13 +235,27 @@ class _AddAddressViewState extends State<AddAddressView> {
                       controller: TextEditingController(text: bloc.apartmentType?.name ?? ''),
                     ),
                   ),
-                  SizedBox(width: 10.w),
+                ],
+              ).withPadding(vertical: 8.h, horizontal: 20.w),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Expanded(
                     child: AppField(
                       keyboardType: TextInputType.number,
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
                       hintText: 'رقم الطابق',
                       controller: bloc.floorNumber,
+                    ),
+                  ),
+                  SizedBox(width: 10.w),
+                  Expanded(
+                    child: AppField(
+                      keyboardType: TextInputType.number,
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
+                      hintText: 'رقم الشقة',
+                      controller: bloc.apartmentNumber,
+                      isRequired: false,
                     ),
                   ),
                 ],

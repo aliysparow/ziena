@@ -59,7 +59,7 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
     }
   }
 
-  getAddresses([bool selectLast = true]) async {
+  getAddresses([bool selectLast = false]) async {
     emit(state.copyWith(addressesState: RequestState.loading));
     final result = await ServerGate.i.getFromServer(
       url: AppConstants.getAddresses,

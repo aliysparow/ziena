@@ -81,5 +81,6 @@ abstract class  LocaleKeys {
   static const apartment_type = 'apartment_type';
   static const pick_location = 'pick_location';
   static const all = 'all';
+  static const please_select_city = 'please_select_city';
 
 }

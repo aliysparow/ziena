@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -83,6 +83,11 @@ class _SelectDatesViewState extends State<SelectDatesView> {
               'اختر ${bloc.inputData.package?.totalVisits} أيام مناسبة لك',
               style: context.mediumText.copyWith(fontSize: 16),
             ),
+            Text(
+              DateFormat('dd-MM-yyyy hh:mm a', 'en').format(bloc.inputData.package!.lastDate).toString(),
+              style: context.mediumText.copyWith(fontSize: 16),
+              textDirection: TextDirection.ltr,
+            ),
             Wrap(
               spacing: 8.w,
               runSpacing: 8.w,
@@ -141,7 +146,7 @@ class _SelectDatesViewState extends State<SelectDatesView> {
                 borderRadius: BorderRadius.circular(12.r),
               ),
               child: TableCalendar(
-                firstDay: DateTime.now().add(1.days),
+                firstDay: DateTime.now(),
                 onHeaderTapped: (focusedDay) {},
                 headerVisible: true,
                 shouldFillViewport: false,

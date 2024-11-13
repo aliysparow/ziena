@@ -78,5 +78,6 @@
     "select_district": "Select District",
     "apartment_type": "Apartment type",
     "pick_location": "Pick Location",
-    "all": "All"
+    "all": "All",
+    "please_select_city": "Please select city"
 }

@@ -43,9 +43,7 @@ class AddressesBloc extends Cubit<AddressesState> {
       params: {"contactId": UserModel.i.contactId},
     );
     if (result.success) {
-      addresses = result.data['data']
-          .map<AddressModel>((e) => AddressModel.fromJson(e))
-          .toList();
+      addresses = result.data['data'].map<AddressModel>((e) => AddressModel.fromJson(e)).toList();
       emit(state.copyWith(getAddresses: RequestState.done, msg: result.msg));
     } else {
       emit(state.copyWith(getAddresses: RequestState.error, msg: result.msg));
@@ -91,11 +89,9 @@ class AddressesBloc extends Cubit<AddressesState> {
 
   Future<void> getDistricts() async {
     emit(state.copyWith(getDistricts: RequestState.loading));
-    final result = await ServerGate.i.getFromServer(
-        url: AppConstants.districts, params: {'cityId': city?.id});
+    final result = await ServerGate.i.getFromServer(url: AppConstants.districts, params: {'cityId': city?.id});
     if (result.success) {
-      districts = List<DistrictModel>.from(
-          result.data['data'].map((x) => DistrictModel.fromJson(x)));
+      districts = List<DistrictModel>.from(result.data['data'].map((x) => DistrictModel.fromJson(x)));
       emit(state.copyWith(getDistricts: RequestState.done, msg: result.msg));
     } else {
       FlashHelper.showToast(result.msg);
@@ -106,18 +102,15 @@ class AddressesBloc extends Cubit<AddressesState> {
   Future<void> deleteAddress(AddressModel address) async {
     loadingDialog();
     emit(state.copyWith(deleteAddressState: RequestState.loading));
-    final result = await ServerGate.i.getFromServer(
-        url: AppConstants.deleteAddress, params: {'addressID': address.id});
+    final result = await ServerGate.i.getFromServer(url: AppConstants.deleteAddress, params: {'addressID': address.id});
     if (result.success) {
       hideLoadingDialog();
       addresses.remove(address);
-      emit(state.copyWith(
-          deleteAddressState: RequestState.done, msg: result.msg));
+      emit(state.copyWith(deleteAddressState: RequestState.done, msg: result.msg));
     } else {
       hideLoadingDialog();
       FlashHelper.showToast(result.msg);
-      emit(state.copyWith(
-          deleteAddressState: RequestState.error, msg: result.msg));
+      emit(state.copyWith(deleteAddressState: RequestState.error, msg: result.msg));
     }
   }
 }

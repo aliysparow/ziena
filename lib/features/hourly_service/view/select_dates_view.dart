@@ -1,6 +1,8 @@
 import 'dart:developer';
+import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -96,7 +98,7 @@ class _SelectDatesViewState extends State<SelectDatesView> {
                 (i) {
                   final day = DateTime.now().add((i + 1).days);
                   final item = DateFormat('EEEE', context.locale.languageCode).format(day);
-                  final isAvilable = bloc.inputData.package?.days.contains(day.weekday) ?? false;
+                  final isAvilable = kDebugMode || (bloc.inputData.package?.days.contains(day.weekday) ?? false);
                   final bool selected = bloc.inputData.week.any((e) => e == day.weekday);
                   return Opacity(
                     opacity: isAvilable ? 1 : 0.3,

@@ -76,8 +76,10 @@
     "logout": "تسجيل الخروج",
     "session_expired": "انتهت جلسة تسجيل الدخول",
     "select_district": "حدد الحي",
+    "district": "الحي",
     "apartment_type": "نوع الشقة",
     "pick_location": "اختيار الموقع",
     "all": "الكل",
-    "please_select_city": "الرجاء اختيار المدينة"
+    "please_select_city": "الرجاء اختيار المدينة",
+    "city": "المدينة"
 }

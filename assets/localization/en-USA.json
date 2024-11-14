@@ -76,8 +76,10 @@
     "logout": "تسجيل الخروج",
     "session_expired": "Session Expired",
     "select_district": "Select District",
+    "district": "District",
     "apartment_type": "Apartment type",
     "pick_location": "Pick Location",
     "all": "All",
-    "please_select_city": "Please select city"
+    "please_select_city": "Please select city",
+    "city": "City"
 }

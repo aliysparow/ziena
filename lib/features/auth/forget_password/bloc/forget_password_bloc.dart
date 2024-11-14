@@ -5,6 +5,7 @@ import 'package:ziena/core/routes/routes.dart';
 import 'package:ziena/core/services/server_gate.dart';
 import 'package:ziena/core/utils/constant.dart';
 import 'package:ziena/core/utils/enums.dart';
+import 'package:ziena/core/utils/methods_helpers.dart';
 import 'package:ziena/features/auth/verify_phone/view/verify_phone_view.dart';
 
 import 'forget_password_states.dart';
@@ -18,7 +19,7 @@ class ForgetPasswordBloc extends Cubit<ForgetPasswordState> {
     if (result.success) {
       push(NamedRoutes.verifyPhone, arg: {
         'type': VerifyType.resetPassword,
-        'data': {'Mobile': phone.text}
+        'data': {'Mobile': MethodsHelpers.formatPhoneNumber(phone.text)}
       });
       emit(state.copyWith(requestState: RequestState.done, msg: result.msg));
     } else {

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../gen/locale_keys.g.dart';
@@ -65,7 +66,7 @@ class _AppFieldState extends State<AppField> {
       onTap: widget.onTap,
       obscureText: widget.keyboardType == TextInputType.visiblePassword && !showPass,
       controller: widget.controller,
-      keyboardType: widget.keyboardType,
+      keyboardType: TextInputType.number == widget.keyboardType ? const TextInputType.numberWithOptions(signed: true) : widget.keyboardType,
       validator: (v) {
         final RegExp regex = RegExp(r'^(00966|966|\+966|0)?5\d{8}$');
         if (widget.isRequired && v?.isEmpty == true) {
@@ -79,8 +80,12 @@ class _AppFieldState extends State<AppField> {
         }
         return null;
       },
-      inputFormatters: const [],
+      inputFormatters: [
+        if ([TextInputType.phone, TextInputType.number].contains(widget.keyboardType)) FilteringTextInputFormatter.digitsOnly,
+      ],
+      onFieldSubmitted: (v) {},
       style: context.regularText.copyWith(fontSize: 15),
+      textInputAction: widget.maxLines == 1 ? TextInputAction.done : TextInputAction.newline,
       decoration: InputDecoration(
         hintText: widget.hintText ?? LocaleKeys.write_val.tr(args: [widget.title ?? '']),
         fillColor: widget.fillColor,

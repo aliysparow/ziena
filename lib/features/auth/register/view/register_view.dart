@@ -85,14 +85,14 @@ class _RegisterViewState extends State<RegisterView> {
                   ],
                 ).withPadding(horizontal: 8.w),
               ).withPadding(vertical: 10.h),
-              AppField(
-                hintText: 'example@gmail.com',
-                controller: bloc.email,
-                isRequired: false,
-                keyboardType: TextInputType.emailAddress,
-                title: LocaleKeys.email.tr(),
-                prefixIcon: Icon(Icons.email_outlined, size: 18.h, color: context.secondaryColor),
-              ).withPadding(vertical: 10.h),
+              // AppField(
+              //   hintText: 'example@gmail.com',
+              //   controller: bloc.email,
+              //   isRequired: false,
+              //   keyboardType: TextInputType.emailAddress,
+              //   title: LocaleKeys.email.tr(),
+              //   prefixIcon: Icon(Icons.email_outlined, size: 18.h, color: context.secondaryColor),
+              // ).withPadding(vertical: 10.h),
               SelectCityWidget(onSelected: (value) => bloc.city = value),
               AppField(
                 prefixIcon: Icon(CupertinoIcons.lock, size: 18.h, color: context.secondaryColor),

@@ -78,9 +78,11 @@ abstract class  LocaleKeys {
   static const logout = 'logout';
   static const session_expired = 'session_expired';
   static const select_district = 'select_district';
+  static const district = 'district';
   static const apartment_type = 'apartment_type';
   static const pick_location = 'pick_location';
   static const all = 'all';
   static const please_select_city = 'please_select_city';
+  static const city = 'city';
 
 }

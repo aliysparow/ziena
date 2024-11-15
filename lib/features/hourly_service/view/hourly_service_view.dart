@@ -2,13 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ziena/core/widgets/base_shimmer.dart';
-import 'package:ziena/core/widgets/custom_grid.dart';
 
 import '../../../core/routes/app_routes_fun.dart';
 import '../../../core/routes/routes.dart';
 import '../../../core/services/service_locator.dart';
 import '../../../core/utils/extensions.dart';
+import '../../../core/widgets/base_shimmer.dart';
+import '../../../core/widgets/custom_grid.dart';
 import '../../../core/widgets/custom_image.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../gen/locale_keys.g.dart';

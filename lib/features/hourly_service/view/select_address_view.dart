@@ -206,10 +206,12 @@ class _SelectAddressViewState extends State<SelectAddressView> {
                                 bloc.inputData.address = null;
                                 setState(() {});
                               },
-                              child: CustomImage(
-                                Assets.icons.delete,
-                                height: 24.h,
-                                width: 24.h,
+                              child: Icon(
+                                Icons.change_circle,
+                                // Assets.icons.delete,
+                                size: 24.h,
+                                // width: 24.h,
+                                color: context.primaryColorDark,
                               ),
                             ),
                           ],

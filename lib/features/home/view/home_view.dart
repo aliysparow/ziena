@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ziena/core/routes/app_routes_fun.dart';
 import 'package:ziena/core/routes/routes.dart';
 import 'package:ziena/core/widgets/base_shimmer.dart';
+import 'package:ziena/features/home/widgets/offers_widget.dart';
+import 'package:ziena/features/home/widgets/sliders_widget.dart';
 import '../../../core/services/service_locator.dart';
 import '../../../core/utils/extensions.dart';
 import '../../../core/widgets/custom_image.dart';
@@ -26,10 +28,10 @@ class _HomeViewState extends State<HomeView> {
   final bloc = sl<HomeBloc>()
     ..getHourlyServiceList()
     ..getIndividualServiceList()
-    ..getOffers();
-
+    ..getOffers()
+    ..getSliders();
   int selected = 0;
-  int selectedBanner = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,54 +52,7 @@ class _HomeViewState extends State<HomeView> {
       ),
       body: ListView(
         children: [
-          SizedBox(
-            height: 185.h,
-            width: context.w,
-            child: PageView.builder(
-              itemCount: 3,
-              onPageChanged: (value) {
-                selectedBanner = value;
-                setState(() {});
-              },
-              itemBuilder: (context, index) => CustomImage(
-                () {
-                  switch (index) {
-                    case 0:
-                      return Assets.images.banner.path;
-                    case 1:
-                      return Assets.images.monthService;
-                    case 2:
-                      return Assets.images.bussniessService;
-                    default:
-                      return '';
-                  }
-                }(),
-                height: 185.h,
-                width: context.w - 40.w,
-                fit: BoxFit.fill,
-                backgroundColor: '#D9D9D9'.color,
-                borderRadius: BorderRadius.circular(20.r),
-              ).withPadding(horizontal: 20.w),
-            ),
-          ).withPadding(vertical: 12.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(
-              3,
-              (index) {
-                return AnimatedContainer(
-                  width: 8,
-                  height: 8,
-                  margin: const EdgeInsets.all(4),
-                  duration: const Duration(milliseconds: 300),
-                  decoration: BoxDecoration(
-                    color: selectedBanner == index ? Colors.orange : Colors.grey,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                );
-              },
-            ),
-          ),
+          const SlidersWidget(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(
@@ -164,6 +119,7 @@ class _HomeViewState extends State<HomeView> {
           ).withPadding(vertical: 12.h),
           BlocBuilder<HomeBloc, HomeState>(
             bloc: bloc,
+            buildWhen: (p, c) => p.hourlyServicesState != c.hourlyServicesState || p.individualServicesState != c.individualServicesState,
             builder: (context, state) {
               if (selected == 0) {
                 if (bloc.hourlyServiceList.isNotEmpty) {
@@ -279,50 +235,7 @@ class _HomeViewState extends State<HomeView> {
               }
             },
           ),
-          Text(
-            LocaleKeys.latest_offers.tr(),
-            style: context.semiboldText.copyWith(fontSize: 18),
-          ).withPadding(top: 12.h, horizontal: 20.w),
-          SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
-            scrollDirection: Axis.horizontal,
-            child: Wrap(
-              spacing: 18.w,
-              children: List.generate(3, (i) {
-                return SizedBox(
-                  width: 192.w,
-                  child: Column(
-                    children: [
-                      CustomImage(
-                        'https://media.cdnandroid.com/item_images/490771/imagen-offerup-buy-sell-offer-up-0ori.jpg',
-                        base46: true,
-                        height: 187.h,
-                        width: 192.w,
-                        fit: BoxFit.cover,
-                        borderRadius: BorderRadius.circular(12.r),
-                      ),
-                      SizedBox(height: 14.h),
-                      Text.rich(
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'خصم 20%',
-                              style: context.semiboldText.copyWith(fontSize: 14, color: context.primaryColor),
-                            ),
-                            const TextSpan(text: ' '),
-                            TextSpan(
-                              text: 'على العقود الشهرية لنظافة المنزل',
-                              style: context.semiboldText.copyWith(fontSize: 14),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              }),
-            ),
-          ),
+          const OffersWidget(),
         ],
       ),
     );

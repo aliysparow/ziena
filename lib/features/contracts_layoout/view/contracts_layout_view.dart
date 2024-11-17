@@ -5,6 +5,8 @@ import 'package:ziena/core/routes/app_routes_fun.dart';
 import 'package:ziena/core/routes/routes.dart';
 import 'package:ziena/core/utils/extensions.dart';
 import 'package:ziena/core/widgets/custom_image.dart';
+import 'package:ziena/features/home/widgets/offers_widget.dart';
+import 'package:ziena/features/home/widgets/sliders_widget.dart';
 import 'package:ziena/features/my_contracts/bloc/contracts_cubit.dart';
 import 'package:ziena/gen/assets.gen.dart';
 import 'package:ziena/gen/locale_keys.g.dart';
@@ -39,36 +41,7 @@ class _ContractsLayoutViewState extends State<ContractsLayoutView> {
       ),
       body: ListView(
         children: [
-          SizedBox(
-            height: 185.h,
-            width: context.w,
-            child: PageView.builder(
-              itemCount: 3,
-              onPageChanged: (value) {
-                selectedBanner = value;
-                setState(() {});
-              },
-              itemBuilder: (context, index) => CustomImage(
-                () {
-                  switch (index) {
-                    case 0:
-                      return Assets.images.banner.path;
-                    case 1:
-                      return Assets.images.monthService;
-                    case 2:
-                      return Assets.images.bussniessService;
-                    default:
-                      return '';
-                  }
-                }(),
-                height: 185.h,
-                width: context.w - 40.w,
-                fit: BoxFit.fill,
-                backgroundColor: '#D9D9D9'.color,
-                borderRadius: BorderRadius.circular(20.r),
-              ).withPadding(horizontal: 20.w),
-            ),
-          ).withPadding(vertical: 12.h),
+          const SlidersWidget(),
           Text(
             'عقودي',
             style: context.semiboldText.copyWith(fontSize: 18),
@@ -205,50 +178,7 @@ class _ContractsLayoutViewState extends State<ContractsLayoutView> {
               ],
             ),
           ),
-          Text(
-            LocaleKeys.latest_offers.tr(),
-            style: context.semiboldText.copyWith(fontSize: 18),
-          ).withPadding(top: 12.h, horizontal: 20.w),
-          SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
-            scrollDirection: Axis.horizontal,
-            child: Wrap(
-              spacing: 18.w,
-              children: List.generate(3, (i) {
-                return SizedBox(
-                  width: 192.w,
-                  child: Column(
-                    children: [
-                      CustomImage(
-                        'https://media.cdnandroid.com/item_images/490771/imagen-offerup-buy-sell-offer-up-0ori.jpg',
-                        base46: true,
-                        height: 187.h,
-                        width: 192.w,
-                        fit: BoxFit.cover,
-                        borderRadius: BorderRadius.circular(12.r),
-                      ),
-                      SizedBox(height: 14.h),
-                      Text.rich(
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'خصم 20%',
-                              style: context.semiboldText.copyWith(fontSize: 14, color: context.primaryColor),
-                            ),
-                            const TextSpan(text: ' '),
-                            TextSpan(
-                              text: 'على العقود الشهرية لنظافة المنزل',
-                              style: context.semiboldText.copyWith(fontSize: 14),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              }),
-            ),
-          ),
+          const OffersWidget(),
         ],
       ),
     );

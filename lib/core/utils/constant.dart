@@ -19,6 +19,7 @@ class AppConstants {
   static const String hourlyServices = 'Service/GetHourlyServiceList';
   static const String individualServices = 'Service/GetIndividualServiceList';
   static const String getOffers = 'Package/GetOffers';
+  static const String getOffersInBaner = 'Package/GetOffers_InBaner';
 
   static const String hourlyPackages = 'Package/GetHourlyPackages';
 

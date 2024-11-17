@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ziena/core/utils/extensions.dart';
-import 'package:ziena/core/widgets/app_btn.dart';
-import 'package:ziena/core/widgets/custom_image.dart';
 
+import '../../gen/assets.gen.dart';
 import '../utils/enums.dart';
+import '../utils/extensions.dart';
+import 'app_btn.dart';
+import 'custom_image.dart';
 
 class CustomErrorWidget extends StatelessWidget {
   final String title;
@@ -73,6 +74,8 @@ class CustomErrorWidget extends StatelessWidget {
   String? get img {
     if (image?.isNotEmpty == true) {
       return image;
+    } else {
+      return Assets.images.logoAuth;
     }
     // else if (errorStatus == 0) {
     //   return Assets.svg.noInternet;
@@ -81,6 +84,6 @@ class CustomErrorWidget extends StatelessWidget {
     // } else if (errorStatus == 2) {
     //   return Assets.svg.serverError;
     // }
-    return null;
+    // return null;
   }
 }

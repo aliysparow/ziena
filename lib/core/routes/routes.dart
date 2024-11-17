@@ -14,8 +14,10 @@ class NamedRoutes {
   static const successfullyPage = "/successfully_page";
   static const onboarding = "/onboarding_view";
   static const account = "/account";
-  static const paymentIfream = "payment_ifream";
-  static const addAddress = "add_address";
-  static const addresses = "addresses";
-  static const pickLocation = "pick_location";
+  static const paymentIfream = "/payment_ifream";
+  static const addAddress = "/add_address";
+  static const addresses = "/addresses";
+  static const pickLocation = "/pick_location";
+  static const contracts = "/contracts";
+  static const visits = "/visits";
 }

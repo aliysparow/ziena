@@ -5,17 +5,18 @@ import 'package:ziena/core/routes/app_routes_fun.dart';
 import 'package:ziena/core/routes/routes.dart';
 import 'package:ziena/core/utils/extensions.dart';
 import 'package:ziena/core/widgets/custom_image.dart';
+import 'package:ziena/features/my_contracts/bloc/contracts_cubit.dart';
 import 'package:ziena/gen/assets.gen.dart';
 import 'package:ziena/gen/locale_keys.g.dart';
 
-class ContractsView extends StatefulWidget {
-  const ContractsView({super.key});
+class ContractsLayoutView extends StatefulWidget {
+  const ContractsLayoutView({super.key});
 
   @override
-  State<ContractsView> createState() => _ContractsViewState();
+  State<ContractsLayoutView> createState() => _ContractsLayoutViewState();
 }
 
-class _ContractsViewState extends State<ContractsView> {
+class _ContractsLayoutViewState extends State<ContractsLayoutView> {
   int selectedBanner = 0;
   int selected = 0;
   @override
@@ -78,45 +79,51 @@ class _ContractsViewState extends State<ContractsView> {
             child: Wrap(
               spacing: 18.w,
               children: [
-                Container(
-                  padding: EdgeInsets.all(16.w),
-                  decoration: BoxDecoration(
-                    color: context.primaryColorLight,
-                    borderRadius: BorderRadius.circular(12.r),
-                    border: Border.all(color: context.primaryColor),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        size: 8.h,
-                        color: context.primaryColor,
-                      ).withPadding(end: 8.w),
-                      Text(
-                        'عقودي الفعالة',
-                        style: context.regularText.copyWith(fontSize: 14, color: context.primaryColor),
-                      ),
-                    ],
+                GestureDetector(
+                  onTap: () => push(NamedRoutes.contracts, arg: {'type': ContractType.upcoming}),
+                  child: Container(
+                    padding: EdgeInsets.all(16.w),
+                    decoration: BoxDecoration(
+                      color: context.primaryColorLight,
+                      borderRadius: BorderRadius.circular(12.r),
+                      border: Border.all(color: context.primaryColor),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.circle,
+                          size: 8.h,
+                          color: context.primaryColor,
+                        ).withPadding(end: 8.w),
+                        Text(
+                          'عقودي الفعالة',
+                          style: context.regularText.copyWith(fontSize: 14, color: context.primaryColor),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.all(16.w),
-                  decoration: BoxDecoration(
-                    color: context.primaryColorLight,
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        size: 8.h,
-                        color: '#11334280'.color.withOpacity(0.5),
-                      ).withPadding(end: 8.w),
-                      Text(
-                        'عقودي الفعالة',
-                        style: context.regularText.copyWith(fontSize: 14, color: '#11334280'.color.withOpacity(0.5)),
-                      ),
-                    ],
+                GestureDetector(
+                  onTap: () => push(NamedRoutes.contracts, arg: {'type': ContractType.finished}),
+                  child: Container(
+                    padding: EdgeInsets.all(16.w),
+                    decoration: BoxDecoration(
+                      color: context.primaryColorLight,
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.circle,
+                          size: 8.h,
+                          color: '#11334280'.color.withOpacity(0.5),
+                        ).withPadding(end: 8.w),
+                        Text(
+                          'عقودي الفعالة',
+                          style: context.regularText.copyWith(fontSize: 14, color: '#11334280'.color.withOpacity(0.5)),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -132,26 +139,32 @@ class _ContractsViewState extends State<ContractsView> {
             child: Wrap(
               spacing: 18.w,
               children: [
-                Container(
-                  padding: EdgeInsets.all(16.w),
-                  decoration: BoxDecoration(
-                    color: context.primaryColorLight,
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                  child: Text(
-                    'الزيارات القادمة',
-                    style: context.regularText.copyWith(fontSize: 14, color: '#113342'.color),
+                GestureDetector(
+                  onTap: () => push(NamedRoutes.visits, arg: {'type': VisitsType.upcoming}),
+                  child: Container(
+                    padding: EdgeInsets.all(16.w),
+                    decoration: BoxDecoration(
+                      color: context.primaryColorLight,
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    child: Text(
+                      'الزيارات القادمة',
+                      style: context.regularText.copyWith(fontSize: 14, color: '#113342'.color),
+                    ),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.all(16.w),
-                  decoration: BoxDecoration(
-                    color: context.primaryColorLight,
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                  child: Text(
-                    'الزيارات المكتملة',
-                    style: context.regularText.copyWith(fontSize: 14, color: '#113342'.color),
+                GestureDetector(
+                  onTap: () => push(NamedRoutes.visits, arg: {'type': VisitsType.finished}),
+                  child: Container(
+                    padding: EdgeInsets.all(16.w),
+                    decoration: BoxDecoration(
+                      color: context.primaryColorLight,
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    child: Text(
+                      'الزيارات المكتملة',
+                      style: context.regularText.copyWith(fontSize: 14, color: '#113342'.color),
+                    ),
                   ),
                 ),
               ],

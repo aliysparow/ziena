@@ -18,6 +18,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/camera.svg
   String get camera => 'assets/icons/camera.svg';
 
+  /// File path: assets/icons/contract.svg
+  String get contract => 'assets/icons/contract.svg';
+
   /// File path: assets/icons/delete.svg
   String get delete => 'assets/icons/delete.svg';
 
@@ -32,6 +35,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/gallery.svg
   String get gallery => 'assets/icons/gallery.svg';
+
+  /// File path: assets/icons/hashtag.svg
+  String get hashtag => 'assets/icons/hashtag.svg';
 
   /// File path: assets/icons/home.svg
   String get home => 'assets/icons/home.svg';
@@ -51,8 +57,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/nationality.svg
   String get nationality => 'assets/icons/nationality.svg';
 
+  /// File path: assets/icons/note.svg
+  String get note => 'assets/icons/note.svg';
+
   /// File path: assets/icons/orders.svg
   String get orders => 'assets/icons/orders.svg';
+
+  /// File path: assets/icons/phone.svg
+  String get phone => 'assets/icons/phone.svg';
 
   /// File path: assets/icons/price.svg
   String get price => 'assets/icons/price.svg';
@@ -63,33 +75,45 @@ class $AssetsIconsGen {
   /// File path: assets/icons/share.svg
   String get share => 'assets/icons/share.svg';
 
+  /// File path: assets/icons/status.svg
+  String get status => 'assets/icons/status.svg';
+
   /// File path: assets/icons/support.svg
   String get support => 'assets/icons/support.svg';
 
   /// File path: assets/icons/time.svg
   String get time => 'assets/icons/time.svg';
 
+  /// File path: assets/icons/work.svg
+  String get work => 'assets/icons/work.svg';
+
   /// List of all assets
   List<String> get values => [
         addresses,
         camera,
+        contract,
         delete,
         drawer,
         duration,
         edit,
         gallery,
+        hashtag,
         home,
         homeActive,
         lang,
         lock,
         logout,
         nationality,
+        note,
         orders,
+        phone,
         price,
         profile,
         share,
+        status,
         support,
-        time
+        time,
+        work
       ];
 }
 

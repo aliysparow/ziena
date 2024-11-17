@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:ziena/core/utils/extensions.dart';
-import 'package:ziena/features/account/view/account_view.dart';
-import 'package:ziena/features/addresses/view/add_address_view.dart';
-import 'package:ziena/features/addresses/view/addresses_view.dart';
-import 'package:ziena/features/addresses/view/pick_location_view.dart';
-import 'package:ziena/features/auth/forget_password/view/forget_password_view.dart';
-import 'package:ziena/features/auth/verify_phone/view/verify_phone_view.dart';
-import 'package:ziena/features/hourly_service/view/select_dates_view.dart';
-import 'package:ziena/features/intro/onboarding_view.dart';
-import 'package:ziena/features/payment_ifream/payment_ifream.dart';
 
+import '../../features/account/view/account_view.dart';
+import '../../features/addresses/view/add_address_view.dart';
+import '../../features/addresses/view/addresses_view.dart';
+import '../../features/addresses/view/pick_location_view.dart';
+import '../../features/auth/forget_password/view/forget_password_view.dart';
 import '../../features/auth/login/view/login_view.dart';
 import '../../features/auth/register/view/register_view.dart';
 import '../../features/auth/reset_password/view/reset_password_view.dart';
+import '../../features/auth/verify_phone/view/verify_phone_view.dart';
 import '../../features/hourly_service/view/hourly_service_view.dart';
 import '../../features/hourly_service/view/select_address_view.dart';
+import '../../features/hourly_service/view/select_dates_view.dart';
 import '../../features/hourly_service/view/summary_hourly_service_view.dart';
+import '../../features/intro/onboarding_view.dart';
 import '../../features/intro/splash_view.dart';
 import '../../features/layout/view/layout_view.dart';
+import '../../features/my_contracts/view/contracts_view.dart';
+import '../../features/my_contracts/view/visits_view.dart';
+import '../../features/payment_ifream/payment_ifream.dart';
+import '../utils/extensions.dart';
 import '../widgets/successfully_page.dart';
 import 'routes.dart';
 
@@ -47,8 +49,8 @@ class AppRoutes {
     NamedRoutes.addresses: (c) => const AddressesView(),
     NamedRoutes.addAddress: (c) => const AddAddressView(),
     NamedRoutes.pickLocation: (c) => PickLocationView(position: c.arg['position'], address: c.arg['address']),
-    // NamedRoutes.orderDetails: (c) => OrderDetailsView(id: c.arg["id"]),
-    // NamedRoutes.productDetails: (c) => ProductDetailsView(id: c.arg['id']),
+    NamedRoutes.contracts: (c) => ContractsView(type: c.arg["type"]),
+    NamedRoutes.visits: (c) => VisitsView(type: c.arg["type"]),
     // NamedRoutes.formProduct: (c) => FormProductView(id: c.arg['id']),
     // // NamedRoutes.searchResultsScreen: (c) => const SearchResultsView(),
     // // NamedRoutes.providerDetailsScreen: (c) => ProviderDetailsScreen(title: c.arg["title"], id: c.arg["id"]),

@@ -10,6 +10,7 @@ import '../../features/auth/reset_password/bloc/reset_password_bloc.dart';
 import '../../features/auth/verify_phone/bloc/verify_phone_bloc.dart';
 import '../../features/home/bloc/home_bloc.dart';
 import '../../features/layout/bloc/layout_bloc.dart';
+import '../../features/my_contracts/bloc/contracts_cubit.dart';
 import 'location_service.dart';
 
 final sl = GetIt.instance;
@@ -28,7 +29,7 @@ class ServicesLocator {
     sl.registerLazySingleton(() => HomeBloc());
     sl.registerLazySingleton(() => HourlyServiceBloc());
     sl.registerFactory(() => AddressesBloc());
-    // sl.registerFactory(() => CategoriesBloc());
+    sl.registerFactory(() => ContractsCubit());
     // sl.registerFactory(() => SizesBloc());
     // sl.registerFactory(() => ColorsBloc());
     // sl.registerLazySingleton(() => ProductsBloc());

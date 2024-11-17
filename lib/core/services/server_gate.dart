@@ -271,7 +271,11 @@ class ServerGate {
 
   CustomResponse<T> handleServerError<T>(DioException err) {
     if (err.type == DioExceptionType.badResponse) {
-      if (err.response?.data.toString().isEmpty ?? false) err.response?.data = {};
+      if (err.response?.data.toString().isEmpty ?? false) {
+        err.response?.data = {};
+      } else if (err.response?.data is! Map) {
+        err.response?.data = {"message": "${err.response?.data}"};
+      }
       if (err.response?.statusCode == 401) {
         UserModel.i.clear();
         pushAndRemoveUntil(NamedRoutes.login);
@@ -280,7 +284,7 @@ class ServerGate {
           success: false,
           statusCode: err.response?.statusCode ?? 401,
           errType: ErrorType.unAuth,
-          msg: err.response?.data["message"] ?? err.response?.data["ErrorMessage"] ?? "",
+          msg: err.response?.data["message"] ?? err.response?.data["Message"] ?? err.response?.data["ErrorMessage"] ?? "",
           data: err.response?.data,
         );
       } else if ((err.response!.data.toString().contains("DOCTYPE") ||
@@ -297,7 +301,7 @@ class ServerGate {
           success: false,
           statusCode: err.response?.statusCode ?? 500,
           errType: ErrorType.backEndValidation,
-          msg: err.response?.data["message"] ?? err.response?.data["ErrorMessage"] ?? "",
+          msg: err.response?.data["message"] ?? err.response?.data["Message"] ?? err.response?.data["ErrorMessage"] ?? "",
           data: err.response?.data,
         );
       }

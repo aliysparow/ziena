@@ -81,5 +81,17 @@
     "pick_location": "Pick Location",
     "all": "All",
     "please_select_city": "Please select city",
-    "city": "City"
+    "city": "City",
+    "val_visit_val_week": "{} زيارة / {} اسبوع",
+    "the_contract_has_been_paid": "تم دفع العقد",
+    "payment_not_made": "Payment not made",
+    "pay_now": "ادفع الان",
+    "my_inactive_contracts": "My Inactive Contracts",
+    "my_active_contracts": "My Active Contracts",
+    "you_do_not_have_any_contracts_yet": "لا يوجد لديك عقود حت الان",
+    "you_do_not_have_any_visits_yet": "لا يوجد لديك زيارات حت الان",
+    "next_visits": "الزيارات القادمة",
+    "complete_visits": "الزيارات المكتملة",
+    "visit_number_val": "زيارة رقم {}",
+    "change_schedule": "تغيير موعد"
 }

@@ -26,4 +26,11 @@ class AppConstants {
   static const String getAddresses = 'Address/GetAddressesByContactId';
   static const String createAddress = 'Address/CreateAddress';
   static const String deleteAddress = 'Address/DeleteAddress';
+
+  static const String upcomingHourlyContracts = 'Contract/GetUpcomingHourlyContractsByUser';
+  static const String finishedHourlyContracts = 'Contract/GetFinishedHourlyContractsByUser';
+
+  static const String getUpcomingVisits = 'HourlyVisit/GetUpcomingVisits';
+  static const String getCompletedVisits = 'HourlyVisit/GetCompletedVisits';
+  static const String reschduleVisit = 'HourlyVisit/ReschduleVisit';
 }

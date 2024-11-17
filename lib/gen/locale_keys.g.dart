@@ -84,5 +84,17 @@ abstract class  LocaleKeys {
   static const all = 'all';
   static const please_select_city = 'please_select_city';
   static const city = 'city';
+  static const val_visit_val_week = 'val_visit_val_week';
+  static const the_contract_has_been_paid = 'the_contract_has_been_paid';
+  static const payment_not_made = 'payment_not_made';
+  static const pay_now = 'pay_now';
+  static const my_inactive_contracts = 'my_inactive_contracts';
+  static const my_active_contracts = 'my_active_contracts';
+  static const you_do_not_have_any_contracts_yet = 'you_do_not_have_any_contracts_yet';
+  static const you_do_not_have_any_visits_yet = 'you_do_not_have_any_visits_yet';
+  static const next_visits = 'next_visits';
+  static const complete_visits = 'complete_visits';
+  static const visit_number_val = 'visit_number_val';
+  static const change_schedule = 'change_schedule';
 
 }

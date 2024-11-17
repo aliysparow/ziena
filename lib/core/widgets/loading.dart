@@ -104,7 +104,7 @@ class PaginationLoading extends StatelessWidget {
 loadingDialog() {
   return showDialog(
     barrierDismissible: false,
-    barrierColor: Colors.transparent,
+    // barrierColor: Colors.transparent,
     context: navigator.currentContext!,
     builder: (x) => const LoadingApp(),
   );

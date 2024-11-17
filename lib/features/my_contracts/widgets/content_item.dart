@@ -34,7 +34,7 @@ class ContentItem extends StatelessWidget {
           Flexible(
             child: Text(
               title,
-              style: context.mediumText.copyWith(fontSize: 12, color: color),
+              style: context.mediumText.copyWith(fontSize: 10, color: color),
             ),
           ),
         ],

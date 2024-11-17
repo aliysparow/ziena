@@ -67,6 +67,68 @@ class ContractsCubit extends Cubit<ContractsState> {
       emit(state.copyWith(reschduleVisitState: RequestState.error, msg: result.msg));
     }
   }
+
+  rateVisit({required String visitId, required double rate, required String rateNotes}) async {
+    loadingDialog();
+    emit(state.copyWith(reschduleVisitState: RequestState.loading));
+    final result = await ServerGate.i.sendToServer(
+      url: AppConstants.rateVisit,
+      params: {
+        "VisitId": visitId,
+        "Rate": rate,
+        "RateNotes": rateNotes,
+      },
+    );
+    hideLoadingDialog();
+    if (result.success) {
+      FlashHelper.showToast(result.msg, type: MessageType.success);
+      emit(state.copyWith(reschduleVisitState: RequestState.done));
+    } else {
+      FlashHelper.showToast(result.msg);
+      emit(state.copyWith(reschduleVisitState: RequestState.error, msg: result.msg));
+    }
+  }
+
+  setFavoriteLabor({required String workerId}) async {
+    loadingDialog();
+    emit(state.copyWith(setFavoriteLaborState: RequestState.loading));
+    final result = await ServerGate.i.sendToServer(
+      url: AppConstants.setFavoriteLabor,
+      params: {
+        "userId": UserModel.i.id,
+        "laborId": workerId,
+      },
+    );
+    hideLoadingDialog();
+    if (result.success) {
+      FlashHelper.showToast(result.msg, type: MessageType.success);
+      emit(state.copyWith(setFavoriteLaborState: RequestState.done));
+    } else {
+      FlashHelper.showToast(result.msg);
+      emit(state.copyWith(setFavoriteLaborState: RequestState.error, msg: result.msg));
+    }
+  }
+
+  blockLabor({required String workerId, required String note}) async {
+    loadingDialog();
+    emit(state.copyWith(blockLaborState: RequestState.loading));
+    final result = await ServerGate.i.sendToServer(
+      url: AppConstants.blockLabor,
+      params: {
+        "userId": UserModel.i.id,
+        "laborId": workerId,
+        "Notes": note,
+      },
+    );
+    hideLoadingDialog();
+    if (result.success) {
+      FlashHelper.showToast(result.msg, type: MessageType.success);
+      emit(state.copyWith(blockLaborState: RequestState.done));
+    } else {
+      FlashHelper.showToast(result.msg);
+      emit(state.copyWith(blockLaborState: RequestState.error, msg: result.msg));
+    }
+  }
 }
 
 enum ContractType {

@@ -15,6 +15,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/addresses.svg
   String get addresses => 'assets/icons/addresses.svg';
 
+  /// File path: assets/icons/block.svg
+  String get block => 'assets/icons/block.svg';
+
   /// File path: assets/icons/camera.svg
   String get camera => 'assets/icons/camera.svg';
 
@@ -33,11 +36,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/edit.svg
   String get edit => 'assets/icons/edit.svg';
 
+  /// File path: assets/icons/favorite.svg
+  String get favorite => 'assets/icons/favorite.svg';
+
   /// File path: assets/icons/gallery.svg
   String get gallery => 'assets/icons/gallery.svg';
 
   /// File path: assets/icons/hashtag.svg
   String get hashtag => 'assets/icons/hashtag.svg';
+
+  /// File path: assets/icons/heart.svg
+  String get heart => 'assets/icons/heart.svg';
 
   /// File path: assets/icons/home.svg
   String get home => 'assets/icons/home.svg';
@@ -75,6 +84,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/share.svg
   String get share => 'assets/icons/share.svg';
 
+  /// File path: assets/icons/star.svg
+  String get star => 'assets/icons/star.svg';
+
   /// File path: assets/icons/status.svg
   String get status => 'assets/icons/status.svg';
 
@@ -90,14 +102,17 @@ class $AssetsIconsGen {
   /// List of all assets
   List<String> get values => [
         addresses,
+        block,
         camera,
         contract,
         delete,
         drawer,
         duration,
         edit,
+        favorite,
         gallery,
         hashtag,
+        heart,
         home,
         homeActive,
         lang,
@@ -110,6 +125,7 @@ class $AssetsIconsGen {
         price,
         profile,
         share,
+        star,
         status,
         support,
         time,

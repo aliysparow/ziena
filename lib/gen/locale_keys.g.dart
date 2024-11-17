@@ -96,5 +96,9 @@ abstract class  LocaleKeys {
   static const complete_visits = 'complete_visits';
   static const visit_number_val = 'visit_number_val';
   static const change_schedule = 'change_schedule';
+  static const how_was_our_service_experience = 'how_was_our_service_experience';
+  static const note = 'note';
+  static const rate_now = 'rate_now';
+  static const no_thanks = 'no_thanks';
 
 }

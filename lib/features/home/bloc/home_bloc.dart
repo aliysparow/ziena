@@ -33,4 +33,15 @@ class HomeBloc extends Cubit<HomeState> {
       emit(state.copyWith(hourlyServicesState: RequestState.error, msg: result.msg));
     }
   }
+
+  Future<void> getOffers() async {
+    emit(state.copyWith(sliderAndOffersState: RequestState.loading));
+    final result = await ServerGate.i.getFromServer(url: AppConstants.getOffers);
+    if (result.success) {
+      // individualServicesList = result.data['data'].map<ServiceModel>((e) => ServiceModel.fromJson(e)).toList();
+      emit(state.copyWith(sliderAndOffersState: RequestState.done, msg: result.msg));
+    } else {
+      emit(state.copyWith(sliderAndOffersState: RequestState.error, msg: result.msg));
+    }
+  }
 }

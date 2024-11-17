@@ -93,5 +93,9 @@
     "next_visits": "الزيارات القادمة",
     "complete_visits": "الزيارات المكتملة",
     "visit_number_val": "زيارة رقم {}",
-    "change_schedule": "تغيير موعد"
+    "change_schedule": "تغيير موعد",
+    "how_was_our_service_experience": "كيف كانت تجربة الخدمة لدينا؟",
+    "note": "ملاحظة",
+    "rate_now": "قيم الأن",
+    "no_thanks": "لا، شكراً"
 }

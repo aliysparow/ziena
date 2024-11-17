@@ -18,6 +18,7 @@ class AppConstants {
 
   static const String hourlyServices = 'Service/GetHourlyServiceList';
   static const String individualServices = 'Service/GetIndividualServiceList';
+  static const String getOffers = 'Package/GetOffers';
 
   static const String hourlyPackages = 'Package/GetHourlyPackages';
 
@@ -33,4 +34,7 @@ class AppConstants {
   static const String getUpcomingVisits = 'HourlyVisit/GetUpcomingVisits';
   static const String getCompletedVisits = 'HourlyVisit/GetCompletedVisits';
   static const String reschduleVisit = 'HourlyVisit/ReschduleVisit';
+  static const String rateVisit = 'HourlyVisit/RateVisit';
+  static const String setFavoriteLabor = 'account/SetFavoriteLabor';
+  static const String blockLabor = 'account/BlockLabor';
 }

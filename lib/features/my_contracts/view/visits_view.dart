@@ -2,17 +2,21 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ziena/core/services/service_locator.dart';
-import 'package:ziena/core/utils/extensions.dart';
-import 'package:ziena/core/widgets/custom_grid.dart';
-import 'package:ziena/core/widgets/custom_image.dart';
-import 'package:ziena/core/widgets/error_widget.dart';
-import 'package:ziena/core/widgets/loading.dart';
-import 'package:ziena/features/my_contracts/bloc/contracts_cubit.dart';
-import 'package:ziena/features/my_contracts/bloc/contracts_state.dart';
-import 'package:ziena/features/my_contracts/widgets/content_item.dart';
-import 'package:ziena/gen/assets.gen.dart';
-import 'package:ziena/gen/locale_keys.g.dart';
+import 'package:ziena/features/my_contracts/widgets/add_favorite_dialog.dart';
+import 'package:ziena/features/my_contracts/widgets/add_report_dialog.dart';
+
+import '../../../core/services/service_locator.dart';
+import '../../../core/utils/extensions.dart';
+import '../../../core/widgets/custom_grid.dart';
+import '../../../core/widgets/custom_image.dart';
+import '../../../core/widgets/error_widget.dart';
+import '../../../core/widgets/loading.dart';
+import '../../../gen/assets.gen.dart';
+import '../../../gen/locale_keys.g.dart';
+import '../bloc/contracts_cubit.dart';
+import '../bloc/contracts_state.dart';
+import '../widgets/content_item.dart';
+import '../widgets/rate_sheet.dart';
 
 class VisitsView extends StatefulWidget {
   final VisitsType type;
@@ -69,7 +73,7 @@ class _VisitsViewState extends State<VisitsView> {
                           ).withPadding(horizontal: 8.w),
                           Flexible(
                             child: Text(
-                              'item.serviceName',
+                              item.serviceName,
                               style: context.semiboldText.copyWith(fontSize: 14),
                             ),
                           ),
@@ -79,7 +83,7 @@ class _VisitsViewState extends State<VisitsView> {
                         padding: EdgeInsets.all(6.w),
                         mainAxisAlignment: MainAxisAlignment.start,
                         icon: Assets.icons.hashtag,
-                        title: LocaleKeys.visit_number_val.tr(args: ["${item.visitNumber}-${item.contractNumber}"]),
+                        title: item.name,
                       ),
                       ContentItem(
                         padding: EdgeInsets.all(6.w),
@@ -97,7 +101,7 @@ class _VisitsViewState extends State<VisitsView> {
                         padding: EdgeInsets.all(6.w),
                         mainAxisAlignment: MainAxisAlignment.start,
                         icon: Assets.icons.time,
-                        title: "${item.startTime} ${item.shiftName}",
+                        title: item.startTime,
                       ),
                       ContentItem(
                         padding: EdgeInsets.all(6.w),
@@ -106,40 +110,86 @@ class _VisitsViewState extends State<VisitsView> {
                         title: item.statusCodeName,
                         color: item.statusColor.color,
                       ),
-                      BlocBuilder<ContractsCubit, ContractsState>(
-                        bloc: cubit,
-                        buildWhen: (previous, current) => previous.reschduleVisitState != current.reschduleVisitState,
-                        builder: (context, state) {
-                          return GestureDetector(
-                            onTap: () {
-                              if (state.reschduleVisitState.isLoading) return;
-                              showDatePicker(
-                                context: context,
-                                firstDate: DateTime.now(),
-                                initialEntryMode: DatePickerEntryMode.calendarOnly,
-                                lastDate: DateTime.now().add(const Duration(days: 365)),
-                              ).then((v) {
-                                if (v != null) {
-                                  cubit.reschduleVisit(item.id, v);
-                                }
-                              });
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: context.primaryColor,
-                                borderRadius: BorderRadius.circular(50),
+                      if (widget.type == VisitsType.upcoming)
+                        BlocBuilder<ContractsCubit, ContractsState>(
+                          bloc: cubit,
+                          buildWhen: (previous, current) => previous.reschduleVisitState != current.reschduleVisitState,
+                          builder: (context, state) {
+                            return GestureDetector(
+                              onTap: () {
+                                if (state.reschduleVisitState.isLoading) return;
+                                showDatePicker(
+                                  context: context,
+                                  firstDate: DateTime.now(),
+                                  initialEntryMode: DatePickerEntryMode.calendarOnly,
+                                  lastDate: DateTime.now().add(const Duration(days: 365)),
+                                ).then((v) {
+                                  if (v != null) {
+                                    cubit.reschduleVisit(item.id, v);
+                                  }
+                                });
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: context.primaryColor,
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                padding: EdgeInsets.symmetric(vertical: 4.h),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  LocaleKeys.change_schedule.tr(),
+                                  style: context.semiboldText.copyWith(fontSize: 12, color: context.primaryColorLight),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
-                              padding: EdgeInsets.symmetric(vertical: 4.h),
-                              alignment: Alignment.center,
-                              child: Text(
-                                LocaleKeys.change_schedule.tr(),
-                                style: context.semiboldText.copyWith(fontSize: 12, color: context.primaryColorLight),
-                                textAlign: TextAlign.center,
+                            );
+                          },
+                        )
+                      else
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AddFavoriteDialog(workId: item.workerId),
+                                );
+                              },
+                              child: CustomImage(
+                                Assets.icons.heart,
+                                height: 16.h,
+                                width: 16.h,
                               ),
                             ),
-                          );
-                        },
-                      ),
+                            GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => RateSheet(visitId: item.id),
+                                );
+                              },
+                              child: CustomImage(
+                                Assets.icons.star,
+                                height: 16.h,
+                                width: 16.h,
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AddReportDialog(workId: item.workerId),
+                                );
+                              },
+                              child: CustomImage(
+                                Assets.icons.block,
+                                height: 16.h,
+                                width: 16.h,
+                              ),
+                            ),
+                          ],
+                        ).withPadding(top: 6.h)
                     ],
                   ),
                 );

@@ -68,7 +68,8 @@ class HourlyPackageModel extends Model {
     vat = doubleFromJson(json, "Vat");
     vatIncluded = boolFromJson(json, "VatIncluded");
     calendarDays = intFromJson(json, "CalendarDays");
-    lastDate = dateFromJson(json, "lastDate")..copyWith(hour: 23, minute: 59, second: 59);
+    lastDate = dateFromJson(json, "lastDate").toLocal()..copyWith(hour: 23, minute: 59, second: 59);
+    if (id == '90a5f9a7-1e5b-ec11-8ba3-20040ff72aa4') print('-=-=-=-=-=-=-=-=- $lastDate');
     days = List<int>.from((json?["days"] ?? []).map((x) => x));
   }
 

@@ -85,11 +85,11 @@ class _SelectDatesViewState extends State<SelectDatesView> {
               'اختر ${bloc.inputData.package?.totalVisits} أيام مناسبة لك',
               style: context.mediumText.copyWith(fontSize: 16),
             ),
-            Text(
-              DateFormat('dd-MM-yyyy hh:mm a', 'en').format(bloc.inputData.package!.lastDate).toString(),
-              style: context.mediumText.copyWith(fontSize: 16),
-              textDirection: TextDirection.ltr,
-            ),
+            // Text(
+            //   DateFormat('dd-MM-yyyy hh:mm a', 'en').format(bloc.inputData.package!.lastDate).toString(),
+            //   style: context.mediumText.copyWith(fontSize: 16),
+            //   textDirection: TextDirection.ltr,
+            // ),
             Wrap(
               spacing: 8.w,
               runSpacing: 8.w,

@@ -59,6 +59,16 @@ class CustomImage extends StatelessWidget {
             (() {
               if (url?.isNotEmpty != true) {
                 return _errorWidget(context);
+              } else if (base46) {
+                return Image.memory(
+                  base64Decode(url!),
+                  width: width,
+                  height: height,
+                  fit: fit ?? BoxFit.contain,
+                  color: color,
+                  gaplessPlayback: true,
+                  errorBuilder: (context, error, stackTrace) => _errorWidget(context),
+                );
               } else if (url?.startsWith("http") == true) {
                 return CashNetworkImage(
                   url!,
@@ -91,16 +101,6 @@ class CustomImage extends StatelessWidget {
                   width: width,
                   fit: fit ?? BoxFit.contain,
                   color: color,
-                  errorBuilder: (context, error, stackTrace) => _errorWidget(context),
-                );
-              } else if (base46) {
-                return Image.memory(
-                  base64Decode(url!),
-                  width: width,
-                  height: height,
-                  fit: fit ?? BoxFit.contain,
-                  color: color,
-                  gaplessPlayback: true,
                   errorBuilder: (context, error, stackTrace) => _errorWidget(context),
                 );
               } else {

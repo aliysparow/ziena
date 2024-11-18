@@ -24,7 +24,7 @@ class _OffersWidgetState extends State<OffersWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       bloc: cubit,
-      buildWhen: (previous, current) => previous.slidersState != current.slidersState,
+      buildWhen: (previous, current) => previous.offersState != current.offersState,
       builder: (context, state) {
         if (cubit.offers.isNotEmpty) {
           return Column(

@@ -9,7 +9,7 @@ class ServiceModel extends Model {
   ServiceModel.fromJson([Map<String, dynamic>? json]) {
     id = stringFromJson(json, "Id");
     name = stringFromJson(json, "Name");
-    icon = stringFromJson(json, "Icon").replaceAll('data:image/png;base64,', '');
+    icon = stringFromJson(json, "Icon").split('base64,').last;
     description = stringFromJson(json, "Description");
     entityImageExtension = stringFromJson(json, "EntityImageExtension");
     serviceType = intFromJson(json, "ServiceType");

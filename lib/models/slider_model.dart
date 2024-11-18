@@ -13,7 +13,7 @@ class SliderModel extends Model {
 
   SliderModel.fromJson(Map<String, dynamic> json) {
     title = stringFromJson(json, 'Title');
-    icon = stringFromJson(json, 'Icon').replaceAll('data:image/png;base64,', '');
+    icon = stringFromJson(json, 'Icon').split('base64,').last;
     packageId = stringFromJson(json, 'PackageId');
     id = stringFromJson(json, 'Id');
   }

@@ -14,7 +14,7 @@ class OfferModel extends Model {
   OfferModel.fromJson(Map<String, dynamic> json) {
     id = stringFromJson(json, 'Id');
     title = stringFromJson(json, 'Title');
-    icon = stringFromJson(json, 'Icon').replaceAll('data:image/png;base64,', '');
+    icon = stringFromJson(json, 'Icon').split('base64,').last;
     packageId = stringFromJson(json, 'PackageId');
   }
 

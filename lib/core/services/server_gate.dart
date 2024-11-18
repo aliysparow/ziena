@@ -346,7 +346,7 @@ class CustomApiInterceptor extends Interceptor {
   @override
   Future<void> onResponse(Response response, ResponseInterceptorHandler handler) async {
     log.green("------ Current Response (status code ${response.statusCode}) ------");
-    log.green(jsonEncode(response.data));
+    log.green(jsonEncode(response.data), response.requestOptions.path.replaceFirst(AppConstants.baseUrl, ''));
     return super.onResponse(response, handler);
   }
 

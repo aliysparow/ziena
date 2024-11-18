@@ -97,5 +97,12 @@
     "how_was_our_service_experience": "كيف كانت تجربة الخدمة لدينا؟",
     "note": "ملاحظة",
     "rate_now": "قيم الأن",
-    "no_thanks": "لا، شكراً"
+    "no_thanks": "لا، شكراً",
+    "saturday": "السبت",
+    "sunday": "الأحد",
+    "monday": "الاثنين",
+    "tuesday": "الثلاثاء",
+    "wednesday": "الأربعاء",
+    "thursday": "الخميس",
+    "friday": "الجمعة"
 }

@@ -13,7 +13,7 @@ class CitiesBloc extends Cubit<CitiesState> {
 
   Future<void> getCities() async {
     emit(state.copyWith(requestState: RequestState.loading));
-    final result = await ServerGate.i.getFromServer(url: AppConstants.cities);
+    final result = await ServerGate.i.getFromServer(url: ApiConstants.cities);
     if (result.success) {
       cities = List<CityModel>.from(result.data['data'].map((x) => CityModel.fromJson(x)));
       emit(state.copyWith(requestState: RequestState.done, msg: result.msg));
@@ -21,6 +21,4 @@ class CitiesBloc extends Cubit<CitiesState> {
       emit(state.copyWith(requestState: RequestState.error, msg: result.msg));
     }
   }
-
-
 }

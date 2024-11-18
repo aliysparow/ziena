@@ -21,7 +21,7 @@ class _PaymentIfreamState extends State<PaymentIfream> {
   bool isLoading = true;
   @override
   void initState() {
-    final uri = Uri.parse(AppConstants.paymentUrl + widget.id);
+    final uri = Uri.parse(ApiConstants.paymentUrl + widget.id);
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(

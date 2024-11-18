@@ -39,7 +39,7 @@ class AddressesBloc extends Cubit<AddressesState> {
   getAddresses() async {
     emit(state.copyWith(getAddresses: RequestState.loading));
     final result = await ServerGate.i.getFromServer(
-      url: AppConstants.getAddresses,
+      url: ApiConstants.getAddresses,
       params: {"contactId": UserModel.i.contactId},
     );
     if (result.success) {
@@ -53,7 +53,7 @@ class AddressesBloc extends Cubit<AddressesState> {
   createAddress() async {
     emit(state.copyWith(createAddress: RequestState.loading));
     final result = await ServerGate.i.sendToServer(
-      url: AppConstants.createAddress,
+      url: ApiConstants.createAddress,
       body: {
         "ApartmentType": apartmentType?.id?.toString(),
         "BuildingNumber": buildingNumber.text,
@@ -89,7 +89,7 @@ class AddressesBloc extends Cubit<AddressesState> {
 
   Future<void> getDistricts() async {
     emit(state.copyWith(getDistricts: RequestState.loading));
-    final result = await ServerGate.i.getFromServer(url: AppConstants.districts, params: {'cityId': city?.id});
+    final result = await ServerGate.i.getFromServer(url: ApiConstants.districts, params: {'cityId': city?.id});
     if (result.success) {
       districts = List<DistrictModel>.from(result.data['data'].map((x) => DistrictModel.fromJson(x)));
       emit(state.copyWith(getDistricts: RequestState.done, msg: result.msg));
@@ -102,7 +102,7 @@ class AddressesBloc extends Cubit<AddressesState> {
   Future<void> deleteAddress(AddressModel address) async {
     loadingDialog();
     emit(state.copyWith(deleteAddressState: RequestState.loading));
-    final result = await ServerGate.i.getFromServer(url: AppConstants.deleteAddress, params: {'addressID': address.id});
+    final result = await ServerGate.i.getFromServer(url: ApiConstants.deleteAddress, params: {'addressID': address.id});
     if (result.success) {
       hideLoadingDialog();
       addresses.remove(address);

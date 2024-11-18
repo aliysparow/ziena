@@ -15,7 +15,7 @@ import '../utils/enums.dart';
 import '../utils/loger.dart';
 
 class ServerGate {
-  final String _baseUrl = AppConstants.baseUrl;
+  final String _baseUrl = ApiConstants.baseUrl;
 
   Map<String, dynamic> get constHeader => {
         if (UserModel.i.isAuth) "Authorization": "Bearer ${UserModel.i.token}",
@@ -346,7 +346,7 @@ class CustomApiInterceptor extends Interceptor {
   @override
   Future<void> onResponse(Response response, ResponseInterceptorHandler handler) async {
     log.green("------ Current Response (status code ${response.statusCode}) ------");
-    log.green(jsonEncode(response.data), response.requestOptions.path.replaceFirst(AppConstants.baseUrl, ''));
+    log.green(jsonEncode(response.data), response.requestOptions.path.replaceFirst(ApiConstants.baseUrl, ''));
     return super.onResponse(response, handler);
   }
 

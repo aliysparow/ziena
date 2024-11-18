@@ -1,4 +1,18 @@
+import '../../models/week_day_model.dart';
+
 class AppConstants {
+  static List<WeekDayModel> weekDays = const [
+    WeekDayModel(id: 6, name: "saturday"),
+    WeekDayModel(id: 7, name: "sunday"),
+    WeekDayModel(id: 1, name: "monday"),
+    WeekDayModel(id: 2, name: "tuesday"),
+    WeekDayModel(id: 3, name: "wednesday"),
+    WeekDayModel(id: 4, name: "thursday"),
+    WeekDayModel(id: 5, name: "friday"),
+  ];
+}
+
+class ApiConstants {
   static const String baseUrl = "http://93.112.2.209:8003/api/v3";
   static const String paymentUrl = "https://efadah.azurewebsites.net/Payment/Payment/";
 

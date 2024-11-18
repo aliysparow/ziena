@@ -15,7 +15,7 @@ class ForgetPasswordBloc extends Cubit<ForgetPasswordState> {
   final phone = TextEditingController();
   Future<void> forgetPassword() async {
     emit(state.copyWith(requestState: RequestState.loading));
-    final result = await ServerGate.i.sendToServer(url: AppConstants.sendOtp, params: {'mobile': phone.text});
+    final result = await ServerGate.i.sendToServer(url: ApiConstants.sendOtp, params: {'mobile': phone.text});
     if (result.success) {
       push(NamedRoutes.verifyPhone, arg: {
         'type': VerifyType.resetPassword,

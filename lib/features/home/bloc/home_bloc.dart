@@ -18,7 +18,7 @@ class HomeBloc extends Cubit<HomeState> {
 
   Future<void> getHourlyServiceList() async {
     emit(state.copyWith(hourlyServicesState: RequestState.loading));
-    final result = await ServerGate.i.getFromServer(url: AppConstants.hourlyServices);
+    final result = await ServerGate.i.getFromServer(url: ApiConstants.hourlyServices);
     if (result.success) {
       hourlyServiceList = result.data['data'].map<ServiceModel>((e) => ServiceModel.fromJson(e)).toList();
       emit(state.copyWith(hourlyServicesState: RequestState.done, msg: result.msg));
@@ -29,7 +29,7 @@ class HomeBloc extends Cubit<HomeState> {
 
   Future<void> getIndividualServiceList() async {
     emit(state.copyWith(hourlyServicesState: RequestState.loading));
-    final result = await ServerGate.i.getFromServer(url: AppConstants.individualServices);
+    final result = await ServerGate.i.getFromServer(url: ApiConstants.individualServices);
     if (result.success) {
       individualServicesList = result.data['data'].map<ServiceModel>((e) => ServiceModel.fromJson(e)).toList();
       emit(state.copyWith(hourlyServicesState: RequestState.done, msg: result.msg));
@@ -40,7 +40,7 @@ class HomeBloc extends Cubit<HomeState> {
 
   Future<void> getOffers() async {
     emit(state.copyWith(offersState: RequestState.loading));
-    final result = await ServerGate.i.getFromServer(url: AppConstants.getOffers);
+    final result = await ServerGate.i.getFromServer(url: ApiConstants.getOffers);
     if (result.success) {
       offers = result.data['data'].map<OfferModel>((e) => OfferModel.fromJson(e)).toList();
       emit(state.copyWith(offersState: RequestState.done, msg: result.msg));
@@ -51,7 +51,7 @@ class HomeBloc extends Cubit<HomeState> {
 
   Future<void> getSliders() async {
     emit(state.copyWith(slidersState: RequestState.loading));
-    final result = await ServerGate.i.getFromServer(url: AppConstants.getOffersInBaner);
+    final result = await ServerGate.i.getFromServer(url: ApiConstants.getOffersInBaner);
     if (result.success) {
       sliders = result.data['data'].map<SliderModel>((e) => SliderModel.fromJson(e)).toList();
       emit(state.copyWith(slidersState: RequestState.done, msg: result.msg));

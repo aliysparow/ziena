@@ -34,7 +34,7 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
       return;
     }
     emit(state.copyWith(getPacagesState: RequestState.loading));
-    final result = await ServerGate.i.sendToServer(url: AppConstants.hourlyPackages, body: {
+    final result = await ServerGate.i.sendToServer(url: ApiConstants.hourlyPackages, body: {
       "Service": id,
     });
     if (result.success) {
@@ -62,7 +62,7 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
   getAddresses([bool selectLast = false]) async {
     emit(state.copyWith(addressesState: RequestState.loading));
     final result = await ServerGate.i.getFromServer(
-      url: AppConstants.getAddresses,
+      url: ApiConstants.getAddresses,
       params: {"contactId": UserModel.i.contactId},
     );
     if (result.success) {
@@ -77,7 +77,7 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
   createBooking() async {
     emit(state.copyWith(bookingState: RequestState.loading));
     final result = await ServerGate.i.sendToServer(
-      url: AppConstants.createHourlyContract,
+      url: ApiConstants.createHourlyContract,
       body: inputData.toJson(),
     );
     if (result.success) {

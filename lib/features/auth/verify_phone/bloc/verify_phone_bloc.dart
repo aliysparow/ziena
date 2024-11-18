@@ -18,7 +18,7 @@ class VerifyPhoneBloc extends Cubit<VerifyPhoneState> {
   Future<void> verify(VerifyType type, Map<String, dynamic> body) async {
     emit(state.copyWith(verifyState: RequestState.loading));
     final result = await ServerGate.i.sendToServer(
-      url: type == VerifyType.register ? AppConstants.verifyAccount : AppConstants.verifyOtp,
+      url: type == VerifyType.register ? ApiConstants.verifyAccount : ApiConstants.verifyOtp,
       body: {...body, "OTP": otp.text},
     );
     if (result.success) {
@@ -35,7 +35,7 @@ class VerifyPhoneBloc extends Cubit<VerifyPhoneState> {
 
   Future<void> resend(String phone) async {
     emit(state.copyWith(resndState: RequestState.loading));
-    final result = await ServerGate.i.sendToServer(url: AppConstants.sendOtp, params: {"mobile": phone});
+    final result = await ServerGate.i.sendToServer(url: ApiConstants.sendOtp, params: {"mobile": phone});
     if (result.success) {
       FlashHelper.showToast(result.msg);
       emit(state.copyWith(resndState: RequestState.done, msg: result.msg));

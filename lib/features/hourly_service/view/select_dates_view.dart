@@ -10,6 +10,7 @@ import 'package:table_calendar/table_calendar.dart';
 import '../../../core/routes/app_routes_fun.dart';
 import '../../../core/routes/routes.dart';
 import '../../../core/services/service_locator.dart';
+import '../../../core/utils/constant.dart';
 import '../../../core/utils/extensions.dart';
 import '../../../core/widgets/app_btn.dart';
 import '../../../core/widgets/custom_circle_icon.dart';
@@ -91,30 +92,29 @@ class _SelectDatesViewState extends State<SelectDatesView> {
             //   textDirection: TextDirection.ltr,
             // ),
             Wrap(
-              spacing: 8.w,
+              spacing: 6.w,
               runSpacing: 8.w,
               children: List.generate(
                 7,
                 (i) {
-                  final day = DateTime.now().add((i + 1).days);
-                  final item = DateFormat('EEEE', context.locale.languageCode).format(day);
-                  final isAvilable = kDebugMode || (bloc.inputData.package?.days.contains(day.weekday) ?? false);
-                  final bool selected = bloc.inputData.week.any((e) => e == day.weekday);
+                  final day = AppConstants.weekDays[i];
+                  final isAvilable = kDebugMode || (bloc.inputData.package?.days.contains(day.id) ?? false);
+                  final bool selected = bloc.inputData.week.any((e) => e == day.id);
                   return Opacity(
                     opacity: isAvilable ? 1 : 0.3,
                     child: GestureDetector(
                       onTap: () {
                         if (isAvilable == false) return;
                         if (selected) {
-                          bloc.inputData.week.remove(day.weekday);
+                          bloc.inputData.week.remove(day.id);
                           bloc.inputData.dates.clear();
                         } else if (bloc.inputData.week.length == bloc.inputData.package?.totalVisits) {
                           // FlashHelper.showToast("لم يعد ايام متاحة لاختيارها", type: MessageType.warning);
                           bloc.inputData.week.removeAt(0);
-                          bloc.inputData.week.add(day.weekday);
+                          bloc.inputData.week.add(day.id);
                           bloc.inputData.dates.clear();
                         } else {
-                          bloc.inputData.week.add(day.weekday);
+                          bloc.inputData.week.add(day.id);
                           bloc.inputData.dates.clear();
                         }
                         setState(() {});
@@ -129,7 +129,7 @@ class _SelectDatesViewState extends State<SelectDatesView> {
                           borderRadius: BorderRadius.circular(100),
                         ),
                         child: Text(
-                          item,
+                          day.name.tr(),
                           style: context.mediumText.copyWith(
                             fontSize: 12,
                             color: selected ? context.primaryColorLight : context.primaryColorDark,

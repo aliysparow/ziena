@@ -54,7 +54,7 @@ class ContractsCubit extends Cubit<ContractsState> {
     loadingDialog();
     emit(state.copyWith(reschduleVisitState: RequestState.loading));
     final result = await ServerGate.i.sendToServer(
-      url: AppConstants.reschduleVisit,
+      url: ApiConstants.reschduleVisit,
       params: {"VisitId": id, "Date": date.toString()},
     );
     hideLoadingDialog();
@@ -72,7 +72,7 @@ class ContractsCubit extends Cubit<ContractsState> {
     loadingDialog();
     emit(state.copyWith(reschduleVisitState: RequestState.loading));
     final result = await ServerGate.i.sendToServer(
-      url: AppConstants.rateVisit,
+      url: ApiConstants.rateVisit,
       params: {
         "VisitId": visitId,
         "Rate": rate,
@@ -93,7 +93,7 @@ class ContractsCubit extends Cubit<ContractsState> {
     loadingDialog();
     emit(state.copyWith(setFavoriteLaborState: RequestState.loading));
     final result = await ServerGate.i.sendToServer(
-      url: AppConstants.setFavoriteLabor,
+      url: ApiConstants.setFavoriteLabor,
       params: {
         "userId": UserModel.i.id,
         "laborId": workerId,
@@ -113,7 +113,7 @@ class ContractsCubit extends Cubit<ContractsState> {
     loadingDialog();
     emit(state.copyWith(blockLaborState: RequestState.loading));
     final result = await ServerGate.i.sendToServer(
-      url: AppConstants.blockLabor,
+      url: ApiConstants.blockLabor,
       params: {
         "userId": UserModel.i.id,
         "laborId": workerId,
@@ -135,7 +135,7 @@ enum ContractType {
   upcoming,
   finished;
 
-  String get url => this == ContractType.finished ? AppConstants.finishedHourlyContracts : AppConstants.upcomingHourlyContracts;
+  String get url => this == ContractType.finished ? ApiConstants.finishedHourlyContracts : ApiConstants.upcomingHourlyContracts;
   String get name => this == ContractType.upcoming ? LocaleKeys.my_active_contracts.tr() : LocaleKeys.my_inactive_contracts.tr();
 }
 
@@ -143,6 +143,6 @@ enum VisitsType {
   upcoming,
   finished;
 
-  String get url => this == VisitsType.upcoming ? AppConstants.getUpcomingVisits : AppConstants.getCompletedVisits;
+  String get url => this == VisitsType.upcoming ? ApiConstants.getUpcomingVisits : ApiConstants.getCompletedVisits;
   String get name => this == VisitsType.upcoming ? LocaleKeys.next_visits.tr() : LocaleKeys.complete_visits.tr();
 }

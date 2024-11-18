@@ -13,7 +13,7 @@ class ResetPasswordBloc extends Cubit<ResetPasswordState> {
   final password = TextEditingController();
   Future<void> resetPassword(String phone) async {
     emit(state.copyWith(requestState: RequestState.loading));
-    final result = await ServerGate.i.sendToServer(url: AppConstants.resetPassword, body: {
+    final result = await ServerGate.i.sendToServer(url: ApiConstants.resetPassword, body: {
       "Mobile": phone,
       "NewPassword": password.text,
     });

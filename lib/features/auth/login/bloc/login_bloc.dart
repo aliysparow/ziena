@@ -18,7 +18,7 @@ class LoginBloc extends Cubit<LoginState> {
 
   Future<void> login() async {
     emit(state.copyWith(requestState: RequestState.loading));
-    final result = await ServerGate.i.sendToServer(url: AppConstants.login, body: {
+    final result = await ServerGate.i.sendToServer(url: ApiConstants.login, body: {
       "UserName": MethodsHelpers.formatPhoneNumber(phone.text),
       "Password": password.text,
     });

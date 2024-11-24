@@ -1,3 +1,5 @@
+import 'package:ziena/core/widgets/select_item_sheet.dart';
+
 import '../../models/week_day_model.dart';
 
 class AppConstants {
@@ -10,6 +12,20 @@ class AppConstants {
     WeekDayModel(id: 4, name: "thursday"),
     WeekDayModel(id: 5, name: "friday"),
   ];
+  static List<SelectModel> deliverType = const [
+    SelectModel(id: 0, name: "delivery"),
+    SelectModel(id: 1, name: "back"),
+  ];
+
+  static const String shareAppText = '''
+🌟 حمّل تطبيق زينة الآن واستمتع بتجربة لا مثيل لها! 🌟
+
+✨ اكتشف المزايا الرائعة وسهولة الاستخدام لتطبيق زينة!
+📲 للأندرويد: https://play.google.com/store/apps/details?id=com.efada.ziena
+🍏 للآيفون: https://apps.apple.com/eg/app/ziena/id1601674625
+
+شارك المتعة مع أصدقائك، وخليهم يجربوا اللي يناسبهم في أي وقت وأي مكان! ❤️
+''';
 }
 
 class ApiConstants {
@@ -52,4 +68,14 @@ class ApiConstants {
   static const String rateVisit = 'HourlyVisit/RateVisit';
   static const String setFavoriteLabor = 'account/SetFavoriteLabor';
   static const String blockLabor = 'account/BlockLabor';
+
+  static const String todayDeliveringVisits = 'HourlyVisit/GetTodayDeliveringVisitsByShiftId';
+  static const String getTodayShifts = 'Shift/GetTodayShifts';
+  static const String getCancelReasons = 'HourlyVisit/GetVisitCancelReasons';
+  static const String setVisitStatus = 'HourlyVisit/SetVisitStatus';
+  static const String setVisitNextStatus = 'HourlyVisit/SetVisitNextStatus';
+  static const String getVisitById = 'HourlyVisit/GetVisitByID';
+
+  static const String getIndividualPackages = 'Package/GetIndividualPackages';
+  static const String createIndividualRequest = 'Request/CreateIndividualRequest';
 }

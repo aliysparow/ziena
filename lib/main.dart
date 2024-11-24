@@ -17,7 +17,7 @@ import 'core/utils/app_theme.dart';
 import 'core/utils/phoneix.dart';
 import 'core/utils/unfucs.dart';
 import 'firebase_options.dart';
-import 'models/user.dart';
+import 'models/user_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,14 +66,11 @@ class _MyAppState extends State<MyApp> {
             theme: AppThemes.lightTheme,
             builder: (context, child) {
               ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
-                return Scaffold(
-                    appBar:
-                        AppBar(elevation: 0, backgroundColor: Colors.white));
+                return Scaffold(appBar: AppBar(elevation: 0, backgroundColor: Colors.white));
               };
               return Phoenix(
                 child: MediaQuery(
-                  data: MediaQuery.of(context)
-                      .copyWith(textScaler: TextScaler.linear(1.sp)),
+                  data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.sp > 1.2 ? 1.2 : 1.sp)),
                   child: Unfocus(child: child ?? const SizedBox.shrink()),
                 ),
               );
@@ -92,7 +89,6 @@ late SharedPreferences prefs;
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback = (cert, host, port) => true;
+    return super.createHttpClient(context)..badCertificateCallback = (cert, host, port) => true;
   }
 }

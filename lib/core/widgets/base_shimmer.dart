@@ -10,8 +10,8 @@ class BaseShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      highlightColor: context.hintColor.withOpacity(.05),
-      baseColor: context.hintColor.withOpacity(.2),
+      highlightColor: context.hintColor.withOpacity(.2),
+      baseColor: context.hintColor.withOpacity(.5),
       child: child,
     );
   }

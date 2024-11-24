@@ -7,7 +7,7 @@ import '../../../../core/services/server_gate.dart';
 import '../../../../core/utils/constant.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/widgets/flash_helper.dart';
-import '../../../../models/user.dart';
+import '../../../../models/user_model.dart';
 import '../view/verify_phone_view.dart';
 import 'verify_phone_states.dart';
 

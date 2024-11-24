@@ -31,7 +31,8 @@ class CustomErrorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
+      child: Container(
+        height: height,
         padding: padding ?? EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

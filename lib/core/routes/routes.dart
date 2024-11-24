@@ -20,4 +20,8 @@ class NamedRoutes {
   static const pickLocation = "/pick_location";
   static const contracts = "/contracts";
   static const visits = "/visits";
+  static const driverHome = "/driver_home";
+  static const rejectOrder = "/cancel_order";
+  static const individualPackages = "/individual_packages";
+  static const individualRequest = "/individual_request";
 }

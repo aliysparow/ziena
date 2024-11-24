@@ -13,7 +13,7 @@ import '../../../core/widgets/select_item_sheet.dart';
 import '../../../models/address_model.dart';
 import '../../../models/city_model.dart';
 import '../../../models/district_model.dart';
-import '../../../models/user.dart';
+import '../../../models/user_model.dart';
 import 'addresses_state.dart';
 
 class AddressesBloc extends Cubit<AddressesState> {

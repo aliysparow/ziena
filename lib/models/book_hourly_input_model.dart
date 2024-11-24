@@ -8,7 +8,7 @@ import 'package:ziena/core/utils/methods_helpers.dart';
 import 'package:ziena/core/widgets/flash_helper.dart';
 import 'package:ziena/models/address_model.dart';
 import 'package:ziena/models/hourly_package_model.dart';
-import 'package:ziena/models/user.dart';
+import 'package:ziena/models/user_model.dart';
 
 import '../core/widgets/select_item_sheet.dart';
 import 'nationality_model.dart';

@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ziena/core/routes/app_routes_fun.dart';
 import 'package:ziena/core/routes/routes.dart';
 import 'package:ziena/main.dart';
-import 'package:ziena/models/user.dart';
+import 'package:ziena/models/user_model.dart';
 
 import '../../core/utils/extensions.dart';
 import '../../core/widgets/custom_image.dart';
@@ -24,7 +24,7 @@ class _SplashViewState extends State<SplashView> {
     UserModel.i.get();
     Timer(3.seconds, () {
       if (UserModel.i.isAuth) {
-        pushAndRemoveUntil(NamedRoutes.layout);
+        pushAndRemoveUntil(UserModel.i.userType.isDriver ? NamedRoutes.driverHome : NamedRoutes.layout);
       } else if (prefs.getBool('second') ?? false) {
         pushAndRemoveUntil(NamedRoutes.login);
       } else {

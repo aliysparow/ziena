@@ -100,5 +100,26 @@ abstract class  LocaleKeys {
   static const note = 'note';
   static const rate_now = 'rate_now';
   static const no_thanks = 'no_thanks';
+  static const saturday = 'saturday';
+  static const sunday = 'sunday';
+  static const monday = 'monday';
+  static const tuesday = 'tuesday';
+  static const wednesday = 'wednesday';
+  static const thursday = 'thursday';
+  static const friday = 'friday';
+  static const delivery = 'delivery';
+  static const back = 'back';
+  static const trip_details = 'trip_details';
+  static const current_orders = 'current_orders';
+  static const welcome_in_zina_for_drivers = 'welcome_in_zina_for_drivers';
+  static const my_orders = 'my_orders';
+  static const there_are_no_orders = 'there_are_no_orders';
+  static const deposit_val_sar = 'deposit_val_sar';
+  static const subscribe_now = 'subscribe_now';
+  static const client = 'client';
+  static const hourly_request_msg = 'hourly_request_msg';
+  static const full_name = 'full_name';
+  static const add_note = 'add_note';
+  static const confirm_data = 'confirm_data';
 
 }

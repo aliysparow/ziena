@@ -24,11 +24,11 @@ class UserModel extends Model {
   late bool rememberMe;
   // late dynamic defaultLanguage;
   late String contactId;
-  // late dynamic driverId;
+  late String driverId;
   // late dynamic supervisorId;
   // late dynamic msgMobileExist;
   late DateTime tokenExpiry;
-  late int userType;
+  late UserType userType;
   // late dynamic source;
   // late dynamic userImage;
   late bool emailConfirmed;
@@ -46,11 +46,16 @@ class UserModel extends Model {
     lastName = stringFromJson(json, "LastName");
     email = stringFromJson(json, "Email");
     contactId = stringFromJson(json, "ContactId");
-    tokenExpiry = dateFromJson(json, "TokenExpiry",
-        parseingFormat: 'dd/MM/yyyy HH:mm:ss');
-    userType = intFromJson(json, "UserType");
+    tokenExpiry = dateFromJson(json, "TokenExpiry", parseingFormat: 'dd/MM/yyyy HH:mm:ss');
+    driverId = stringFromJson(json, 'DriverId');
     emailConfirmed = boolFromJson(json, "EmailConfirmed");
     identity = stringFromJson(json, "Identity");
+    final userType = intFromJson(json, "UserType");
+    if (userType == 1) {
+      this.userType = UserType.driver;
+    } else {
+      this.userType = UserType.client;
+    }
   }
 
   save() {
@@ -79,10 +84,18 @@ class UserModel extends Model {
         "LastName": lastName,
         "Email": email,
         "ContactId": contactId,
-        "TokenExpiry":
-            DateFormat('dd/MM/yyyy HH:mm:ss', 'en').format(tokenExpiry),
-        "UserType": userType,
+        "TokenExpiry": DateFormat('dd/MM/yyyy HH:mm:ss', 'en').format(tokenExpiry),
+        "UserType": userType.toInt,
         "EmailConfirmed": emailConfirmed,
         "Identity": identity,
       };
+}
+
+enum UserType {
+  client,
+  driver;
+
+  bool get isClient => this == UserType.client;
+  bool get isDriver => this == UserType.driver;
+  int get toInt => this == UserType.driver ? 1 : 0;
 }

@@ -13,7 +13,7 @@ import '../../../core/widgets/custom_circle_icon.dart';
 import '../../../core/widgets/custom_image.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../gen/locale_keys.g.dart';
-import '../../../models/user.dart';
+import '../../../models/user_model.dart';
 import '../bloc/hourly_service_bloc.dart';
 
 class SummaryHourlyServiceView extends StatefulWidget {

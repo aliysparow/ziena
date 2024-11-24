@@ -67,5 +67,10 @@
 		</dict>
 		<key>NSMicrophoneUsageDescription</key>
 		<string>Your description for audio recording (if needed)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>sms</string>
+		<string>tel</string>
+	</array>
 	</dict>
 </plist>

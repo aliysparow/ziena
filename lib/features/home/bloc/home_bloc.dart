@@ -20,7 +20,7 @@ class HomeBloc extends Cubit<HomeState> {
     emit(state.copyWith(hourlyServicesState: RequestState.loading));
     final result = await ServerGate.i.getFromServer(url: ApiConstants.hourlyServices);
     if (result.success) {
-      hourlyServiceList = result.data['data'].map<ServiceModel>((e) => ServiceModel.fromJson(e)).toList();
+      hourlyServiceList = List<ServiceModel>.from((result.data['data'] ?? []).map((x) => ServiceModel.fromJson(x)));
       emit(state.copyWith(hourlyServicesState: RequestState.done, msg: result.msg));
     } else {
       emit(state.copyWith(hourlyServicesState: RequestState.error, msg: result.msg));
@@ -31,7 +31,7 @@ class HomeBloc extends Cubit<HomeState> {
     emit(state.copyWith(hourlyServicesState: RequestState.loading));
     final result = await ServerGate.i.getFromServer(url: ApiConstants.individualServices);
     if (result.success) {
-      individualServicesList = result.data['data'].map<ServiceModel>((e) => ServiceModel.fromJson(e)).toList();
+      individualServicesList = List<ServiceModel>.from((result.data['data'] ?? []).map((x) => ServiceModel.fromJson(x)));
       emit(state.copyWith(hourlyServicesState: RequestState.done, msg: result.msg));
     } else {
       emit(state.copyWith(hourlyServicesState: RequestState.error, msg: result.msg));
@@ -42,7 +42,7 @@ class HomeBloc extends Cubit<HomeState> {
     emit(state.copyWith(offersState: RequestState.loading));
     final result = await ServerGate.i.getFromServer(url: ApiConstants.getOffers);
     if (result.success) {
-      offers = result.data['data'].map<OfferModel>((e) => OfferModel.fromJson(e)).toList();
+      offers = List<OfferModel>.from((result.data['data'] ?? []).map((x) => OfferModel.fromJson(x)));
       emit(state.copyWith(offersState: RequestState.done, msg: result.msg));
     } else {
       emit(state.copyWith(offersState: RequestState.error, msg: result.msg));
@@ -53,7 +53,7 @@ class HomeBloc extends Cubit<HomeState> {
     emit(state.copyWith(slidersState: RequestState.loading));
     final result = await ServerGate.i.getFromServer(url: ApiConstants.getOffersInBaner);
     if (result.success) {
-      sliders = result.data['data'].map<SliderModel>((e) => SliderModel.fromJson(e)).toList();
+      sliders = List<SliderModel>.from((result.data['data'] ?? []).map((x) => SliderModel.fromJson(x)));
       emit(state.copyWith(slidersState: RequestState.done, msg: result.msg));
     } else {
       emit(state.copyWith(slidersState: RequestState.error, msg: result.msg));

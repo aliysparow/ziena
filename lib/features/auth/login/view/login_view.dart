@@ -15,6 +15,7 @@ import '../../../../core/widgets/app_field.dart';
 import '../../../../core/widgets/custom_image.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/locale_keys.g.dart';
+import '../../../../models/user_model.dart';
 import '../bloc/login_bloc.dart';
 import '../bloc/login_state.dart';
 
@@ -90,7 +91,7 @@ class _LoginViewState extends State<LoginView> {
                 bloc: bloc,
                 listener: (context, state) {
                   if (state.requestState.isDone) {
-                    pushAndRemoveUntil(NamedRoutes.layout);
+                    pushAndRemoveUntil(UserModel.i.userType.isDriver ? NamedRoutes.driverHome : NamedRoutes.layout);
                   }
                 },
                 builder: (context, state) {

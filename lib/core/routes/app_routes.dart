@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ziena/features/driver_home/view/reject_order_view.dart';
 
 import '../../features/account/view/account_view.dart';
 import '../../features/addresses/view/add_address_view.dart';
@@ -9,10 +10,13 @@ import '../../features/auth/login/view/login_view.dart';
 import '../../features/auth/register/view/register_view.dart';
 import '../../features/auth/reset_password/view/reset_password_view.dart';
 import '../../features/auth/verify_phone/view/verify_phone_view.dart';
+import '../../features/driver_home/view/driver_home_view.dart';
 import '../../features/hourly_service/view/hourly_service_view.dart';
 import '../../features/hourly_service/view/select_address_view.dart';
 import '../../features/hourly_service/view/select_dates_view.dart';
 import '../../features/hourly_service/view/summary_hourly_service_view.dart';
+import '../../features/individual_packages/view/individual_packages_view.dart';
+import '../../features/individual_packages/view/individual_request_view.dart';
 import '../../features/intro/onboarding_view.dart';
 import '../../features/intro/splash_view.dart';
 import '../../features/layout/view/layout_view.dart';
@@ -41,8 +45,13 @@ class AppRoutes {
     NamedRoutes.selectAddress: (c) => const SelectAddressView(),
     NamedRoutes.selectDates: (c) => const SelectDatesView(),
     NamedRoutes.summaryHourlyService: (c) => const SummaryHourlyServiceView(),
-    NamedRoutes.successfullyPage: (c) =>
-        SuccessfullyPage(image: c.arg['image'], title: c.arg['title'], subtitle: c.arg['subtitle'], btnTitle: c.arg['btnTitle'], onTap: c.arg['onTap']),
+    NamedRoutes.successfullyPage: (c) => SuccessfullyPage(
+          image: c.arg['image'],
+          title: c.arg['title'],
+          subtitle: c.arg['subtitle'],
+          btnTitle: c.arg['btnTitle'],
+          onTap: c.arg['onTap'],
+        ),
     NamedRoutes.onboarding: (c) => const OnboardingView(),
     NamedRoutes.account: (c) => const AccountView(),
     NamedRoutes.paymentIfream: (c) => PaymentIfream(id: c.arg['id'] as String),
@@ -51,10 +60,10 @@ class AppRoutes {
     NamedRoutes.pickLocation: (c) => PickLocationView(position: c.arg['position'], address: c.arg['address']),
     NamedRoutes.contracts: (c) => ContractsView(type: c.arg["type"]),
     NamedRoutes.visits: (c) => VisitsView(type: c.arg["type"]),
-    // NamedRoutes.formProduct: (c) => FormProductView(id: c.arg['id']),
-    // // NamedRoutes.searchResultsScreen: (c) => const SearchResultsView(),
-    // // NamedRoutes.providerDetailsScreen: (c) => ProviderDetailsScreen(title: c.arg["title"], id: c.arg["id"]),
-    // // NamedRoutes.completePayment: (c) => CompletePaymentScreen(model: c.arg["model"]),
+    NamedRoutes.driverHome: (c) => const DriverHomeView(),
+    NamedRoutes.rejectOrder: (c) => RejectOrderView(item: c.arg['item']),
+    NamedRoutes.individualPackages: (c) => IndividualPackagesView(id: c.arg["id"], name: c.arg["name"]),
+    NamedRoutes.individualRequest: (c) => IndividualRequestView(title: c.arg['title'], package: c.arg['package']),
     // // NamedRoutes.trackOrder: (c) => TrackOrder(shippingType: c.arg["shippingType"], status: c.arg["status"]),
     // // NamedRoutes.rateProduct: (c) => RateProductScreen(product: c.arg["product"], orderId: c.arg["orderId"]),
     // // NamedRoutes.cancelOrder: (c) => CancelOrderScreen(orderId: c.arg["orderId"]),

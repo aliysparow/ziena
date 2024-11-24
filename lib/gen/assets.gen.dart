@@ -15,8 +15,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/addresses.svg
   String get addresses => 'assets/icons/addresses.svg';
 
+  /// File path: assets/icons/bag.svg
+  String get bag => 'assets/icons/bag.svg';
+
   /// File path: assets/icons/block.svg
   String get block => 'assets/icons/block.svg';
+
+  /// File path: assets/icons/call_phone.svg
+  String get callPhone => 'assets/icons/call_phone.svg';
 
   /// File path: assets/icons/camera.svg
   String get camera => 'assets/icons/camera.svg';
@@ -26,6 +32,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/delete.svg
   String get delete => 'assets/icons/delete.svg';
+
+  /// File path: assets/icons/deposit.svg
+  String get deposit => 'assets/icons/deposit.svg';
 
   /// File path: assets/icons/drawer.svg
   String get drawer => 'assets/icons/drawer.svg';
@@ -84,6 +93,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/share.svg
   String get share => 'assets/icons/share.svg';
 
+  /// File path: assets/icons/sms_phone.svg
+  String get smsPhone => 'assets/icons/sms_phone.svg';
+
   /// File path: assets/icons/star.svg
   String get star => 'assets/icons/star.svg';
 
@@ -96,16 +108,22 @@ class $AssetsIconsGen {
   /// File path: assets/icons/time.svg
   String get time => 'assets/icons/time.svg';
 
+  /// File path: assets/icons/user.svg
+  String get user => 'assets/icons/user.svg';
+
   /// File path: assets/icons/work.svg
   String get work => 'assets/icons/work.svg';
 
   /// List of all assets
   List<String> get values => [
         addresses,
+        bag,
         block,
+        callPhone,
         camera,
         contract,
         delete,
+        deposit,
         drawer,
         duration,
         edit,
@@ -125,10 +143,12 @@ class $AssetsIconsGen {
         price,
         profile,
         share,
+        smsPhone,
         star,
         status,
         support,
         time,
+        user,
         work
       ];
 }

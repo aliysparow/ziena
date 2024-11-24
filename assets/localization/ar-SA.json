@@ -104,5 +104,19 @@
     "tuesday": "الثلاثاء",
     "wednesday": "الأربعاء",
     "thursday": "الخميس",
-    "friday": "الجمعة"
+    "friday": "الجمعة",
+    "delivery": "توصيل",
+    "back": "رجوع",
+    "trip_details": "تفاصيل الرحلة",
+    "current_orders": "الطلبات الحالية",
+    "welcome_in_zina_for_drivers": "مرحباً بك، في زينة لسائقين",
+    "my_orders": "طلباتي",
+    "there_are_no_orders": "لا يوجد طلبات",
+    "deposit_val_sar": "عربون {} ر.س",
+    "subscribe_now": "اشترك الأن",
+    "client": "العميل",
+    "hourly_request_msg": "يمكنك التعاقد معانا للقيام بالمهام المخصصة لنا على اكمل وجه، اكتب البيانات المطلوبة وتأكد من انها صحيحة وسنتواصل معك.",
+    "full_name": "الأسم كامل",
+    "add_note": "اضف ملاحظاتك",
+    "confirm_data": "تأكيد بياناتك"
 }

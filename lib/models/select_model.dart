@@ -8,7 +8,7 @@ class SelectModel extends Model {
   });
   SelectModel.fromJson(Map<String, dynamic> json) {
     name = stringFromJson(json, 'name');
-    id = stringFromJson(json, 'id');
+    id = stringFromJson(json, 'Id');
   }
 
   @override

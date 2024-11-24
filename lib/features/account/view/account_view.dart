@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ziena/core/routes/app_routes_fun.dart';
 import 'package:ziena/core/routes/routes.dart';
-import 'package:ziena/models/user.dart';
+import 'package:ziena/models/user_model.dart';
 
 import '../../../core/utils/extensions.dart';
 import '../../../core/widgets/custom_circle_icon.dart';
@@ -47,42 +47,43 @@ class _AccountViewState extends State<AccountView> {
       ),
       body: ListView(
         children: [
-          ListTile(
-            leading: CustomImage(Assets.icons.profile, height: 24.h, width: 24.h),
-            title: Text(
-              LocaleKeys.profile_settings.tr(),
-              style: context.mediumText.copyWith(fontSize: 16),
+          // ListTile(
+          //   leading: CustomImage(Assets.icons.profile, height: 24.h, width: 24.h),
+          //   title: Text(
+          //     LocaleKeys.profile_settings.tr(),
+          //     style: context.mediumText.copyWith(fontSize: 16),
+          //   ),
+          // ),
+          if (UserModel.i.userType.isClient)
+            ListTile(
+              onTap: () => push(NamedRoutes.addresses),
+              leading: CustomImage(Assets.icons.addresses, height: 24.h, width: 24.h),
+              title: Text(
+                LocaleKeys.my_addresses.tr(),
+                style: context.mediumText.copyWith(fontSize: 16),
+              ),
             ),
-          ),
-          ListTile(
-            onTap: () => push(NamedRoutes.addresses),
-            leading: CustomImage(Assets.icons.addresses, height: 24.h, width: 24.h),
-            title: Text(
-              LocaleKeys.my_addresses.tr(),
-              style: context.mediumText.copyWith(fontSize: 16),
-            ),
-          ),
-          ListTile(
-            leading: CustomImage(Assets.icons.lock, height: 24.h, width: 24.h),
-            title: Text(
-              LocaleKeys.change_password.tr(),
-              style: context.mediumText.copyWith(fontSize: 16),
-            ),
-          ),
-          ListTile(
-            leading: CustomImage(Assets.icons.lang, height: 24.h, width: 24.h),
-            title: Text(
-              LocaleKeys.app_language.tr(),
-              style: context.mediumText.copyWith(fontSize: 16),
-            ),
-          ),
-          ListTile(
-            leading: CustomImage(Assets.icons.support, height: 24.h, width: 24.h),
-            title: Text(
-              LocaleKeys.contact_support.tr(),
-              style: context.mediumText.copyWith(fontSize: 16),
-            ),
-          ),
+          // ListTile(
+          //   leading: CustomImage(Assets.icons.lock, height: 24.h, width: 24.h),
+          //   title: Text(
+          //     LocaleKeys.change_password.tr(),
+          //     style: context.mediumText.copyWith(fontSize: 16),
+          //   ),
+          // ),
+          // ListTile(
+          //   leading: CustomImage(Assets.icons.lang, height: 24.h, width: 24.h),
+          //   title: Text(
+          //     LocaleKeys.app_language.tr(),
+          //     style: context.mediumText.copyWith(fontSize: 16),
+          //   ),
+          // ),
+          // ListTile(
+          //   leading: CustomImage(Assets.icons.support, height: 24.h, width: 24.h),
+          //   title: Text(
+          //     LocaleKeys.contact_support.tr(),
+          //     style: context.mediumText.copyWith(fontSize: 16),
+          //   ),
+          // ),
           ListTile(
             leading: CustomImage(Assets.icons.share, height: 24.h, width: 24.h),
             title: Text(
@@ -105,4 +106,6 @@ class _AccountViewState extends State<AccountView> {
       ),
     );
   }
+
+  
 }

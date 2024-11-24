@@ -9,7 +9,7 @@ import '../../../core/services/server_gate.dart';
 import '../../../core/utils/constant.dart';
 import '../../../core/utils/enums.dart';
 import '../../../models/contract_model.dart';
-import '../../../models/user.dart';
+import '../../../models/user_model.dart';
 import 'contracts_state.dart';
 
 class ContractsCubit extends Cubit<ContractsState> {

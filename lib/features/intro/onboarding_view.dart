@@ -25,6 +25,7 @@ class _OnboardingViewState extends State<OnboardingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.primaryColorLight,
       extendBody: true,
       body: PageView.builder(
         controller: controller,
@@ -60,8 +61,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                     'نوفر لك خدمة ممتازة بالشهر اذا كنت تحتاج الي عامل لوقت معين من اليوم'
                   ][index],
                   textAlign: TextAlign.center,
-                  style: context.regularText
-                      .copyWith(fontSize: 16, color: '#666666'.color),
+                  style: context.regularText.copyWith(fontSize: 16, color: '#666666'.color),
                 )
               ],
             ).withPadding(horizontal: 35.w),
@@ -78,9 +78,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                 (i) => Icon(
                   Icons.circle,
                   size: 10.h,
-                  color: colors[currentIndex]
-                      .color
-                      .withOpacity(i == currentIndex ? 1 : 0.5),
+                  color: colors[currentIndex].color.withOpacity(i == currentIndex ? 1 : 0.5),
                 ).withPadding(horizontal: 3.w),
               ),
             ),
@@ -99,9 +97,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               },
               saveArea: false,
               backgroundColor: colors[currentIndex].color,
-              title: currentIndex == 2
-                  ? LocaleKeys.home.tr()
-                  : LocaleKeys.next.tr(),
+              title: currentIndex == 2 ? LocaleKeys.home.tr() : LocaleKeys.next.tr(),
             ).withPadding(top: 16.h, bottom: 12.h),
             Opacity(
               opacity: currentIndex == 2 ? 0 : 1,

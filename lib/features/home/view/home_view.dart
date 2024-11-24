@@ -197,26 +197,35 @@ class _HomeViewState extends State<HomeView> {
                     child: Wrap(
                       spacing: 18.w,
                       children: List.generate(bloc.individualServicesList.length, (i) {
-                        return SizedBox(
-                          width: 142.w,
-                          child: Column(
-                            children: [
-                              CustomImage(
-                                bloc.individualServicesList[i].icon,
-                                base46: true,
-                                height: 187.h,
-                                width: 142.w,
-                                fit: BoxFit.contain,
-                                backgroundColor: context.primaryColorLight,
-                                borderRadius: BorderRadius.circular(12.r),
-                              ),
-                              SizedBox(height: 14.h),
-                              Text(
-                                bloc.individualServicesList[i].name,
-                                style: context.mediumText.copyWith(fontSize: 14),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
+                        final item = bloc.individualServicesList[i];
+                        return GestureDetector(
+                          onTap: () {
+                            push(NamedRoutes.individualPackages, arg: {
+                              'id': item.id,
+                              'name': item.name,
+                            });
+                          },
+                          child: SizedBox(
+                            width: 142.w,
+                            child: Column(
+                              children: [
+                                CustomImage(
+                                  bloc.individualServicesList[i].icon,
+                                  base46: true,
+                                  height: 187.h,
+                                  width: 142.w,
+                                  fit: BoxFit.contain,
+                                  backgroundColor: context.primaryColorLight,
+                                  borderRadius: BorderRadius.circular(12.r),
+                                ),
+                                SizedBox(height: 14.h),
+                                Text(
+                                  bloc.individualServicesList[i].name,
+                                  style: context.mediumText.copyWith(fontSize: 14),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       }),

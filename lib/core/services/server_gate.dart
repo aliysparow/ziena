@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:ziena/core/widgets/flash_helper.dart';
 import 'package:ziena/gen/locale_keys.g.dart';
 
-import '../../models/user.dart';
+import '../../models/user_model.dart';
 import '../routes/app_routes_fun.dart';
 import '../routes/routes.dart';
 import '../utils/constant.dart';

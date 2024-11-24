@@ -15,7 +15,7 @@ import '../../../models/address_model.dart';
 import '../../../models/book_hourly_input_model.dart';
 import '../../../models/hourly_package_model.dart';
 import '../../../models/nationality_model.dart';
-import '../../../models/user.dart';
+import '../../../models/user_model.dart';
 import 'hourly_service_state.dart';
 
 class HourlyServiceBloc extends Cubit<HourlyServiceState> {

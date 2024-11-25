@@ -10,7 +10,7 @@
     git config --global user.email aliysparow@gmail.com ; git config --global user.name Aly Sparow; 
     git add .;
     git commit -m "
-    addresses,contracts,
+   upload google , apple stores
     ";
     git push;
 
@@ -19,7 +19,7 @@
     git checkout -b <branch> ; git push -u origin <branch>
 
 
-.//
+
 
     git reset --hard commit_hash_you_want_to_return_to
 

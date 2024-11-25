@@ -1,15 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ziena/core/routes/app_routes_fun.dart';
-import 'package:ziena/core/routes/routes.dart';
-import 'package:ziena/core/utils/extensions.dart';
-import 'package:ziena/core/widgets/custom_image.dart';
-import 'package:ziena/features/home/widgets/offers_widget.dart';
-import 'package:ziena/features/home/widgets/sliders_widget.dart';
-import 'package:ziena/features/my_contracts/bloc/contracts_cubit.dart';
-import 'package:ziena/gen/assets.gen.dart';
-import 'package:ziena/gen/locale_keys.g.dart';
+
+import '../../../core/routes/app_routes_fun.dart';
+import '../../../core/routes/routes.dart';
+import '../../../core/utils/extensions.dart';
+import '../../../core/widgets/custom_image.dart';
+import '../../../gen/assets.gen.dart';
+import '../../../gen/locale_keys.g.dart';
+import '../../home/widgets/offers_widget.dart';
+import '../../home/widgets/sliders_widget.dart';
+import '../../my_contracts/bloc/contracts_cubit.dart';
 
 class ContractsLayoutView extends StatefulWidget {
   const ContractsLayoutView({super.key});
@@ -43,7 +44,7 @@ class _ContractsLayoutViewState extends State<ContractsLayoutView> {
         children: [
           const SlidersWidget(),
           Text(
-            'عقودي',
+            LocaleKeys.my_contracts.tr(),
             style: context.semiboldText.copyWith(fontSize: 18),
           ).withPadding(horizontal: 20.w),
           SingleChildScrollView(
@@ -69,7 +70,7 @@ class _ContractsLayoutViewState extends State<ContractsLayoutView> {
                           color: context.primaryColor,
                         ).withPadding(end: 8.w),
                         Text(
-                          'عقودي الفعالة',
+                          LocaleKeys.my_active_contracts.tr(),
                           style: context.regularText.copyWith(fontSize: 14, color: context.primaryColor),
                         ),
                       ],
@@ -92,7 +93,7 @@ class _ContractsLayoutViewState extends State<ContractsLayoutView> {
                           color: '#11334280'.color.withOpacity(0.5),
                         ).withPadding(end: 8.w),
                         Text(
-                          'عقودي الفعالة',
+                          LocaleKeys.my_active_contracts.tr(),
                           style: context.regularText.copyWith(fontSize: 14, color: '#11334280'.color.withOpacity(0.5)),
                         ),
                       ],
@@ -103,7 +104,7 @@ class _ContractsLayoutViewState extends State<ContractsLayoutView> {
             ),
           ),
           Text(
-            'زياراتي',
+            LocaleKeys.my_visits.tr(),
             style: context.semiboldText.copyWith(fontSize: 18),
           ).withPadding(horizontal: 20.w, top: 4.h),
           SingleChildScrollView(
@@ -121,7 +122,7 @@ class _ContractsLayoutViewState extends State<ContractsLayoutView> {
                       borderRadius: BorderRadius.circular(12.r),
                     ),
                     child: Text(
-                      'الزيارات القادمة',
+                      LocaleKeys.next_visits.tr(),
                       style: context.regularText.copyWith(fontSize: 14, color: '#113342'.color),
                     ),
                   ),
@@ -135,7 +136,7 @@ class _ContractsLayoutViewState extends State<ContractsLayoutView> {
                       borderRadius: BorderRadius.circular(12.r),
                     ),
                     child: Text(
-                      'الزيارات المكتملة',
+                      LocaleKeys.complete_visits.tr(),
                       style: context.regularText.copyWith(fontSize: 14, color: '#113342'.color),
                     ),
                   ),
@@ -144,7 +145,7 @@ class _ContractsLayoutViewState extends State<ContractsLayoutView> {
             ),
           ),
           Text(
-            'طلباتي',
+            LocaleKeys.my_orders.tr(),
             style: context.semiboldText.copyWith(fontSize: 18),
           ).withPadding(horizontal: 20.w, top: 4.h),
           SingleChildScrollView(
@@ -160,7 +161,7 @@ class _ContractsLayoutViewState extends State<ContractsLayoutView> {
                     borderRadius: BorderRadius.circular(12.r),
                   ),
                   child: Text(
-                    'طلباتي المكتملة',
+                    LocaleKeys.completed_orders.tr(),
                     style: context.regularText.copyWith(fontSize: 14, color: '#113342'.color),
                   ),
                 ),
@@ -171,7 +172,7 @@ class _ContractsLayoutViewState extends State<ContractsLayoutView> {
                     borderRadius: BorderRadius.circular(12.r),
                   ),
                   child: Text(
-                    'طلباتي الغير مكتملة',
+                    LocaleKeys.incomplete_orders.tr(),
                     style: context.regularText.copyWith(fontSize: 14, color: '#113342'.color),
                   ),
                 ),

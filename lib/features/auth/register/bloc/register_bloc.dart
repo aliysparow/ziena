@@ -24,7 +24,9 @@ class RegisterBloc extends Cubit<RegisterState> {
 
   Future<void> register() async {
     emit(state.copyWith(requestState: RequestState.loading));
-    final result = await ServerGate.i.sendToServer(url: ApiConstants.checkPhone, params: {"mobile": phone.text});
+    final result = await ServerGate.i.sendToServer(url: ApiConstants.checkPhone, params: {
+      "mobile": MethodsHelpers.formatPhoneNumber(phone.text),
+    });
     if (result.success) {
       push(NamedRoutes.verifyPhone, arg: {
         'data': {

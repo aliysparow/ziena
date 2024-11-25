@@ -58,21 +58,7 @@ class _OffersWidgetState extends State<OffersWidget> {
                             item.title,
                             style: context.semiboldText.copyWith(fontSize: 14),
                           ),
-                          // Text.rich(
-                          //   TextSpan(
-                          //     children: [
-                          //       TextSpan(
-                          //         text: 'خصم 20%',
-                          //         style: context.semiboldText.copyWith(fontSize: 14, color: context.primaryColor),
-                          //       ),
-                          //       const TextSpan(text: ' '),
-                          //       TextSpan(
-                          //         text: 'على العقود الشهرية لنظافة المنزل',
-                          //         style: context.semiboldText.copyWith(fontSize: 14),
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
+                       
                         ],
                       ),
                     );

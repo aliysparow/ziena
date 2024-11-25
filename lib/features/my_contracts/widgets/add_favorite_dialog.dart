@@ -1,13 +1,15 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ziena/core/services/service_locator.dart';
-import 'package:ziena/features/my_contracts/bloc/contracts_cubit.dart';
-import 'package:ziena/features/my_contracts/bloc/contracts_state.dart';
 
+import '../../../core/services/service_locator.dart';
 import '../../../core/utils/extensions.dart';
 import '../../../core/widgets/custom_image.dart';
 import '../../../gen/assets.gen.dart';
+import '../../../gen/locale_keys.g.dart';
+import '../bloc/contracts_cubit.dart';
+import '../bloc/contracts_state.dart';
 
 class AddFavoriteDialog extends StatefulWidget {
   final String workId;
@@ -34,13 +36,13 @@ class _AddFavoriteDialogState extends State<AddFavoriteDialog> {
           ),
           SizedBox(height: 24.h),
           Text(
-            'هل تريد اضافة هذه الخدمة الي المفضلة لديك؟',
+            LocaleKeys.add_to_favorites.tr(),
             style: context.semiboldText.copyWith(fontSize: 18),
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 8.h),
           Text(
-            "عندما تقوم بالاجابة ستكون هذه الخدمة متاحة لديك في العقود، لكي نسهل عليك طلبها مرة اخري.",
+            LocaleKeys.add_to_favorites_description.tr(),
             style: context.mediumText.copyWith(fontSize: 12, color: '#11334280'.color.withOpacity(0.5)),
             textAlign: TextAlign.center,
           ),
@@ -69,7 +71,7 @@ class _AddFavoriteDialogState extends State<AddFavoriteDialog> {
                       ),
                       alignment: Alignment.center,
                       child: Text(
-                        "أضف للمفضلة",
+                        LocaleKeys.add_to_favorites.tr(),
                         style: context.mediumText.copyWith(fontSize: 16, color: context.primaryColorLight),
                         textAlign: TextAlign.center,
                       ),
@@ -89,7 +91,7 @@ class _AddFavoriteDialogState extends State<AddFavoriteDialog> {
                   ),
                   alignment: Alignment.center,
                   child: Text(
-                    "لا",
+                    LocaleKeys.no.tr(),
                     style: context.mediumText.copyWith(fontSize: 16, color: '#BBBBBB'.color),
                     textAlign: TextAlign.center,
                   ),

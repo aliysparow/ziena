@@ -30,7 +30,7 @@ class VerifyPhoneView extends StatefulWidget {
 }
 
 class _VerifyPhoneViewState extends State<VerifyPhoneView> {
-  final timerController = CustomTimerController(30.seconds);
+  final timerController = CustomTimerController(2.minutes);
   final bloc = sl<VerifyPhoneBloc>();
   final form = GlobalKey<FormState>();
   @override
@@ -64,7 +64,7 @@ class _VerifyPhoneViewState extends State<VerifyPhoneView> {
                 listenWhen: (previous, current) => previous.resndState != current.resndState,
                 listener: (context, state) {
                   if (state.resndState.isDone) {
-                    timerController.setDuration(1.minutes);
+                    timerController.setDuration(2.minutes);
                   }
                 },
                 builder: (context, state) {
@@ -117,6 +117,12 @@ class _VerifyPhoneViewState extends State<VerifyPhoneView> {
   }
 }
 
+                   
+                   
+                   
+                   
+                   
+                   
 
 
 

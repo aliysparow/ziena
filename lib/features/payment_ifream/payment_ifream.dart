@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +8,7 @@ import 'package:ziena/core/utils/constant.dart';
 import 'package:ziena/core/utils/extensions.dart';
 import 'package:ziena/core/widgets/app_btn.dart';
 import 'package:ziena/core/widgets/custom_circle_icon.dart';
+import 'package:ziena/gen/locale_keys.g.dart';
 
 class PaymentIfream extends StatefulWidget {
   final String id;
@@ -50,7 +52,7 @@ class _PaymentIfreamState extends State<PaymentIfream> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('الدفع'),
+        title: Text(LocaleKeys.payment.tr()),
         backgroundColor: context.scaffoldBackgroundColor,
         leadingWidth: 56.w,
         leading: CustomRadiusIcon(
@@ -95,7 +97,7 @@ class _PaymentIfreamState extends State<PaymentIfream> {
                     (route) => route.settings.name == NamedRoutes.layout,
                   );
                 },
-                title: "الذهاب للرئيسية",
+                title: LocaleKeys.go_to_home.tr(),
               ),
             ),
           if (!isLoading) SizedBox(height: 32.h)

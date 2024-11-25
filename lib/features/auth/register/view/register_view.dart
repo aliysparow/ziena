@@ -54,14 +54,14 @@ class _RegisterViewState extends State<RegisterView> {
               AppField(
                 prefixIcon: Icon(CupertinoIcons.person, size: 18.h, color: context.secondaryColor),
                 controller: bloc.firstName,
-                hintText: 'أحمد',
+                hintText: LocaleKeys.first_name.tr(),
                 keyboardType: TextInputType.name,
                 title: LocaleKeys.user_name.tr(),
               ).withPadding(vertical: 10.h),
               AppField(
                 prefixIcon: Icon(CupertinoIcons.person, size: 18.h, color: context.secondaryColor),
                 controller: bloc.lastNeme,
-                hintText: 'محمد',
+                hintText: LocaleKeys.last_name.tr(),
                 keyboardType: TextInputType.name,
                 title: LocaleKeys.user_name.tr(),
               ).withPadding(vertical: 10.h),

@@ -31,12 +31,13 @@ class ContentItem extends StatelessWidget {
             color: color,
           ),
           SizedBox(width: 4.w),
-          Flexible(
-            child: Text(
-              title,
-              style: context.mediumText.copyWith(fontSize: 10, color: color),
+          if (title.isNotEmpty)
+            Flexible(
+              child: Text(
+                title,
+                style: context.mediumText.copyWith(fontSize: 10, color: color),
+              ),
             ),
-          ),
         ],
       ),
     );

@@ -27,8 +27,9 @@ void main() async {
   Bloc.observer = AppBlocObserver();
   prefs = await SharedPreferences.getInstance();
   UserModel.i.get();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  GlobalNotification().setUpFirebase();
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then(
+    (v) => GlobalNotification().setUpFirebase(),
+  );
   ServicesLocator().init();
   runApp(const MyApp());
 }
@@ -48,7 +49,7 @@ class _MyAppState extends State<MyApp> {
       saveLocale: true,
       startLocale: const Locale('ar', 'SA'),
       fallbackLocale: const Locale('ar', 'SA'),
-      supportedLocales: const [Locale('ar', 'SA'), Locale('en', 'US')],
+      supportedLocales: const [Locale('ar', 'SA'), Locale('en', 'USA')],
       child: ScreenUtilInit(
         designSize: const Size(393, 852),
         minTextAdapt: true,

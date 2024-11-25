@@ -1,14 +1,16 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ziena/core/services/service_locator.dart';
-import 'package:ziena/core/widgets/app_field.dart';
-import 'package:ziena/features/my_contracts/bloc/contracts_cubit.dart';
-import 'package:ziena/features/my_contracts/bloc/contracts_state.dart';
 
+import '../../../core/services/service_locator.dart';
 import '../../../core/utils/extensions.dart';
+import '../../../core/widgets/app_field.dart';
 import '../../../core/widgets/custom_image.dart';
 import '../../../gen/assets.gen.dart';
+import '../../../gen/locale_keys.g.dart';
+import '../bloc/contracts_cubit.dart';
+import '../bloc/contracts_state.dart';
 
 class AddReportDialog extends StatefulWidget {
   final String workId;
@@ -36,13 +38,13 @@ class _AddReportDialogState extends State<AddReportDialog> {
           ),
           SizedBox(height: 24.h),
           Text(
-            "لماذا تريد حظر هذه العاملة؟",
+            LocaleKeys.why_block_worker.tr(),
             style: context.semiboldText.copyWith(fontSize: 18),
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 8.h),
           Text(
-            "يرجى الاجابة و عدم إغلاق هذه الصفحة",
+            LocaleKeys.please_answer_do_not_close.tr(),
             style: context.mediumText.copyWith(fontSize: 12, color: '#11334280'.color.withOpacity(0.5)),
             textAlign: TextAlign.center,
           ),
@@ -51,7 +53,7 @@ class _AddReportDialogState extends State<AddReportDialog> {
             key: key,
             child: AppField(
               controller: note,
-              hintText: 'اكتب شكوتك',
+              hintText: LocaleKeys.write_your_complaint.tr(),
               maxLines: 2,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.r),
@@ -87,7 +89,7 @@ class _AddReportDialogState extends State<AddReportDialog> {
                       ),
                       alignment: Alignment.center,
                       child: Text(
-                        "حظر",
+                        LocaleKeys.block.tr(),
                         style: context.mediumText.copyWith(fontSize: 16, color: context.primaryColorLight),
                         textAlign: TextAlign.center,
                       ),
@@ -107,7 +109,7 @@ class _AddReportDialogState extends State<AddReportDialog> {
                   ),
                   alignment: Alignment.center,
                   child: Text(
-                    "تراجع",
+                    LocaleKeys.back.tr(),
                     style: context.mediumText.copyWith(fontSize: 16, color: '#BBBBBB'.color),
                     textAlign: TextAlign.center,
                   ),

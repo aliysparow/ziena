@@ -72,7 +72,7 @@ class _AppFieldState extends State<AppField> {
         if (widget.isRequired && v?.isEmpty == true) {
           return LocaleKeys.this_field_is_required.tr();
         } else if (widget.keyboardType == TextInputType.phone && v!.isNotEmpty && !regex.hasMatch(v)) {
-          return 'رقم الجوال غير صحيح';
+          return LocaleKeys.invalid_phone_number.tr();
         } else if (widget.keyboardType == TextInputType.visiblePassword && v!.length < 8) {
           return LocaleKeys.the_password_must_not_be_less_than_8_numbers.tr();
         } else if (widget.validator != null) {

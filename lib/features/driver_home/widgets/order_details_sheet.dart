@@ -1,19 +1,22 @@
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:ziena/core/routes/app_routes_fun.dart';
-import 'package:ziena/core/routes/routes.dart';
-import 'package:ziena/core/services/service_locator.dart';
-import 'package:ziena/core/utils/extensions.dart';
-import 'package:ziena/core/widgets/app_btn.dart';
-import 'package:ziena/core/widgets/app_sheet.dart';
-import 'package:ziena/core/widgets/custom_image.dart';
-import 'package:ziena/features/driver_home/cubit/driver_home_cubit.dart';
-import 'package:ziena/features/driver_home/cubit/driver_home_state.dart';
-import 'package:ziena/gen/assets.gen.dart';
-import 'package:ziena/models/order_model.dart';
+
+import '../../../core/routes/app_routes_fun.dart';
+import '../../../core/routes/routes.dart';
+import '../../../core/services/service_locator.dart';
+import '../../../core/utils/extensions.dart';
+import '../../../core/widgets/app_btn.dart';
+import '../../../core/widgets/app_sheet.dart';
+import '../../../core/widgets/custom_image.dart';
+import '../../../gen/assets.gen.dart';
+import '../../../gen/locale_keys.g.dart';
+import '../../../models/order_model.dart';
+import '../cubit/driver_home_cubit.dart';
+import '../cubit/driver_home_state.dart';
 
 class OrderDetailsSheet extends StatelessWidget {
   final OrderModel item;
@@ -48,7 +51,7 @@ class OrderDetailsSheet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'زيارة رقم',
+                  LocaleKeys.number_of_visits.tr(),
                   style: context.mediumText.copyWith(fontSize: 16, color: '#8E8E8E'.color),
                 ),
                 Flexible(
@@ -63,7 +66,7 @@ class OrderDetailsSheet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'اسم العميل',
+                  LocaleKeys.client_name.tr(),
                   style: context.mediumText.copyWith(fontSize: 16, color: '#8E8E8E'.color),
                 ),
                 Flexible(
@@ -78,7 +81,7 @@ class OrderDetailsSheet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'اسم العامل',
+                  LocaleKeys.worker_name.tr(),
                   style: context.mediumText.copyWith(fontSize: 16, color: '#8E8E8E'.color),
                 ),
                 Flexible(
@@ -93,7 +96,7 @@ class OrderDetailsSheet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'التاريخ والوقت',
+                  LocaleKeys.date_and_time.tr(),
                   style: context.mediumText.copyWith(fontSize: 16, color: '#8E8E8E'.color),
                 ),
                 Flexible(
@@ -108,7 +111,7 @@ class OrderDetailsSheet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'رقم الجوال 1',
+                  LocaleKeys.phone_number_1.tr(),
                   style: context.mediumText.copyWith(fontSize: 16, color: '#8E8E8E'.color),
                 ),
                 Flexible(
@@ -158,7 +161,7 @@ class OrderDetailsSheet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'رقم الجوال 2',
+                  LocaleKeys.phone_number_2.tr(),
                   style: context.mediumText.copyWith(fontSize: 16, color: '#8E8E8E'.color),
                 ),
                 Flexible(
@@ -254,7 +257,7 @@ class OrderDetailsSheet extends StatelessWidget {
                     onPressed: () {
                       push(NamedRoutes.rejectOrder, arg: {"item": item});
                     },
-                    title: 'رفض الرحلة',
+                    title: LocaleKeys.reject_trip.tr(),
                     backgroundColor: '#FB3748'.color,
                   ),
                 ),

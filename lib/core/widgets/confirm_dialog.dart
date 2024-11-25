@@ -35,7 +35,7 @@ class ConfirmDialog extends StatelessWidget {
                     child: Center(
                       child: Text(
                         LocaleKeys.yes.tr(),
-                        style: context.semiboldText.copyWith(color: context.splashColor),
+                        style: context.semiboldText,
                       ),
                     ),
                   ),

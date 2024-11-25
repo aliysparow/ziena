@@ -1,17 +1,19 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ziena/core/widgets/flash_helper.dart';
-import 'package:ziena/models/reason_model.dart';
 
 import '../../../core/services/service_locator.dart';
 import '../../../core/utils/extensions.dart';
 import '../../../core/widgets/app_btn.dart';
 import '../../../core/widgets/app_field.dart';
 import '../../../core/widgets/custom_image.dart';
+import '../../../core/widgets/flash_helper.dart';
 import '../../../core/widgets/loading.dart';
 import '../../../gen/assets.gen.dart';
+import '../../../gen/locale_keys.g.dart';
 import '../../../models/order_model.dart';
+import '../../../models/reason_model.dart';
 import '../cubit/driver_home_cubit.dart';
 import '../cubit/driver_home_state.dart';
 
@@ -33,7 +35,7 @@ class _RejectOrderViewState extends State<RejectOrderView> {
       appBar: AppBar(
         backgroundColor: context.scaffoldBackgroundColor,
         title: Text(
-          'العناوين الخاصة بك',
+          LocaleKeys.reject_order.tr(),
           style: context.regularText.copyWith(fontSize: 16, color: '#9F9C9C'.color),
         ),
         titleSpacing: 0,
@@ -57,13 +59,13 @@ class _RejectOrderViewState extends State<RejectOrderView> {
                 ),
                 SizedBox(width: 4.w),
                 Text(
-                  'ما هو سبب رفضك الرحلة',
+                  LocaleKeys.trip_rejection_reason.tr(),
                   style: context.mediumText.copyWith(fontSize: 14),
                 ),
               ],
             ),
             Text(
-              'اخبرنا لماذا تريد الغاء الرحلة، اختر سبب من الاسباب التي في الأسفل.',
+              LocaleKeys.trip_rejection_description.tr(),
               style: context.lightText.copyWith(fontSize: 12, color: "#4D4D4D".color),
             ),
             BlocBuilder<DriverHomeCubit, DriverHomeState>(
@@ -115,7 +117,7 @@ class _RejectOrderViewState extends State<RejectOrderView> {
                 borderRadius: BorderRadius.circular(8.r),
                 borderSide: BorderSide.none,
               ),
-              hintText: 'اضف ملاحظاتك لرفض',
+              hintText: LocaleKeys.add_rejection_notes.tr(),
             ),
           ],
         ),
@@ -131,12 +133,12 @@ class _RejectOrderViewState extends State<RejectOrderView> {
         },
         builder: (context, state) {
           return AppBtn(
-            title: 'تأكيد رفض الرحلة',
+            title: LocaleKeys.confirm_trip_rejection.tr(),
             onPressed: () {
               if (reason == null) {
-                FlashHelper.showToast('اختر سبب رفض الرحلة');
+                FlashHelper.showToast(LocaleKeys.select_rejection_reason.tr(), type: MessageType.warning);
               } else if (note.text.isEmpty && reason!.requireNotes) {
-                FlashHelper.showToast('اضف ملاحظاتك لرفض الرحلة');
+                FlashHelper.showToast(LocaleKeys.add_rejection_notes.tr(), type: MessageType.warning);
               } else {
                 cubit.rejectOrder(
                   item: widget.item,

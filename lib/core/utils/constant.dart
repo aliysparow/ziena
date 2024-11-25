@@ -1,6 +1,5 @@
-import 'package:ziena/core/widgets/select_item_sheet.dart';
-
 import '../../models/week_day_model.dart';
+import '../widgets/select_item_sheet.dart';
 
 class AppConstants {
   static List<WeekDayModel> weekDays = const [
@@ -21,7 +20,7 @@ class AppConstants {
 🌟 حمّل تطبيق زينة الآن واستمتع بتجربة لا مثيل لها! 🌟
 
 ✨ اكتشف المزايا الرائعة وسهولة الاستخدام لتطبيق زينة!
-📲 للأندرويد: https://play.google.com/store/apps/details?id=com.efada.ziena
+📲 للأندرويد: https://play.google.com/store/apps/details?id=com.efada.zienaapp
 🍏 للآيفون: https://apps.apple.com/eg/app/ziena/id1601674625
 
 شارك المتعة مع أصدقائك، وخليهم يجربوا اللي يناسبهم في أي وقت وأي مكان! ❤️
@@ -38,6 +37,7 @@ class ApiConstants {
   static const String cities = 'Lookup/GetAllCities';
   static const String districts = 'Lookup/GetDistrictsByCityId';
   static const String profile = 'account/GetProfile';
+  static const String deleteAccount = 'account/DeleteUser';
 
   static const String sendOtp = "account/SendOtp";
   static const String verifyAccount = "account/VerifyOTPAndCreateUser";

@@ -47,7 +47,11 @@ class _OnboardingViewState extends State<OnboardingView> {
                 ),
                 SizedBox(height: 50.h),
                 Text(
-                  ['خدمات الساعة', 'الخدمات الشهرية', 'خدمات الأعمال'][index],
+                  [
+                    LocaleKeys.hour_services.tr(),
+                    LocaleKeys.monthly_services.tr(),
+                    LocaleKeys.business_services.tr(),
+                  ][index],
                   style: context.boldText.copyWith(
                     fontSize: 24,
                     color: colors[index].color,
@@ -56,9 +60,9 @@ class _OnboardingViewState extends State<OnboardingView> {
                 SizedBox(height: 14.h),
                 Text(
                   [
-                    'نوفر لك خدمة ممتازة بالساعة اذا كنت تحتاج الي عامل لوقت معين من اليوم',
-                    'نوفر لك خدمة ممتازة بالشهر اذا كنت تحتاج الي عامل لوقت معين من اليوم',
-                    'نوفر لك خدمة ممتازة بالشهر اذا كنت تحتاج الي عامل لوقت معين من اليوم'
+                    LocaleKeys.hour_services_description.tr(),
+                    LocaleKeys.monthly_services_description.tr(),
+                    LocaleKeys.monthly_services_description.tr(),
                   ][index],
                   textAlign: TextAlign.center,
                   style: context.regularText.copyWith(fontSize: 16, color: '#666666'.color),
@@ -109,7 +113,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                   }
                 },
                 child: Text(
-                  'تخطي',
+                  LocaleKeys.skip.tr(),
                   style: context.mediumText.copyWith(fontSize: 14),
                 ),
               ),

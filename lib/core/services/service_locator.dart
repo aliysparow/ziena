@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:ziena/features/account/cubit/account_cubit.dart';
 import 'package:ziena/features/addresses/bloc/addresses_bloc.dart';
 import 'package:ziena/features/driver_home/cubit/driver_home_cubit.dart';
 import 'package:ziena/features/hourly_service/bloc/hourly_service_bloc.dart';
@@ -34,7 +35,7 @@ class ServicesLocator {
     sl.registerFactory(() => ContractsCubit());
     sl.registerLazySingleton(() => DriverHomeCubit());
     sl.registerLazySingleton(() => IndividualPackagesCubit());
-    // sl.registerFactory(() => SizesBloc());
+    sl.registerFactory(() => AccountCubit());
     // sl.registerFactory(() => ColorsBloc());
     // sl.registerLazySingleton(() => ProductsBloc());
     // sl.registerFactory(() => HomeBloc());

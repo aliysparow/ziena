@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ziena/core/utils/methods_helpers.dart';
 
 import '../../../../core/services/server_gate.dart';
 import '../../../../core/utils/constant.dart';
@@ -35,7 +36,9 @@ class VerifyPhoneBloc extends Cubit<VerifyPhoneState> {
 
   Future<void> resend(String phone) async {
     emit(state.copyWith(resndState: RequestState.loading));
-    final result = await ServerGate.i.sendToServer(url: ApiConstants.sendOtp, params: {"mobile": phone});
+    final result = await ServerGate.i.sendToServer(url: ApiConstants.sendOtp, params: {
+      "mobile": MethodsHelpers.formatPhoneNumber(phone),
+    });
     if (result.success) {
       FlashHelper.showToast(result.msg);
       emit(state.copyWith(resndState: RequestState.done, msg: result.msg));

@@ -4,6 +4,7 @@ import 'package:ziena/core/utils/constant.dart';
 import 'package:ziena/core/utils/enums.dart';
 import 'package:ziena/core/widgets/flash_helper.dart';
 
+import '../../../../core/utils/methods_helpers.dart';
 import 'reset_password_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +15,7 @@ class ResetPasswordBloc extends Cubit<ResetPasswordState> {
   Future<void> resetPassword(String phone) async {
     emit(state.copyWith(requestState: RequestState.loading));
     final result = await ServerGate.i.sendToServer(url: ApiConstants.resetPassword, body: {
-      "Mobile": phone,
+      "Mobile": MethodsHelpers.formatPhoneNumber(phone),
       "NewPassword": password.text,
     });
     if (result.success) {

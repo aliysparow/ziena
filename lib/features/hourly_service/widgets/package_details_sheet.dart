@@ -57,30 +57,26 @@ class HourlyPackageDetailsSheet extends StatelessWidget {
             children: [
               Text(
                 [
-                  'عدد الزيارات',
-                  "عدد الأسابيع",
-                  "عدد ساعات العمل",
-                  "الفترة الزمنية",
-                  // "السعر قبل الخصم",
-                  // "السعر بعد الخصم",
-                  "سعر الباقة",
-                  "ضريبة القيمة المضافة",
+                  LocaleKeys.number_of_visits.tr(),
+                  LocaleKeys.number_of_weeks.tr(),
+                  LocaleKeys.number_of_work_hours.tr(),
+                  LocaleKeys.time_period.tr(),
+                  LocaleKeys.package_price.tr(),
+                  LocaleKeys.vat.tr(),
                 ][i],
-                style: context.boldText
-                    .copyWith(fontSize: 15, color: '#8E8E8E'.color),
+                style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
               ),
               Text(
                 [
-                  '${item.totalVisits} زيارات',
-                  "${item.visitNumberPerWeek} اسبوع",
-                  "${item.totalHours} ساعات",
+                  LocaleKeys.visit_number_val.tr(args: ["${item.totalVisits}"]),
+                  LocaleKeys.val_weeks.tr(args: ["${item.totalVisits}"]),
+                  LocaleKeys.val_hours.tr(args: ["${item.totalVisits}"]),
                   item.shiftName,
                   // "${item.initialPrice} ${LocaleKeys.sar.tr()}",
                   "${item.priceAfterDiscountWithoutVat} ${LocaleKeys.sar.tr()}",
                   "${item.vat} ${LocaleKeys.sar.tr()}",
                 ][i],
-                style: context.boldText
-                    .copyWith(fontSize: 15, color: '#8E8E8E'.color),
+                style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
               ),
             ],
           ).withPadding(vertical: 12.h, horizontal: 32.w),
@@ -89,7 +85,7 @@ class HourlyPackageDetailsSheet extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'السعر الإجمالي',
+              LocaleKeys.total_price.tr(),
               style: context.boldText.copyWith(fontSize: 18),
             ),
             Text(

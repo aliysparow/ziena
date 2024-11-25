@@ -26,7 +26,7 @@ class SummaryHourlyServiceView extends StatefulWidget {
 class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
   final bloc = sl<HourlyServiceBloc>();
   final formKey = GlobalKey<FormState>();
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,21 +95,21 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                         children: [
                           Text(
                             [
-                              'عدد الزيارات',
-                              "عدد الأسابيع",
-                              "عدد ساعات العمل",
-                              "الفترة الزمنية",
-                              "السعر قبل الخصم",
-                              "السعر بعد الخصم",
-                              "ضريبة القيمة المصافة",
+                              LocaleKeys.number_of_visits.tr(),
+                              LocaleKeys.number_of_weeks.tr(),
+                              LocaleKeys.number_of_work_hours.tr(),
+                              LocaleKeys.time_period.tr(),
+                              LocaleKeys.price_before_discount.tr(),
+                              LocaleKeys.price_after_discount.tr(),
+                              LocaleKeys.vat.tr(),
                             ][i],
                             style: context.mediumText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
                           ),
                           Text(
                             [
-                              '${item.totalVisits} زيارات',
-                              "${item.visitNumberPerWeek} اسبوع",
-                              "${item.totalHours} ساعات",
+                              LocaleKeys.visit_number_val.tr(args: ["${item.totalVisits}"]),
+                              LocaleKeys.val_weeks.tr(args: ["${item.totalVisits}"]),
+                              LocaleKeys.val_hours.tr(args: ["${item.totalVisits}"]),
                               item.shiftName,
                               "${item.initialPrice} ${LocaleKeys.sar.tr()}",
                               "${item.priceAfterDiscountWithoutVat} ${LocaleKeys.sar.tr()}",
@@ -135,7 +135,7 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: 'رقم الجوال',
+                      text: LocaleKeys.phone_number.tr(),
                       style: context.semiboldText.copyWith(fontSize: 16),
                     ),
                     TextSpan(
@@ -164,13 +164,13 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                     AppField(
                       keyboardType: TextInputType.phone,
                       controller: bloc.inputData.phone1,
-                      hintText: 'رقم اضافي',
+                      hintText: LocaleKeys.phone_number.tr(),
                       withBorder: false,
                       prefixIcon: Text.rich(
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: 'رقم جوال اضافي',
+                              text: LocaleKeys.additional_number.tr(),
                               style: context.semiboldText.copyWith(fontSize: 16),
                             ),
                             TextSpan(
@@ -184,14 +184,14 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                     AppField(
                       keyboardType: TextInputType.phone,
                       controller: bloc.inputData.phone2,
-                      hintText: 'رقم اخر (اختياري)',
+                      hintText: LocaleKeys.another_number_optional.tr(),
                       withBorder: false,
                       isRequired: false,
                       prefixIcon: Text.rich(
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: 'رقم جوال اضافي اخر',
+                              text: LocaleKeys.another_additional_mobile_number.tr(),
                               style: context.semiboldText.copyWith(fontSize: 16),
                             ),
                             TextSpan(
@@ -206,30 +206,6 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                 ),
               ),
             ),
-            // Container(
-            //   margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
-            //   padding: EdgeInsets.all(14.w),
-            //   decoration: BoxDecoration(
-            //     color: context.primaryColorLight,
-            //     borderRadius: BorderRadius.circular(12.r),
-            //   ),
-            //   child: Column(
-            //     children: [
-            //       AppField(
-            //         keyboardType: TextInputType.phone,
-            //         controller: bloc.inputData.phone1,
-            //         hintText: 'رقم اضافي',
-            //       ),
-            //       SizedBox(height: 12.h),
-            //       AppField(
-            //         keyboardType: TextInputType.phone,
-            //         controller: bloc.inputData.phone2,
-            //         hintText: 'رقم اخر (اختياري)',
-            //         validator: (v) => null,
-            //       ),
-            //     ],
-            //   ),
-            // ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
               padding: EdgeInsets.all(14.w),
@@ -241,7 +217,7 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'العنوان الخاص بك',
+                    LocaleKeys.your_address.tr(),
                     style: context.semiboldText.copyWith(fontSize: 16),
                   ),
                   SizedBox(height: 12.h),
@@ -309,7 +285,7 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                     children: [
                       Expanded(
                         child: Text(
-                          "الأيام المختارة",
+                          LocaleKeys.choose_days.tr(),
                           style: context.mediumText.copyWith(fontSize: 16),
                         ),
                       ),
@@ -348,7 +324,7 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "السعر الإجمالي",
+                    LocaleKeys.total_price.tr(),
                     style: context.semiboldText.copyWith(fontSize: 16),
                   ),
                   Text(
@@ -380,7 +356,7 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                         bloc.createBooking();
                       }
                     },
-                    title: 'إنشاء عقد',
+                    title: LocaleKeys.create_contract.tr(),
                     backgroundColor: context.indicatorColor,
                   );
                 },

@@ -85,9 +85,9 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
         NamedRoutes.successfullyPage,
         arg: {
           'image': Assets.images.successfully,
-          'title': 'تمت العملية بنجاح',
-          'subtitle': "تم حجز عقدك بنجاح \n رقم العقد: ${result.data['data']['ContractNumber']}",
-          "btnTitle": "ادفع الأن",
+          'title': LocaleKeys.operation_successful.tr(),
+          'subtitle': LocaleKeys.contract_booked_successfully_val.tr(args: ['${result.data['data']['ContractNumber']}']),
+          "btnTitle": LocaleKeys.pay_now.tr(),
           "onTap": () {
             push(
               NamedRoutes.paymentIfream,

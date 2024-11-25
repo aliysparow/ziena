@@ -58,7 +58,7 @@ class _LoginViewState extends State<LoginView> {
               //   style: context.mediumText.copyWith(fontSize: 20, color: context.hintColor),
               // ),
               Text(
-                'أدخل رقم الجوال وكلمة السر الخاصة بك',
+               LocaleKeys.enter_phone_and_password.tr(),
                 style: context.mediumText.copyWith(fontSize: 20, color: context.hintColor),
               ),
               SizedBox(height: 14.h),

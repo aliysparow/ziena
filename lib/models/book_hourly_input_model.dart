@@ -6,6 +6,7 @@ import 'package:ziena/core/routes/routes.dart';
 import 'package:ziena/core/utils/extensions.dart';
 import 'package:ziena/core/utils/methods_helpers.dart';
 import 'package:ziena/core/widgets/flash_helper.dart';
+import 'package:ziena/gen/locale_keys.g.dart';
 import 'package:ziena/models/address_model.dart';
 import 'package:ziena/models/hourly_package_model.dart';
 import 'package:ziena/models/user_model.dart';
@@ -51,39 +52,34 @@ class BookHourlyInputModel {
   bool validate(BuildContext context) {
     if (NamedRoutes.hourlyService == context.currentRoute) {
       if (nationality == null) {
-        FlashHelper.showToast('الرجاء اختيار الجنسية', type: MessageType.warning);
+        FlashHelper.showToast(LocaleKeys.please_select_nationality.tr(), type: MessageType.warning);
         return false;
       } else if (period == null) {
-        FlashHelper.showToast('الرجاء اختيار الفترة', type: MessageType.warning);
+        FlashHelper.showToast(LocaleKeys.please_select_period.tr(), type: MessageType.warning);
         return false;
-      }
-      // else if (time == null) {
-      //   FlashHelper.showToast('الرجاء اختيار الوقت', type: MessageType.warning);
-      //   return false;
-      // }
-      else {
+      } else {
         return true;
       }
     } else if (NamedRoutes.selectAddress == context.currentRoute) {
       if (address == null) {
-        FlashHelper.showToast('الرجاء اختيار العنوان', type: MessageType.warning);
+        FlashHelper.showToast(LocaleKeys.please_select_address.tr(), type: MessageType.warning);
         return false;
       } else {
         return true;
       }
     } else if (NamedRoutes.selectDates == context.currentRoute) {
       if (week.length != package!.totalVisits) {
-        FlashHelper.showToast('الرجاء جميع ايام الاسبوع', type: MessageType.warning);
+        FlashHelper.showToast(LocaleKeys.please_select_all_week_days.tr(), type: MessageType.warning);
         return false;
       } else if (dates.isEmpty) {
-        FlashHelper.showToast('الرجاء ختيار يوم بداية الباقة', type: MessageType.warning);
+        FlashHelper.showToast(LocaleKeys.please_select_package_start_day.tr(), type: MessageType.warning);
         return false;
       } else {
         return true;
       }
     } else if (NamedRoutes.summaryHourlyService == context.currentRoute) {
       if (phone1.text.isEmpty) {
-        FlashHelper.showToast('الرجاء ادخال رقم هاتف اضافي', type: MessageType.warning);
+        FlashHelper.showToast(LocaleKeys.please_enter_additional_phone.tr(), type: MessageType.warning);
         return false;
       } else {
         return true;

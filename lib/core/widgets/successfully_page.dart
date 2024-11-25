@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ziena/core/widgets/app_btn.dart';
 
+import '../../gen/locale_keys.g.dart';
 import '../utils/extensions.dart';
+import 'app_btn.dart';
 import 'custom_image.dart';
 
 class SuccessfullyPage extends StatelessWidget {
@@ -50,9 +52,8 @@ class SuccessfullyPage extends StatelessWidget {
         ).withPadding(horizontal: 35.w),
         bottomNavigationBar: AppBtn(
           onPressed: onTap ?? () => Navigator.pop(context, true),
-          title: btnTitle ?? 'اغلاق',
-          backgroundColor:
-              btnTitle != null ? context.indicatorColor : Colors.transparent,
+          title: btnTitle ?? LocaleKeys.close.tr(),
+          backgroundColor: btnTitle != null ? context.indicatorColor : Colors.transparent,
           textColor: btnTitle != null ? Colors.white : '#A4A4A4'.color,
         ).withPadding(
           horizontal: 20.w,

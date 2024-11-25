@@ -51,10 +51,10 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAnSvmB18aKlugLiCJrs9K_JepztelunQE',
-    appId: '1:96738949246:android:efe1aabb5af4b42138802f',
+    appId: '1:96738949246:android:1ec0d8923412a85b38802f',
     messagingSenderId: '96738949246',
     projectId: 'zena-1ad72',
-    storageBucket: 'zena-1ad72.appspot.com',
+    storageBucket: 'zena-1ad72.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -62,7 +62,8 @@ class DefaultFirebaseOptions {
     appId: '1:96738949246:ios:7f7eb7f1ba7245b238802f',
     messagingSenderId: '96738949246',
     projectId: 'zena-1ad72',
-    storageBucket: 'zena-1ad72.appspot.com',
+    storageBucket: 'zena-1ad72.firebasestorage.app',
     iosBundleId: 'com.efada.ziena',
   );
+
 }

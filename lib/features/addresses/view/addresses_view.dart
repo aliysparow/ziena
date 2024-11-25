@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ziena/core/routes/app_routes_fun.dart';
-import 'package:ziena/core/widgets/confirmation_sheet.dart';
+import 'package:ziena/core/widgets/confirm_dialog.dart';
 
 import '../../../core/routes/routes.dart';
 import '../../../core/services/service_locator.dart';
@@ -32,7 +32,7 @@ class _AddressesViewState extends State<AddressesView> {
       appBar: AppBar(
         backgroundColor: context.scaffoldBackgroundColor,
         title: Text(
-          'العناوين الخاصة بك',
+          LocaleKeys.your_address.tr(),
           style: context.regularText.copyWith(fontSize: 16, color: '#9F9C9C'.color),
         ),
         titleSpacing: 0,
@@ -67,7 +67,7 @@ class _AddressesViewState extends State<AddressesView> {
                           size: 14.h,
                         ).withPadding(end: 4.w),
                         Text(
-                          'إضافة عنوان جديد',
+                          LocaleKeys.add_address.tr(),
                           style: context.semiboldText.copyWith(
                             fontSize: 12,
                             color: context.primaryColorLight,
@@ -94,12 +94,12 @@ class _AddressesViewState extends State<AddressesView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'اعدادات العناوين الخاص بك',
+                        LocaleKeys.your_address.tr(),
                         style: context.mediumText.copyWith(fontSize: 16),
                       ),
                       SizedBox(height: 6.h),
                       Text(
-                        'يمكنك إضافة عنوان جديد او حذف وعند الأضافة الجديدة سيمكنك ان تختار بينهم عندما تكون بطلب خدمة جديدة.',
+                        LocaleKeys.address_settings_description.tr(),
                         style: context.lightText.copyWith(
                           fontSize: 12,
                           color: '#4D4D4D'.color,
@@ -153,9 +153,9 @@ class _AddressesViewState extends State<AddressesView> {
                                   showDialog(
                                     context: context,
                                     builder: (v) {
-                                      return const ConfirmDialog(
-                                        title: 'خذف العنوان',
-                                        subTitle: 'هل انت متاكد من خذف العنوان؟',
+                                      return ConfirmDialog(
+                                        title: LocaleKeys.delete_address.tr(),
+                                        subTitle: LocaleKeys.delete_address_confirmation.tr(),
                                       );
                                     },
                                   ).then((v) {
@@ -234,7 +234,7 @@ class _AddressesViewState extends State<AddressesView> {
                     Icons.add,
                     color: context.primaryColorLight,
                   ),
-                  title: 'إضافة عنوان جديد',
+                  title: LocaleKeys.add_address.tr(),
                 ).withPadding(horizontal: 56.w),
                 SizedBox(height: context.padding.bottom + 90.h)
               ],

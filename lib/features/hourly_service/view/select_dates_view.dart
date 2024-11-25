@@ -83,7 +83,7 @@ class _SelectDatesViewState extends State<SelectDatesView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'اختر ${bloc.inputData.package?.totalVisits} أيام مناسبة لك',
+              LocaleKeys.choose_days.tr(args: ["${bloc.inputData.package?.totalVisits}"]),
               style: context.mediumText.copyWith(fontSize: 16),
             ),
             // Text(
@@ -109,7 +109,6 @@ class _SelectDatesViewState extends State<SelectDatesView> {
                           bloc.inputData.week.remove(day.id);
                           bloc.inputData.dates.clear();
                         } else if (bloc.inputData.week.length == bloc.inputData.package?.totalVisits) {
-                          // FlashHelper.showToast("لم يعد ايام متاحة لاختيارها", type: MessageType.warning);
                           bloc.inputData.week.removeAt(0);
                           bloc.inputData.week.add(day.id);
                           bloc.inputData.dates.clear();
@@ -196,7 +195,7 @@ class _SelectDatesViewState extends State<SelectDatesView> {
                   // if (bloc.inputData.dates.contains(selectedDay)) {
                   //   bloc.inputData.dates.remove(selectedDay);
                   // } else if (bloc.inputData.package!.totalVisits <= bloc.inputData.dates.length) {
-                  //   FlashHelper.showToast("لقد تعديت الحد الاقصي من الزيارات", type: MessageType.warning);
+
                   // } else {
                   //   bloc.inputData.dates.add(selectedDay);
                   // }
@@ -217,7 +216,7 @@ class _SelectDatesViewState extends State<SelectDatesView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "الأيام المختارة",
+                      LocaleKeys.selected_days.tr(),
                       style: context.mediumText.copyWith(fontSize: 16),
                     ).withPadding(bottom: 8.h),
                     ...List.generate(bloc.inputData.dates.length, (i) {

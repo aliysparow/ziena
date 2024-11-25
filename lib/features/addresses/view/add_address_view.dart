@@ -54,7 +54,7 @@ class _AddAddressViewState extends State<AddAddressView> {
       appBar: AppBar(
         backgroundColor: context.scaffoldBackgroundColor,
         title: Text(
-          'العناوين الخاصة بك',
+          LocaleKeys.your_addresses.tr(),
           style: context.regularText.copyWith(fontSize: 16, color: '#9F9C9C'.color),
         ),
         titleSpacing: 0,
@@ -120,7 +120,7 @@ class _AddAddressViewState extends State<AddAddressView> {
                 ),
                 AppField(
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
-                  hintText: 'اسم العنوان',
+                  hintText: LocaleKeys.address_name.tr(),
                   controller: bloc.name,
                 ).withPadding(vertical: 8.h, horizontal: 20.w),
                 Row(
@@ -206,7 +206,7 @@ class _AddAddressViewState extends State<AddAddressView> {
                       child: AppField(
                         keyboardType: TextInputType.name,
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
-                        hintText: 'رقم المبني',
+                        hintText: LocaleKeys.building_number.tr(),
                         controller: bloc.buildingNumber,
                       ),
                     ),
@@ -232,7 +232,7 @@ class _AddAddressViewState extends State<AddAddressView> {
                           });
                         },
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
-                        hintText: 'نوع السكن',
+                        hintText: LocaleKeys.residence_type.tr(),
                         controller: TextEditingController(text: bloc.apartmentType?.name ?? ''),
                       ),
                     ),
@@ -245,7 +245,7 @@ class _AddAddressViewState extends State<AddAddressView> {
                       child: AppField(
                         keyboardType: const TextInputType.numberWithOptions(signed: true),
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
-                        hintText: 'رقم الطابق',
+                        hintText: LocaleKeys.floor_number.tr(),
                         controller: bloc.floorNumber,
                       ),
                     ),
@@ -254,7 +254,7 @@ class _AddAddressViewState extends State<AddAddressView> {
                       child: AppField(
                         keyboardType: TextInputType.number,
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
-                        hintText: 'رقم الشقة',
+                        hintText: LocaleKeys.apartment_number.tr(),
                         controller: bloc.apartmentNumber,
                         isRequired: false,
                       ),
@@ -263,7 +263,7 @@ class _AddAddressViewState extends State<AddAddressView> {
                 ).withPadding(vertical: 8.h, horizontal: 20.w),
                 AppField(
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.r), borderSide: BorderSide.none),
-                  hintText: 'أقرب معلم لك أو قريب منك',
+                  hintText: LocaleKeys.nearest_landmark.tr(),
                   controller: bloc.fullAddress,
                   maxLines: 3,
                 ).withPadding(vertical: 8.h, horizontal: 20.w)
@@ -284,7 +284,7 @@ class _AddAddressViewState extends State<AddAddressView> {
           return AppBtn(
             loading: state.createAddress.isLoading,
             onPressed: () => form.isValid ? bloc.createAddress() : null,
-            title: 'أضف عنوان',
+            title: LocaleKeys.add_address.tr(),
           );
         },
       ).withPadding(horizontal: 56.w),

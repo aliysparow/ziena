@@ -86,26 +86,34 @@ class _ContractsViewState extends State<ContractsView> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          ContentItem(
-                            icon: Assets.icons.hashtag,
-                            title: item.contractNumber,
+                          Expanded(
+                            child: ContentItem(
+                              icon: Assets.icons.hashtag,
+                              title: item.contractNumber,
+                            ),
                           ),
-                          ContentItem(
-                            icon: Assets.icons.time,
-                            title: DateFormat('dd/MM/yyyy').format(item.startDate),
+                          Expanded(
+                            child: ContentItem(
+                              icon: Assets.icons.time,
+                              title: DateFormat('dd/MM/yyyy').format(item.startDate),
+                            ),
                           ),
                         ],
                       ).withPadding(vertical: 4.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          ContentItem(
-                            icon: Assets.icons.work,
-                            title: LocaleKeys.val_visit_val_week.tr(args: ["${item.totalVisits}", "${item.numberOfWeeks}"]),
+                          Expanded(
+                            child: ContentItem(
+                              icon: Assets.icons.work,
+                              title: LocaleKeys.val_visit_val_week.tr(args: ["${item.totalVisits}", "${item.numberOfWeeks}"]),
+                            ),
                           ),
-                          ContentItem(
-                            icon: Assets.icons.price,
-                            title: "${item.finalPrice} ${LocaleKeys.sar.tr()}",
+                          Expanded(
+                            child: ContentItem(
+                              icon: Assets.icons.price,
+                              title: "${item.finalPrice} ${LocaleKeys.sar.tr()}",
+                            ),
                           ),
                         ],
                       ).withPadding(vertical: 4.h),

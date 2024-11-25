@@ -28,13 +28,13 @@ class HomeBloc extends Cubit<HomeState> {
   }
 
   Future<void> getIndividualServiceList() async {
-    emit(state.copyWith(hourlyServicesState: RequestState.loading));
+    emit(state.copyWith(individualServicesState: RequestState.loading));
     final result = await ServerGate.i.getFromServer(url: ApiConstants.individualServices);
     if (result.success) {
       individualServicesList = List<ServiceModel>.from((result.data['data'] ?? []).map((x) => ServiceModel.fromJson(x)));
-      emit(state.copyWith(hourlyServicesState: RequestState.done, msg: result.msg));
+      emit(state.copyWith(individualServicesState: RequestState.done, msg: result.msg));
     } else {
-      emit(state.copyWith(hourlyServicesState: RequestState.error, msg: result.msg));
+      emit(state.copyWith(individualServicesState: RequestState.error, msg: result.msg));
     }
   }
 

@@ -106,7 +106,7 @@ class ServerGate {
         ),
         queryParameters: params,
       );
-      if (res.statusCode == 200 && res.data is Map) {
+      if (res.statusCode == 200 && res.data is Map && res.data["IsSuccess"] != false) {
         return CustomResponse<T>(
           success: true,
           data: res.data,

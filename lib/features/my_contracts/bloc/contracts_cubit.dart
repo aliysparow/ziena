@@ -146,3 +146,11 @@ enum VisitsType {
   String get url => this == VisitsType.upcoming ? ApiConstants.getUpcomingVisits : ApiConstants.getCompletedVisits;
   String get name => this == VisitsType.upcoming ? LocaleKeys.next_visits.tr() : LocaleKeys.complete_visits.tr();
 }
+
+enum OrdersType {
+  incompleted,
+  completed;
+
+  String get url => this == OrdersType.incompleted ? ApiConstants.finishedHourlyContracts : ApiConstants.upcomingHourlyContracts;
+  String get name => this == OrdersType.completed ? LocaleKeys.completed_orders.tr() : LocaleKeys.incomplete_orders.tr();
+}

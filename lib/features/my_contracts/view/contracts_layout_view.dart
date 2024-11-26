@@ -10,7 +10,7 @@ import '../../../gen/assets.gen.dart';
 import '../../../gen/locale_keys.g.dart';
 import '../../home/widgets/offers_widget.dart';
 import '../../home/widgets/sliders_widget.dart';
-import '../../my_contracts/bloc/contracts_cubit.dart';
+import '../bloc/contracts_cubit.dart';
 
 class ContractsLayoutView extends StatefulWidget {
   const ContractsLayoutView({super.key});
@@ -154,26 +154,32 @@ class _ContractsLayoutViewState extends State<ContractsLayoutView> {
             child: Wrap(
               spacing: 18.w,
               children: [
-                Container(
-                  padding: EdgeInsets.all(16.w),
-                  decoration: BoxDecoration(
-                    color: context.primaryColorLight,
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                  child: Text(
-                    LocaleKeys.completed_orders.tr(),
-                    style: context.regularText.copyWith(fontSize: 14, color: '#113342'.color),
+                GestureDetector(
+                  onTap: () => push(NamedRoutes.myOrders, arg: {'type': OrdersType.completed}),
+                  child: Container(
+                    padding: EdgeInsets.all(16.w),
+                    decoration: BoxDecoration(
+                      color: context.primaryColorLight,
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    child: Text(
+                      LocaleKeys.completed_orders.tr(),
+                      style: context.regularText.copyWith(fontSize: 14, color: '#113342'.color),
+                    ),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.all(16.w),
-                  decoration: BoxDecoration(
-                    color: context.primaryColorLight,
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                  child: Text(
-                    LocaleKeys.incomplete_orders.tr(),
-                    style: context.regularText.copyWith(fontSize: 14, color: '#113342'.color),
+                GestureDetector(
+                  onTap: () => push(NamedRoutes.myOrders, arg: {'type': OrdersType.incompleted}),
+                  child: Container(
+                    padding: EdgeInsets.all(16.w),
+                    decoration: BoxDecoration(
+                      color: context.primaryColorLight,
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    child: Text(
+                      LocaleKeys.incomplete_orders.tr(),
+                      style: context.regularText.copyWith(fontSize: 14, color: '#113342'.color),
+                    ),
                   ),
                 ),
               ],

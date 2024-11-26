@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ziena/features/contracts_layoout/view/contracts_layout_view.dart';
+import 'package:ziena/features/my_contracts/view/contracts_layout_view.dart';
 
 import '../../home/view/home_view.dart';
 import 'layout_state.dart';

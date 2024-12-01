@@ -201,5 +201,8 @@
     "please_enter_additional_phone": "الرجاء إدخال رقم هاتف إضافي",
     "reject_order": "رفض الطلب",
     "change_lang": "تغيير لغة التطبيق",
-    "this_feature_is_coming_soon": "هذه الميزة ستأتي قريبًا"
+    "this_feature_is_coming_soon": "هذه الميزة ستأتي قريبًا",
+    "update_available": "التحديث المتاح",
+    "a_new_version_of_the_app_is_available_please_update_to_continue": "يتوفر إصدار جديد من التطبيق ، يرجى التحديث للمتابعة",
+    "update_now": "تحديث الآن"
 }

@@ -5,10 +5,10 @@ import 'package:ziena/core/routes/app_routes_fun.dart';
 import 'package:ziena/core/routes/routes.dart';
 import 'package:ziena/main.dart';
 
-import '../../core/utils/extensions.dart';
-import '../../core/widgets/app_btn.dart';
-import '../../core/widgets/custom_image.dart';
-import '../../gen/locale_keys.g.dart';
+import '../../../core/utils/extensions.dart';
+import '../../../core/widgets/app_btn.dart';
+import '../../../core/widgets/custom_image.dart';
+import '../../../gen/locale_keys.g.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});

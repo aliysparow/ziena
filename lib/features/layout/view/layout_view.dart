@@ -90,7 +90,7 @@ class _LayoutViewState extends State<LayoutView> {
                   ),
                 ),
               ],
-            ),
+            ).withPadding(vertical: 12.h),
           );
         },
       ),

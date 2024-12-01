@@ -1,4 +1,4 @@
-package com.efada.zienaapp
+package com.efada.zienaa
 
 import io.flutter.embedding.android.FlutterActivity
 

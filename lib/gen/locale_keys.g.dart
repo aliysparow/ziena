@@ -204,5 +204,8 @@ abstract class  LocaleKeys {
   static const first_name = 'first_name';
   static const last_name = 'last_name';
   static const this_feature_is_coming_soon = 'this_feature_is_coming_soon';
+  static const update_available = 'update_available';
+  static const a_new_version_of_the_app_is_available_please_update_to_continue = 'a_new_version_of_the_app_is_available_please_update_to_continue';
+  static const update_now = 'update_now';
 
 }

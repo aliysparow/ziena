@@ -36,6 +36,7 @@ class _AccountViewState extends State<AccountView> {
         centerTitle: true,
         backgroundColor: context.scaffoldBackgroundColor,
         toolbarHeight: kToolbarHeight + 120.h,
+        leadingWidth: 52.w,
         leading: CustomRadiusIcon(
           onTap: () => Navigator.pop(context),
           size: 40.w,
@@ -47,7 +48,7 @@ class _AccountViewState extends State<AccountView> {
             size: 24.h,
             color: context.primaryColor,
           ),
-        ).toTopEnd,
+        ).toEnd,
         title: CustomImage(
           Assets.images.logoAuth,
           height: 115.h,
@@ -101,7 +102,10 @@ class _AccountViewState extends State<AccountView> {
           // ),
           ListTile(
             onTap: () {
-              Share.share(AppConstants.shareAppText);
+              Share.share(
+                AppConstants.shareAppText,
+                sharePositionOrigin: Rect.fromLTWH(0, 0, context.w, context.h / 2),
+              );
             },
             leading: CustomImage(Assets.icons.share, height: 24.h, width: 24.h),
             title: Text(

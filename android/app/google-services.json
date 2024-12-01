@@ -26,6 +26,25 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:96738949246:android:29c29f1792dd520238802f",
+        "android_client_info": {
+          "package_name": "com.efada.zienaa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnSvmB18aKlugLiCJrs9K_JepztelunQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:96738949246:android:1ec0d8923412a85b38802f",
         "android_client_info": {
           "package_name": "com.efada.zienaapp"

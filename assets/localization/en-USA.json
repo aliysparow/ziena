@@ -201,5 +201,8 @@
     "confirm_data": "Confirm Your Data",
     "first_name": "First Name",
     "last_name": "Last Name",
-    "this_feature_is_coming_soon": "this feature is coming soon"
+    "this_feature_is_coming_soon": "this feature is coming soon",
+    "update_available":"Update available",
+"a_new_version_of_the_app_is_available_please_update_to_continue":"A new version of the app is available please update to continue",
+"update_now":"Update now"
 }

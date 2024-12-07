@@ -25,4 +25,5 @@ class NamedRoutes {
   static const individualPackages = "/individual_packages";
   static const individualRequest = "/individual_request";
   static const myOrders = "/my_orders";
+  static const companyRequest = "/CompanyRequest";
 }

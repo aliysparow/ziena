@@ -12,11 +12,11 @@ import '../../../core/utils/extensions.dart';
 import '../../../core/widgets/custom_image.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../gen/locale_keys.g.dart';
-import '../../../models/order_model.dart';
+import '../../../models/driver_order_model.dart';
 import 'order_details_sheet.dart';
 
 class DriverOrderItem extends StatelessWidget {
-  final OrderModel item;
+  final DriverOrderModel item;
   const DriverOrderItem({super.key, required this.item});
 
   @override

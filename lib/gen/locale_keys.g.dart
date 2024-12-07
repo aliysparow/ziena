@@ -207,5 +207,11 @@ abstract class  LocaleKeys {
   static const update_available = 'update_available';
   static const a_new_version_of_the_app_is_available_please_update_to_continue = 'a_new_version_of_the_app_is_available_please_update_to_continue';
   static const update_now = 'update_now';
+  static const your_order_has_been_sent = 'your_order_has_been_sent';
+  static const we_will_review_the_assignment_and_contact_you_on_your_mobile_number = 'we_will_review_the_assignment_and_contact_you_on_your_mobile_number';
+  static const request_for_labor_for_companies = 'request_for_labor_for_companies';
+  static const request_for_business_services = 'request_for_business_services';
+  static const you_can_contract_with_us_to_carry_out_the_tasks_assigned_to_us_in_the_best_possible_way_write_the_required_data_and_make_sure_it_is_correct_and_we_will_contact_you = 'you_can_contract_with_us_to_carry_out_the_tasks_assigned_to_us_in_the_best_possible_way_write_the_required_data_and_make_sure_it_is_correct_and_we_will_contact_you';
+  static const profession = 'profession';
 
 }

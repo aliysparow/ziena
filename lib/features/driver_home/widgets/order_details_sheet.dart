@@ -14,12 +14,12 @@ import '../../../core/widgets/app_sheet.dart';
 import '../../../core/widgets/custom_image.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../gen/locale_keys.g.dart';
-import '../../../models/order_model.dart';
+import '../../../models/driver_order_model.dart';
 import '../cubit/driver_home_cubit.dart';
 import '../cubit/driver_home_state.dart';
 
 class OrderDetailsSheet extends StatelessWidget {
-  final OrderModel item;
+  final DriverOrderModel item;
   const OrderDetailsSheet({super.key, required this.item});
 
   @override

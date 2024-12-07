@@ -13,8 +13,8 @@ import '../../../core/widgets/error_widget.dart';
 import '../../../core/widgets/loading.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../gen/locale_keys.g.dart';
-import '../bloc/contracts_cubit.dart';
-import '../bloc/contracts_state.dart';
+import '../cubit/contracts_cubit.dart';
+import '../cubit/contracts_state.dart';
 import '../widgets/content_item.dart';
 import '../widgets/rate_sheet.dart';
 

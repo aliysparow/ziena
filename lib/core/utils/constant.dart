@@ -65,6 +65,7 @@ class ApiConstants {
   static const String createHourlyContract = 'Contract/CreateHourlyContract';
   static const String upcomingHourlyContracts = 'Contract/GetUpcomingHourlyContractsByUser';
   static const String finishedHourlyContracts = 'Contract/GetFinishedHourlyContractsByUser';
+  static const String getIndividualReqsByUserId = 'Request/GetIndividualReqsByUserId';
 
   static const String getUpcomingVisits = 'HourlyVisit/GetUpcomingVisits';
   static const String getCompletedVisits = 'HourlyVisit/GetCompletedVisits';
@@ -80,4 +81,8 @@ class ApiConstants {
 
   static const String getIndividualPackages = 'Package/GetIndividualPackages';
   static const String createIndividualRequest = 'Request/CreateIndividualRequest';
+
+  static const String getAllCountries = 'Lookup/GetAllCountries';
+  static const String getAllProfessions = 'Lookup/GetAllProfessions';
+  static const String createCorporateReq = 'Request/CreateCorporateReq';
 }

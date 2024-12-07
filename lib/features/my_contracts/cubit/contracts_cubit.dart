@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ziena/core/widgets/flash_helper.dart';
 import 'package:ziena/core/widgets/loading.dart';
 import 'package:ziena/gen/locale_keys.g.dart';
+import 'package:ziena/models/order_model.dart';
 import 'package:ziena/models/visit_model.dart';
 
 import '../../../core/services/server_gate.dart';
@@ -16,6 +17,7 @@ class ContractsCubit extends Cubit<ContractsState> {
   ContractsCubit() : super(ContractsState());
 
   List<ContractModel> contracts = [];
+  List<OrderModel> orders = [];
   List<VisitModel> visits = [];
 
   getContracts(ContractType type) async {
@@ -129,6 +131,20 @@ class ContractsCubit extends Cubit<ContractsState> {
       emit(state.copyWith(blockLaborState: RequestState.error, msg: result.msg));
     }
   }
+
+  getOrders(OrdersType type) async {
+    emit(state.copyWith(contractState: RequestState.loading));
+    final result = await ServerGate.i.getFromServer(
+      url: type.url,
+      params: {"userId": UserModel.i.id},
+    );
+    if (result.success) {
+      orders = List<OrderModel>.from((result.data['data'] ?? []).map((x) => OrderModel.fromJson(x)));
+      emit(state.copyWith(contractState: RequestState.done));
+    } else {
+      emit(state.copyWith(contractState: RequestState.error, msg: result.msg));
+    }
+  }
 }
 
 enum ContractType {
@@ -151,6 +167,6 @@ enum OrdersType {
   incompleted,
   completed;
 
-  String get url => this == OrdersType.incompleted ? ApiConstants.finishedHourlyContracts : ApiConstants.upcomingHourlyContracts;
+  String get url => this == OrdersType.incompleted ? ApiConstants.getIndividualReqsByUserId : ApiConstants.getIndividualReqsByUserId;
   String get name => this == OrdersType.completed ? LocaleKeys.completed_orders.tr() : LocaleKeys.incomplete_orders.tr();
 }

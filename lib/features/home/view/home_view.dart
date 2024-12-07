@@ -62,8 +62,11 @@ class _HomeViewState extends State<HomeView> {
                   opacity: selected != i ? .5 : 1,
                   child: GestureDetector(
                     onTap: () {
-                      if (i == 2) return;
-                      if (i == 1) return;
+                      if (i == 2) {
+                        push(NamedRoutes.companyRequest);
+                        return;
+                      }
+                      // if (i == 1) return;
                       selected = i;
                       setState(() {});
                     },

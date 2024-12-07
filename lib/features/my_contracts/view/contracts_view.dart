@@ -8,14 +8,14 @@ import '../../../core/routes/app_routes_fun.dart';
 import '../../../core/routes/routes.dart';
 import '../../../core/widgets/loading.dart';
 import '../../../core/widgets/error_widget.dart';
-import '../bloc/contracts_state.dart';
+import '../cubit/contracts_state.dart';
 
 import '../../../core/services/service_locator.dart';
 import '../../../core/utils/extensions.dart';
 import '../../../core/widgets/custom_image.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../gen/locale_keys.g.dart';
-import '../bloc/contracts_cubit.dart';
+import '../cubit/contracts_cubit.dart';
 
 class ContractsView extends StatefulWidget {
   final ContractType type;

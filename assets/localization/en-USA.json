@@ -202,7 +202,13 @@
     "first_name": "First Name",
     "last_name": "Last Name",
     "this_feature_is_coming_soon": "this feature is coming soon",
-    "update_available":"Update available",
-"a_new_version_of_the_app_is_available_please_update_to_continue":"A new version of the app is available please update to continue",
-"update_now":"Update now"
+    "update_available": "Update available",
+    "a_new_version_of_the_app_is_available_please_update_to_continue": "A new version of the app is available please update to continue",
+    "update_now": "Update now",
+    "your_order_has_been_sent": "Your order has been sent",
+    "we_will_review_the_assignment_and_contact_you_on_your_mobile_number": "We will review the assignment and contact you on your mobile number",
+    "request_for_labor_for_companies": "Request for labor for companies",
+    "request_for_business_services": "Request for business services",
+    "you_can_contract_with_us_to_carry_out_the_tasks_assigned_to_us_in_the_best_possible_way_write_the_required_data_and_make_sure_it_is_correct_and_we_will_contact_you": "You can contract with us to carry out the tasks assigned to us in the best possible way. Write the required data and make sure it is correct and we will contact you.",
+    "profession":"Profession"
 }

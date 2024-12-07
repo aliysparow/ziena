@@ -12,13 +12,13 @@ import '../../../core/widgets/flash_helper.dart';
 import '../../../core/widgets/loading.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../gen/locale_keys.g.dart';
-import '../../../models/order_model.dart';
+import '../../../models/driver_order_model.dart';
 import '../../../models/reason_model.dart';
 import '../cubit/driver_home_cubit.dart';
 import '../cubit/driver_home_state.dart';
 
 class RejectOrderView extends StatefulWidget {
-  final OrderModel item;
+  final DriverOrderModel item;
   const RejectOrderView({super.key, required this.item});
 
   @override

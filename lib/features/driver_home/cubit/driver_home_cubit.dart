@@ -5,7 +5,7 @@ import '../../../core/utils/constant.dart';
 import '../../../core/utils/enums.dart';
 import '../../../core/widgets/flash_helper.dart';
 import '../../../core/widgets/select_item_sheet.dart';
-import '../../../models/order_model.dart';
+import '../../../models/driver_order_model.dart';
 import '../../../models/reason_model.dart';
 import '../../../models/shift_model.dart';
 import '../../../models/user_model.dart';
@@ -15,7 +15,7 @@ class DriverHomeCubit extends Cubit<DriverHomeState> {
   DriverHomeCubit() : super(DriverHomeState());
 
   List<ShiftModel> shifts = [];
-  List<OrderModel> orders = [];
+  List<DriverOrderModel> orders = [];
   List<ReasonModel> reasons = [];
   ShiftModel? selectedShift;
   SelectModel selectedDriverType = AppConstants.deliverType.first;
@@ -29,7 +29,7 @@ class DriverHomeCubit extends Cubit<DriverHomeState> {
     });
     if (selectedShift != shift) return;
     if (result.success) {
-      orders = List<OrderModel>.from((result.data['data'] ?? []).map((x) => OrderModel.fromJson(x)));
+      orders = List<DriverOrderModel>.from((result.data['data'] ?? []).map((x) => DriverOrderModel.fromJson(x)));
       emit(state.copyWith(getOrderState: RequestState.done, msg: result.msg));
     } else {
       emit(state.copyWith(getOrderState: RequestState.error, msg: result.msg));
@@ -60,7 +60,7 @@ class DriverHomeCubit extends Cubit<DriverHomeState> {
     }
   }
 
-  Future<void> rejectOrder({required OrderModel item, required String reason, required String note}) async {
+  Future<void> rejectOrder({required DriverOrderModel item, required String reason, required String note}) async {
     emit(state.copyWith(rejectOrderState: RequestState.loading));
     final result = await ServerGate.i.sendToServer(url: ApiConstants.setVisitStatus, body: {
       'visitId': item.id,
@@ -77,8 +77,8 @@ class DriverHomeCubit extends Cubit<DriverHomeState> {
     }
   }
 
-  OrderModel? selectedOrder;
-  Future<void> changeStatus({required OrderModel item}) async {
+  DriverOrderModel? selectedOrder;
+  Future<void> changeStatus({required DriverOrderModel item}) async {
     selectedOrder = item;
     emit(state.copyWith(changeStatus: RequestState.loading));
     final result = await ServerGate.i.sendToServer(url: ApiConstants.setVisitNextStatus, params: {
@@ -95,11 +95,11 @@ class DriverHomeCubit extends Cubit<DriverHomeState> {
     }
   }
 
-  getVisit(OrderModel item) async {
+  getVisit(DriverOrderModel item) async {
     emit(state.copyWith(getVisit: RequestState.loading));
     final result = await ServerGate.i.getFromServer(url: ApiConstants.getVisitById, params: {'visitId': item.id});
     if (result.success) {
-      final data = OrderModel.fromJson(result.data['data']);
+      final data = DriverOrderModel.fromJson(result.data['data']);
       if ([176190007, 176190008].contains(data.statusCode)) {
         orders.remove(data);
       } else {

@@ -10,7 +10,7 @@ import '../../../gen/assets.gen.dart';
 import '../../../gen/locale_keys.g.dart';
 import '../../home/widgets/offers_widget.dart';
 import '../../home/widgets/sliders_widget.dart';
-import '../bloc/contracts_cubit.dart';
+import '../cubit/contracts_cubit.dart';
 
 class ContractsLayoutView extends StatefulWidget {
   const ContractsLayoutView({super.key});

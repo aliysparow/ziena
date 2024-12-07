@@ -12,8 +12,8 @@ import '../../../core/widgets/app_btn.dart';
 import '../../../core/widgets/app_sheet.dart';
 import '../../../core/widgets/custom_image.dart';
 import '../../../gen/assets.gen.dart';
-import '../bloc/contracts_cubit.dart';
-import '../bloc/contracts_state.dart';
+import '../cubit/contracts_cubit.dart';
+import '../cubit/contracts_state.dart';
 
 class RateSheet extends StatefulWidget {
   final String visitId;

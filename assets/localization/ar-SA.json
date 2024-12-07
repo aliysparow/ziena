@@ -204,5 +204,11 @@
     "this_feature_is_coming_soon": "هذه الميزة ستأتي قريبًا",
     "update_available": "التحديث المتاح",
     "a_new_version_of_the_app_is_available_please_update_to_continue": "يتوفر إصدار جديد من التطبيق ، يرجى التحديث للمتابعة",
-    "update_now": "تحديث الآن"
+    "update_now": "تحديث الآن",
+    "your_order_has_been_sent": "تم ارسال طلبك بنجاح",
+    "we_will_review_the_assignment_and_contact_you_on_your_mobile_number": "سنقوم بمراجعة طلبك والتواصل معك على رقم الجوال الخاص بك.",
+    "request_for_labor_for_companies": "طلب عمالة للشركات",
+    "request_for_business_services": "طلب خدمات الأعمال ",
+    "you_can_contract_with_us_to_carry_out_the_tasks_assigned_to_us_in_the_best_possible_way_write_the_required_data_and_make_sure_it_is_correct_and_we_will_contact_you": "يمكنك التعاقد معانا للقيام بالمهام المخصصة لنا على اكمل وجه، اكتب البيانات المطلوبة وتأكد من انها صحيحة وسنتواصل معك.",
+    "profession": "المهنة"
 }

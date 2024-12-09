@@ -213,5 +213,8 @@ abstract class  LocaleKeys {
   static const request_for_business_services = 'request_for_business_services';
   static const you_can_contract_with_us_to_carry_out_the_tasks_assigned_to_us_in_the_best_possible_way_write_the_required_data_and_make_sure_it_is_correct_and_we_will_contact_you = 'you_can_contract_with_us_to_carry_out_the_tasks_assigned_to_us_in_the_best_possible_way_write_the_required_data_and_make_sure_it_is_correct_and_we_will_contact_you';
   static const profession = 'profession';
+  static const all_orders = 'all_orders';
+  static const number_of_workers = 'number_of_workers';
+  static const please_enter_valid_number = 'please_enter_valid_number';
 
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ziena/core/widgets/flash_helper.dart';
@@ -19,6 +21,7 @@ class CompanyRequestCubit extends Cubit<CompanyRequestState> {
   final name = TextEditingController(text: '${UserModel.i.firstName} ${UserModel.i.lastName}');
   final mobile = TextEditingController(text: UserModel.i.phone);
   final notes = TextEditingController();
+  final reqNumber = TextEditingController();
   NationalityModel? nationality;
   ProfessionModel? profession;
 
@@ -48,13 +51,13 @@ class CompanyRequestCubit extends Cubit<CompanyRequestState> {
     emit(state.copyWith(createCorporateReq: RequestState.loading));
     final result = await ServerGate.i.sendToServer(url: ApiConstants.createCorporateReq, body: {
       "Nationality": nationality?.id,
-      "Profession": nationality?.id,
+      "Profession": profession?.id,
       "Id": UserModel.i.id,
       "FullName": name.text,
       "Mobile": mobile.text,
       "Notes": notes.text,
-      "ReqNumber": "0",
-      "ReqSource": "2",
+      "ReqNumber": reqNumber.text,
+      "ReqSource": Platform.isAndroid ? "1" : "2",
     });
     if (result.success) {
       emit(state.copyWith(createCorporateReq: RequestState.done, msg: result.msg));

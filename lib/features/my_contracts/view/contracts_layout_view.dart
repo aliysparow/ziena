@@ -155,7 +155,7 @@ class _ContractsLayoutViewState extends State<ContractsLayoutView> {
               spacing: 18.w,
               children: [
                 GestureDetector(
-                  onTap: () => push(NamedRoutes.myOrders, arg: {'type': OrdersType.completed}),
+                  onTap: () => push(NamedRoutes.myOrders),
                   child: Container(
                     padding: EdgeInsets.all(16.w),
                     decoration: BoxDecoration(
@@ -163,25 +163,25 @@ class _ContractsLayoutViewState extends State<ContractsLayoutView> {
                       borderRadius: BorderRadius.circular(12.r),
                     ),
                     child: Text(
-                      LocaleKeys.completed_orders.tr(),
+                      LocaleKeys.all_orders.tr(),
                       style: context.regularText.copyWith(fontSize: 14, color: '#113342'.color),
                     ),
                   ),
                 ),
-                GestureDetector(
-                  onTap: () => push(NamedRoutes.myOrders, arg: {'type': OrdersType.incompleted}),
-                  child: Container(
-                    padding: EdgeInsets.all(16.w),
-                    decoration: BoxDecoration(
-                      color: context.primaryColorLight,
-                      borderRadius: BorderRadius.circular(12.r),
-                    ),
-                    child: Text(
-                      LocaleKeys.incomplete_orders.tr(),
-                      style: context.regularText.copyWith(fontSize: 14, color: '#113342'.color),
-                    ),
-                  ),
-                ),
+                // GestureDetector(
+                //   onTap: () => push(NamedRoutes.myOrders, arg: {'type': OrdersType.incompleted}),
+                //   child: Container(
+                //     padding: EdgeInsets.all(16.w),
+                //     decoration: BoxDecoration(
+                //       color: context.primaryColorLight,
+                //       borderRadius: BorderRadius.circular(12.r),
+                //     ),
+                //     child: Text(
+                //       LocaleKeys.incomplete_orders.tr(),
+                //       style: context.regularText.copyWith(fontSize: 14, color: '#113342'.color),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

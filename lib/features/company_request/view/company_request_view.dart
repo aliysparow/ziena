@@ -2,19 +2,19 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ziena/core/routes/app_routes_fun.dart';
-import 'package:ziena/core/routes/routes.dart';
-import 'package:ziena/features/company_request/cubit/company_request_state.dart';
-import '../../../core/services/service_locator.dart';
-import '../../../core/widgets/select_item_sheet.dart';
-import '../cubit/company_request_cubit.dart';
 
+import '../../../core/routes/app_routes_fun.dart';
+import '../../../core/routes/routes.dart';
+import '../../../core/services/service_locator.dart';
 import '../../../core/utils/extensions.dart';
 import '../../../core/widgets/app_btn.dart';
 import '../../../core/widgets/app_field.dart';
 import '../../../core/widgets/custom_image.dart';
+import '../../../core/widgets/select_item_sheet.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../gen/locale_keys.g.dart';
+import '../cubit/company_request_cubit.dart';
+import '../cubit/company_request_state.dart';
 
 class CompanyRequestView extends StatefulWidget {
   const CompanyRequestView({super.key});
@@ -123,6 +123,18 @@ class _CompanyRequestViewState extends State<CompanyRequestView> {
                 },
                 controller: TextEditingController(text: cubit.profession?.name ?? ''),
                 hintText: LocaleKeys.profession.tr(),
+              ),
+              SizedBox(height: 20.w),
+              AppField(
+                controller: cubit.reqNumber,
+                hintText: LocaleKeys.number_of_workers.tr(),
+                keyboardType: TextInputType.number,
+                validator: (v) {
+                  if (int.tryParse('$v') == null || int.parse('$v') <= 0) {
+                    return LocaleKeys.please_enter_valid_number.tr();
+                  }
+                  return null;
+                },
               ),
               SizedBox(height: 20.w),
               AppField(

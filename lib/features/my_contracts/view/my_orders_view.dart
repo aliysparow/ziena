@@ -17,23 +17,23 @@ import '../cubit/contracts_cubit.dart';
 import '../cubit/contracts_state.dart';
 
 class MyOrdersView extends StatefulWidget {
-  final OrdersType type;
-
-  const MyOrdersView({super.key, required this.type});
+  const MyOrdersView({
+    super.key,
+  });
 
   @override
   State<MyOrdersView> createState() => _MyOrdersViewState();
 }
 
 class _MyOrdersViewState extends State<MyOrdersView> {
-  late final cubit = sl<ContractsCubit>()..getOrders(widget.type);
+  late final cubit = sl<ContractsCubit>()..getOrders();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: context.scaffoldBackgroundColor,
         title: Text(
-          widget.type.name,
+          LocaleKeys.all_orders.tr(),
           style: context.regularText.copyWith(fontSize: 16, color: '#9F9C9C'.color),
         ),
         titleSpacing: 0,
@@ -116,13 +116,13 @@ class _MyOrdersViewState extends State<MyOrdersView> {
             );
           } else if (state.ordersState.isError) {
             return CustomErrorWidget(
-              title: widget.type.name,
+              title: LocaleKeys.all_orders.tr(),
               subtitle: state.msg,
               errorStatus: state.errorType,
             );
           } else if (state.ordersState.isDone) {
             return CustomErrorWidget(
-              title: widget.type.name,
+              title: LocaleKeys.all_orders.tr(),
               subtitle: LocaleKeys.there_are_no_orders.tr(),
               errorStatus: ErrorType.empty,
             );

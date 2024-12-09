@@ -210,5 +210,8 @@
     "request_for_labor_for_companies": "طلب عمالة للشركات",
     "request_for_business_services": "طلب خدمات الأعمال ",
     "you_can_contract_with_us_to_carry_out_the_tasks_assigned_to_us_in_the_best_possible_way_write_the_required_data_and_make_sure_it_is_correct_and_we_will_contact_you": "يمكنك التعاقد معانا للقيام بالمهام المخصصة لنا على اكمل وجه، اكتب البيانات المطلوبة وتأكد من انها صحيحة وسنتواصل معك.",
-    "profession": "المهنة"
+    "profession": "المهنة",
+    "all_orders": "جميع الطلبات",
+    "number_of_workers": "عدد العمال",
+    "please_enter_valid_number": "الرجاء إدخال رقم صالح"
 }

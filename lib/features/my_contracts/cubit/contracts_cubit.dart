@@ -132,10 +132,10 @@ class ContractsCubit extends Cubit<ContractsState> {
     }
   }
 
-  getOrders(OrdersType type) async {
+  getOrders() async {
     emit(state.copyWith(contractState: RequestState.loading));
     final result = await ServerGate.i.getFromServer(
-      url: type.url,
+      url: ApiConstants.getIndividualReqsByUserId,
       params: {"userId": UserModel.i.id},
     );
     if (result.success) {
@@ -161,12 +161,4 @@ enum VisitsType {
 
   String get url => this == VisitsType.upcoming ? ApiConstants.getUpcomingVisits : ApiConstants.getCompletedVisits;
   String get name => this == VisitsType.upcoming ? LocaleKeys.next_visits.tr() : LocaleKeys.complete_visits.tr();
-}
-
-enum OrdersType {
-  incompleted,
-  completed;
-
-  String get url => this == OrdersType.incompleted ? ApiConstants.getIndividualReqsByUserId : ApiConstants.getIndividualReqsByUserId;
-  String get name => this == OrdersType.completed ? LocaleKeys.completed_orders.tr() : LocaleKeys.incomplete_orders.tr();
 }

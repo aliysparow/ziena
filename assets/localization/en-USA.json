@@ -210,5 +210,8 @@
     "request_for_labor_for_companies": "Request for labor for companies",
     "request_for_business_services": "Request for business services",
     "you_can_contract_with_us_to_carry_out_the_tasks_assigned_to_us_in_the_best_possible_way_write_the_required_data_and_make_sure_it_is_correct_and_we_will_contact_you": "You can contract with us to carry out the tasks assigned to us in the best possible way. Write the required data and make sure it is correct and we will contact you.",
-    "profession":"Profession"
+    "profession": "Profession",
+    "all_orders": "All Orders",
+    "number_of_workers": "Number of workers",
+    "please_enter_valid_number": "Please enter a valid number"
 }

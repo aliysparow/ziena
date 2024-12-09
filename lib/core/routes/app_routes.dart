@@ -66,7 +66,7 @@ class AppRoutes {
     NamedRoutes.rejectOrder: (c) => RejectOrderView(item: c.arg['item']),
     NamedRoutes.individualPackages: (c) => IndividualPackagesView(id: c.arg["id"], name: c.arg["name"]),
     NamedRoutes.individualRequest: (c) => IndividualRequestView(title: c.arg['title'], package: c.arg['package']),
-    NamedRoutes.myOrders: (c) => MyOrdersView(type: c.arg["type"]),
+    NamedRoutes.myOrders: (c) => const MyOrdersView(),
     NamedRoutes.companyRequest: (c) => const CompanyRequestView(),
     // // NamedRoutes.cancelOrder: (c) => CancelOrderScreen(orderId: c.arg["orderId"]),
     // NamedRoutes.story: (c) => StoryView(storyModel: c.arg["storyModel"]),

@@ -26,7 +26,12 @@ class IndividualPackagesCubit extends Cubit<IndividualPackagesState> {
     }
   }
 
-  Future<void> createIndividualRequest(IndividaulPackageModel package, String name, String phone, String note) async {
+  Future<void> createIndividualRequest(
+    IndividaulPackageModel package,
+    String name,
+    String phone,
+    String note,
+  ) async {
     emit(state.copyWith(createIndividualRequest: RequestState.loading));
     final result = await ServerGate.i.sendToServer(
       url: ApiConstants.createIndividualRequest,

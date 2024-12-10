@@ -213,5 +213,13 @@
     "profession": "Profession",
     "all_orders": "All Orders",
     "number_of_workers": "Number of workers",
-    "please_enter_valid_number": "Please enter a valid number"
+    "please_enter_valid_number": "Please enter a valid number",
+    "days": "Days",
+    "month": "Month",
+    "monthly_package_details": "Monthly Package Details",
+    "working_nationality": "Working Nationality",
+    "duration_of_service": "Duration of Service",
+    "agree_to": "Agree to",
+    "terms_and_conditions_of_zina": "terms and conditions of Ziena",
+    "please_agree_to_zeina_s_terms_and_conditions": "Please agree to Zeina's terms and conditions."
 }

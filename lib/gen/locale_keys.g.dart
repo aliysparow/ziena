@@ -216,5 +216,13 @@ abstract class  LocaleKeys {
   static const all_orders = 'all_orders';
   static const number_of_workers = 'number_of_workers';
   static const please_enter_valid_number = 'please_enter_valid_number';
+  static const days = 'days';
+  static const month = 'month';
+  static const monthly_package_details = 'monthly_package_details';
+  static const working_nationality = 'working_nationality';
+  static const duration_of_service = 'duration_of_service';
+  static const agree_to = 'agree_to';
+  static const terms_and_conditions_of_zina = 'terms_and_conditions_of_zina';
+  static const please_agree_to_zeina_s_terms_and_conditions = 'please_agree_to_zeina_s_terms_and_conditions';
 
 }

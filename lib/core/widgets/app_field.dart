@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -59,47 +57,60 @@ class _AppFieldState extends State<AppField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      focusNode: _focusNode,
-      initialValue: widget.initialValue,
-      onChanged: widget.onChanged,
-      maxLines: widget.maxLines,
-      readOnly: widget.onTap != null,
-      onTap: widget.onTap,
-      obscureText: widget.keyboardType == TextInputType.visiblePassword && !showPass,
-      controller: widget.controller,
-      keyboardType: TextInputType.number == widget.keyboardType ? const TextInputType.numberWithOptions(signed: true) : widget.keyboardType,
-      validator: (v) {
-        final RegExp regex = RegExp(r'^(00966|966|\+966|0)?5\d{8}$');
-        if (widget.isRequired && v?.isEmpty == true) {
-          return LocaleKeys.this_field_is_required.tr();
-        } else if (widget.keyboardType == TextInputType.phone && v!.isNotEmpty && !regex.hasMatch(v)) {
-          return LocaleKeys.invalid_phone_number.tr();
-        } else if (widget.keyboardType == TextInputType.visiblePassword && v!.length < 8) {
-          return LocaleKeys.the_password_must_not_be_less_than_8_numbers.tr();
-        } else if (widget.validator != null) {
-          return widget.validator?.call(v);
-        }
-        return null;
-      },
-      inputFormatters: [
-        if ([TextInputType.phone, TextInputType.number].contains(widget.keyboardType)) FilteringTextInputFormatter.digitsOnly,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (widget.title?.isNotEmpty == true)
+          Text(
+            widget.title!,
+            style: context.mediumText.copyWith(fontSize: 14),
+          ).withPadding(bottom: 8.h),
+        Directionality(
+          textDirection: widget.keyboardType == TextInputType.phone || context.locale.languageCode == 'en' ? TextDirection.ltr : TextDirection.rtl,
+          child: TextFormField(
+            focusNode: _focusNode,
+            initialValue: widget.initialValue,
+            onChanged: widget.onChanged,
+            maxLines: widget.maxLines,
+            readOnly: widget.onTap != null,
+            onTap: widget.onTap,
+            obscureText: widget.keyboardType == TextInputType.visiblePassword && !showPass,
+            controller: widget.controller,
+            keyboardType: TextInputType.number == widget.keyboardType ? const TextInputType.numberWithOptions(signed: true) : widget.keyboardType,
+            validator: (v) {
+              final RegExp regex = RegExp(r'^(00966|966|\+966|0)?5\d{8}$');
+              if (widget.isRequired && v?.isEmpty == true) {
+                return LocaleKeys.this_field_is_required.tr();
+              } else if (widget.keyboardType == TextInputType.phone && v!.isNotEmpty && !regex.hasMatch(v)) {
+                return LocaleKeys.invalid_phone_number.tr();
+              } else if (widget.keyboardType == TextInputType.visiblePassword && v!.length < 8) {
+                return LocaleKeys.the_password_must_not_be_less_than_8_numbers.tr();
+              } else if (widget.validator != null) {
+                return widget.validator?.call(v);
+              }
+              return null;
+            },
+            inputFormatters: [
+              if ([TextInputType.phone, TextInputType.number].contains(widget.keyboardType)) FilteringTextInputFormatter.digitsOnly,
+            ],
+            onFieldSubmitted: (v) {},
+            style: context.regularText.copyWith(fontSize: 15),
+            textInputAction: widget.maxLines == 1 ? TextInputAction.done : TextInputAction.newline,
+            decoration: InputDecoration(
+              hintText: widget.hintText ?? LocaleKeys.write_val.tr(args: [widget.title ?? '']),
+              fillColor: widget.fillColor,
+              prefixIcon: buildPrefixIcon(context),
+              suffixIcon: buildSuffixIcon(context),
+              border: widget.border ?? (widget.withBorder ? null : InputBorder.none),
+              errorBorder: widget.border ?? (widget.withBorder ? null : InputBorder.none),
+              enabledBorder: widget.border ?? (widget.withBorder ? null : InputBorder.none),
+              focusedBorder: widget.border ?? (widget.withBorder ? null : InputBorder.none),
+              disabledBorder: widget.border ?? (widget.withBorder ? null : InputBorder.none),
+              focusedErrorBorder: widget.border ?? (widget.withBorder ? null : InputBorder.none),
+            ),
+          ),
+        ),
       ],
-      onFieldSubmitted: (v) {},
-      style: context.regularText.copyWith(fontSize: 15),
-      textInputAction: widget.maxLines == 1 ? TextInputAction.done : TextInputAction.newline,
-      decoration: InputDecoration(
-        hintText: widget.hintText ?? LocaleKeys.write_val.tr(args: [widget.title ?? '']),
-        fillColor: widget.fillColor,
-        prefixIcon: buildPrefixIcon(context),
-        suffixIcon: buildSuffixIcon(context),
-        border: widget.border ?? (widget.withBorder ? null : InputBorder.none),
-        errorBorder: widget.border ?? (widget.withBorder ? null : InputBorder.none),
-        enabledBorder: widget.border ?? (widget.withBorder ? null : InputBorder.none),
-        focusedBorder: widget.border ?? (widget.withBorder ? null : InputBorder.none),
-        disabledBorder: widget.border ?? (widget.withBorder ? null : InputBorder.none),
-        focusedErrorBorder: widget.border ?? (widget.withBorder ? null : InputBorder.none),
-      ),
     );
   }
 

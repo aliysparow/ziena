@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ziena/features/company_request/view/company_request_view.dart';
 import 'package:ziena/features/driver_home/view/reject_order_view.dart';
 import 'package:ziena/features/my_contracts/view/my_orders_view.dart';
+import 'package:ziena/features/settings/view/terms_conditions_view.dart';
 
 import '../../features/account/view/account_view.dart';
 import '../../features/addresses/view/add_address_view.dart';
@@ -68,7 +69,7 @@ class AppRoutes {
     NamedRoutes.individualRequest: (c) => IndividualRequestView(title: c.arg['title'], package: c.arg['package']),
     NamedRoutes.myOrders: (c) => const MyOrdersView(),
     NamedRoutes.companyRequest: (c) => const CompanyRequestView(),
-    // // NamedRoutes.cancelOrder: (c) => CancelOrderScreen(orderId: c.arg["orderId"]),
+    NamedRoutes.termsConditions: (c) => const TermsConditionsView(),
     // NamedRoutes.story: (c) => StoryView(storyModel: c.arg["storyModel"]),
     // NamedRoutes.reports: (c) => const ReportsView(),
     // NamedRoutes.addOffer: (c) => const AddOfferView(),

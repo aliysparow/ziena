@@ -51,6 +51,7 @@ class SuccessfullyPage extends StatelessWidget {
           ],
         ).withPadding(horizontal: 35.w),
         bottomNavigationBar: AppBtn(
+          
           onPressed: onTap ?? () => Navigator.pop(context, true),
           title: btnTitle ?? LocaleKeys.close.tr(),
           backgroundColor: btnTitle != null ? context.indicatorColor : Colors.transparent,

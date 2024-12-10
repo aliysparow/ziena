@@ -13,7 +13,7 @@
    upload google , apple stores
     ";
     git push;
-
+flutter clean
     git checkout stg;git merge dev;git push;flutter clean; fvm flutter pub get; fvm flutter build apk --release;git checkout dev
 
     git checkout -b <branch> ; git push -u origin <branch>

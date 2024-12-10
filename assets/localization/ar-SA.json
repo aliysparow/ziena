@@ -213,5 +213,14 @@
     "profession": "المهنة",
     "all_orders": "جميع الطلبات",
     "number_of_workers": "عدد العمال",
-    "please_enter_valid_number": "الرجاء إدخال رقم صالح"
+    "please_enter_valid_number": "الرجاء إدخال رقم صالح",
+    "days": "ايام",
+    "month": "شهر",
+    "monthly_package_details": "تفاصيل الباقة الشهرية",
+    "working_nationality": "جنسية العاملة",
+    "duration_of_service": "مدة الخدمة",
+    "agree_to": "الموافقة على",
+    "terms_and_conditions_of_zina": "الشروط والأحكام لدي زينة",
+    "please_agree_to_zeina_s_terms_and_conditions": "يرجى الموافقة على شروط وأحكام زينة."
+
 }

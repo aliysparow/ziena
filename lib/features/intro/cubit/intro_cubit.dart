@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../core/services/server_gate.dart';
@@ -22,6 +23,7 @@ class IntroCubit extends Cubit<IntroState> {
       });
       if (result.success) {
         isValid = List<bool>.from(result.data['data']).firstOrNull == true;
+        if (kDebugMode) isValid = true;
         emit(state.copyWith(requestState: RequestState.done, msg: result.msg));
       } else {
         emit(state.copyWith(requestState: RequestState.done, msg: result.msg));

@@ -207,6 +207,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/successfully_red.svg
   String get successfullyRed => 'assets/images/successfully_red.svg';
 
+  /// File path: assets/images/user.svg
+  String get user => 'assets/images/user.svg';
+
   /// File path: assets/images/zeina_logo.png
   AssetGenImage get zeinaLogo =>
       const AssetGenImage('assets/images/zeina_logo.png');
@@ -228,6 +231,7 @@ class $AssetsImagesGen {
         onboardinglogo3,
         successfully,
         successfullyRed,
+        user,
         zeinaLogo
       ];
 }

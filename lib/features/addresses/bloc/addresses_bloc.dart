@@ -100,15 +100,15 @@ class AddressesBloc extends Cubit<AddressesState> {
   }
 
   Future<void> deleteAddress(AddressModel address) async {
-    loadingDialog();
+    LoadingDialog.show();
     emit(state.copyWith(deleteAddressState: RequestState.loading));
     final result = await ServerGate.i.getFromServer(url: ApiConstants.deleteAddress, params: {'addressID': address.id});
+    LoadingDialog.hide();
+
     if (result.success) {
-      hideLoadingDialog();
       addresses.remove(address);
       emit(state.copyWith(deleteAddressState: RequestState.done, msg: result.msg));
     } else {
-      hideLoadingDialog();
       FlashHelper.showToast(result.msg);
       emit(state.copyWith(deleteAddressState: RequestState.error, msg: result.msg));
     }

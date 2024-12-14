@@ -10,6 +10,7 @@ class AddressModel extends Model {
   late final int apartmentType;
   late final String apartmentTypeName;
   late final String apartmentNumber;
+  late final String cityName;
   late final int floorNumber;
 
   AddressModel.fromJson([Map<String, dynamic>? json]) {
@@ -20,6 +21,7 @@ class AddressModel extends Model {
     apartmentType = intFromJson(json, 'ApartmentType');
     apartmentTypeName = apartmentType == 1 ? LocaleKeys.apartment.tr() : LocaleKeys.villa.tr();
     apartmentNumber = stringFromJson(json, 'ApartmentNumber');
+    cityName = stringFromJson(json, 'CityName');
     floorNumber = intFromJson(json, 'FloorNumber');
   }
 
@@ -29,5 +31,9 @@ class AddressModel extends Model {
         "Name": name,
         "DistrictName": districtName,
         "ApartmentType": apartmentType,
+        "ApartmentTypeName": apartmentTypeName,
+        "ApartmentNumber": apartmentNumber,
+        "CityName": cityName,
+        "FloorNumber": floorNumber
       };
 }

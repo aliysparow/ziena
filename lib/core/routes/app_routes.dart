@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:ziena/features/account/view/edit_password_view.dart';
 import 'package:ziena/features/company_request/view/company_request_view.dart';
 import 'package:ziena/features/driver_home/view/reject_order_view.dart';
+import 'package:ziena/features/individual_packages/view/summary_booking_view.dart';
 import 'package:ziena/features/my_contracts/view/my_orders_view.dart';
 import 'package:ziena/features/settings/view/terms_conditions_view.dart';
 
 import '../../features/account/view/account_view.dart';
+import '../../features/account/view/edit_profile_view.dart';
 import '../../features/addresses/view/add_address_view.dart';
 import '../../features/addresses/view/addresses_view.dart';
 import '../../features/addresses/view/pick_location_view.dart';
@@ -48,16 +51,11 @@ class AppRoutes {
     NamedRoutes.selectAddress: (c) => const SelectAddressView(),
     NamedRoutes.selectDates: (c) => const SelectDatesView(),
     NamedRoutes.summaryHourlyService: (c) => const SummaryHourlyServiceView(),
-    NamedRoutes.successfullyPage: (c) => SuccessfullyPage(
-          image: c.arg['image'],
-          title: c.arg['title'],
-          subtitle: c.arg['subtitle'],
-          btnTitle: c.arg['btnTitle'],
-          onTap: c.arg['onTap'],
-        ),
+    NamedRoutes.successfullyPage: (c) =>
+        SuccessfullyPage(image: c.arg['image'], title: c.arg['title'], subtitle: c.arg['subtitle'], btnTitle: c.arg['btnTitle'], onTap: c.arg['onTap']),
     NamedRoutes.onboarding: (c) => const OnboardingView(),
     NamedRoutes.account: (c) => const AccountView(),
-    NamedRoutes.paymentIfream: (c) => PaymentIfream(id: c.arg['id'] as String),
+    NamedRoutes.paymentIfream: (c) => PaymentIfream(id: c.arg['id'], type: c.arg['type']?.toString()),
     NamedRoutes.addresses: (c) => const AddressesView(),
     NamedRoutes.addAddress: (c) => const AddAddressView(),
     NamedRoutes.pickLocation: (c) => PickLocationView(position: c.arg['position'], address: c.arg['address']),
@@ -66,13 +64,13 @@ class AppRoutes {
     NamedRoutes.driverHome: (c) => const DriverHomeView(),
     NamedRoutes.rejectOrder: (c) => RejectOrderView(item: c.arg['item']),
     NamedRoutes.individualPackages: (c) => IndividualPackagesView(id: c.arg["id"], name: c.arg["name"]),
-    NamedRoutes.individualRequest: (c) => IndividualRequestView(title: c.arg['title'], package: c.arg['package']),
+    NamedRoutes.individualRequest: (c) => IndividualRequestView(title: c.arg['title'], serviceId: c.arg['serviceId']),
     NamedRoutes.myOrders: (c) => const MyOrdersView(),
     NamedRoutes.companyRequest: (c) => const CompanyRequestView(),
-    NamedRoutes.termsConditions: (c) => const TermsConditionsView(),
-    // NamedRoutes.story: (c) => StoryView(storyModel: c.arg["storyModel"]),
-    // NamedRoutes.reports: (c) => const ReportsView(),
-    // NamedRoutes.addOffer: (c) => const AddOfferView(),
+    NamedRoutes.termsConditions: (c) => TermsConditionsView(url: c.arg['url']),
+    NamedRoutes.summaryIndivadualService: (c) => SummaryIndivadualServiceView(title: c.arg['title'], serviceId: c.arg['serviceId']),
+    NamedRoutes.editProfile: (c) => const EditProfileView(),
+    NamedRoutes.editPassword: (c) => const EditPasswordView(),
     // NamedRoutes.coupons: (c) => const CouponsView(),
     // NamedRoutes.couponForm: (c) => CouponFormView(id: c.arg['id'], model: c.arg['model']),
   };

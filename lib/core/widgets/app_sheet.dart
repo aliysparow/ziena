@@ -35,9 +35,9 @@ class CustomAppSheet extends StatelessWidget {
             if (title?.isNotEmpty == true)
               Text(
                 title ?? "",
-                style: context.boldText.copyWith(fontSize: 20),
-                textAlign: TextAlign.center,
-              ).center.withPadding(horizontal: 24.w),
+                style: context.boldText.copyWith(fontSize: 18),
+                textAlign: TextAlign.start,
+              ).withPadding(horizontal: 24.w),
             Flexible(
               child: SingleChildScrollView(
                 padding: padding ?? EdgeInsets.symmetric(horizontal: 24.w),

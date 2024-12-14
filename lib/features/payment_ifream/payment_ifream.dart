@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +14,8 @@ import 'package:ziena/gen/locale_keys.g.dart';
 
 class PaymentIfream extends StatefulWidget {
   final String id;
-  const PaymentIfream({super.key, required this.id});
+  final String? type;
+  const PaymentIfream({super.key, required this.id, this.type});
 
   @override
   State<PaymentIfream> createState() => _PaymentIfreamState();
@@ -23,13 +26,15 @@ class _PaymentIfreamState extends State<PaymentIfream> {
   bool isLoading = true;
   @override
   void initState() {
-    final uri = Uri.parse(ApiConstants.paymentUrl + widget.id);
+    final uri = Uri.parse(ApiConstants.paymentUrl + widget.id).replace(queryParameters: {if (widget.type != null) 'type': widget.type!});
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {},
-          onPageStarted: (String url) {},
+          onPageStarted: (String url) {
+            log('Page started loading: $url');
+          },
           onPageFinished: (String url) {
             isLoading = false;
             setState(() {});

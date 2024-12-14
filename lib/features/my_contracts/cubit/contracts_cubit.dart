@@ -53,13 +53,13 @@ class ContractsCubit extends Cubit<ContractsState> {
   }
 
   reschduleVisit(String id, DateTime date) async {
-    loadingDialog();
+    LoadingDialog.show();
     emit(state.copyWith(reschduleVisitState: RequestState.loading));
     final result = await ServerGate.i.sendToServer(
       url: ApiConstants.reschduleVisit,
       params: {"VisitId": id, "Date": date.toString()},
     );
-    hideLoadingDialog();
+    LoadingDialog.hide();
     if (result.success) {
       // visits = List<VisitModel>.from((result.data['data'] ?? []).map((x) => VisitModel.fromJson(x)));
       // visits.add(VisitModel.fromJson({}));
@@ -71,7 +71,7 @@ class ContractsCubit extends Cubit<ContractsState> {
   }
 
   rateVisit({required String visitId, required double rate, required String rateNotes}) async {
-    loadingDialog();
+    LoadingDialog.show();
     emit(state.copyWith(reschduleVisitState: RequestState.loading));
     final result = await ServerGate.i.sendToServer(
       url: ApiConstants.rateVisit,
@@ -81,7 +81,7 @@ class ContractsCubit extends Cubit<ContractsState> {
         "RateNotes": rateNotes,
       },
     );
-    hideLoadingDialog();
+    LoadingDialog.hide();
     if (result.success) {
       FlashHelper.showToast(result.msg, type: MessageType.success);
       emit(state.copyWith(reschduleVisitState: RequestState.done));
@@ -92,7 +92,7 @@ class ContractsCubit extends Cubit<ContractsState> {
   }
 
   setFavoriteLabor({required String workerId}) async {
-    loadingDialog();
+    LoadingDialog.show();
     emit(state.copyWith(setFavoriteLaborState: RequestState.loading));
     final result = await ServerGate.i.sendToServer(
       url: ApiConstants.setFavoriteLabor,
@@ -101,7 +101,7 @@ class ContractsCubit extends Cubit<ContractsState> {
         "laborId": workerId,
       },
     );
-    hideLoadingDialog();
+    LoadingDialog.hide();
     if (result.success) {
       FlashHelper.showToast(result.msg, type: MessageType.success);
       emit(state.copyWith(setFavoriteLaborState: RequestState.done));
@@ -112,7 +112,7 @@ class ContractsCubit extends Cubit<ContractsState> {
   }
 
   blockLabor({required String workerId, required String note}) async {
-    loadingDialog();
+    LoadingDialog.show();
     emit(state.copyWith(blockLaborState: RequestState.loading));
     final result = await ServerGate.i.sendToServer(
       url: ApiConstants.blockLabor,
@@ -122,7 +122,8 @@ class ContractsCubit extends Cubit<ContractsState> {
         "Notes": note,
       },
     );
-    hideLoadingDialog();
+    LoadingDialog.hide();
+
     if (result.success) {
       FlashHelper.showToast(result.msg, type: MessageType.success);
       emit(state.copyWith(blockLaborState: RequestState.done));

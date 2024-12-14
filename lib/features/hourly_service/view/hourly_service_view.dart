@@ -29,10 +29,8 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
   late final HourlyServiceBloc bloc;
   @override
   void initState() {
-    if (!sl.isRegistered<HourlyServiceBloc>(instanceName: widget.id)) {
-      sl.registerSingleton<HourlyServiceBloc>(HourlyServiceBloc(), instanceName: widget.id);
-    }
-    bloc = sl<HourlyServiceBloc>(instanceName: widget.id)..getPacages(widget.id);
+    sl.resetLazySingleton<HourlyServiceBloc>();
+    bloc = sl<HourlyServiceBloc>()..getPacages(widget.id);
 
     super.initState();
   }

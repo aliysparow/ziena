@@ -16,6 +16,7 @@ import '../../features/individual_packages/cubit/individual_packages_cubit.dart'
 import '../../features/intro/cubit/intro_cubit.dart';
 import '../../features/layout/bloc/layout_bloc.dart';
 import '../../features/my_contracts/cubit/contracts_cubit.dart';
+import '../../features/settings/cubit/settings_cubit.dart';
 import 'location_service.dart';
 
 final sl = GetIt.instance;
@@ -40,7 +41,7 @@ class ServicesLocator {
     sl.registerFactory(() => AccountCubit());
     sl.registerFactory(() => IntroCubit());
     sl.registerFactory(() => CompanyRequestCubit());
-    // sl.registerFactory(() => AddStoryBloc());
+    sl.registerFactory(() => SettingsCubit());
     // sl.registerFactory(() => OffersBloc());
     // sl.registerFactory(() => NotificationsBloc());
     // sl.registerLazySingleton(() => CouponsBloc());

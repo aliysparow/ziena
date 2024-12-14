@@ -5,9 +5,11 @@ import 'base.dart';
 class IndividaulPackageModel extends Model {
   late final int duration, monthlyFees, advancedAmount, paymentMethod;
   late final NationalityModel nationality;
-  late final double insuranceAmount, finalPrice, initialPrice;
-  late final String title;
+  late final double insuranceAmount, finalPrice, initialPrice, AdvancedAmount, MonthlyFees, InsuranceAmount;
   late final bool hasInsurance;
+  late final String title;
+  late final String serviceId;
+
   IndividaulPackageModel.fromJson([Map<String, dynamic>? json]) {
     id = stringFromJson(json, "Id");
     paymentMethod = intFromJson(json, "PaymentMethod");
@@ -20,6 +22,7 @@ class IndividaulPackageModel extends Model {
     initialPrice = doubleFromJson(json, 'InitialPrice');
     title = stringFromJson(json, 'Title');
     hasInsurance = boolFromJson(json, 'HasInsurance');
+    serviceId = stringFromJson(json, 'ServiceId');
   }
 
   @override

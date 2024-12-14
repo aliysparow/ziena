@@ -101,15 +101,25 @@ class PaginationLoading extends StatelessWidget {
   }
 }
 
-loadingDialog() {
-  return showDialog(
-    barrierDismissible: false,
-    // barrierColor: Colors.transparent,
-    context: navigator.currentContext!,
-    builder: (x) => const LoadingApp(),
-  );
-}
+class LoadingDialog {
+  static bool _isOpend = false;
+  static void show() {
+    if (_isOpend) return;
+    _isOpend = true;
+    showDialog(
+      context: navigator.currentContext!,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.transparent,
+        content: PopScope(canPop: false, child: CustomProgress(size: 25.h, color: context.primaryColorLight).center),
+      ),
+    );
+  }
 
-hideLoadingDialog() {
-  Navigator.pop(navigator.currentContext!);
+  static void hide() {
+    if (_isOpend) {
+      Navigator.pop(navigator.currentContext!);
+      _isOpend = false;
+    }
+  }
 }

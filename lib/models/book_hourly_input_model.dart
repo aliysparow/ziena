@@ -24,6 +24,7 @@ class BookHourlyInputModel {
   List<int> week = [];
   final phone1 = TextEditingController();
   final phone2 = TextEditingController();
+  bool acceptTerms = false;
 
   bool showPackage(HourlyPackageModel package) {
     if (nationality != null && period != null) {
@@ -80,6 +81,9 @@ class BookHourlyInputModel {
     } else if (NamedRoutes.summaryHourlyService == context.currentRoute) {
       if (phone1.text.isEmpty) {
         FlashHelper.showToast(LocaleKeys.please_enter_additional_phone.tr(), type: MessageType.warning);
+        return false;
+      } else if (!acceptTerms) {
+        FlashHelper.showToast(LocaleKeys.please_agree_to_zeina_s_terms_and_conditions.tr(), type: MessageType.warning);
         return false;
       } else {
         return true;

@@ -27,4 +27,7 @@ class NamedRoutes {
   static const myOrders = "/my_orders";
   static const companyRequest = "/CompanyRequest";
   static const termsConditions = "/termsConditions";
+  static const summaryIndivadualService = "/summaryIndivadualService";
+  static const editProfile = "/editProfile";
+  static const editPassword = "/editPassword";
 }

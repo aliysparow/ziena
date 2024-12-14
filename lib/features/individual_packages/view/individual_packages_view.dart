@@ -31,8 +31,13 @@ class _IndividualPackagesViewState extends State<IndividualPackagesView> {
       sl.registerSingleton<IndividualPackagesCubit>(IndividualPackagesCubit(), instanceName: widget.id);
     }
     cubit = sl<IndividualPackagesCubit>(instanceName: widget.id)..getPackages(widget.id);
-
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    sl.unregister(instance: cubit);
+    super.dispose();
   }
 
   @override
@@ -122,7 +127,7 @@ class _IndividualPackagesViewState extends State<IndividualPackagesView> {
                                     ).withPadding(end: 4.w),
                                     Flexible(
                                       child: Text(
-                                        '${item.duration} ${LocaleKeys.days.tr()}',
+                                        '${item.duration.months.inDays} ${LocaleKeys.days.tr()}',
                                         style: context.semiboldText.copyWith(fontSize: 12),
                                       ),
                                     ),
@@ -138,7 +143,7 @@ class _IndividualPackagesViewState extends State<IndividualPackagesView> {
                                     ).withPadding(end: 4.w),
                                     Flexible(
                                       child: Text(
-                                        '${item.initialPrice} ${LocaleKeys.sar.tr()}/${LocaleKeys.month.tr()}',
+                                        '${item.finalPrice} ${LocaleKeys.sar.tr()}/${LocaleKeys.month.tr()}',
                                         style: context.semiboldText.copyWith(fontSize: 12),
                                       ),
                                     ),
@@ -147,9 +152,20 @@ class _IndividualPackagesViewState extends State<IndividualPackagesView> {
                               ],
                             ),
                             SizedBox(height: 15.h),
+                            Text(
+                              '${LocaleKeys.insurance_amount_val_sar.tr(
+                                args: ['${item.insuranceAmount.round()}'],
+                              )} / ${LocaleKeys.submission_amount_val_sar.tr(
+                                args: ['${item.advancedAmount.round()}'],
+                              )}',
+                              textAlign: TextAlign.center,
+                              style: context.lightText.copyWith(fontSize: 12),
+                            ),
+                            SizedBox(height: 15.h),
                             GestureDetector(
                               onTap: () {
-                                push(NamedRoutes.individualRequest, arg: {'package': item, 'title': widget.name});
+                                cubit.input.package = item;
+                                push(NamedRoutes.individualRequest, arg: {'serviceId': widget.id, 'title': widget.name});
                               },
                               child: Container(
                                 padding: EdgeInsets.all(4.h),
@@ -163,7 +179,7 @@ class _IndividualPackagesViewState extends State<IndividualPackagesView> {
                                   style: context.semiboldText.copyWith(fontSize: 12, color: context.primaryColorLight),
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       );

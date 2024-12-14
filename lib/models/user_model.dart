@@ -35,6 +35,7 @@ class UserModel extends Model {
   late String identity;
 
   bool get isAuth => token.isNotEmpty;
+  String get fulName => "$firstName $lastName";
 
   fromJson([Map<String, dynamic>? json]) {
     id = stringFromJson(json, "UserId");

@@ -1,8 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ziena/core/routes/app_routes_fun.dart';
+import 'package:ziena/core/utils/constant.dart';
 import 'package:ziena/core/widgets/app_field.dart';
+import 'package:ziena/core/widgets/confirm_dialog.dart';
 import 'package:ziena/features/hourly_service/bloc/hourly_service_state.dart';
 
 import '../../../core/routes/routes.dart';
@@ -26,7 +30,6 @@ class SummaryHourlyServiceView extends StatefulWidget {
 class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
   final bloc = sl<HourlyServiceBloc>();
   final formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -334,6 +337,47 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                 ],
               ),
             ),
+            Row(
+              children: [
+                SizedBox(
+                  height: 24.h,
+                  width: 24.h,
+                  child: Checkbox(
+                    value: bloc.inputData.acceptTerms,
+                    onChanged: (value) {
+                      setState(() {
+                        bloc.inputData.acceptTerms = !bloc.inputData.acceptTerms;
+                      });
+                    },
+                  ),
+                ),
+                SizedBox(width: 3.w),
+                Expanded(
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: LocaleKeys.agree_to.tr(),
+                          style: context.lightText.copyWith(fontSize: 16, color: '#113342'.color),
+                        ),
+                        const TextSpan(text: ' '),
+                        TextSpan(
+                          text: LocaleKeys.terms_and_conditions_of_zina.tr(),
+                          style: context.lightText.copyWith(
+                            fontSize: 16,
+                            color: '#113342'.color,
+                            decoration: TextDecoration.underline,
+                            decorationColor: '#113342'.color,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () => push(NamedRoutes.termsConditions, arg: {'url': ApiConstants.termsAndConditionsHourly}),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ).withPadding(horizontal: 16.w, vertical: 12.h)
           ],
         ),
       ),
@@ -353,7 +397,17 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                     loading: state.bookingState.isLoading,
                     onPressed: () {
                       if (formKey.isValid && bloc.inputData.validate(context)) {
-                        bloc.createBooking();
+                        showDialog(
+                          context: context,
+                          builder: (context) => ConfirmDialog(
+                            title: LocaleKeys.note.tr(),
+                            subTitle: LocaleKeys.must_be_family.tr(),
+                            trueBtn: LocaleKeys.ok.tr(),
+                            falseBtn: LocaleKeys.cancel.tr(),
+                          ),
+                        ).then((v) {
+                          if (v == true) bloc.createBooking();
+                        });
                       }
                     },
                     title: LocaleKeys.create_contract.tr(),

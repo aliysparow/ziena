@@ -7,7 +7,9 @@ import '../utils/extensions.dart';
 
 class ConfirmDialog extends StatelessWidget {
   final String title, subTitle;
-  const ConfirmDialog({super.key, required this.title, required this.subTitle});
+  final String? trueBtn, falseBtn;
+
+  const ConfirmDialog({super.key, required this.title, required this.subTitle, this.trueBtn, this.falseBtn});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class ConfirmDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(title, style: context.boldText.copyWith(fontSize: 18)),
-          Text(subTitle, style: context.regularText.copyWith(color: context.hintColor)).withPadding(bottom: 20.h, top: 16.h),
+          Text(subTitle, style: context.regularText).withPadding(bottom: 20.h, top: 16.h),
           SizedBox(
             height: 40.h,
             child: Row(
@@ -34,7 +36,7 @@ class ConfirmDialog extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        LocaleKeys.yes.tr(),
+                        trueBtn ?? LocaleKeys.yes.tr(),
                         style: context.semiboldText,
                       ),
                     ),
@@ -53,7 +55,7 @@ class ConfirmDialog extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      LocaleKeys.no.tr(),
+                      falseBtn ?? LocaleKeys.no.tr(),
                       style: context.semiboldText.copyWith(color: Colors.white, fontSize: 12),
                     ),
                   ),

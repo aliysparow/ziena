@@ -107,18 +107,27 @@ class AppThemes {
         dropdownMenuTheme: DropdownMenuThemeData(
           textStyle: const TextStyle(color: blackColor, fontSize: 12, fontWeight: FontWeight.w500),
           inputDecorationTheme: InputDecorationTheme(
-            fillColor: primaryContainer,
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            labelStyle: TextStyle(
+                fontSize: 14,
+                fontFamily: LocaleKeys.lang.tr() == 'en' ? FontFamily.poppins : FontFamily.iBMPlexSansArabic,
+                color: greyColor,
+                fontWeight: FontWeight.w400),
+            hintStyle: TextStyle(
+              fontSize: 12,
+              fontFamily: LocaleKeys.lang.tr() == 'en' ? FontFamily.poppins : FontFamily.iBMPlexSansArabic,
+              color: greyColor,
+              fontWeight: FontWeight.w400,
+            ),
+            fillColor: whiteColor,
             filled: true,
-            hintStyle: const TextStyle(color: blackColor, fontSize: 12, fontWeight: FontWeight.w500),
-            contentPadding: EdgeInsets.symmetric(horizontal: 12.w),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(100),
-              borderSide: BorderSide.none,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(100),
-              borderSide: BorderSide.none,
-            ),
+            focusedErrorBorder: OutlineInputBorder(borderSide: const BorderSide(color: secondaryColor), borderRadius: BorderRadius.circular(12.r)),
+            errorBorder: OutlineInputBorder(borderSide: const BorderSide(color: redColor), borderRadius: BorderRadius.circular(12.r)),
+            disabledBorder: OutlineInputBorder(borderSide: const BorderSide(color: borderColor), borderRadius: BorderRadius.circular(12.r)),
+            border: OutlineInputBorder(borderSide: const BorderSide(color: borderColor), borderRadius: BorderRadius.circular(12.r)),
+            focusedBorder: OutlineInputBorder(borderSide: const BorderSide(color: secondaryColor), borderRadius: BorderRadius.circular(12.r)),
+            enabledBorder: OutlineInputBorder(borderSide: const BorderSide(color: borderColor), borderRadius: BorderRadius.circular(12.r)),
+            contentPadding: EdgeInsets.symmetric(vertical: 17.h, horizontal: 20.w),
           ),
         ),
         checkboxTheme: CheckboxThemeData(
@@ -148,6 +157,7 @@ class AppThemes {
           enabledBorder: OutlineInputBorder(borderSide: const BorderSide(color: borderColor), borderRadius: BorderRadius.circular(12.r)),
           contentPadding: EdgeInsets.symmetric(vertical: 17.h, horizontal: 20.w),
         ),
+
         bottomSheetTheme: BottomSheetThemeData(
           backgroundColor: Colors.transparent,
           modalBackgroundColor: Colors.transparent,

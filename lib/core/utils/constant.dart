@@ -11,6 +11,10 @@ class AppConstants {
     WeekDayModel(id: 4, name: "thursday"),
     WeekDayModel(id: 5, name: "friday"),
   ];
+  static List<SelectModel> genders = const [
+    SelectModel(id: 'male', name: 'male'),
+    SelectModel(id: 'female', name: 'female'),
+  ];
   static List<SelectModel> deliverType = const [
     SelectModel(id: 0, name: "delivery"),
     SelectModel(id: 1, name: "back"),
@@ -80,9 +84,14 @@ class ApiConstants {
   static const String getTodayShifts = 'Shift/GetTodayShifts';
 
   static const String getIndividualPackages = 'Package/GetIndividualPackages';
-  static const String createIndividualRequest = 'Request/CreateIndividualRequest';
+  static const String createIndvContract = 'Contract/CreateIndvContract';
 
   static const String getAllCountries = 'Lookup/GetAllCountries';
   static const String getAllProfessions = 'Lookup/GetAllProfessions';
   static const String createCorporateReq = 'Request/CreateCorporateReq';
+  static const String getWorkers = 'Worker/GetIndvWorkerList';
+  static const String termsAndConditionsHourly = 'Lookup/TermsAndConditionsHourly';
+  static const String termsAndConditionsIndv = 'Lookup/TermsAndConditionsIndv';
+  static const String editProfile = 'Lookup/editProfile';
+  static const String editPassword = 'Lookup/editPassword';
 }

@@ -24,6 +24,7 @@ class ServerGate {
         "Lang": LocaleKeys.lang.tr(),
       };
 
+
   final _dio = Dio();
 
   ServerGate._() {

@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ziena/blocs/cities/cities_bloc.dart';
 import 'package:ziena/core/widgets/app_btn.dart';
 import 'package:ziena/features/auth/register/bloc/register_states.dart';
-import 'package:ziena/features/auth/register/widgets/select_city.dart';
+import 'package:ziena/features/global_widget/select_city.dart';
 
 import '../../../../core/routes/routes.dart';
 import '../../../../core/services/service_locator.dart';
@@ -93,7 +93,10 @@ class _RegisterViewState extends State<RegisterView> {
               //   title: LocaleKeys.email.tr(),
               //   prefixIcon: Icon(Icons.email_outlined, size: 18.h, color: context.secondaryColor),
               // ).withPadding(vertical: 10.h),
-              SelectCityWidget(onSelected: (value) => bloc.city = value),
+              SelectCityWidget(
+                onSelected: (value) => bloc.city = value,
+                prefixIcon: Icon(Icons.place_outlined, size: 18.h, color: context.secondaryColor),
+              ),
               AppField(
                 prefixIcon: Icon(CupertinoIcons.lock, size: 18.h, color: context.secondaryColor),
                 controller: bloc.password,

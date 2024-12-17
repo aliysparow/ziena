@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAnSvmB18aKlugLiCJrs9K_JepztelunQE',
-    appId: '1:96738949246:android:29c29f1792dd520238802f',
+    appId: '1:96738949246:android:1ec0d8923412a85b38802f',
     messagingSenderId: '96738949246',
     projectId: 'zena-1ad72',
     storageBucket: 'zena-1ad72.firebasestorage.app',

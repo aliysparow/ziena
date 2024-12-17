@@ -259,5 +259,7 @@ abstract class  LocaleKeys {
   static const when_you_change_your_password_you_will_be_logged_out_of_all_devices_you_are_logged_in_to = 'when_you_change_your_password_you_will_be_logged_out_of_all_devices_you_are_logged_in_to';
   static const old_password = 'old_password';
   static const password_does_not_match = 'password_does_not_match';
+  static const that_s_impossible_to_edit_your_phone_number = 'that_s_impossible_to_edit_your_phone_number';
+  static const account_data_has_been_modified_successfully = 'account_data_has_been_modified_successfully';
 
 }

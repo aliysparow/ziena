@@ -13,7 +13,7 @@ class UserModel extends Model {
   late String token;
   late String userName;
   // late dynamic idNumber;
-  // late dynamic nationality;
+  late String nationality;
   late String city;
   late String firstName;
   late String lastName;
@@ -42,6 +42,7 @@ class UserModel extends Model {
     userName = stringFromJson(json, "UserName");
     token = stringFromJson(json, "Token");
     city = stringFromJson(json, "City");
+    nationality = stringFromJson(json, "Nationality");
     phone = stringFromJson(json, "phone");
     firstName = stringFromJson(json, "FirstName");
     lastName = stringFromJson(json, "LastName");
@@ -57,6 +58,15 @@ class UserModel extends Model {
     } else {
       this.userType = UserType.client;
     }
+  }
+
+  fromEditProfile([Map<String, dynamic>? json]) {
+    id = stringFromJson(json, "UserId");
+    firstName = stringFromJson(json, "FirstName");
+    lastName = stringFromJson(json, "LastName");
+    email = stringFromJson(json, "Email");
+    city = stringFromJson(json, "CityId");
+    nationality = stringFromJson(json, "NationalId");
   }
 
   save() {
@@ -89,6 +99,8 @@ class UserModel extends Model {
         "UserType": userType.toInt,
         "EmailConfirmed": emailConfirmed,
         "Identity": identity,
+        "DriverId": driverId,
+        "Nationality": nationality,
       };
 }
 

@@ -21,6 +21,7 @@ class GlobalNotification {
       print("device token : $_deviceToken");
       return _deviceToken;
     } catch (e) {
+      print("device token : $e");
       return _deviceToken;
     }
   }

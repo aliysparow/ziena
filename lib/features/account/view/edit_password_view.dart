@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ziena/core/widgets/successfully_sheet.dart';
 
 import '../../../core/services/service_locator.dart';
 import '../../../core/utils/extensions.dart';
@@ -84,12 +85,25 @@ class _EditPasswordViewState extends State<EditPasswordView> {
       ),
       bottomNavigationBar: BlocConsumer<AccountCubit, AccountState>(
         bloc: cubit,
-        buildWhen: (previous, current) => previous.editProfile != current.editProfile,
-        listenWhen: (previous, current) => previous.editProfile != current.editProfile,
-        listener: (context, state) {},
+        buildWhen: (previous, current) => previous.editPassword != current.editPassword,
+        listenWhen: (previous, current) => previous.editPassword != current.editPassword,
+        listener: (context, state) {
+          if (state.editPassword.isDone) {
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              isDismissible: false,
+              enableDrag: false,
+              builder: (context) => SuccessfullySheet(
+                title: LocaleKeys.password_changed_successfully.tr(),
+                onLottieFinish: () => Navigator.pop(context),
+              ),
+            );
+          }
+        },
         builder: (context, state) {
           return AppBtn(
-            loading: state.editProfile.isLoading,
+            loading: state.editPassword.isLoading,
             onPressed: () {
               if (formKey.isValid) {
                 cubit.editPassword();

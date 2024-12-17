@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 
 import '../../blocs/cities/cities_bloc.dart';
+import '../../blocs/nationalities/nationalities_bloc.dart';
 import '../../features/account/cubit/account_cubit.dart';
 import '../../features/addresses/bloc/addresses_bloc.dart';
 import '../../features/auth/forget_password/bloc/forget_password_bloc.dart';
@@ -42,7 +43,7 @@ class ServicesLocator {
     sl.registerFactory(() => IntroCubit());
     sl.registerFactory(() => CompanyRequestCubit());
     sl.registerFactory(() => SettingsCubit());
-    // sl.registerFactory(() => OffersBloc());
+    sl.registerFactory(() => NationalitiesBloc());
     // sl.registerFactory(() => NotificationsBloc());
     // sl.registerLazySingleton(() => CouponsBloc());
     // sl.registerFactory(() => OrdersBloc());

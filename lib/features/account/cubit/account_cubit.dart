@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:ziena/core/widgets/select_item_sheet.dart';
 
 import '../../../core/services/server_gate.dart';
 import '../../../core/utils/constant.dart';
@@ -32,22 +31,25 @@ class AccountCubit extends Cubit<AccountState> {
     }
   }
 
-  final name = TextEditingController(text: UserModel.i.fulName);
+  final firstName = TextEditingController(text: UserModel.i.firstName);
+  final lastName = TextEditingController(text: UserModel.i.lastName);
   final email = TextEditingController(text: UserModel.i.email);
-  final phone = TextEditingController(text: UserModel.i.phone);
-  SelectModel? gender;
+  String? cityId = UserModel.i.city;
+  String? nationalityId = UserModel.i.nationality;
   editProfile() async {
     emit(state.copyWith(editProfile: RequestState.loading));
-    final result = await ServerGate.i.sendToServer(url: ApiConstants.editProfile, body: {
+    final result = await ServerGate.i.putToServer(url: ApiConstants.editProfile, body: {
       "UserId": UserModel.i.id,
-      "FullName": name.text,
+      "FirstName": firstName.text,
+      "LastName": lastName.text,
       "Email": email.text,
-      "Mobile": phone.text,
+      "CityId": cityId,
+      "NationalityId": nationalityId,
     });
 
     if (result.success) {
       UserModel.i
-        ..fromJson(result.data['data'])
+        ..fromEditProfile(result.data['data'])
         ..save();
       FlashHelper.showToast(result.msg, type: MessageType.success);
       emit(state.copyWith(editProfile: RequestState.done, msg: result.msg));
@@ -61,7 +63,7 @@ class AccountCubit extends Cubit<AccountState> {
   final password = TextEditingController();
   final confirmPassword = TextEditingController();
   editPassword() async {
-    emit(state.copyWith(editProfile: RequestState.loading));
+    emit(state.copyWith(editPassword: RequestState.loading));
     final result = await ServerGate.i.sendToServer(url: ApiConstants.editPassword, body: {
       "UserId": UserModel.i.id,
       "OldPassword": oldPassword.text,
@@ -70,19 +72,24 @@ class AccountCubit extends Cubit<AccountState> {
     });
 
     if (result.success) {
-      emit(state.copyWith(editProfile: RequestState.done, msg: result.msg));
+      emit(state.copyWith(editPassword: RequestState.done, msg: result.msg));
     } else {
       FlashHelper.showToast(result.msg);
-      emit(state.copyWith(editProfile: RequestState.done, msg: result.msg));
+      emit(state.copyWith(editPassword: RequestState.done, msg: result.msg));
     }
   }
 
+  String? phone;
   contactUs() async {
+    if (phone != null) {
+      launchUrl(Uri(path: phone, scheme: 'tel'));
+      return;
+    }
     emit(state.copyWith(contactUs: RequestState.loading));
-    final result = await ServerGate.i.getFromServer(url: ApiConstants.editPassword);
-
+    final result = await ServerGate.i.getFromServer(url: ApiConstants.getContactUsPhone);
     if (result.success) {
-      launchUrl(Uri(path: result.data['data'], scheme: 'tel'));
+      phone = result.data['data'].toString();
+      launchUrl(Uri(path: phone, scheme: 'tel'));
       emit(state.copyWith(contactUs: RequestState.done, msg: result.msg));
     } else {
       FlashHelper.showToast(result.msg);

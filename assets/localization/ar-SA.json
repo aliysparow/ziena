@@ -257,8 +257,9 @@
     "gender": "النوع",
     "change_password_settings": "اعدادات تغيير كلمة السر",
     "when_you_change_your_password_you_will_be_logged_out_of_all_devices_you_are_logged_in_to": "عند تغيير كلمة السر الخاصة بك سيتم تسجيل خروجك من جميع الأجهزة التي تم التسجيل فيها.",
-    "old_password":"كلمة المرور القديمة",
-    "password_does_not_match":"كلمة المرور لا تتطابق"
-
+    "old_password": "كلمة المرور القديمة",
+    "password_does_not_match": "كلمة المرور لا تتطابق",
+    "that_s_impossible_to_edit_your_phone_number": "من المستحيل تعديل رقم هاتفك",
+    "account_data_has_been_modified_successfully": "تم تعديل بيانات الحساب بنجاح."
 
 }

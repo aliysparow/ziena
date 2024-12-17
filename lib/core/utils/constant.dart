@@ -30,7 +30,7 @@ class AppConstants {
 شارك المتعة مع أصدقائك، وخليهم يجربوا اللي يناسبهم في أي وقت وأي مكان! ❤️
 ''';
 
-  static const String googlePlayLink = 'https://play.google.com/store/apps/details?id=com.efada.zienaa';
+  static const String googlePlayLink = 'https://play.google.com/store/apps/details?id=com.efada.zienaapp';
   static const String appleStoreLink = 'https://apps.apple.com/eg/app/ziena/id1601674625';
 }
 
@@ -92,6 +92,7 @@ class ApiConstants {
   static const String getWorkers = 'Worker/GetIndvWorkerList';
   static const String termsAndConditionsHourly = 'Lookup/TermsAndConditionsHourly';
   static const String termsAndConditionsIndv = 'Lookup/TermsAndConditionsIndv';
-  static const String editProfile = 'Lookup/editProfile';
-  static const String editPassword = 'Lookup/editPassword';
+  static const String editProfile = 'account/UpdateProfile';
+  static const String editPassword = 'account/ChangePassword';
+  static const String getContactUsPhone = 'Lookup/GetContactUsPhone';
 }

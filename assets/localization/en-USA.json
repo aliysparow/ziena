@@ -257,6 +257,8 @@
     "gender": "Gender",
     "change_password_settings": "Change Password Settings",
     "when_you_change_your_password_you_will_be_logged_out_of_all_devices_you_are_logged_in_to": "When you change your password, you will be logged out of all devices you are logged in to.",
-    "old_password":"Old Password",
-    "password_does_not_match":"Password does not match"
+    "old_password": "Old Password",
+    "password_does_not_match": "Password does not match",
+    "that_s_impossible_to_edit_your_phone_number": "That's impossible to edit your phone number",
+    "account_data_has_been_modified_successfully": "Account data has been modified successfully."
 }

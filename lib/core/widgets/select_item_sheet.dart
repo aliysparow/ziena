@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ziena/core/widgets/app_btn.dart';
+import 'package:ziena/core/widgets/app_field.dart';
 import 'package:ziena/gen/locale_keys.g.dart';
 
 import '../utils/extensions.dart';
@@ -27,47 +28,76 @@ class SelectItemSheet extends StatefulWidget {
 }
 
 class _SelectItemSheetState extends State<SelectItemSheet> {
+  final searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    searchController.addListener(() {
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomAppSheet(
       title: widget.title,
+      isScrollable: false,
       children: [
         SizedBox(height: 16.h),
-        ...List.generate(
-          widget.items.length,
-          (index) => GestureDetector(
-            onTap: () {
-              Navigator.pop(context, widget.items[index] != widget.initItem ? widget.items[index] : null);
-            },
-            child: Container(
-              margin: EdgeInsets.symmetric(vertical: 8.h),
-              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.r),
-                border: Border.all(color: context.borderColor),
-              ),
-              child: Row(
-                children: [
-                  if (widget.withImage)
-                    CustomImage(
-                      widget.items[index].image,
-                      height: 30.h,
-                      width: 40.h,
-                      borderRadius: BorderRadius.circular(4.r),
-                    ).withPadding(end: 8.w),
-                  Expanded(
-                    child: Text(
-                      widget.items[index].name,
-                      style: context.mediumText.copyWith(fontSize: 16),
+        AppField(
+          hintText: LocaleKeys.write_your_search.tr(),
+          controller: searchController,
+        ),
+        SizedBox(height: 16.h),
+        Flexible(
+          child: SingleChildScrollView(
+            child: Column(
+              children: List.generate(
+                widget.items.length,
+                (index) {
+                  if (searchController.text.isNotEmpty) {
+                    if (!widget.items[index].name.toLowerCase().contains(searchController.text.toLowerCase())) {
+                      return const SizedBox();
+                    }
+                  }
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context, widget.items[index] != widget.initItem ? widget.items[index] : null);
+                    },
+                    child: Container(
+                      margin: EdgeInsets.symmetric(vertical: 8.h),
+                      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.r),
+                        border: Border.all(color: context.borderColor),
+                      ),
+                      child: Row(
+                        children: [
+                          if (widget.withImage)
+                            CustomImage(
+                              widget.items[index].image,
+                              height: 30.h,
+                              width: 40.h,
+                              borderRadius: BorderRadius.circular(4.r),
+                            ).withPadding(end: 8.w),
+                          Expanded(
+                            child: Text(
+                              widget.items[index].name,
+                              style: context.mediumText.copyWith(fontSize: 16),
+                            ),
+                          ),
+                          if (widget.initItem == widget.items[index])
+                            Icon(
+                              Icons.check,
+                              color: context.primaryColor,
+                              size: 18.h,
+                            ),
+                        ],
+                      ),
                     ),
-                  ),
-                  if (widget.initItem == widget.items[index])
-                    Icon(
-                      Icons.check,
-                      color: context.primaryColor,
-                      size: 18.h,
-                    ),
-                ],
+                  );
+                },
               ),
             ),
           ),

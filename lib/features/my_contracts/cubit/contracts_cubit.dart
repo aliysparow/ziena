@@ -39,7 +39,7 @@ class ContractsCubit extends Cubit<ContractsState> {
     final result = await ServerGate.i.getFromServer(
       url: type.url,
       params: {
-        "contactID": UserModel.i.id,
+        "contactID": UserModel.i.contactId,
         "userId": UserModel.i.id,
       },
     );
@@ -75,7 +75,7 @@ class ContractsCubit extends Cubit<ContractsState> {
     emit(state.copyWith(reschduleVisitState: RequestState.loading));
     final result = await ServerGate.i.sendToServer(
       url: ApiConstants.rateVisit,
-      params: {
+      body: {
         "VisitId": visitId,
         "Rate": rate,
         "RateNotes": rateNotes,

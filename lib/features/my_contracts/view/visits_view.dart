@@ -293,7 +293,7 @@ class _VisitsViewState extends State<VisitsView> {
           } else if (state.visitsState.isDone) {
             return CustomErrorWidget(
               title: widget.type.name,
-              subtitle: LocaleKeys.you_do_not_have_any_contracts_yet.tr(),
+              subtitle: LocaleKeys.you_do_not_have_any_visits_yet.tr(),
             );
           } else if (state.visitsState.isError) {
             return CustomErrorWidget(

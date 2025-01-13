@@ -260,6 +260,6 @@
     "old_password": "كلمة المرور القديمة",
     "password_does_not_match": "كلمة المرور لا تتطابق",
     "that_s_impossible_to_edit_your_phone_number": "من المستحيل تعديل رقم هاتفك",
-    "account_data_has_been_modified_successfully": "تم تعديل بيانات الحساب بنجاح."
-
+    "account_data_has_been_modified_successfully": "تم تعديل بيانات الحساب بنجاح.",
+    "write_your_search": "اكتب بحثك"
 }

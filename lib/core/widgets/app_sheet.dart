@@ -7,14 +7,15 @@ class CustomAppSheet extends StatelessWidget {
   final String? title;
   final List<Widget>? children;
   final double? minHeight;
+  final bool isScrollable;
   final EdgeInsetsGeometry? padding;
 
-  const CustomAppSheet({super.key, this.title, this.children, this.padding, this.minHeight});
+  const CustomAppSheet({super.key, this.title, this.children, this.padding, this.minHeight, this.isScrollable = true});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom, top: kToolbarHeight),
       child: Container(
         padding: padding,
         constraints: BoxConstraints(maxHeight: context.h - (kToolbarHeight + 30.h), minHeight: minHeight ?? 0.0),
@@ -39,14 +40,23 @@ class CustomAppSheet extends StatelessWidget {
                 textAlign: TextAlign.start,
               ).withPadding(horizontal: 24.w),
             Flexible(
-              child: SingleChildScrollView(
-                padding: padding ?? EdgeInsets.symmetric(horizontal: 24.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: children ?? [],
-                ),
-              ),
+              child: isScrollable
+                  ? SingleChildScrollView(
+                      padding: padding ?? EdgeInsets.symmetric(horizontal: 24.w),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: children ?? [],
+                      ),
+                    )
+                  : Padding(
+                      padding: padding ?? EdgeInsets.symmetric(horizontal: 24.w),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: children ?? [],
+                      ),
+                    ),
             )
           ],
         ),

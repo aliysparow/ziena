@@ -261,5 +261,6 @@ abstract class  LocaleKeys {
   static const password_does_not_match = 'password_does_not_match';
   static const that_s_impossible_to_edit_your_phone_number = 'that_s_impossible_to_edit_your_phone_number';
   static const account_data_has_been_modified_successfully = 'account_data_has_been_modified_successfully';
+  static const write_your_search = 'write_your_search';
 
 }

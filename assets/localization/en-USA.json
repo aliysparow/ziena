@@ -260,5 +260,6 @@
     "old_password": "Old Password",
     "password_does_not_match": "Password does not match",
     "that_s_impossible_to_edit_your_phone_number": "That's impossible to edit your phone number",
-    "account_data_has_been_modified_successfully": "Account data has been modified successfully."
+    "account_data_has_been_modified_successfully": "Account data has been modified successfully.",
+    "write_your_search": "Write your search"
 }

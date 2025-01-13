@@ -176,6 +176,7 @@ class _AddAddressViewState extends State<AddAddressView> {
                                 await bloc.getDistricts();
                               }
                               showModalBottomSheet(
+                                isScrollControlled: true,
                                 context: navigator.currentContext!,
                                 builder: (context) => SelectItemSheet(
                                   title: LocaleKeys.select_district.tr(),
@@ -285,9 +286,9 @@ class _AddAddressViewState extends State<AddAddressView> {
             loading: state.createAddress.isLoading,
             onPressed: () => form.isValid ? bloc.createAddress() : null,
             title: LocaleKeys.add_address.tr(),
-          );
+          ).withPadding(bottom: 12.h, horizontal: 56.w);
         },
-      ).withPadding(horizontal: 56.w),
+      ),
     );
   }
 }

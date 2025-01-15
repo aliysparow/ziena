@@ -72,22 +72,22 @@ class ContractsCubit extends Cubit<ContractsState> {
 
   rateVisit({required String visitId, required double rate, required String rateNotes}) async {
     LoadingDialog.show();
-    emit(state.copyWith(reschduleVisitState: RequestState.loading));
+    emit(state.copyWith(rateState: RequestState.loading));
     final result = await ServerGate.i.sendToServer(
       url: ApiConstants.rateVisit,
       body: {
         "VisitId": visitId,
-        "Rate": rate,
+        "Rate": rate.toInt(),
         "RateNotes": rateNotes,
       },
     );
     LoadingDialog.hide();
     if (result.success) {
-      FlashHelper.showToast(result.msg, type: MessageType.success);
-      emit(state.copyWith(reschduleVisitState: RequestState.done));
+      FlashHelper.showToast('${LocaleKeys.rated_successfully.tr()}', type: MessageType.success);
+      emit(state.copyWith(rateState: RequestState.done));
     } else {
       FlashHelper.showToast(result.msg);
-      emit(state.copyWith(reschduleVisitState: RequestState.error, msg: result.msg));
+      emit(state.copyWith(rateState: RequestState.error, msg: result.msg));
     }
   }
 

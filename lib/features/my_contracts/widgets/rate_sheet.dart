@@ -66,7 +66,8 @@ class _RateSheetState extends State<RateSheet> {
         BlocConsumer<ContractsCubit, ContractsState>(
           bloc: cubit,
           listener: (context, state) {
-            if (state.visitsState.isDone) {
+            if (state.rateState.isDone) {
+              
               Navigator.pop(context);
             }
           },

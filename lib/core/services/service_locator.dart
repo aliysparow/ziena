@@ -44,7 +44,6 @@ class ServicesLocator {
     sl.registerFactory(() => CompanyRequestCubit());
     sl.registerFactory(() => SettingsCubit());
     sl.registerFactory(() => NationalitiesBloc());
-    // sl.registerFactory(() => NotificationsBloc());
     // sl.registerLazySingleton(() => CouponsBloc());
     // sl.registerFactory(() => OrdersBloc());
     // sl.registerFactory(() => ReportsBloc());

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -131,7 +133,7 @@ class OrderDetailsSheet extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           final Uri phoneUri = Uri(scheme: 'tel', path: item.mobile01);
-                          launchUrl(phoneUri);
+                          launchUrl(phoneUri, mode: Platform.isAndroid ? LaunchMode.externalApplication : LaunchMode.platformDefault);
                         },
                         child: CustomImage(
                           Assets.icons.callPhone,
@@ -143,8 +145,7 @@ class OrderDetailsSheet extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           final Uri phoneUri = Uri.parse("https://wa.me/+966${item.mobile01}");
-
-                          launchUrl(phoneUri, mode: LaunchMode.externalApplication);
+                          launchUrl(phoneUri, mode: Platform.isAndroid ? LaunchMode.externalApplication : LaunchMode.platformDefault);
                         },
                         child: CustomImage(
                           Assets.icons.smsPhone,
@@ -181,7 +182,7 @@ class OrderDetailsSheet extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           final Uri phoneUri = Uri(scheme: 'tel', path: item.mobile02);
-                          launchUrl(phoneUri);
+                          launchUrl(phoneUri, mode: Platform.isAndroid ? LaunchMode.externalApplication : LaunchMode.platformDefault);
                         },
                         child: CustomImage(
                           Assets.icons.callPhone,
@@ -192,8 +193,8 @@ class OrderDetailsSheet extends StatelessWidget {
                       SizedBox(width: 4.w),
                       GestureDetector(
                         onTap: () {
-                          final Uri phoneUri = Uri(scheme: 'sms', path: item.mobile02);
-                          launchUrl(phoneUri);
+                          final Uri phoneUri = Uri.parse("https://wa.me/+966${item.mobile01}");
+                          launchUrl(phoneUri, mode: Platform.isAndroid ? LaunchMode.externalApplication : LaunchMode.platformDefault);
                         },
                         child: CustomImage(
                           Assets.icons.smsPhone,
@@ -221,7 +222,7 @@ class OrderDetailsSheet extends StatelessWidget {
                   zoomControlsEnabled: false,
                   zoomGesturesEnabled: false,
                   onTap: (v) {
-                    launchUrl(Uri.parse(item.mapUrl));
+                    launchUrl(Uri.parse(item.mapUrl), mode: Platform.isAndroid ? LaunchMode.externalApplication : LaunchMode.platformDefault);
                   },
                   markers: {
                     Marker(
@@ -262,7 +263,7 @@ class OrderDetailsSheet extends StatelessWidget {
                   ),
                 ),
               ],
-            ).withPadding(horizontal: 20.w)
+            ).withPadding(horizontal: 20.w, vertical: 12.h),
           ],
         );
       },

@@ -83,7 +83,7 @@ class ContractsCubit extends Cubit<ContractsState> {
     );
     LoadingDialog.hide();
     if (result.success) {
-      FlashHelper.showToast('${LocaleKeys.rated_successfully.tr()}', type: MessageType.success);
+      FlashHelper.showToast(LocaleKeys.rated_successfully.tr(), type: MessageType.success);
       emit(state.copyWith(rateState: RequestState.done));
     } else {
       FlashHelper.showToast(result.msg);

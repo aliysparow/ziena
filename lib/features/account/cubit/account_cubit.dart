@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -82,14 +84,14 @@ class AccountCubit extends Cubit<AccountState> {
   String? phone;
   contactUs() async {
     if (phone != null) {
-      launchUrl(Uri(path: phone, scheme: 'tel'));
+      launchUrl(Uri(path: phone, scheme: 'tel'), mode: Platform.isAndroid ? LaunchMode.externalApplication : LaunchMode.platformDefault);
       return;
     }
     emit(state.copyWith(contactUs: RequestState.loading));
     final result = await ServerGate.i.getFromServer(url: ApiConstants.getContactUsPhone);
     if (result.success) {
       phone = result.data['data'].toString();
-      launchUrl(Uri(path: phone, scheme: 'tel'));
+      launchUrl(Uri(path: phone, scheme: 'tel'), mode: Platform.isAndroid ? LaunchMode.externalApplication : LaunchMode.platformDefault);
       emit(state.copyWith(contactUs: RequestState.done, msg: result.msg));
     } else {
       FlashHelper.showToast(result.msg);

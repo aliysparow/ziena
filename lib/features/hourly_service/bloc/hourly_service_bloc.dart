@@ -5,6 +5,9 @@ import 'package:ziena/core/routes/app_routes_fun.dart';
 import 'package:ziena/core/routes/routes.dart';
 import 'package:ziena/gen/assets.gen.dart';
 import 'package:ziena/gen/locale_keys.g.dart';
+import 'package:ziena/models/shift_model.dart';
+import 'package:ziena/models/visits_per_week_mode.dart';
+import 'package:ziena/models/week_number_model.dart';
 
 import '../../../core/services/server_gate.dart';
 import '../../../core/utils/constant.dart';
@@ -24,8 +27,12 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
   List<HourlyPackageModel> pacages = [];
   List<HourlyPackageModel> get filteredPacages => pacages.where((e) => inputData.showPackage(e)).toList();
   List<AddressModel> addresses = [];
+  List<NationalityModel> countriesForHourly = [];
   List<NationalityModel> avilableNationalities = [];
   List<SelectModel> avilableShifts = [];
+  List<WeekNumberModel> weeksNumber = [];
+  List<VisitsPerWeekMode> visitsPerWeek = [];
+  List<ShiftModel> shiftsForPricing = [];
   BookHourlyInputModel inputData = BookHourlyInputModel();
 
   getPacages(String id) async {
@@ -41,10 +48,10 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
       pacages = result.data['data'].map<HourlyPackageModel>((e) => HourlyPackageModel.fromJson(e)).toList();
       avilableNationalities = pacages.map((e) => e.nationality).toSet().toList();
       if (avilableNationalities.length == 1) {
-        inputData.nationality = avilableNationalities.first;
+        inputData.nationalityFilter = avilableNationalities.first;
       } else {
         avilableNationalities.insert(0, NationalityModel(name: LocaleKeys.all.tr(), id: ''));
-        inputData.nationality = avilableNationalities.first;
+        inputData.nationalityFilter = avilableNationalities.first;
       }
       avilableShifts = pacages.map((e) => SelectModel(id: e.shift, name: e.shiftName)).toSet().toList();
       if (avilableShifts.length == 1) {
@@ -76,10 +83,7 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
 
   createBooking() async {
     emit(state.copyWith(bookingState: RequestState.loading));
-    final result = await ServerGate.i.sendToServer(
-      url: ApiConstants.createHourlyContract,
-      body: inputData.toJson(),
-    );
+    final result = await ServerGate.i.sendToServer(url: ApiConstants.createHourlyContract, body: inputData.toJson());
     if (result.success) {
       push(
         NamedRoutes.successfullyPage,
@@ -89,34 +93,85 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
           'subtitle': LocaleKeys.contract_booked_successfully_val.tr(args: ['${result.data['data']['ContractNumber']}']),
           "btnTitle": LocaleKeys.pay_now.tr(),
           "onTap": () {
-            push(
-              NamedRoutes.paymentIfream,
-              arg: {
-                "id": result.data['data']['Id'],
-              },
-            ).then(
-              (value) => Navigator.popUntil(
-                navigator.currentContext!,
-                (r) => r.isFirst,
-              ),
+            push(NamedRoutes.paymentIfream, arg: {"id": result.data['data']['Id']}).then(
+              (value) => Navigator.popUntil(navigator.currentContext!, (r) => r.isFirst),
             );
           },
         },
       ).then(
-        (value) => Navigator.popUntil(
-          navigator.currentContext!,
-          (r) => r.isFirst,
-        ),
+        (value) => Navigator.popUntil(navigator.currentContext!, (r) => r.isFirst),
       );
       emit(
-        state.copyWith(
-          bookingState: RequestState.done,
-          msg: result.msg,
-        ),
+        state.copyWith(bookingState: RequestState.done, msg: result.msg),
       );
     } else {
       FlashHelper.showToast(result.msg);
       emit(state.copyWith(bookingState: RequestState.error, msg: result.msg));
+    }
+  }
+
+  getWeeksNumber() async {
+    emit(state.copyWith(getGetWeeksNumber: RequestState.loading));
+    final result = await ServerGate.i.getFromServer(url: ApiConstants.getWeeksNumber);
+    if (result.success) {
+      final List list = result.data['data'] ?? [];
+      weeksNumber = List<WeekNumberModel>.from(list.map((e) => WeekNumberModel.fromJson(e)));
+      emit(state.copyWith(getGetWeeksNumber: RequestState.done, msg: result.msg));
+    } else {
+      emit(state.copyWith(getGetWeeksNumber: RequestState.error, msg: result.msg));
+    }
+  }
+
+  getVisitsPerWeek() async {
+    emit(state.copyWith(getVisitsPerWeek: RequestState.loading));
+    final result = await ServerGate.i.getFromServer(url: ApiConstants.getVisitsPerWeek);
+    if (result.success) {
+      final List list = result.data['data'] ?? [];
+      visitsPerWeek = List<VisitsPerWeekMode>.from(list.map((e) => VisitsPerWeekMode.fromJson(e)));
+      emit(state.copyWith(getVisitsPerWeek: RequestState.done, msg: result.msg));
+    } else {
+      emit(state.copyWith(getVisitsPerWeek: RequestState.error, msg: result.msg));
+    }
+  }
+
+  getAllShiftsForPricing() async {
+    emit(state.copyWith(getAllShiftsForPricing: RequestState.loading));
+    final result = await ServerGate.i.getFromServer(url: ApiConstants.getAllShiftsForPricing);
+    if (result.success) {
+      final List list = result.data['data'] ?? [];
+      shiftsForPricing = List<ShiftModel>.from(list.map((e) => ShiftModel.fromJson(e)));
+      emit(state.copyWith(getAllShiftsForPricing: RequestState.done, msg: result.msg));
+    } else {
+      emit(state.copyWith(getAllShiftsForPricing: RequestState.error, msg: result.msg));
+    }
+  }
+
+  getCountriesForHourlyPricing() async {
+    emit(state.copyWith(getCountriesForHourlyPricing: RequestState.loading));
+    final result = await ServerGate.i.getFromServer(url: ApiConstants.getCountriesForHourlyPricing);
+    if (result.success) {
+      final List list = result.data['data'] ?? [];
+      countriesForHourly = List<NationalityModel>.from(list.map((e) => NationalityModel.fromJson(e)));
+      emit(state.copyWith(getCountriesForHourlyPricing: RequestState.done, msg: result.msg));
+    } else {
+      emit(state.copyWith(getCountriesForHourlyPricing: RequestState.error, msg: result.msg));
+    }
+  }
+
+  getPricingDetails() async {
+    emit(state.copyWith(getPricingDetails: RequestState.loading));
+    final result = await ServerGate.i.sendToServer(url: ApiConstants.getPricingDetails, body: {
+      "Nationality": inputData.nationality?.id,
+      "VisitNumberPerWeek": inputData.selectedVisitPerWeek?.id,
+      "WeekNumber": inputData.selectedWeek?.id,
+      "Shift": inputData.shift?.id,
+    });
+    if (result.success) {
+      inputData.initialPrice = result.data?['data']?['InitialPrice']?.toString() ?? '';
+      emit(state.copyWith(getPricingDetails: RequestState.done, msg: result.msg));
+    } else {
+      FlashHelper.showToast(result.msg);
+      emit(state.copyWith(getPricingDetails: RequestState.error, msg: result.msg));
     }
   }
 }

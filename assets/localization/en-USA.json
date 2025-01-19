@@ -83,6 +83,7 @@
     "total_price": "Total price",
     "invalid_phone_number": "Invalid phone number",
     "choose_days": "Choose {} suitable days for you",
+    "choosed_days": "Choosed days",
     "selected_days": "Selected days",
     "number_of_hours": "Number of hours",
     "visits_placeholder": "{} visits",
@@ -177,6 +178,7 @@
     "next_visits": "Next Visits",
     "complete_visits": "Completed Visits",
     "visit_number_val": "Visit Number {}",
+    "val_visit": "{} Visit",
     "change_schedule": "Change Schedule",
     "how_was_our_service_experience": "How was our service experience?",
     "note": "Note",
@@ -262,6 +264,11 @@
     "that_s_impossible_to_edit_your_phone_number": "That's impossible to edit your phone number",
     "account_data_has_been_modified_successfully": "Account data has been modified successfully.",
     "write_your_search": "Write your search",
-
-    "rated_successfully": "Rated successfully"
+    "rated_successfully": "Rated successfully",
+    "custom_package": "Custom Package",
+    "choose_the_contract_period": "Choose the contract period",
+    "number_of_weekly_visits": "Number of weekly visits",
+    "required_nationality": "Required nationality",
+    "please_select_number_of_visits":"Please select number of visits",
+    "please_select_shift_of_service":"Please select shift of service"
 }

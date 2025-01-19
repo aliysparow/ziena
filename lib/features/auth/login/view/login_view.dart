@@ -20,7 +20,8 @@ import '../bloc/login_bloc.dart';
 import '../bloc/login_state.dart';
 
 class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+  final Function? callBack;
+  const LoginView({super.key, this.callBack});
 
   @override
   State<LoginView> createState() => _LoginViewState();
@@ -58,7 +59,7 @@ class _LoginViewState extends State<LoginView> {
               //   style: context.mediumText.copyWith(fontSize: 20, color: context.hintColor),
               // ),
               Text(
-               LocaleKeys.enter_phone_and_password.tr(),
+                LocaleKeys.enter_phone_and_password.tr(),
                 style: context.mediumText.copyWith(fontSize: 20, color: context.hintColor),
               ),
               SizedBox(height: 14.h),
@@ -91,7 +92,14 @@ class _LoginViewState extends State<LoginView> {
                 bloc: bloc,
                 listener: (context, state) {
                   if (state.requestState.isDone) {
-                    pushAndRemoveUntil(UserModel.i.userType.isDriver ? NamedRoutes.driverHome : NamedRoutes.layout);
+                    if (UserModel.i.userType.isDriver) {
+                      pushAndRemoveUntil(NamedRoutes.driverHome);
+                    } else if (widget.callBack != null) {
+                      Navigator.pop(context);
+                      widget.callBack?.call();
+                    } else {
+                      pushAndRemoveUntil(NamedRoutes.layout);
+                    }
                   }
                 },
                 builder: (context, state) {
@@ -119,6 +127,18 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 textAlign: TextAlign.center,
               ).withPadding(vertical: 14.h),
+              InkWell(
+                onTap: () => pushAndRemoveUntil(NamedRoutes.layout),
+                child: Text(
+                  LocaleKeys.skip.tr(),
+                  style: context.mediumText.copyWith(
+                    fontSize: 14,
+                    color: context.primaryColor,
+                    decoration: TextDecoration.underline,
+                    decorationColor: context.primaryColor,
+                  ),
+                ).withPadding(vertical: 7.h),
+              ).withPadding(vertical: 7.h).center,
             ],
           ),
         ),

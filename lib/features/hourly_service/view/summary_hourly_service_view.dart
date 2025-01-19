@@ -75,58 +75,59 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
-              padding: EdgeInsets.all(14.w),
-              decoration: BoxDecoration(
-                color: context.primaryColorLight,
-                borderRadius: BorderRadius.circular(12.r),
+            if (bloc.inputData.package != null)
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
+                padding: EdgeInsets.all(14.w),
+                decoration: BoxDecoration(
+                  color: context.primaryColorLight,
+                  borderRadius: BorderRadius.circular(12.r),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      LocaleKeys.package_details.tr(),
+                      style: context.semiboldText.copyWith(fontSize: 16),
+                    ),
+                    ...List.generate(
+                      7,
+                      (i) {
+                        final item = bloc.inputData.package!;
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              [
+                                LocaleKeys.number_of_visits.tr(),
+                                LocaleKeys.number_of_weeks.tr(),
+                                LocaleKeys.number_of_work_hours.tr(),
+                                LocaleKeys.time_period.tr(),
+                                LocaleKeys.price_before_discount.tr(),
+                                LocaleKeys.price_after_discount.tr(),
+                                LocaleKeys.vat.tr(),
+                              ][i],
+                              style: context.mediumText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
+                            ),
+                            Text(
+                              [
+                                LocaleKeys.visit_number_val.tr(args: ["${item.totalVisits}"]),
+                                LocaleKeys.val_weeks.tr(args: ["${item.totalVisits}"]),
+                                LocaleKeys.val_hours.tr(args: ["${item.totalVisits}"]),
+                                item.shiftName,
+                                "${item.initialPrice} ${LocaleKeys.sar.tr()}",
+                                "${item.priceAfterDiscountWithoutVat} ${LocaleKeys.sar.tr()}",
+                                "${item.vat} ${LocaleKeys.sar.tr()}",
+                              ][i],
+                              style: context.mediumText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
+                            ),
+                          ],
+                        ).withPadding(vertical: 12.h);
+                      },
+                    ),
+                  ],
+                ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    LocaleKeys.package_details.tr(),
-                    style: context.semiboldText.copyWith(fontSize: 16),
-                  ),
-                  ...List.generate(
-                    7,
-                    (i) {
-                      final item = bloc.inputData.package!;
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            [
-                              LocaleKeys.number_of_visits.tr(),
-                              LocaleKeys.number_of_weeks.tr(),
-                              LocaleKeys.number_of_work_hours.tr(),
-                              LocaleKeys.time_period.tr(),
-                              LocaleKeys.price_before_discount.tr(),
-                              LocaleKeys.price_after_discount.tr(),
-                              LocaleKeys.vat.tr(),
-                            ][i],
-                            style: context.mediumText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
-                          ),
-                          Text(
-                            [
-                              LocaleKeys.visit_number_val.tr(args: ["${item.totalVisits}"]),
-                              LocaleKeys.val_weeks.tr(args: ["${item.totalVisits}"]),
-                              LocaleKeys.val_hours.tr(args: ["${item.totalVisits}"]),
-                              item.shiftName,
-                              "${item.initialPrice} ${LocaleKeys.sar.tr()}",
-                              "${item.priceAfterDiscountWithoutVat} ${LocaleKeys.sar.tr()}",
-                              "${item.vat} ${LocaleKeys.sar.tr()}",
-                            ][i],
-                            style: context.mediumText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
-                          ),
-                        ],
-                      ).withPadding(vertical: 12.h);
-                    },
-                  ),
-                ],
-              ),
-            ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
               padding: EdgeInsets.all(14.w),
@@ -288,7 +289,7 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                     children: [
                       Expanded(
                         child: Text(
-                          LocaleKeys.choose_days.tr(),
+                          LocaleKeys.choosed_days.tr(),
                           style: context.mediumText.copyWith(fontSize: 16),
                         ),
                       ),
@@ -331,7 +332,7 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                     style: context.semiboldText.copyWith(fontSize: 16),
                   ),
                   Text(
-                    "${bloc.inputData.package!.finalPrice} ${LocaleKeys.sar.tr()}",
+                    "${bloc.inputData.package?.finalPrice ?? bloc.inputData.initialPrice} ${LocaleKeys.sar.tr()}",
                     style: context.semiboldText.copyWith(fontSize: 16),
                   ),
                 ],

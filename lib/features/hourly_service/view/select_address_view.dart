@@ -69,71 +69,71 @@ class _SelectAddressViewState extends State<SelectAddressView> {
         padding: EdgeInsets.all(20.w),
         child: Column(
           children: [
-            Container(
-              padding: EdgeInsets.all(14.w),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                color: context.primaryColorLight,
+            if (bloc.inputData.package != null)
+              Container(
+                padding: EdgeInsets.all(14.w),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.r),
+                  color: context.primaryColorLight,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      LocaleKeys.package_details.tr(),
+                      style: context.boldText.copyWith(fontSize: 16),
+                    ).withPadding(bottom: 10.h),
+                    ...List.generate(
+                      6,
+                      (i) {
+                        final item = bloc.inputData.package!;
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              [
+                                LocaleKeys.number_of_visits.tr(),
+                                LocaleKeys.number_of_weeks.tr(),
+                                LocaleKeys.number_of_hours.tr(),
+                                LocaleKeys.time_period.tr(),
+                                LocaleKeys.package_price.tr(),
+                                LocaleKeys.vat.tr(),
+                              ][i],
+                              style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
+                            ),
+                            Text(
+                              [
+                                LocaleKeys.val_visits.tr(args: ["${item.totalVisits}"]),
+                                LocaleKeys.val_weeks.tr(args: ['${item.visitNumberPerWeek}']),
+                                LocaleKeys.val_hours.tr(args: ['${item.totalHours}']),
+                                item.shiftName,
+                                // "${item.initialPrice} ${LocaleKeys.sar.tr()}",
+                                "${item.priceAfterDiscountWithoutVat} ${LocaleKeys.sar.tr()}",
+                                "${item.vat} ${LocaleKeys.sar.tr()}",
+                              ][i],
+                              style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
+                            ),
+                          ],
+                        ).withPadding(vertical: 10.h);
+                      },
+                    ),
+                    SizedBox(height: 8.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          LocaleKeys.total_price.tr(),
+                          style: context.boldText.copyWith(fontSize: 16),
+                        ),
+                        Text(
+                          "${bloc.inputData.package?.finalPrice} ${LocaleKeys.sar.tr()}",
+                          style: context.boldText.copyWith(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    LocaleKeys.package_details.tr(),
-                    style: context.boldText.copyWith(fontSize: 16),
-                  ).withPadding(bottom: 10.h),
-                  ...List.generate(
-                    6,
-                    (i) {
-                      final item = bloc.inputData.package!;
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            [
-                              LocaleKeys.number_of_visits.tr(),
-                              LocaleKeys.number_of_weeks.tr(),
-                              LocaleKeys.number_of_hours.tr(),
-                              LocaleKeys.time_period.tr(),
-                            
-                              LocaleKeys.package_price.tr(),
-                              LocaleKeys.vat.tr(),
-                            ][i],
-                            style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
-                          ),
-                          Text(
-                            [
-                              LocaleKeys.val_visits.tr(args: ["${item.totalVisits}"]),
-                              LocaleKeys.val_weeks.tr(args: ['${item.visitNumberPerWeek}']),
-                              LocaleKeys.val_hours.tr(args: ['${item.totalHours}']),
-                              item.shiftName,
-                              // "${item.initialPrice} ${LocaleKeys.sar.tr()}",
-                              "${item.priceAfterDiscountWithoutVat} ${LocaleKeys.sar.tr()}",
-                              "${item.vat} ${LocaleKeys.sar.tr()}",
-                            ][i],
-                            style: context.boldText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
-                          ),
-                        ],
-                      ).withPadding(vertical: 10.h);
-                    },
-                  ),
-                  SizedBox(height: 8.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        LocaleKeys.total_price.tr(),
-                        style: context.boldText.copyWith(fontSize: 16),
-                      ),
-                      Text(
-                        "${bloc.inputData.package?.finalPrice} ${LocaleKeys.sar.tr()}",
-                        style: context.boldText.copyWith(fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
             SizedBox(height: 20.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,31 +1,14 @@
-[/account/LogIn
-] {
-    "$id": "1",
-    "IsSuccess": true,
-    "data": {
-        "$id": "2",
-        "UserName": "0542318760",
-        "IdNumber": "2476477001",
-        "Nationality": "6b3e2f59-63ec-e911-8b82-20040ff72aa5",
-        "City": "e727647b-23eb-e911-8b82-20040ff72aa5",
-        "FirstName": "ahmed",
-        "LastName": "elsayad",
-        "Email": "aa@aa.com",
-        "RememberMe": false,
-        "DefaultLanguage": null,
-        "UserId": "77c5849d-65ab-ef11-8bcd-20040ff72aa5",
-        "ContactId": "25eb49b0-7370-ec11-8ba4-20040ff72aa5",
-        "DriverId": null,
-        "SupervisorId": null,
-        "FullName": "ahmed elsayad",
-        "Token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjA1NDIzMTg3NjAiLCJuYmYiOjE3MzQyODU4OTAsImV4cCI6MTczNDI4OTQ5MCwiaWF0IjoxNzM0Mjg1ODkwfQ.lLsaGclazteOigBFHlIoE33kMbHjjYWMg5fDhiDPk4M",
-        "TokenExpiry": "14/06/1446 19:04:50",
-        "UserType": 0,
-        "Source": null,
-        "EmailConfirmed": false,
-        "Identity": null
-    },
-    "ErrorMessage": null,
-    "SucecssMessage": null,
-    "TotalItems": 0
+{
+    "ServiceID": "dd9b4dc5-8c8a-eb11-8b92-20040ff72aa5",
+    "StartDate": "2025-01-26",
+    "DaysPerWeek": "7",
+    "FixedWorker": false,
+    "ContactId": "25eb49b0-7370-ec11-8ba4-20040ff72aa5",
+    "AddressId": "f1d86531-c5a2-ef11-8bcd-20040ff72aa5",
+    "Source": "2",
+    "Mobile01": "0542318760",
+    "Mobile02": "0505090905",
+    "NumberOfWeeks": "1",
+    "VisitsPerWeek": "1",
+    "ShiftId": "d08654ca-b83d-eb11-8b8e-20040ff72aa5"
 }

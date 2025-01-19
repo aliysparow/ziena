@@ -12,7 +12,7 @@ import 'intro_state.dart';
 class IntroCubit extends Cubit<IntroState> {
   IntroCubit() : super(IntroState());
 
-  bool isValid = false;
+  bool isValid = true;
   Future<void> checkVertion() async {
     try {
       emit(state.copyWith(requestState: RequestState.loading));

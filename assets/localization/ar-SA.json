@@ -93,6 +93,7 @@
     "next_visits": "الزيارات القادمة",
     "complete_visits": "الزيارات المكتملة",
     "visit_number_val": "زيارة رقم {}",
+    "val_visit": "{} زيارة",
     "change_schedule": "تغيير موعد",
     "how_was_our_service_experience": "كيف كانت تجربة الخدمة لدينا؟",
     "note": "ملاحظة",
@@ -167,6 +168,7 @@
     "total_price": "السعر الإجمالي",
     "invalid_phone_number": "رقم الجوال غير صحيح",
     "choose_days": "اختر {} أيام مناسبة لك",
+    "choosed_days": "الايام المختار",
     "selected_days": "الأيام المختارة",
     "number_of_hours": "عدد ساعات العمل",
     "visits_placeholder": "{} زيارات",
@@ -262,5 +264,11 @@
     "that_s_impossible_to_edit_your_phone_number": "من المستحيل تعديل رقم هاتفك",
     "account_data_has_been_modified_successfully": "تم تعديل بيانات الحساب بنجاح.",
     "write_your_search": "اكتب بحثك",
-    "rated_successfully": "تم تصنيفها بنجاح"
+    "rated_successfully": "تم تصنيفها بنجاح",
+    "custom_package": "صمم باقتك",
+    "choose_the_contract_period": "اختر مدة التعاقد",
+    "number_of_weekly_visits": "عدد الزيارات الاسبوعية",
+    "required_nationality": "الجنسية المطلوبة",
+    "please_select_number_of_visits": "الرجاء تحديد عدد الزيارات",
+    "please_select_shift_of_service": "الرجاء تحديد فترة الخدمة"
 }

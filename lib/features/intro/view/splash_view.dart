@@ -35,6 +35,7 @@ class _SplashViewState extends State<SplashView> {
   }
 
   final cubit = sl<IntroCubit>()..checkVertion();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,10 +50,13 @@ class _SplashViewState extends State<SplashView> {
                   context: navigator.currentContext!,
                   builder: (context) => const UpdateAppDialog(),
                 );
-              } else if (UserModel.i.isAuth) {
+              }
+              //  else if (UserModel.i.isAuth) {
+              //   pushAndRemoveUntil(UserModel.i.userType.isDriver ? NamedRoutes.driverHome : NamedRoutes.layout);
+              // }
+              else if (prefs.getBool('second') ?? false) {
+                // pushAndRemoveUntil(NamedRoutes.login);
                 pushAndRemoveUntil(UserModel.i.userType.isDriver ? NamedRoutes.driverHome : NamedRoutes.layout);
-              } else if (prefs.getBool('second') ?? false) {
-                pushAndRemoveUntil(NamedRoutes.login);
               } else {
                 pushAndRemoveUntil(NamedRoutes.onboarding);
               }

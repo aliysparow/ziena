@@ -95,4 +95,9 @@ class ApiConstants {
   static const String editProfile = 'account/UpdateProfile';
   static const String editPassword = 'account/ChangePassword';
   static const String getContactUsPhone = 'Lookup/GetContactUsPhone';
+  static const String getWeeksNumber = 'Lookup/GetWeeksNumber';
+  static const String getVisitsPerWeek = 'Lookup/GetVisitsPerWeek';
+  static const String getAllShiftsForPricing = 'Shift/GetAllShiftsForPricing';
+  static const String getPricingDetails = 'Package/GetPricingDetails';
+  static const String getCountriesForHourlyPricing = 'Lookup/GetCountriesForHourlyPricing';
 }

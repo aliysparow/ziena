@@ -50,15 +50,16 @@ class _SelectCountryWidgetState extends State<SelectCountryWidget> {
         return AppField(
           validator: widget.validator,
           title: widget.lable,
-          hintText: LocaleKeys.select_city.tr(),
+          hintText: LocaleKeys.nationality.tr(),
           prefixIcon: widget.prefixIcon,
           controller: TextEditingController(text: selected?.name ?? ''),
           onTap: () {
             if (state.requestState.isDone) {
               showModalBottomSheet(
                 context: context,
+                isScrollControlled: true,
                 builder: (context) => SelectItemSheet(
-                  title: LocaleKeys.select_city.tr(),
+                  title: widget.lable ?? LocaleKeys.nationality.tr(),
                   items: bloc.nationalities,
                   initItem: selected,
                 ),

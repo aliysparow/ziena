@@ -2,6 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ziena/core/widgets/app_btn.dart';
+import 'package:ziena/features/hourly_service/widgets/select_shifts_widget.dart';
+import '../widgets/select_nationalty_widget.dart';
+import '../../../models/user_model.dart';
 
 import '../../../core/routes/app_routes_fun.dart';
 import '../../../core/routes/routes.dart';
@@ -31,7 +35,7 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
   void initState() {
     sl.resetLazySingleton<HourlyServiceBloc>();
     bloc = sl<HourlyServiceBloc>()..getPacages(widget.id);
-
+    bloc.inputData.serviceId = widget.id;
     super.initState();
   }
 
@@ -47,298 +51,29 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
           onPressed: () => Navigator.pop(context),
         ),
       ),
+      bottomNavigationBar: AppBtn(
+        title: LocaleKeys.custom_package.tr(),
+        onPressed: () {
+          bloc.inputData.clear();
+          push(NamedRoutes.customPackage).then((v) {
+            bloc.inputData.clear();
+          });
+        },
+      ).withPadding(horizontal: 20.w),
       body: SingleChildScrollView(
         child: SizedBox(
           width: context.w,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                LocaleKeys.choose_the_nationality_you_want_to_serve_you.tr(),
-                style: context.semiboldText.copyWith(
-                  fontSize: 14,
-                ),
-              ).withPadding(horizontal: 20.w),
-              SizedBox(height: 18.h),
-              BlocBuilder<HourlyServiceBloc, HourlyServiceState>(
-                bloc: bloc,
-                builder: (context, state) {
-                  if (state.getPacagesState.isLoading) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: Row(
-                        children: List.generate(
-                          3,
-                          (index) {
-                            return BaseShimmer(
-                              child: Container(
-                                margin: const EdgeInsetsDirectional.only(end: 10),
-                                height: 40.h,
-                                width: 100,
-                                decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.all(Radius.circular(100)),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    );
-                  }
-                  return SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    scrollDirection: Axis.horizontal,
-                    child: Wrap(
-                      spacing: 12.w,
-                      children: List.generate(
-                        bloc.avilableNationalities.length,
-                        (i) {
-                          final item = bloc.avilableNationalities[i];
-                          final selected = bloc.inputData.nationality == item;
-                          return GestureDetector(
-                            onTap: () {
-                              bloc.inputData.nationality = item;
-                              if (bloc.inputData.package != null && bloc.inputData.package!.nationality != bloc.inputData.nationality) {
-                                bloc.inputData.package = null;
-                              }
-                              setState(() {});
-                            },
-                            child: Container(
-                              height: 40.h,
-                              alignment: Alignment.center,
-                              padding: EdgeInsets.symmetric(horizontal: 14.w),
-                              decoration: BoxDecoration(
-                                color: selected ? context.indicatorColor : context.primaryContainer,
-                                borderRadius: BorderRadius.circular(100),
-                              ),
-                              child: Text(
-                                item.name,
-                                style: context.mediumText.copyWith(
-                                  fontSize: 12,
-                                  color: selected ? context.primaryColorLight : context.primaryColorDark,
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  );
-                },
-              ),
-              // return DropdownMenu(
-              //   width: 120.w,
-              //   trailingIcon: Icon(
-              //     CupertinoIcons.chevron_down,
-              //     size: 18.h,
-              //   ),
-              //   initialSelection: bloc.inputData.nationality,
-              //   hintText: LocaleKeys.nationality.tr(),
-              //   onSelected: (value) {
-              //     bloc.inputData.nationality = value;
-              //   },
-              //   dropdownMenuEntries: List.generate(
-              //     bloc.avilableNationalities.length,
-              //     (i) => DropdownMenuEntry(
-              //       value: bloc.avilableNationalities[i],
-              //       label: bloc.avilableNationalities[i].name,
-              //     ),
-              //   ),
-              // );
-              // Container(
-              //   margin: EdgeInsets.symmetric(horizontal: 20.w),
-              //   height: 40.h,
-              //   padding: EdgeInsets.symmetric(horizontal: 12.w),
-              //   constraints: BoxConstraints(
-              //     minWidth: 104.w,
-              //   ),
-              //   decoration: BoxDecoration(
-              //     color: context.primaryContainer,
-              //     borderRadius: BorderRadius.circular(100),
-              //   ),
-              //   child: Row(
-              //     mainAxisSize: MainAxisSize.min,
-              //     children: [
-              //       Text(
-              //         LocaleKeys.nationality.tr(),
-              //         style: context.mediumText.copyWith(fontSize: 12),
-              //       ),
-              //       SizedBox(width: 18.w),
-              //       Icon(
-              //         CupertinoIcons.chevron_down,
-              //         size: 18.h,
-              //       )
-              //     ],
-              //   ),
-              // ),
+              const SelectNationaltyWidget(),
               SizedBox(height: 34.h),
-              Text(
-                LocaleKeys.choose_the_time_period_you_want_for_your_service.tr(),
-                style: context.semiboldText.copyWith(
-                  fontSize: 14,
-                ),
-              ).withPadding(horizontal: 20.w),
-              SizedBox(height: 18.h),
-              BlocBuilder<HourlyServiceBloc, HourlyServiceState>(
-                bloc: bloc,
-                builder: (context, state) {
-                  if (state.getPacagesState.isLoading) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: Row(
-                        children: List.generate(
-                          3,
-                          (index) {
-                            return BaseShimmer(
-                              child: Container(
-                                margin: const EdgeInsetsDirectional.only(end: 10),
-                                height: 40.h,
-                                width: 100,
-                                decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.all(Radius.circular(100)),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    );
-                  }
-                  return SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    scrollDirection: Axis.horizontal,
-                    child: Wrap(
-                      spacing: 12.w,
-                      children: List.generate(
-                        bloc.avilableShifts.length,
-                        (i) {
-                          final item = bloc.avilableShifts[i];
-                          final selected = bloc.inputData.period == item;
-                          return GestureDetector(
-                            onTap: () {
-                              bloc.inputData.period = item;
-                              if (bloc.inputData.package != null && bloc.inputData.package!.shift != bloc.inputData.period?.id) {
-                                bloc.inputData.package = null;
-                              }
-                              setState(() {});
-                            },
-                            child: Container(
-                              height: 40.h,
-                              alignment: Alignment.center,
-                              padding: EdgeInsets.symmetric(horizontal: 14.w),
-                              decoration: BoxDecoration(
-                                color: selected ? context.indicatorColor : context.primaryContainer,
-                                borderRadius: BorderRadius.circular(100),
-                              ),
-                              child: Text(
-                                item.name,
-                                style: context.mediumText.copyWith(
-                                  fontSize: 12,
-                                  color: selected ? context.primaryColorLight : context.primaryColorDark,
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  );
-                },
-              ),
-              // DropdownMenu(
-              //   width: 140.w,
-              //   trailingIcon: Icon(
-              //     CupertinoIcons.chevron_down,
-              //     size: 18.h,
-              //   ),
-              //   initialSelection: bloc.inputData.period,
-              //   hintText: LocaleKeys.time_period.tr(),
-              //   onSelected: (value) {
-              //     bloc.inputData.period = value;
-              //   },
-              //   dropdownMenuEntries: List.generate(
-              //     bloc.avilableShifts.length,
-              //     (i) => DropdownMenuEntry(
-              //       value: bloc.avilableShifts[i],
-              //       label: bloc.avilableShifts[i].name,
-              //     ),
-              //   ),
-              // );
-              // Container(
-              //   margin: EdgeInsets.symmetric(horizontal: 20.w),
-              //   height: 40.h,
-              //   padding: EdgeInsets.symmetric(horizontal: 12.w),
-              //   constraints: BoxConstraints(
-              //     minWidth: 104.w,
-              //   ),
-              //   decoration: BoxDecoration(
-              //     color: context.primaryContainer,
-              //     borderRadius: BorderRadius.circular(100),
-              //   ),
-              //   child: Row(
-              //     mainAxisSize: MainAxisSize.min,
-              //     children: [
-              //       Text(
-              //         LocaleKeys.time_period.tr(),
-              //         style: context.mediumText.copyWith(fontSize: 12),
-              //       ),
-              //       SizedBox(width: 18.w),
-              //       Icon(
-              //         CupertinoIcons.chevron_down,
-              //         size: 18.h,
-              //       )
-              //     ],
-              //   ),
-              // ),
+              const SelectShiftsWidget(),
               SizedBox(height: 34.h),
               Text(
                 LocaleKeys.choose_the_time_you_want_for_your_service.tr(),
-                style: context.semiboldText.copyWith(
-                  fontSize: 14,
-                ),
+                style: context.semiboldText.copyWith(fontSize: 14),
               ).withPadding(horizontal: 20.w),
-              // SizedBox(height: 18.h),
-              // SingleChildScrollView(
-              //   padding: EdgeInsets.symmetric(horizontal: 20.w),
-              //   scrollDirection: Axis.horizontal,
-              //   child: Wrap(
-              //     spacing: 12.w,
-              //     children: List.generate(
-              //       12,
-              //       (i) {
-              //         final time = DateTime.now().copyWith(hour: 10, minute: 0, second: 0).add(i.hours);
-              //         final item = DateFormat('HH:mm a', context.locale.languageCode).format(time);
-              //         final bool selected =
-              //             bloc.inputData.time != null && DateFormat('HH:mm a', context.locale.languageCode).format(bloc.inputData.time!) == item;
-              //         return GestureDetector(
-              //           onTap: () {
-              //             bloc.inputData.time = time;
-              //             setState(() {});
-              //           },
-              //           child: Container(
-              //             height: 40.h,
-              //             alignment: Alignment.center,
-              //             padding: EdgeInsets.symmetric(horizontal: 14.w),
-              //             decoration: BoxDecoration(
-              //               color: selected ? context.indicatorColor : context.primaryContainer,
-              //               borderRadius: BorderRadius.circular(100),
-              //             ),
-              //             child: Text(
-              //               item,
-              //               style: context.mediumText.copyWith(
-              //                 fontSize: 12,
-              //                 color: selected ? context.primaryColorLight : context.primaryColorDark,
-              //               ),
-              //             ),
-              //           ),
-              //         );
-              //       },
-              //     ),
-              //   ),
-              // ),
-
               SizedBox(height: 30.h),
               BlocBuilder<HourlyServiceBloc, HourlyServiceState>(
                 bloc: bloc,
@@ -477,9 +212,17 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                                         bloc.inputData.dates.clear();
                                         bloc.inputData.package = item;
                                       }
-                                      // if (sl<HourlyServiceBloc>().inputData.validate(context)) {
-                                      push(NamedRoutes.selectAddress);
-                                      // }
+                                      if (!UserModel.i.isAuth) {
+                                        push(NamedRoutes.login, arg: {
+                                          'call_back': () {
+                                            push(NamedRoutes.selectAddress);
+                                          }
+                                        });
+                                      } else {
+                                        // if (sl<HourlyServiceBloc>().inputData.validate(context)) {
+                                        push(NamedRoutes.selectAddress);
+                                        // }
+                                      }
                                     },
                                     child: Container(
                                       height: 24.h,

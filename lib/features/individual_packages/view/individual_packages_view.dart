@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ziena/core/services/service_locator.dart';
+import 'package:ziena/models/user_model.dart';
 
 import '../../../core/routes/app_routes_fun.dart';
 import '../../../core/routes/routes.dart';
@@ -165,7 +166,15 @@ class _IndividualPackagesViewState extends State<IndividualPackagesView> {
                             GestureDetector(
                               onTap: () {
                                 cubit.input.package = item;
-                                push(NamedRoutes.individualRequest, arg: {'serviceId': widget.id, 'title': widget.name});
+                                if (UserModel.i.isAuth) {
+                                  push(NamedRoutes.individualRequest, arg: {'serviceId': widget.id, 'title': widget.name});
+                                } else {
+                                  push(NamedRoutes.login, arg: {
+                                    'call_back': () {
+                                      push(NamedRoutes.individualRequest, arg: {'serviceId': widget.id, 'title': widget.name});
+                                    }
+                                  });
+                                }
                               },
                               child: Container(
                                 padding: EdgeInsets.all(4.h),

@@ -30,4 +30,6 @@ class NamedRoutes {
   static const summaryIndivadualService = "/summaryIndivadualService";
   static const editProfile = "/editProfile";
   static const editPassword = "/editPassword";
+
+  static const customPackage = '/customPackage';
 }

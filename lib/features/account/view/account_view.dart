@@ -58,31 +58,33 @@ class _AccountViewState extends State<AccountView> {
       ),
       body: ListView(
         children: [
-          ListTile(
-            onTap: () => push(NamedRoutes.editProfile),
-            leading: CustomImage(Assets.icons.profile, height: 24.h, width: 24.h),
-            title: Text(
-              LocaleKeys.profile_settings.tr(),
-              style: context.mediumText.copyWith(fontSize: 16),
-            ),
-          ),
-          if (UserModel.i.userType.isClient)
+          if (UserModel.i.isAuth) ...[
             ListTile(
-              onTap: () => push(NamedRoutes.addresses),
-              leading: CustomImage(Assets.icons.addresses, height: 24.h, width: 24.h),
+              onTap: () => push(NamedRoutes.editProfile),
+              leading: CustomImage(Assets.icons.profile, height: 24.h, width: 24.h),
               title: Text(
-                LocaleKeys.my_addresses.tr(),
+                LocaleKeys.profile_settings.tr(),
                 style: context.mediumText.copyWith(fontSize: 16),
               ),
             ),
-          ListTile(
-            onTap: () => push(NamedRoutes.editPassword),
-            leading: CustomImage(Assets.icons.lock, height: 24.h, width: 24.h),
-            title: Text(
-              LocaleKeys.change_password.tr(),
-              style: context.mediumText.copyWith(fontSize: 16),
+            if (UserModel.i.userType.isClient)
+              ListTile(
+                onTap: () => push(NamedRoutes.addresses),
+                leading: CustomImage(Assets.icons.addresses, height: 24.h, width: 24.h),
+                title: Text(
+                  LocaleKeys.my_addresses.tr(),
+                  style: context.mediumText.copyWith(fontSize: 16),
+                ),
+              ),
+            ListTile(
+              onTap: () => push(NamedRoutes.editPassword),
+              leading: CustomImage(Assets.icons.lock, height: 24.h, width: 24.h),
+              title: Text(
+                LocaleKeys.change_password.tr(),
+                style: context.mediumText.copyWith(fontSize: 16),
+              ),
             ),
-          ),
+          ],
           ListTile(
             onTap: () {
               showModalBottomSheet(
@@ -129,44 +131,45 @@ class _AccountViewState extends State<AccountView> {
             },
             leading: CustomImage(Assets.icons.logout, height: 24.h, width: 24.h),
             title: Text(
-              LocaleKeys.logout.tr(),
+              UserModel.i.isAuth ? LocaleKeys.logout.tr() : LocaleKeys.login.tr(),
               style: context.mediumText.copyWith(fontSize: 16, color: context.errorColor),
             ),
           ),
-          BlocConsumer<AccountCubit, AccountState>(
-            bloc: cubit,
-            buildWhen: (previous, current) => previous.deleteAccount != current.deleteAccount,
-            listenWhen: (previous, current) => previous.deleteAccount != current.deleteAccount,
-            listener: (context, state) {
-              if (state.deleteAccount.isDone) {
-                pushAndRemoveUntil(NamedRoutes.login);
-              }
-              // 542318760
-              // 10203040
-            },
-            builder: (context, state) {
-              return ListTile(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (c) => ConfirmDialog(
-                      title: LocaleKeys.delete_account.tr(),
-                      subTitle: LocaleKeys.are_you_sure_to_delete_account.tr(),
-                    ),
-                  ).then((v) {
-                    if (v == true) {
-                      cubit.deleteAccount();
-                    }
-                  });
-                },
-                leading: CustomImage(Assets.icons.delete, height: 24.h, width: 24.h),
-                title: Text(
-                  LocaleKeys.delete_account.tr(),
-                  style: context.mediumText.copyWith(fontSize: 16, color: context.errorColor),
-                ),
-              );
-            },
-          ),
+          if (UserModel.i.isAuth && UserModel.i.userType.isClient)
+            BlocConsumer<AccountCubit, AccountState>(
+              bloc: cubit,
+              buildWhen: (previous, current) => previous.deleteAccount != current.deleteAccount,
+              listenWhen: (previous, current) => previous.deleteAccount != current.deleteAccount,
+              listener: (context, state) {
+                if (state.deleteAccount.isDone) {
+                  pushAndRemoveUntil(NamedRoutes.login);
+                }
+                // 542318760
+                // 10203040
+              },
+              builder: (context, state) {
+                return ListTile(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (c) => ConfirmDialog(
+                        title: LocaleKeys.delete_account.tr(),
+                        subTitle: LocaleKeys.are_you_sure_to_delete_account.tr(),
+                      ),
+                    ).then((v) {
+                      if (v == true) {
+                        cubit.deleteAccount();
+                      }
+                    });
+                  },
+                  leading: CustomImage(Assets.icons.delete, height: 24.h, width: 24.h),
+                  title: Text(
+                    LocaleKeys.delete_account.tr(),
+                    style: context.mediumText.copyWith(fontSize: 16, color: context.errorColor),
+                  ),
+                );
+              },
+            ),
         ],
       ),
     );

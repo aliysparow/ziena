@@ -7,6 +7,7 @@ import 'package:ziena/core/routes/routes.dart';
 import 'package:ziena/core/widgets/base_shimmer.dart';
 import 'package:ziena/features/home/widgets/offers_widget.dart';
 import 'package:ziena/features/home/widgets/sliders_widget.dart';
+import 'package:ziena/models/user_model.dart';
 import '../../../core/services/service_locator.dart';
 import '../../../core/utils/extensions.dart';
 import '../../../core/widgets/custom_image.dart';
@@ -63,7 +64,15 @@ class _HomeViewState extends State<HomeView> {
                   child: GestureDetector(
                     onTap: () {
                       if (i == 2) {
-                        push(NamedRoutes.companyRequest);
+                        if (!UserModel.i.isAuth) {
+                          push(NamedRoutes.login, arg: {
+                            'call_back': () {
+                              push(NamedRoutes.companyRequest);
+                            }
+                          });
+                        } else {
+                          push(NamedRoutes.companyRequest);
+                        }
                         return;
                       }
                       // if (i == 1) return;

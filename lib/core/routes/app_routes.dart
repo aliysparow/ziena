@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ziena/features/account/view/edit_password_view.dart';
 import 'package:ziena/features/company_request/view/company_request_view.dart';
 import 'package:ziena/features/driver_home/view/reject_order_view.dart';
+import 'package:ziena/features/hourly_service/view/custom_package_view.dart';
 import 'package:ziena/features/individual_packages/view/summary_booking_view.dart';
 import 'package:ziena/features/my_contracts/view/my_orders_view.dart';
 import 'package:ziena/features/settings/view/terms_conditions_view.dart';
@@ -41,7 +42,7 @@ class AppRoutes {
 
   Map<String, Widget Function(BuildContext)> appRoutes = {
     NamedRoutes.splash: (c) => const SplashView(),
-    NamedRoutes.login: (c) => const LoginView(),
+    NamedRoutes.login: (c) => LoginView(callBack: c.arg['call_back']),
     NamedRoutes.forgetPassword: (c) => const ForgetPaswwordView(),
     NamedRoutes.resetPassword: (c) => ResetPasswordView(phone: c.arg['phone']),
     NamedRoutes.register: (c) => const RegisterView(),
@@ -71,7 +72,7 @@ class AppRoutes {
     NamedRoutes.summaryIndivadualService: (c) => SummaryIndivadualServiceView(title: c.arg['title'], serviceId: c.arg['serviceId']),
     NamedRoutes.editProfile: (c) => const EditProfileView(),
     NamedRoutes.editPassword: (c) => const EditPasswordView(),
-    // NamedRoutes.coupons: (c) => const CouponsView(),
+    NamedRoutes.customPackage: (c) => const CustomPackageView(),
     // NamedRoutes.couponForm: (c) => CouponFormView(id: c.arg['id'], model: c.arg['model']),
   };
 }

@@ -68,9 +68,9 @@ class HourlyPackageDetailsSheet extends StatelessWidget {
               ),
               Text(
                 [
-                  LocaleKeys.visit_number_val.tr(args: ["${item.totalVisits}"]),
+                  LocaleKeys.val_visit.tr(args: ["${item.totalVisits}"]),
                   LocaleKeys.val_weeks.tr(args: ["${item.totalVisits}"]),
-                  LocaleKeys.val_hours.tr(args: ["${item.totalVisits}"]),
+                  LocaleKeys.val_hours.tr(args: ["${item.shiftHours}"]),
                   item.shiftName,
                   // "${item.initialPrice} ${LocaleKeys.sar.tr()}",
                   "${item.priceAfterDiscountWithoutVat} ${LocaleKeys.sar.tr()}",

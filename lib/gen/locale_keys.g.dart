@@ -85,6 +85,7 @@ abstract class  LocaleKeys {
   static const total_price = 'total_price';
   static const invalid_phone_number = 'invalid_phone_number';
   static const choose_days = 'choose_days';
+  static const choosed_days = 'choosed_days';
   static const selected_days = 'selected_days';
   static const number_of_hours = 'number_of_hours';
   static const visits_placeholder = 'visits_placeholder';
@@ -179,6 +180,7 @@ abstract class  LocaleKeys {
   static const next_visits = 'next_visits';
   static const complete_visits = 'complete_visits';
   static const visit_number_val = 'visit_number_val';
+  static const val_visit = 'val_visit';
   static const change_schedule = 'change_schedule';
   static const how_was_our_service_experience = 'how_was_our_service_experience';
   static const note = 'note';
@@ -262,5 +264,12 @@ abstract class  LocaleKeys {
   static const that_s_impossible_to_edit_your_phone_number = 'that_s_impossible_to_edit_your_phone_number';
   static const account_data_has_been_modified_successfully = 'account_data_has_been_modified_successfully';
   static const write_your_search = 'write_your_search';
+  static const rated_successfully = 'rated_successfully';
+  static const custom_package = 'custom_package';
+  static const choose_the_contract_period = 'choose_the_contract_period';
+  static const number_of_weekly_visits = 'number_of_weekly_visits';
+  static const required_nationality = 'required_nationality';
+  static const please_select_number_of_visits = 'please_select_number_of_visits';
+  static const please_select_shift_of_service = 'please_select_shift_of_service';
 
 }

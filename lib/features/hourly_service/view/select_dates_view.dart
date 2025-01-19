@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -82,7 +82,7 @@ class _SelectDatesViewState extends State<SelectDatesView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              LocaleKeys.choose_days.tr(args: ["${bloc.inputData.package?.totalVisits}"]),
+              LocaleKeys.choose_days.tr(args: ["${bloc.inputData.package?.totalVisits ?? bloc.inputData.selectedVisitPerWeek?.number}"]),
               style: context.mediumText.copyWith(fontSize: 16),
             ),
             // Text(
@@ -97,7 +97,7 @@ class _SelectDatesViewState extends State<SelectDatesView> {
                 7,
                 (i) {
                   final day = AppConstants.weekDays[i];
-                  final isAvilable = kDebugMode || (bloc.inputData.package?.days.contains(day.id) ?? false);
+                  final isAvilable = bloc.inputData.package == null || (bloc.inputData.package?.days.contains(day.id) ?? false);
                   final bool selected = bloc.inputData.week.any((e) => e == day.id);
                   return Opacity(
                     opacity: isAvilable ? 1 : 0.3,
@@ -107,7 +107,7 @@ class _SelectDatesViewState extends State<SelectDatesView> {
                         if (selected) {
                           bloc.inputData.week.remove(day.id);
                           bloc.inputData.dates.clear();
-                        } else if (bloc.inputData.week.length == bloc.inputData.package?.totalVisits) {
+                        } else if (bloc.inputData.week.length == (bloc.inputData.package?.totalVisits ?? bloc.inputData.selectedVisitPerWeek?.number)) {
                           bloc.inputData.week.removeAt(0);
                           bloc.inputData.week.add(day.id);
                           bloc.inputData.dates.clear();
@@ -172,7 +172,7 @@ class _SelectDatesViewState extends State<SelectDatesView> {
                   // if (bloc.inputData.dates.isNotEmpty) {
                   //   return bloc.inputData.dates.first == day;
                   // } else
-                  if (bloc.inputData.week.contains(day.weekday)) {
+                  if (bloc.inputData.week.contains(day.weekday) && !day.sameDay(DateTime.now())) {
                     return true;
                   } else {
                     return false;

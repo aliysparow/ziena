@@ -3,6 +3,7 @@ import 'package:ziena/core/utils/enums.dart';
 class HourlyServiceState {
   final RequestState getPacagesState,
       getCountriesForHourlyPricing,
+      suggestedDaysState,
       addressesState,
       bookingState,
       getGetWeeksNumber,
@@ -17,6 +18,7 @@ class HourlyServiceState {
     this.getPacagesState = RequestState.initial,
     this.getGetWeeksNumber = RequestState.initial,
     this.getCountriesForHourlyPricing = RequestState.initial,
+    this.suggestedDaysState = RequestState.initial,
     this.bookingState = RequestState.initial,
     this.msg = '',
     this.errorType = ErrorType.none,
@@ -37,11 +39,13 @@ class HourlyServiceState {
     RequestState? getAllShiftsForPricing,
     RequestState? getPricingDetails,
     RequestState? getCountriesForHourlyPricing,
+    RequestState? suggestedDaysState,
   }) =>
       HourlyServiceState(
         getVisitsPerWeek: getVisitsPerWeek ?? this.getVisitsPerWeek,
         getCountriesForHourlyPricing: getCountriesForHourlyPricing ?? this.getCountriesForHourlyPricing,
         getPricingDetails: getPricingDetails ?? this.getPricingDetails,
+        suggestedDaysState: suggestedDaysState ?? this.suggestedDaysState,
         getGetWeeksNumber: getGetWeeksNumber ?? this.getGetWeeksNumber,
         msg: msg ?? this.msg,
         errorType: errorType ?? this.errorType,

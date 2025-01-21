@@ -67,6 +67,7 @@ class ApiConstants {
   static const String deleteAddress = 'Address/DeleteAddress';
 
   static const String createHourlyContract = 'Contract/CreateHourlyContract';
+  static const String getAvailableDates = 'Contract/GetAvailableDates';
   static const String upcomingHourlyContracts = 'Contract/GetUpcomingHourlyContractsByUser';
   static const String finishedHourlyContracts = 'Contract/GetFinishedHourlyContractsByUser';
   static const String getIndividualReqsByUserId = 'Request/GetIndividualReqsByUserId';

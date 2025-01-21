@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ziena/core/routes/app_routes_fun.dart';
 import 'package:ziena/core/routes/routes.dart';
+import 'package:ziena/core/utils/extensions.dart';
 import 'package:ziena/gen/assets.gen.dart';
 import 'package:ziena/gen/locale_keys.g.dart';
 import 'package:ziena/models/shift_model.dart';
@@ -83,7 +84,7 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
 
   createBooking() async {
     emit(state.copyWith(bookingState: RequestState.loading));
-    final result = await ServerGate.i.sendToServer(url: ApiConstants.createHourlyContract, body: inputData.toJson());
+    final result = await ServerGate.i.sendToServer(url: ApiConstants.createHourlyContract, body: inputData.toJson(false));
     if (result.success) {
       push(
         NamedRoutes.successfullyPage,
@@ -101,12 +102,27 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
       ).then(
         (value) => Navigator.popUntil(navigator.currentContext!, (r) => r.isFirst),
       );
-      emit(
-        state.copyWith(bookingState: RequestState.done, msg: result.msg),
-      );
+      emit(state.copyWith(bookingState: RequestState.done, msg: result.msg));
     } else {
       FlashHelper.showToast(result.msg);
       emit(state.copyWith(bookingState: RequestState.error, msg: result.msg));
+    }
+  }
+
+  suggestedDays() async {
+    emit(state.copyWith(suggestedDaysState: RequestState.loading));
+    final result = await ServerGate.i.sendToServer(
+      url: ApiConstants.getAvailableDates,
+      body: inputData.toJson(true),
+    );
+    if (result.success) {
+      inputData.actDates = List<DateTime>.from((result.data['data'] ?? []).map((e) => DateTime.tryParse(e)?.toLocal() ?? DateTime.now()));
+      emit(state.copyWith(suggestedDaysState: RequestState.done));
+      Future.delayed(1.seconds);
+      emit(state.copyWith(suggestedDaysState: RequestState.initial));
+    } else {
+      FlashHelper.showToast(result.msg);
+      emit(state.copyWith(suggestedDaysState: RequestState.error, msg: result.msg));
     }
   }
 

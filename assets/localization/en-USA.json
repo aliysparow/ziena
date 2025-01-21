@@ -269,6 +269,12 @@
     "choose_the_contract_period": "Choose the contract period",
     "number_of_weekly_visits": "Number of weekly visits",
     "required_nationality": "Required nationality",
-    "please_select_number_of_visits":"Please select number of visits",
-    "please_select_shift_of_service":"Please select shift of service"
+    "please_select_number_of_visits": "Please select number of visits",
+    "please_select_shift_of_service": "Please select shift of service",
+    "visitsTable": "Visits Table",
+    "visit_duration": "Visit duration",
+    "duration": "Duration",
+    "are_you_sure_you_want_to_cancel_this_contract": "Are you sure you want to cancel this contract?",
+    "to": "to",
+    "from": "from"
 }

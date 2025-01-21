@@ -65,6 +65,21 @@ class DriverOrderItem extends StatelessWidget {
           Row(
             children: [
               CustomImage(
+                Assets.icons.hashtag,
+                height: 18.h,
+                width: 18.h,
+              ),
+              Flexible(
+                child: Text(
+                  "${LocaleKeys.duration.tr()}: ${item.duration} ${LocaleKeys.hours.tr()}",
+                  style: context.semiboldText.copyWith(fontSize: 12),
+                ).withPadding(start: 8.w),
+              )
+            ],
+          ).withPadding(vertical: 7.h),
+          Row(
+            children: [
+              CustomImage(
                 Assets.icons.user,
                 height: 18.h,
                 width: 18.h,

@@ -171,7 +171,7 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
                                   width: 18.w,
                                 ).withPadding(end: 8.w),
                                 Text(
-                                  "${item.shiftHours} ${LocaleKeys.hours.tr()}",
+                                  "${item.totalHours} ${LocaleKeys.hours.tr()}",
                                   style: context.regularText.copyWith(fontSize: 12),
                                 ),
                               ],

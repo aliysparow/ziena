@@ -75,6 +75,65 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
+              padding: EdgeInsets.all(14.w),
+              decoration: BoxDecoration(
+                color: context.primaryColorLight,
+                borderRadius: BorderRadius.circular(12.r),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          LocaleKeys.visitsTable.tr(),
+                          style: context.mediumText.copyWith(fontSize: 16),
+                        ),
+                      ),
+                      // GestureDetector(
+                      //   onTap: () {
+                      //     Navigator.popUntil(
+                      //       context,
+                      //       (r) => r.settings.name == NamedRoutes.selectDates,
+                      //     );
+                      //   },
+                      //   child: CustomImage(
+                      //     Assets.icons.edit,
+                      //     height: 24.h,
+                      //     width: 24.h,
+                      //   ),
+                      // ),
+                    ],
+                  ).withPadding(bottom: 8.h),
+                  ...List.generate(bloc.inputData.actDates.length, (i) {
+                    return Text.rich(TextSpan(children: [
+                      TextSpan(
+                        text: '${i + 1}. ${DateFormat('EEEE dd MMM yyyy', context.locale.languageCode).format(bloc.inputData.actDates[i])}',
+                        style: context.lightText.copyWith(fontSize: 14),
+                      ),
+                      if (bloc.inputData.package != null)
+                        TextSpan(
+                          text: ' ${LocaleKeys.from.tr()}',
+                          style: context.lightText.copyWith(fontSize: 14),
+                        ),
+                      TextSpan(
+                        text: " ${DateFormat('hh:mm aa', context.locale.languageCode).format(bloc.inputData.actDates[i])}",
+                        style: context.lightText.copyWith(fontSize: 14),
+                      ),
+                      if (bloc.inputData.package != null)
+                        TextSpan(
+                          text:
+                              ' ${LocaleKeys.to.tr()} ${DateFormat('hh:mm aa', context.locale.languageCode).format(bloc.inputData.actDates[i].add(bloc.inputData.package!.totalHours.hours))}',
+                          style: context.lightText.copyWith(fontSize: 14),
+                        )
+                    ])).withPadding(vertical: 6.h);
+                  })
+                ],
+              ),
+            ),
             if (bloc.inputData.package != null)
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
@@ -91,7 +150,7 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                       style: context.semiboldText.copyWith(fontSize: 16),
                     ),
                     ...List.generate(
-                      7,
+                      6,
                       (i) {
                         final item = bloc.inputData.package!;
                         return Row(
@@ -101,21 +160,20 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                               [
                                 LocaleKeys.number_of_visits.tr(),
                                 LocaleKeys.number_of_weeks.tr(),
-                                LocaleKeys.number_of_work_hours.tr(),
-                                LocaleKeys.time_period.tr(),
-                                LocaleKeys.price_before_discount.tr(),
-                                LocaleKeys.price_after_discount.tr(),
+                                LocaleKeys.visit_duration.tr(),
+                                LocaleKeys.duration.tr(),
+                                LocaleKeys.package_price.tr(),
                                 LocaleKeys.vat.tr(),
                               ][i],
                               style: context.mediumText.copyWith(fontSize: 15, color: '#8E8E8E'.color),
                             ),
                             Text(
                               [
-                                LocaleKeys.visit_number_val.tr(args: ["${item.totalVisits}"]),
+                                "${item.totalVisits}",
                                 LocaleKeys.val_weeks.tr(args: ["${item.totalVisits}"]),
-                                LocaleKeys.val_hours.tr(args: ["${item.totalVisits}"]),
+                                LocaleKeys.val_hours.tr(args: ["${item.totalHours}"]),
                                 item.shiftName,
-                                "${item.initialPrice} ${LocaleKeys.sar.tr()}",
+                                // "${item.initialPrice} ${LocaleKeys.sar.tr()}",
                                 "${item.priceAfterDiscountWithoutVat} ${LocaleKeys.sar.tr()}",
                                 "${item.vat} ${LocaleKeys.sar.tr()}",
                               ][i],
@@ -282,48 +340,6 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
                 color: context.primaryColorLight,
                 borderRadius: BorderRadius.circular(12.r),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          LocaleKeys.choosed_days.tr(),
-                          style: context.mediumText.copyWith(fontSize: 16),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.popUntil(
-                            context,
-                            (r) => r.settings.name == NamedRoutes.selectDates,
-                          );
-                        },
-                        child: CustomImage(
-                          Assets.icons.edit,
-                          height: 24.h,
-                          width: 24.h,
-                        ),
-                      ),
-                    ],
-                  ).withPadding(bottom: 8.h),
-                  ...List.generate(bloc.inputData.dates.length, (i) {
-                    return Text(
-                      '${i + 1}. ${DateFormat('dd/MM/yyyy EEEE', context.locale.languageCode).format(bloc.inputData.dates[i])}',
-                      style: context.lightText.copyWith(fontSize: 14),
-                    ).withPadding(vertical: 6.h);
-                  })
-                ],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
-              padding: EdgeInsets.all(14.w),
-              decoration: BoxDecoration(
-                color: context.primaryColorLight,
-                borderRadius: BorderRadius.circular(12.r),
-              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -420,13 +436,23 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
             SizedBox(width: 32.h),
             CustomRadiusIcon(
               onTap: () {
-                Navigator.pop(context);
+                showDialog(
+                  context: context,
+                  builder: (c) => ConfirmDialog(
+                    title: LocaleKeys.cancel.tr(),
+                    subTitle: LocaleKeys.are_you_sure_you_want_to_cancel_this_contract.tr(),
+                  ),
+                ).then((v) {
+                  if (v == true) {
+                    Navigator.popUntil(navigator.currentContext!, (v) => v.isFirst);
+                  }
+                });
               },
-              backgroundColor: '#A4A4A4'.color,
+              backgroundColor: context.errorColor.withOpacity(0.2),
               size: 40.h,
-              child: Icon(
-                Icons.arrow_forward_rounded,
-                color: context.primaryColorLight,
+              child: Text(
+                LocaleKeys.cancel.tr(),
+                style: context.regularText.copyWith(fontSize: 12, color: context.errorColor),
               ),
             )
           ],

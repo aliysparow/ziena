@@ -270,5 +270,11 @@
     "number_of_weekly_visits": "عدد الزيارات الاسبوعية",
     "required_nationality": "الجنسية المطلوبة",
     "please_select_number_of_visits": "الرجاء تحديد عدد الزيارات",
-    "please_select_shift_of_service": "الرجاء تحديد فترة الخدمة"
+    "please_select_shift_of_service": "الرجاء تحديد فترة الخدمة",
+    "visitsTable": "جدول الزيارات",
+    "visit_duration": "مدة الزيارة",
+    "duration": "الفترة",
+    "are_you_sure_you_want_to_cancel_this_contract": "هل أنت متأكد من أنك تريد إلغاء هذا العقد؟",
+    "to": "الي",
+    "from": "من"
 }

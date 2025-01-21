@@ -25,6 +25,7 @@ class BookHourlyInputModel {
   AddressModel? address;
   HourlyPackageModel? package;
   List<DateTime> dates = [];
+  List<DateTime> actDates = [];
   List<int> week = [];
   final phone1 = TextEditingController();
   final phone2 = TextEditingController();
@@ -132,11 +133,11 @@ class BookHourlyInputModel {
     }
   }
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson(bool suggest) => {
         "ServiceID": serviceId,
         "PackageId": package?.id,
-        "StartDate": DateFormat('yyyy-MM-dd', 'en').format(dates.first),
-        "DaysPerWeek": dates.map((e) => e.weekday).join(','),
+        "StartDate": DateFormat('yyyy-MM-dd', 'en').format(suggest ? dates.first : actDates.first),
+        "DaysPerWeek": (suggest ? dates : actDates).map((e) => e.weekday).join(','),
         "FixedWorker": false,
         "ContactId": UserModel.i.contactId,
         "AddressId": address?.id,

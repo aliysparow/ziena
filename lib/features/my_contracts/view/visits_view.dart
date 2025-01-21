@@ -52,7 +52,7 @@ class _VisitsViewState extends State<VisitsView> {
             return CustomGrid(
               itemCount: cubit.visits.length,
               crossCount: 2,
-              itemPadding: EdgeInsets.symmetric(horizontal: 12.w),
+              itemPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
               itemBuilder: (context, index) {
                 final item = cubit.visits[index];
                 return Container(

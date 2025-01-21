@@ -13,10 +13,10 @@ import 'login_state.dart';
 class LoginBloc extends Cubit<LoginState> {
   LoginBloc() : super(LoginState());
 
-  // final phone = TextEditingController(text: kDebugMode ? '542318760' : '');
-  // final password = TextEditingController(text: kDebugMode ? '10203040' : '');
-  final phone = TextEditingController(text: kDebugMode ? '571192793' : '');
-  final password = TextEditingController(text: kDebugMode ? 'Tito_2020' : '');
+  final phone = TextEditingController(text: kDebugMode ? '542318760' : '');
+  final password = TextEditingController(text: kDebugMode ? '10203040' : '');
+  // final phone = TextEditingController(text: kDebugMode ? '571192793' : '');
+  // final password = TextEditingController(text: kDebugMode ? 'Tito_2020' : '');
 
   Future<void> login() async {
     emit(state.copyWith(requestState: RequestState.loading));

@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:ziena/features/hourly_service/bloc/hourly_service_state.dart';
 
 import '../../../core/routes/app_routes_fun.dart';
 import '../../../core/routes/routes.dart';
@@ -202,31 +204,31 @@ class _SelectDatesViewState extends State<SelectDatesView> {
                 },
               ),
             ),
-            if (bloc.inputData.dates.isNotEmpty)
-              Container(
-                width: context.w,
-                margin: EdgeInsets.symmetric(vertical: 20.h),
-                decoration: BoxDecoration(
-                  color: context.primaryColorLight,
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      LocaleKeys.selected_days.tr(),
-                      style: context.mediumText.copyWith(fontSize: 16),
-                    ).withPadding(bottom: 8.h),
-                    ...List.generate(bloc.inputData.dates.length, (i) {
-                      return Text(
-                        '${i + 1}. ${DateFormat('dd/MM/yyyy EEEE', context.locale.languageCode).format(bloc.inputData.dates[i])}',
-                        style: context.lightText.copyWith(fontSize: 14),
-                      ).withPadding(vertical: 6.h);
-                    })
-                  ],
-                ),
-              ),
+            // if (bloc.inputData.dates.isNotEmpty)
+            //   Container(
+            //     width: context.w,
+            //     margin: EdgeInsets.symmetric(vertical: 20.h),
+            //     decoration: BoxDecoration(
+            //       color: context.primaryColorLight,
+            //       borderRadius: BorderRadius.circular(12.r),
+            //     ),
+            //     padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
+            //     child: Column(
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: [
+            //         Text(
+            //           LocaleKeys.selected_days.tr(),
+            //           style: context.mediumText.copyWith(fontSize: 16),
+            //         ).withPadding(bottom: 8.h),
+            //         ...List.generate(bloc.inputData.dates.length, (i) {
+            //           return Text(
+            //             '${i + 1}. ${DateFormat('dd/MM/yyyy EEEE', context.locale.languageCode).format(bloc.inputData.dates[i])}',
+            //             style: context.lightText.copyWith(fontSize: 14),
+            //           ).withPadding(vertical: 6.h);
+            //         })
+            //       ],
+            //     ),
+            //   ),
           ],
         ),
       ),
@@ -234,14 +236,25 @@ class _SelectDatesViewState extends State<SelectDatesView> {
         child: Row(
           children: [
             Expanded(
-              child: AppBtn(
-                onPressed: () {
-                  if (sl<HourlyServiceBloc>().inputData.validate(context)) {
+              child: BlocConsumer<HourlyServiceBloc, HourlyServiceState>(
+                bloc: bloc,
+                listenWhen: (previous, current) => previous.suggestedDaysState != current.suggestedDaysState,
+                buildWhen: (previous, current) => previous.suggestedDaysState != current.suggestedDaysState,
+                listener: (context, state) {
+                  if (state.suggestedDaysState.isDone) {
                     push(NamedRoutes.summaryHourlyService);
                   }
                 },
-                title: LocaleKeys.next.tr(),
-                backgroundColor: context.indicatorColor,
+                builder: (context, state) => AppBtn(
+                  loading: state.suggestedDaysState.isLoading,
+                  onPressed: () {
+                    if (sl<HourlyServiceBloc>().inputData.validate(context)) {
+                      bloc.suggestedDays();
+                    }
+                  },
+                  title: LocaleKeys.next.tr(),
+                  backgroundColor: context.indicatorColor,
+                ),
               ),
             ),
             SizedBox(width: 32.h),

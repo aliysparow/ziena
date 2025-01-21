@@ -271,5 +271,11 @@ abstract class  LocaleKeys {
   static const required_nationality = 'required_nationality';
   static const please_select_number_of_visits = 'please_select_number_of_visits';
   static const please_select_shift_of_service = 'please_select_shift_of_service';
+  static const visitsTable = 'visitsTable';
+  static const visit_duration = 'visit_duration';
+  static const duration = 'duration';
+  static const are_you_sure_you_want_to_cancel_this_contract = 'are_you_sure_you_want_to_cancel_this_contract';
+  static const to = 'to';
+  static const from = 'from';
 
 }

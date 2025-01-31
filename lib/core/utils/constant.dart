@@ -60,6 +60,7 @@ class ApiConstants {
 
   static const String getOffers = 'Package/GetOffers';
   static const String getOffersInBaner = 'Package/GetOffers_InBaner';
+  static const String getPackageById = 'Package/GetPackageById';
   static const String hourlyPackages = 'Package/GetHourlyPackages';
 
   static const String getAddresses = 'Address/GetAddressesByContactId';
@@ -68,9 +69,11 @@ class ApiConstants {
 
   static const String createHourlyContract = 'Contract/CreateHourlyContract';
   static const String getAvailableDates = 'Contract/GetAvailableDates';
+  static const String getAlternativeDatesMessage = 'Lookup/GetAlternativeDatesMessage';
   static const String upcomingHourlyContracts = 'Contract/GetUpcomingHourlyContractsByUser';
   static const String finishedHourlyContracts = 'Contract/GetFinishedHourlyContractsByUser';
   static const String getIndividualReqsByUserId = 'Request/GetIndividualReqsByUserId';
+  static const String blockReasons = 'Lookup/blockReason';
 
   static const String getUpcomingVisits = 'HourlyVisit/GetUpcomingVisits';
   static const String getCompletedVisits = 'HourlyVisit/GetCompletedVisits';

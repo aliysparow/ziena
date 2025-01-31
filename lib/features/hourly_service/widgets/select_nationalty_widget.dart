@@ -73,7 +73,7 @@ class _SelectNationaltyWidgetState extends State<SelectNationaltyWidget> {
                         if (bloc.inputData.package != null && bloc.inputData.package!.nationality != bloc.inputData.nationalityFilter) {
                           bloc.inputData.package = null;
                         }
-                        setState(() {});
+                        bloc.refresh();
                       },
                       child: Container(
                         height: 40.h,

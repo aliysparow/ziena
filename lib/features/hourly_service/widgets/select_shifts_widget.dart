@@ -73,7 +73,7 @@ class _SelectShiftsWidgetState extends State<SelectShiftsWidget> {
                         if (bloc.inputData.package != null && bloc.inputData.package!.shift != bloc.inputData.period?.id) {
                           bloc.inputData.package = null;
                         }
-                        setState(() {});
+                        bloc.refresh();
                       },
                       child: Container(
                         height: 40.h,

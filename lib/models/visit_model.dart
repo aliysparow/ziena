@@ -3,6 +3,7 @@ import 'base.dart';
 class VisitModel extends Model {
   late final String name;
   late final String startTime;
+  late final String contactPeriod;
   late final String endTime;
   late final String actualStartTime;
   late final String actualEndTime;
@@ -74,6 +75,7 @@ class VisitModel extends Model {
     actualStartTime = stringFromJson(json, 'ActualStartTime');
     actualEndTime = stringFromJson(json, 'ActualEndTime');
     contractNumber = stringFromJson(json, 'ContractNumber');
+    contactPeriod = stringFromJson(json, 'ContactPeriod');
     customerName = stringFromJson(json, 'CustomerName');
     duration = intFromJson(json, 'Duration');
     employeeName = stringFromJson(json, 'EmployeeName');

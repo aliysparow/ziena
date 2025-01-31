@@ -59,7 +59,7 @@ class _HourlyServiceViewState extends State<HourlyServiceView> {
             bloc.inputData.clear();
           });
         },
-      ).withPadding(horizontal: 20.w),
+      ).withPadding(horizontal: 20.w, vertical: 10.h),
       body: SingleChildScrollView(
         child: SizedBox(
           width: context.w,

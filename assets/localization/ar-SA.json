@@ -276,5 +276,6 @@
     "duration": "الفترة",
     "are_you_sure_you_want_to_cancel_this_contract": "هل أنت متأكد من أنك تريد إلغاء هذا العقد؟",
     "to": "الي",
-    "from": "من"
+    "from": "من",
+    "contact_period": "فترة التواصل"
 }

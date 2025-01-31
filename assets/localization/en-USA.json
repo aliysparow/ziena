@@ -276,5 +276,6 @@
     "duration": "Duration",
     "are_you_sure_you_want_to_cancel_this_contract": "Are you sure you want to cancel this contract?",
     "to": "to",
-    "from": "from"
+    "from": "from",
+    "contact_period": "Contact Period"
 }

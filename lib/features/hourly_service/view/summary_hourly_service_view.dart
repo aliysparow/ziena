@@ -75,6 +75,28 @@ class _SummaryHourlyServiceViewState extends State<SummaryHourlyServiceView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            BlocBuilder<HourlyServiceBloc, HourlyServiceState>(
+              bloc: bloc,
+              builder: (context, state) {
+                if (bloc.alternativeMessage?.isNotEmpty ?? false) {
+                  return Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
+                    padding: EdgeInsets.all(14.w),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: context.errorColor),
+                      color: context.errorColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    child: Text(
+                      bloc.alternativeMessage ?? '',
+                      style: context.mediumText.copyWith(fontSize: 14, color: context.errorColor),
+                    ),
+                  );
+                } else {
+                  return const SizedBox.shrink();
+                }
+              },
+            ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
               padding: EdgeInsets.all(14.w),

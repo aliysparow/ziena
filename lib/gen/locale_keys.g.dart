@@ -277,5 +277,6 @@ abstract class  LocaleKeys {
   static const are_you_sure_you_want_to_cancel_this_contract = 'are_you_sure_you_want_to_cancel_this_contract';
   static const to = 'to';
   static const from = 'from';
+  static const contact_period = 'contact_period';
 
 }

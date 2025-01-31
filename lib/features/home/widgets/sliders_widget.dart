@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ziena/core/services/service_locator.dart';
-import 'package:ziena/core/utils/extensions.dart';
-import 'package:ziena/core/widgets/base_shimmer.dart';
-import 'package:ziena/core/widgets/custom_image.dart';
-import 'package:ziena/features/home/bloc/home_bloc.dart';
-import 'package:ziena/features/home/bloc/home_state.dart';
+
+import '../../../core/services/service_locator.dart';
+import '../../../core/utils/extensions.dart';
+import '../../../core/widgets/base_shimmer.dart';
+import '../../../core/widgets/custom_image.dart';
+import '../bloc/home_bloc.dart';
+import '../bloc/home_state.dart';
 
 class SlidersWidget extends StatefulWidget {
   const SlidersWidget({super.key});
@@ -37,15 +38,22 @@ class _SlidersWidgetState extends State<SlidersWidget> {
                     selectedBanner = value;
                     setState(() {});
                   },
-                  itemBuilder: (context, index) => CustomImage(
-                    cubit.sliders[index].icon,
-                    height: 185.h,
-                    width: context.w - 40.w,
-                    fit: BoxFit.fill,
-                    base46: true,
-                    backgroundColor: '#D9D9D9'.color,
-                    borderRadius: BorderRadius.circular(20.r),
-                  ).withPadding(horizontal: 20.w),
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () {
+                      if (cubit.sliders[index].packageId.isNotEmpty) {
+                        cubit.getPackage(cubit.sliders[index].packageId);
+                      }
+                    },
+                    child: CustomImage(
+                      cubit.sliders[index].icon,
+                      height: 185.h,
+                      width: context.w - 40.w,
+                      fit: BoxFit.fill,
+                      base46: true,
+                      backgroundColor: '#D9D9D9'.color,
+                      borderRadius: BorderRadius.circular(20.r),
+                    ).withPadding(horizontal: 20.w),
+                  ),
                 ),
               ).withPadding(vertical: 12.h),
               Row(

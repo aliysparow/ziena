@@ -2,8 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ziena/features/my_contracts/widgets/add_favorite_dialog.dart';
-import 'package:ziena/features/my_contracts/widgets/add_report_dialog.dart';
+import 'package:ziena/core/routes/app_routes_fun.dart';
 
 import '../../../core/services/service_locator.dart';
 import '../../../core/utils/extensions.dart';
@@ -15,6 +14,8 @@ import '../../../gen/assets.gen.dart';
 import '../../../gen/locale_keys.g.dart';
 import '../cubit/contracts_cubit.dart';
 import '../cubit/contracts_state.dart';
+import '../widgets/add_favorite_dialog.dart';
+import '../widgets/add_report_dialog.dart';
 import '../widgets/content_item.dart';
 import '../widgets/rate_sheet.dart';
 
@@ -101,7 +102,7 @@ class _VisitsViewState extends State<VisitsView> {
                         padding: EdgeInsets.all(6.w),
                         mainAxisAlignment: MainAxisAlignment.start,
                         icon: Assets.icons.time,
-                        title: item.startTime,
+                        title: "${LocaleKeys.contact_period.tr()}:\n${item.contactPeriod}",
                       ),
                       ContentItem(
                         padding: EdgeInsets.all(6.w),
@@ -176,9 +177,10 @@ class _VisitsViewState extends State<VisitsView> {
                               ),
                             ),
                             GestureDetector(
-                              onTap: () {
+                              onTap: () async {
+                                await cubit.getBlocReasons();
                                 showDialog(
-                                  context: context,
+                                  context: navigator.currentContext!,
                                   builder: (context) => AddReportDialog(workId: item.workerId),
                                 );
                               },

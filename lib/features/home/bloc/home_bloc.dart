@@ -1,8 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ziena/core/routes/app_routes_fun.dart';
+import 'package:ziena/core/routes/routes.dart';
+import 'package:ziena/core/services/service_locator.dart';
+import 'package:ziena/features/hourly_service/bloc/hourly_service_bloc.dart';
 
 import '../../../core/services/server_gate.dart';
 import '../../../core/utils/constant.dart';
 import '../../../core/utils/enums.dart';
+import '../../../models/hourly_package_model.dart';
 import '../../../models/offer_model.dart';
 import '../../../models/service_model.dart';
 import '../../../models/slider_model.dart';
@@ -57,6 +62,26 @@ class HomeBloc extends Cubit<HomeState> {
       emit(state.copyWith(slidersState: RequestState.done, msg: result.msg));
     } else {
       emit(state.copyWith(slidersState: RequestState.error, msg: result.msg));
+    }
+  }
+
+  Future<void> getPackage(String id) async {
+    emit(state.copyWith(getPackageByIdState: RequestState.loading));
+    final result = await ServerGate.i.getFromServer(
+      url: ApiConstants.getPackageById,
+      params: {"packageId": id},
+    );
+    if (result.success) {
+      final package = HourlyPackageModel.fromJson(result.data['data']);
+      // sliders = List<SliderModel>.from((result.data['data'] ?? []).map((x) => SliderModel.fromJson(x)));
+      sl.resetLazySingleton<HourlyServiceBloc>();
+
+      sl<HourlyServiceBloc>().inputData.serviceId = package.service;
+      sl<HourlyServiceBloc>().inputData.package = package;
+      push(NamedRoutes.selectAddress);
+      emit(state.copyWith(getPackageByIdState: RequestState.done, msg: result.msg));
+    } else {
+      emit(state.copyWith(getPackageByIdState: RequestState.error, msg: result.msg));
     }
   }
 }

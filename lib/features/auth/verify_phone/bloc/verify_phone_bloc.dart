@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ziena/core/services/local_notifications_service.dart';
 import 'package:ziena/core/utils/methods_helpers.dart';
 
 import '../../../../core/services/server_gate.dart';
@@ -20,7 +21,7 @@ class VerifyPhoneBloc extends Cubit<VerifyPhoneState> {
     emit(state.copyWith(verifyState: RequestState.loading));
     final result = await ServerGate.i.sendToServer(
       url: type == VerifyType.register ? ApiConstants.verifyAccount : ApiConstants.verifyOtp,
-      body: {...body, "OTP": otp.text},
+      body: {...body, "OTP": otp.text, "device_token": await GlobalNotification.getFcmToken()},
     );
     if (result.success) {
       if (type == VerifyType.register) {

@@ -7,6 +7,7 @@ class HourlyServiceState {
       addressesState,
       bookingState,
       getGetWeeksNumber,
+      getAlternativeDatesMessage,
       getVisitsPerWeek,
       getAllShiftsForPricing,
       getPricingDetails;
@@ -18,6 +19,7 @@ class HourlyServiceState {
     this.getPacagesState = RequestState.initial,
     this.getGetWeeksNumber = RequestState.initial,
     this.getCountriesForHourlyPricing = RequestState.initial,
+    this.getAlternativeDatesMessage = RequestState.initial,
     this.suggestedDaysState = RequestState.initial,
     this.bookingState = RequestState.initial,
     this.msg = '',
@@ -40,12 +42,14 @@ class HourlyServiceState {
     RequestState? getPricingDetails,
     RequestState? getCountriesForHourlyPricing,
     RequestState? suggestedDaysState,
+    RequestState? getAlternativeDatesMessage,
   }) =>
       HourlyServiceState(
         getVisitsPerWeek: getVisitsPerWeek ?? this.getVisitsPerWeek,
         getCountriesForHourlyPricing: getCountriesForHourlyPricing ?? this.getCountriesForHourlyPricing,
         getPricingDetails: getPricingDetails ?? this.getPricingDetails,
         suggestedDaysState: suggestedDaysState ?? this.suggestedDaysState,
+        getAlternativeDatesMessage: getAlternativeDatesMessage ?? this.getAlternativeDatesMessage,
         getGetWeeksNumber: getGetWeeksNumber ?? this.getGetWeeksNumber,
         msg: msg ?? this.msg,
         errorType: errorType ?? this.errorType,

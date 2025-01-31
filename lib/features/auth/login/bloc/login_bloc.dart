@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:ziena/core/services/local_notifications_service.dart';
 import 'package:ziena/core/utils/constant.dart';
 
 import '../../../../core/services/server_gate.dart';
@@ -23,6 +24,7 @@ class LoginBloc extends Cubit<LoginState> {
     final result = await ServerGate.i.sendToServer(url: ApiConstants.login, body: {
       "UserName": MethodsHelpers.formatPhoneNumber(phone.text),
       "Password": password.text,
+      "device_token": await GlobalNotification.getFcmToken(),
     });
     if (result.success) {
       result.data['data']['phone'] = MethodsHelpers.formatPhoneNumber(phone.text);

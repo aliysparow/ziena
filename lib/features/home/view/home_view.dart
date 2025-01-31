@@ -142,10 +142,12 @@ class _HomeViewState extends State<HomeView> {
                       spacing: 18.w,
                       children: List.generate(bloc.hourlyServiceList.length, (i) {
                         return GestureDetector(
-                          onTap: () => push(NamedRoutes.hourlyService, arg: {
-                            'id': bloc.hourlyServiceList[i].id,
-                            'title': bloc.hourlyServiceList[i].name,
-                          }),
+                          onTap: () {
+                            push(NamedRoutes.hourlyService, arg: {
+                              'id': bloc.hourlyServiceList[i].id,
+                              'title': bloc.hourlyServiceList[i].name,
+                            });
+                          },
                           child: SizedBox(
                             width: 142.w,
                             child: Column(

@@ -1,12 +1,13 @@
 import '../../../core/utils/enums.dart';
 
 class ContractsState {
-  final RequestState contractState, visitsState, reschduleVisitState, rateState, setFavoriteLaborState, blockLaborState, ordersState;
+  final RequestState contractState, visitsState, reschduleVisitState, rateState, setFavoriteLaborState, blockLaborState, ordersState, getBlocReasons;
   final String msg;
   final ErrorType errorType;
 
   ContractsState(
       {this.contractState = RequestState.initial,
+      this.getBlocReasons = RequestState.initial,
       this.visitsState = RequestState.initial,
       this.reschduleVisitState = RequestState.initial,
       this.rateState = RequestState.initial,
@@ -17,6 +18,7 @@ class ContractsState {
       this.ordersState = RequestState.initial});
 
   ContractsState copyWith({
+    RequestState? getBlocReasons,
     RequestState? contractState,
     RequestState? visitsState,
     RequestState? reschduleVisitState,
@@ -28,6 +30,7 @@ class ContractsState {
     RequestState? ordersState,
   }) =>
       ContractsState(
+        getBlocReasons: getBlocReasons ?? this.getBlocReasons,
         contractState: contractState ?? this.contractState,
         ordersState: ordersState ?? this.ordersState,
         visitsState: visitsState ?? this.visitsState,

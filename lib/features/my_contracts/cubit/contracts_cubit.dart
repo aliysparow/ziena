@@ -57,10 +57,15 @@ class ContractsCubit extends Cubit<ContractsState> {
     emit(state.copyWith(reschduleVisitState: RequestState.loading));
     final result = await ServerGate.i.sendToServer(
       url: ApiConstants.reschduleVisit,
-      params: {"VisitId": id, "Date": date.toString()},
+      body: {
+        "VisitId": id,
+        "VisitDate": date.toUtc().toIso8601String(),
+      },
+      headers: {"Accept-Language": "", "Lang": ""},
     );
     LoadingDialog.hide();
     if (result.success) {
+      getVisits(VisitsType.upcoming);
       // visits = List<VisitModel>.from((result.data['data'] ?? []).map((x) => VisitModel.fromJson(x)));
       // visits.add(VisitModel.fromJson({}));
       emit(state.copyWith(reschduleVisitState: RequestState.done));
@@ -119,7 +124,7 @@ class ContractsCubit extends Cubit<ContractsState> {
       params: {
         "userId": UserModel.i.id,
         "laborId": workerId,
-        "Notes": note,
+        "blockReason": note,
       },
     );
     LoadingDialog.hide();
@@ -144,6 +149,20 @@ class ContractsCubit extends Cubit<ContractsState> {
       emit(state.copyWith(contractState: RequestState.done));
     } else {
       emit(state.copyWith(contractState: RequestState.error, msg: result.msg));
+    }
+  }
+
+  getBlocReasons() async {
+    LoadingDialog.show();
+    emit(state.copyWith(getBlocReasons: RequestState.loading));
+    final result = await ServerGate.i.getFromServer(
+      url: ApiConstants.blockReasons,
+    );
+    LoadingDialog.hide();
+    if (result.success) {
+      emit(state.copyWith(getBlocReasons: RequestState.done));
+    } else {
+      emit(state.copyWith(getBlocReasons: RequestState.error, msg: result.msg));
     }
   }
 }

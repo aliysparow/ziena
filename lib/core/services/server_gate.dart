@@ -24,7 +24,6 @@ class ServerGate {
         "Lang": LocaleKeys.lang.tr(),
       };
 
-
   final _dio = Dio();
 
   ServerGate._() {
@@ -41,14 +40,16 @@ class ServerGate {
   }) async {
     try {
       params?.removeWhere((key, value) => value == null || '$value'.isEmpty);
-      headers?.removeWhere((key, value) => value == null || '$value'.isEmpty);
+
+      final actHeaders = {...constHeader, if (headers != null) ...headers};
+      actHeaders.removeWhere((key, value) => value == null || '$value'.isEmpty);
       body?.removeWhere((key, value) => value == null || '$value'.isEmpty);
       formData?.removeWhere((key, value) => value == null || '$value'.isEmpty);
       final res = await _dio.post(
         url.startsWith('http') ? url : "$_baseUrl/$url",
         data: formData == null ? (body ?? {}) : FormData.fromMap(formData),
         options: Options(
-          headers: {if (headers != null) ...headers, ...constHeader},
+          headers: actHeaders,
           responseType: ResponseType.json,
         ),
         queryParameters: params,
@@ -102,7 +103,7 @@ class ServerGate {
         url.startsWith('http') ? url : "$_baseUrl/$url",
         data: formData == null ? (body ?? {}) : FormData.fromMap(formData),
         options: Options(
-          headers: {if (headers != null) ...headers, ...constHeader},
+          headers: {...constHeader, if (headers != null) ...headers},
           responseType: ResponseType.json,
         ),
         queryParameters: params,
@@ -192,7 +193,7 @@ class ServerGate {
         url.startsWith('http') ? url : "$_baseUrl/$url",
         data: formData == null ? (body ?? {}) : FormData.fromMap(formData),
         options: Options(
-          headers: {if (headers != null) ...headers, ...constHeader},
+          headers: {...constHeader, if (headers != null) ...headers},
           responseType: ResponseType.json,
         ),
         queryParameters: params,
@@ -239,7 +240,7 @@ class ServerGate {
         url.startsWith('http') ? url : "$_baseUrl/$url",
         data: formData == null ? (body ?? {}) : FormData.fromMap(formData),
         options: Options(
-          headers: {if (headers != null) ...headers, ...constHeader},
+          headers: {...constHeader, if (headers != null) ...headers},
           responseType: ResponseType.json,
         ),
         queryParameters: params,
@@ -341,6 +342,7 @@ class CustomApiInterceptor extends Interceptor {
   void onError(DioException err, ErrorInterceptorHandler handler) {
     log.red("\x1B[37m------ Current Error Response (status code ${err.response?.statusCode}) -----\x1B[0m");
     log.red("\x1B[31m${jsonEncode(err.response?.data)}\x1B[0m");
+    log.white(_generateCurlCommand(err.requestOptions));
     return super.onError(err, handler);
   }
 
@@ -348,6 +350,8 @@ class CustomApiInterceptor extends Interceptor {
   Future<void> onResponse(Response response, ResponseInterceptorHandler handler) async {
     log.green("------ Current Response (status code ${response.statusCode}) ------");
     log.green(jsonEncode(response.data), response.requestOptions.path.replaceFirst(ApiConstants.baseUrl, ''));
+    log.white(_generateCurlCommand(response.requestOptions));
+
     return super.onResponse(response, handler);
   }
 
@@ -377,7 +381,40 @@ class CustomApiInterceptor extends Interceptor {
     log.white(jsonEncode(options.queryParameters));
     log.yellow("------ Current Request Headers -----");
     log.yellow(jsonEncode(options.headers));
+
     return super.onRequest(options, handler);
+  }
+
+  String _generateCurlCommand(RequestOptions options) {
+    final method = options.method;
+    final url = options.uri.toString();
+    final headers = options.headers;
+    final data = options.data;
+
+    // Start building the cURL command
+    final curlCommand = StringBuffer("curl -X $method '$url'");
+
+    // Add headers
+    headers.forEach((key, value) {
+      curlCommand.write(" -H '$key: $value'");
+    });
+
+    // Add body if present
+    if (data != null) {
+      if (data is FormData) {
+        final formDataMap = {
+          for (var entry in data.fields) entry.key: entry.value,
+          for (var file in data.files) file.key: file.value.filename,
+        };
+        curlCommand.write(" --data '${jsonEncode(formDataMap)}'");
+      } else if (data is Map) {
+        curlCommand.write(" --data '${jsonEncode(data)}'");
+      } else {
+        curlCommand.write(" --data '$data'");
+      }
+    }
+
+    return curlCommand.toString();
   }
 }
 

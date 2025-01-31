@@ -1,25 +1,25 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ziena/core/routes/app_routes_fun.dart';
-import 'package:ziena/core/routes/routes.dart';
-import 'package:ziena/core/utils/extensions.dart';
-import 'package:ziena/gen/assets.gen.dart';
-import 'package:ziena/gen/locale_keys.g.dart';
-import 'package:ziena/models/shift_model.dart';
-import 'package:ziena/models/visits_per_week_mode.dart';
-import 'package:ziena/models/week_number_model.dart';
 
+import '../../../core/routes/app_routes_fun.dart';
+import '../../../core/routes/routes.dart';
 import '../../../core/services/server_gate.dart';
 import '../../../core/utils/constant.dart';
 import '../../../core/utils/enums.dart';
+import '../../../core/utils/extensions.dart';
 import '../../../core/widgets/flash_helper.dart';
 import '../../../core/widgets/select_item_sheet.dart';
+import '../../../gen/assets.gen.dart';
+import '../../../gen/locale_keys.g.dart';
 import '../../../models/address_model.dart';
 import '../../../models/book_hourly_input_model.dart';
 import '../../../models/hourly_package_model.dart';
 import '../../../models/nationality_model.dart';
+import '../../../models/shift_model.dart';
 import '../../../models/user_model.dart';
+import '../../../models/visits_per_week_mode.dart';
+import '../../../models/week_number_model.dart';
 import 'hourly_service_state.dart';
 
 class HourlyServiceBloc extends Cubit<HourlyServiceState> {
@@ -110,19 +110,36 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
   }
 
   suggestedDays() async {
-    emit(state.copyWith(suggestedDaysState: RequestState.loading));
+    alternativeMessage = null;
+    emit(state.copyWith(suggestedDaysState: RequestState.loading, getAlternativeDatesMessage: RequestState.initial));
     final result = await ServerGate.i.sendToServer(
       url: ApiConstants.getAvailableDates,
       body: inputData.toJson(true),
     );
     if (result.success) {
       inputData.actDates = List<DateTime>.from((result.data['data'] ?? []).map((e) => DateTime.tryParse(e)?.toLocal() ?? DateTime.now()));
+      if (inputData.actDates.firstOrNull?.sameDay(inputData.dates.firstOrNull) == false) {
+        alternativeDatesMessage();
+      }
       emit(state.copyWith(suggestedDaysState: RequestState.done));
       Future.delayed(1.seconds);
       emit(state.copyWith(suggestedDaysState: RequestState.initial));
     } else {
       FlashHelper.showToast(result.msg);
       emit(state.copyWith(suggestedDaysState: RequestState.error, msg: result.msg));
+    }
+  }
+
+  String? alternativeMessage;
+  alternativeDatesMessage() async {
+    emit(state.copyWith(getAlternativeDatesMessage: RequestState.loading));
+    final result = await ServerGate.i.getFromServer(url: ApiConstants.getAlternativeDatesMessage);
+    if (result.success) {
+      alternativeMessage = result.data['data'];
+      emit(state.copyWith(getAlternativeDatesMessage: RequestState.done));
+    } else {
+      FlashHelper.showToast(result.msg);
+      emit(state.copyWith(getAlternativeDatesMessage: RequestState.error, msg: result.msg));
     }
   }
 
@@ -189,5 +206,10 @@ class HourlyServiceBloc extends Cubit<HourlyServiceState> {
       FlashHelper.showToast(result.msg);
       emit(state.copyWith(getPricingDetails: RequestState.error, msg: result.msg));
     }
+  }
+
+  refresh() async {
+    emit(state.copyWith(getPacagesState: RequestState.loading));
+    emit(state.copyWith(getPacagesState: RequestState.done));
   }
 }
